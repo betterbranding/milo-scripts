@@ -66,7 +66,7 @@ function replaceWarrantyImg(){
 
 /* Replace bottom CTA mascot */
 function replaceCTAMascot(){
-  var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/4fb61ced-b838-42c2-883b-ce0259c4f97c.png';
+  var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/24cef369-f850-483c-bc5e-f789cd7f4904.png';
   /* Find by .mascot-contact class */
   var containers=document.querySelectorAll('.mascot-contact');
   containers.forEach(function(c){
