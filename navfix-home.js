@@ -1,3 +1,4 @@
+/* Nav fix + scroll-reveal fix + MILO mascot for Home page */
 function fixNav(){
   var map={
     'Home':'/home',
@@ -24,10 +25,30 @@ function fixNav(){
     }
   });
 }
-fixNav();
-setInterval(fixNav,500);
 
-// MILO mascot injection in hero
+/* Scroll-reveal: observe .animate-on-scroll elements */
+var scrollObserver;
+function initScrollReveal(){
+  if(!scrollObserver){
+    scrollObserver=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.1});
+  }
+  document.querySelectorAll('.animate-on-scroll:not(.visible)').forEach(function(el){
+    scrollObserver.observe(el);
+  });
+}
+
+fixNav();
+initScrollReveal();
+setInterval(function(){ fixNav(); initScrollReveal(); },500);
+
+/* MILO mascot injection in hero */
 function addMilo(){
   if(document.querySelector('.hero-mascot-injected')) return;
   var hero=document.querySelector('.hero');

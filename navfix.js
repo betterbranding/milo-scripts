@@ -1,3 +1,4 @@
+/* Nav fix + scroll-reveal fix for GHL pages */
 function fixNav(){
   var map={
     'Home':'/home',
@@ -24,5 +25,25 @@ function fixNav(){
     }
   });
 }
+
+/* Scroll-reveal: observe .animate-on-scroll elements */
+var scrollObserver;
+function initScrollReveal(){
+  if(!scrollObserver){
+    scrollObserver=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.1});
+  }
+  document.querySelectorAll('.animate-on-scroll:not(.visible)').forEach(function(el){
+    scrollObserver.observe(el);
+  });
+}
+
 fixNav();
-setInterval(fixNav,500);
+initScrollReveal();
+setInterval(function(){ fixNav(); initScrollReveal(); },500);
