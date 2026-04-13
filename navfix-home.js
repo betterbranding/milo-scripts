@@ -1,4 +1,4 @@
-/* Nav fix + scroll-reveal fix + MILO mascot for Home page */
+/* Nav fix + scroll-reveal fix + image replacements for Home page */
 function fixNav(){
   var map={
     'Home':'/home',
@@ -44,9 +44,30 @@ function initScrollReveal(){
   });
 }
 
+/* Replace warranty image */
+function replaceWarrantyImg(){
+  var imgs=document.querySelectorAll('.warranty-img');
+  imgs.forEach(function(img){
+    if(!img.dataset.replaced){
+      img.dataset.replaced='1';
+      img.src='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/48aee2da-7094-41fd-9391-ee54941294f2.png';
+      img.alt='MILO Insulation Lifetime Warranty';
+    }
+  });
+  /* Also try by alt text as fallback */
+  document.querySelectorAll('img').forEach(function(img){
+    if(img.alt && img.alt.indexOf('Warranty')>-1 && !img.dataset.replaced){
+      img.dataset.replaced='1';
+      img.src='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/48aee2da-7094-41fd-9391-ee54941294f2.png';
+      img.alt='MILO Insulation Lifetime Warranty';
+    }
+  });
+}
+
 fixNav();
 initScrollReveal();
-setInterval(function(){ fixNav(); initScrollReveal(); },500);
+replaceWarrantyImg();
+setInterval(function(){ fixNav(); initScrollReveal(); replaceWarrantyImg(); },500);
 
 /* MILO mascot injection in hero */
 function addMilo(){
