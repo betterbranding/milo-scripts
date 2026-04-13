@@ -46,20 +46,43 @@ function initScrollReveal(){
 
 /* Replace warranty image */
 function replaceWarrantyImg(){
+  var newWarranty='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/48aee2da-7094-41fd-9391-ee54941294f2.png';
   var imgs=document.querySelectorAll('.warranty-img');
   imgs.forEach(function(img){
     if(!img.dataset.replaced){
       img.dataset.replaced='1';
-      img.src='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/48aee2da-7094-41fd-9391-ee54941294f2.png';
+      img.src=newWarranty;
       img.alt='MILO Insulation Lifetime Warranty';
     }
   });
-  /* Also try by alt text as fallback */
   document.querySelectorAll('img').forEach(function(img){
     if(img.alt && img.alt.indexOf('Warranty')>-1 && !img.dataset.replaced){
       img.dataset.replaced='1';
-      img.src='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/48aee2da-7094-41fd-9391-ee54941294f2.png';
+      img.src=newWarranty;
       img.alt='MILO Insulation Lifetime Warranty';
+    }
+  });
+}
+
+/* Replace bottom CTA mascot */
+function replaceCTAMascot(){
+  var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/4fb61ced-b838-42c2-883b-ce0259c4f97c.png';
+  /* Find by .mascot-contact class */
+  var containers=document.querySelectorAll('.mascot-contact');
+  containers.forEach(function(c){
+    var img=c.querySelector('img');
+    if(img && !img.dataset.replaced){
+      img.dataset.replaced='1';
+      img.src=newMascot;
+      img.alt='MILO Pointing';
+    }
+  });
+  /* Also find by alt text fallback */
+  document.querySelectorAll('img').forEach(function(img){
+    if(img.alt && (img.alt.indexOf('Milo Pointing')>-1 || img.alt.indexOf('farmer-pointing')>-1) && !img.dataset.replaced){
+      img.dataset.replaced='1';
+      img.src=newMascot;
+      img.alt='MILO Pointing';
     }
   });
 }
@@ -67,7 +90,8 @@ function replaceWarrantyImg(){
 fixNav();
 initScrollReveal();
 replaceWarrantyImg();
-setInterval(function(){ fixNav(); initScrollReveal(); replaceWarrantyImg(); },500);
+replaceCTAMascot();
+setInterval(function(){ fixNav(); initScrollReveal(); replaceWarrantyImg(); replaceCTAMascot(); },500);
 
 /* MILO mascot injection in hero */
 function addMilo(){
