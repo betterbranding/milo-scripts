@@ -104,8 +104,19 @@ function replacePatentedMascot(){
   });
 }
 
+/* Kill the pulseGlow animation on Patented Technology section */
+function killPatentedGlow(){
+  if(document.getElementById('kill-patented-glow')) return;
+  var style=document.createElement('style');
+  style.id='kill-patented-glow';
+  style.textContent=
+    '.thermal-puff-section::before{animation:none !important;opacity:0 !important;display:none !important;}'+
+    '@keyframes pulseGlow{0%,100%{transform:none;opacity:0}}';
+  document.head.appendChild(style);
+}
+
 /* Floating thermal puff particles */
-function injectPuffs(section, id, count, maxSize, maxOpacity){
+function injectPuffs(section, id, count, maxSize){
   if(!section) return;
   if(document.getElementById(id)) return;
 
@@ -121,11 +132,12 @@ function injectPuffs(section, id, count, maxSize, maxOpacity){
 
   for(var i=0;i<count;i++){
     var puff=document.createElement('div');
-    puff.className='puff-particle';
-    var size=20+Math.random()*maxSize;
+    puff.className='thermal-puff-particle';
+    var size=25+Math.random()*maxSize;
     var left=Math.random()*95;
     var delay=Math.random()*12;
     var duration=12+Math.random()*14;
+    var opacity=0.08+Math.random()*0.15;
 
     puff.style.cssText=
       'position:absolute;'+
@@ -133,8 +145,9 @@ function injectPuffs(section, id, count, maxSize, maxOpacity){
       'left:'+left+'%;'+
       'width:'+size+'px;'+
       'height:'+size+'px;'+
+      'opacity:'+opacity+';'+
       'pointer-events:none;'+
-      'animation:puffRise '+duration+'s ease-in-out '+delay+'s infinite;';
+      'animation:thermalPuffRise '+duration+'s ease-in-out '+delay+'s infinite;';
 
     var img=document.createElement('img');
     img.src=puffUrl;
@@ -159,41 +172,54 @@ function injectPuffs(section, id, count, maxSize, maxOpacity){
   }catch(e){}
 }
 
-function findSectionByTag(text){
+function findSectionByText(searchText){
+  /* Method 1: search .section-tag elements */
   var tags=document.querySelectorAll('.section-tag');
   for(var i=0;i<tags.length;i++){
-    if(tags[i].textContent.trim().indexOf(text)>-1){
+    if(tags[i].textContent.trim().indexOf(searchText)>-1){
       var el=tags[i];
-      while(el && !el.classList.contains('section')){
+      while(el && el.tagName!=='SECTION' && !el.classList.contains('section')){
         el=el.parentElement;
       }
-      return el;
+      if(el) return el;
+    }
+  }
+  /* Method 2: search ALL text nodes for the phrase */
+  var all=document.querySelectorAll('h2, h3, span, p, div');
+  for(var j=0;j<all.length;j++){
+    if(all[j].textContent.trim().indexOf(searchText)>-1){
+      var el2=all[j];
+      while(el2 && el2.tagName!=='SECTION' && !el2.classList.contains('section')){
+        el2=el2.parentElement;
+      }
+      if(el2) return el2;
     }
   }
   return null;
 }
 
 function addThermalPuffs(){
-  /* Inject shared keyframes once */
-  if(!document.getElementById('puff-animation-styles')){
+  /* Inject keyframes once — use unique name to avoid conflict with page CSS */
+  if(!document.getElementById('thermal-puff-anim-styles')){
     var style=document.createElement('style');
-    style.id='puff-animation-styles';
+    style.id='thermal-puff-anim-styles';
     style.textContent=
-      '@keyframes puffRise{'+
-        '0%{transform:translateY(0) rotate(0deg) scale(0.3);opacity:0}'+
-        '10%{opacity:0.12}'+
-        '80%{opacity:0.10}'+
-        '100%{transform:translateY(-800px) rotate(360deg) scale(1);opacity:0}'+
+      '@keyframes thermalPuffRise{'+
+        '0%{transform:translateY(0) rotate(0deg) scale(0.4);opacity:inherit}'+
+        '15%{opacity:inherit}'+
+        '85%{opacity:inherit}'+
+        '100%{transform:translateY(-800px) rotate(360deg) scale(1.1);opacity:0}'+
       '}'+
-      '.puff-particle{pointer-events:none;}';
+      '.thermal-puff-particle{pointer-events:none;}';
     document.head.appendChild(style);
   }
 
-  /* "Better. Natural. Perfect." section — 15 puffs */
-  var betterSection=findSectionByTag('Better. Natural. Perfect.');
-  if(betterSection) injectPuffs(betterSection, 'puffs-better', 15, 40, 0.12);
+  /* "Better. Natural. Perfect." section — 18 puffs */
+  var betterSection=findSectionByText('Better. Natural. Perfect.');
+  if(betterSection) injectPuffs(betterSection, 'puffs-better', 18, 45);
 }
 
+try{killPatentedGlow()}catch(e){}
 try{fixNav()}catch(e){}
 try{initScrollReveal()}catch(e){}
 try{replaceWarrantyImg()}catch(e){}
@@ -201,6 +227,7 @@ try{replaceCTAMascot()}catch(e){}
 try{replacePatentedMascot()}catch(e){}
 try{addThermalPuffs()}catch(e){}
 setInterval(function(){
+  try{killPatentedGlow()}catch(e){}
   try{fixNav()}catch(e){}
   try{initScrollReveal()}catch(e){}
   try{replaceWarrantyImg()}catch(e){}
