@@ -76,7 +76,7 @@
     // Create our content wrapper
     var wrapper = document.createElement('div');
     wrapper.id = 'milex-content';
-    wrapper.innerHTML = "<!-- NAVBAR -->\n  <nav class=\"navbar\" id=\"milex-navbar\">\n    <div class=\"nav-container\">\n      <a class=\"nav-logo\" href=\"/home\">\n        <img src=\"https://betterbranding.github.io/milo-scripts/logo.png\" alt=\"Milo Insulation\" class=\"logo-img\">\n      </a>\n      <div class=\"nav-links\" id=\"milex-nav-links\">\n        <a class=\"nav-link\" href=\"/home\">Home</a>\n        <a class=\"nav-link\" href=\"/homeowners\">Homeowners</a>\n        <a class=\"nav-link\" href=\"/builders\">Builders</a>\n        <a class=\"nav-link active\" href=\"/milex\">MILEX\u2122</a>\n        <a class=\"nav-link nav-cta\" href=\"/home\">Free Inspection</a>\n      </div>\n      <button class=\"nav-toggle\" id=\"milex-nav-toggle\" aria-label=\"Toggle navigation\">\n        <span></span><span></span><span></span>\n      </button>\n    </div>\n  </nav>\n\n  <!-- HERO -->\n  <section class=\"page-hero milex-hero\">\n    <div class=\"page-hero-overlay\"></div>\n    <div class=\"page-hero-content animate-on-scroll\">\n      <div class=\"hero-badge\">Patented Technology</div>\n      <h1>MILEX\u2122 Insulation</h1>\n      <p>with Patented \"Thermal Puff\" Technology</p>\n    </div>\n  </section>\n\n  <!-- WHAT IS MILEX -->\n  <section class=\"section bg-white\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag\">The Product</span>\n        <h2 class=\"section-title\">What is MILEX\u2122 Thermal MAX\u00ae?</h2>\n      </div>\n      <div class=\"two-col align-center\">\n        <div class=\"col animate-on-scroll slide-left\">\n          <h3 class=\"sub-heading\">Nature's Alternative</h3>\n          <p class=\"body-text\">MILEX\u2122 is made from a special type of domestically grown Sorghum Vulgare, commonly referred to as \"Milo\". The process begins when our farmer-growers deliver naturally grown, non-GMO sorghum seeds, or \"berries\", to our processing mill in Tulia, Texas.</p>\n          <p class=\"body-text\">These tiny sorghum berries undergo our patented manufacturing process where they are passed through state-of-the-art equipment. Once refined, they are extruded at high-speed with more than 3000 psi, creating our amazing \"Thermal Puffs\" \u2014 MILEX\u2122.</p>\n        </div>\n        <div class=\"col animate-on-scroll slide-right\">\n          <div class=\"process-visual\">\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">1</div>\n              <i class=\"fas fa-wheat-awn\"></i>\n              <h4>Harvest</h4>\n              <p>Non-GMO sorghum berries delivered by local farmers</p>\n            </div>\n            <div class=\"process-arrow\"><i class=\"fas fa-arrow-down\"></i></div>\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">2</div>\n              <i class=\"fas fa-industry\"></i>\n              <h4>Process</h4>\n              <p>Refined through patented state-of-the-art equipment</p>\n            </div>\n            <div class=\"process-arrow\"><i class=\"fas fa-arrow-down\"></i></div>\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">3</div>\n              <i class=\"fas fa-burst\"></i>\n              <h4>Extrude</h4>\n              <p>High-speed extrusion at 3000+ psi creates Thermal Puffs</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- WHY SORGHUM -->\n  <section class=\"section bg-light-green\">\n    <div class=\"container\">\n      <div class=\"two-col align-center\">\n        <div class=\"col animate-on-scroll slide-left\">\n          <span class=\"section-tag\">Sustainability</span>\n          <h2 class=\"section-title\">Why Use Sorghum?</h2>\n          <p class=\"body-text\">Sorghum makes the perfect insulation because it expands naturally without the use of expensive, potentially hazardous polymers, making it safer, better and far less expensive than other expandable materials.</p>\n          <p class=\"body-text\">It has a much lower carbon footprint than other grains. Sorghum is known as one of the most water efficient crops grown, largely due to its drought tolerance properties, and is recognized as one of the most efficient crops in converting solar energy and water use.</p>\n          <div class=\"eco-stats\">\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-droplet\"></i>\n              <span>Drought Tolerant</span>\n            </div>\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-leaf\"></i>\n              <span>Low Carbon Footprint</span>\n            </div>\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-sun\"></i>\n              <span>Solar Efficient</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"col animate-on-scroll slide-right text-center\">\n          <img src=\"https://betterbranding.github.io/milo-scripts/milex-sustain.jpg\" alt=\"Sorghum Field\" class=\"sorghum-large-img\">\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- PEST SAFE -->\n  <section class=\"section bg-white\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag\">Safe &amp; Clean</span>\n        <h2 class=\"section-title\">Naturally Pest-Free</h2>\n        <p class=\"body-text max-w-lg\">During our exclusive processing technique, all fats and sugars are removed rendering MILEX\u2122 a \"non-food\" source. Pests and insects are naturally not attracted to it. We also use naturally occurring Boric Powder during our curing process for flame retardancy and additional pest protection.</p>\n      </div>\n    </div>\n  </section>\n\n  <!-- THERMAL PUFF -->\n  <section class=\"section thermal-puff-section\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag light\">The Secret</span>\n        <h2 class=\"section-title light\">Thermal Puff Technology</h2>\n        <p class=\"body-text light max-w-lg\">MILEX\u2122 \"Thermal Puffs\" are the secret to its outstanding thermal resistance properties. Each puff contains thousands of tiny air pockets that create an amazing thermal blanket. And since MILEX\u2122 has minimal shrinkage, those tiny air pockets remain intact \u2014 allowing MILEX\u2122 to retain maximum insulation value over a lifetime.</p>\n        <p class=\"body-text light highlight-text\" style=\"margin-top: 1.5rem; font-size: 1.3rem;\"><strong>It's all in the \"PUFF\"!</strong></p>\n      </div>\n    </div>\n  </section>\n\n  <!-- MILEX CTA -->\n  <section class=\"section bg-white\">\n    <div class=\"container text-center animate-on-scroll\">\n      <h2 class=\"section-title\">Ready to Experience the Difference?</h2>\n      <p class=\"body-text max-w-lg\">Contact us now to learn more about MILEX\u2122 and how it can transform your home's comfort and energy efficiency.</p>\n      <a class=\"btn btn-primary\" href=\"/home#contact-section\">Get Free Inspection <i class=\"fas fa-arrow-right\"></i></a>\n    </div>\n  </section>\n\n</div>\n\n\n\n  <!-- FOOTER -->\n  <footer class=\"footer\">\n    <div class=\"container\">\n      <div class=\"footer-grid\">\n        <div class=\"footer-col\">\n          <img src=\"https://betterbranding.github.io/milo-scripts/logo.png\" alt=\"Milo Insulation\" class=\"footer-logo\">\n          <p class=\"footer-tagline\">Better. Natural. Perfect.</p>\n          <p class=\"footer-text\">The world\u2019s first and only organic, loose-fill insulation made from domestically grown sorghum.</p>\n        </div>\n        <div class=\"footer-col\">\n          <h4>Quick Links</h4>\n          <a href=\"/home\">Home</a>\n          <a href=\"/homeowners\">Homeowners</a>\n          <a href=\"/builders\">Builders</a>\n          <a href=\"/milex\">MILEX\u2122</a>\n        </div>\n        <div class=\"footer-col\">\n          <h4>Contact</h4>\n          <p><i class=\"fas fa-phone\"></i> (806) 995-6500</p>\n          <p><i class=\"fas fa-envelope\"></i> info@miloinsulation.com</p>\n          <p><i class=\"fas fa-map-marker-alt\"></i> Tulia, Texas</p>\n        </div>\n      </div>\n      <div class=\"footer-bottom\">\n        <p>\u00a9 2026 Milo Insulation. All rights reserved.</p>\n      </div>\n    </div>\n  </footer>";
+    wrapper.innerHTML = "<!-- HERO -->\n  <section class=\"page-hero milex-hero\">\n    <div class=\"page-hero-overlay\"></div>\n    <div class=\"page-hero-content animate-on-scroll\">\n      <div class=\"hero-badge\">Patented Technology</div>\n      <h1>MILEX\u2122 Insulation</h1>\n      <p>with Patented \"Thermal Puff\" Technology</p>\n    </div>\n  </section>\n\n  <!-- WHAT IS MILEX -->\n  <section class=\"section bg-white\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag\">The Product</span>\n        <h2 class=\"section-title\">What is MILEX\u2122 Thermal MAX\u00ae?</h2>\n      </div>\n      <div class=\"two-col align-center\">\n        <div class=\"col animate-on-scroll slide-left\">\n          <h3 class=\"sub-heading\">Nature's Alternative</h3>\n          <p class=\"body-text\">MILEX\u2122 is made from a special type of domestically grown Sorghum Vulgare, commonly referred to as \"Milo\". The process begins when our farmer-growers deliver naturally grown, non-GMO sorghum seeds, or \"berries\", to our processing mill in Tulia, Texas.</p>\n          <p class=\"body-text\">These tiny sorghum berries undergo our patented manufacturing process where they are passed through state-of-the-art equipment. Once refined, they are extruded at high-speed with more than 3000 psi, creating our amazing \"Thermal Puffs\" \u2014 MILEX\u2122.</p>\n        </div>\n        <div class=\"col animate-on-scroll slide-right\">\n          <div class=\"process-visual\">\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">1</div>\n              <i class=\"fas fa-wheat-awn\"></i>\n              <h4>Harvest</h4>\n              <p>Non-GMO sorghum berries delivered by local farmers</p>\n            </div>\n            <div class=\"process-arrow\"><i class=\"fas fa-arrow-down\"></i></div>\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">2</div>\n              <i class=\"fas fa-industry\"></i>\n              <h4>Process</h4>\n              <p>Refined through patented state-of-the-art equipment</p>\n            </div>\n            <div class=\"process-arrow\"><i class=\"fas fa-arrow-down\"></i></div>\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">3</div>\n              <i class=\"fas fa-burst\"></i>\n              <h4>Extrude</h4>\n              <p>High-speed extrusion at 3000+ psi creates Thermal Puffs</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- WHY SORGHUM -->\n  <section class=\"section bg-light-green\">\n    <div class=\"container\">\n      <div class=\"two-col align-center\">\n        <div class=\"col animate-on-scroll slide-left\">\n          <span class=\"section-tag\">Sustainability</span>\n          <h2 class=\"section-title\">Why Use Sorghum?</h2>\n          <p class=\"body-text\">Sorghum makes the perfect insulation because it expands naturally without the use of expensive, potentially hazardous polymers, making it safer, better and far less expensive than other expandable materials.</p>\n          <p class=\"body-text\">It has a much lower carbon footprint than other grains. Sorghum is known as one of the most water efficient crops grown, largely due to its drought tolerance properties, and is recognized as one of the most efficient crops in converting solar energy and water use.</p>\n          <div class=\"eco-stats\">\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-droplet\"></i>\n              <span>Drought Tolerant</span>\n            </div>\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-leaf\"></i>\n              <span>Low Carbon Footprint</span>\n            </div>\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-sun\"></i>\n              <span>Solar Efficient</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"col animate-on-scroll slide-right text-center\">\n          <img src=\"https://betterbranding.github.io/milo-scripts/milex-sustain.jpg\" alt=\"Sorghum Field\" class=\"sorghum-large-img\">\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- PEST SAFE -->\n  <section class=\"section bg-white\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag\">Safe &amp; Clean</span>\n        <h2 class=\"section-title\">Naturally Pest-Free</h2>\n        <p class=\"body-text max-w-lg\">During our exclusive processing technique, all fats and sugars are removed rendering MILEX\u2122 a \"non-food\" source. Pests and insects are naturally not attracted to it. We also use naturally occurring Boric Powder during our curing process for flame retardancy and additional pest protection.</p>\n      </div>\n    </div>\n  </section>\n\n  <!-- THERMAL PUFF -->\n  <section class=\"section thermal-puff-section\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag light\">The Secret</span>\n        <h2 class=\"section-title light\">Thermal Puff Technology</h2>\n        <p class=\"body-text light max-w-lg\">MILEX\u2122 \"Thermal Puffs\" are the secret to its outstanding thermal resistance properties. Each puff contains thousands of tiny air pockets that create an amazing thermal blanket. And since MILEX\u2122 has minimal shrinkage, those tiny air pockets remain intact \u2014 allowing MILEX\u2122 to retain maximum insulation value over a lifetime.</p>\n        <p class=\"body-text light highlight-text\" style=\"margin-top: 1.5rem; font-size: 1.3rem;\"><strong>It's all in the \"PUFF\"!</strong></p>\n      </div>\n    </div>\n  </section>\n\n  <!-- MILEX CTA -->\n  <section class=\"section bg-white\">\n    <div class=\"container text-center animate-on-scroll\">\n      <h2 class=\"section-title\">Ready to Experience the Difference?</h2>\n      <p class=\"body-text max-w-lg\">Contact us now to learn more about MILEX\u2122 and how it can transform your home's comfort and energy efficiency.</p>\n      <a class=\"btn btn-primary\" href=\"/home#contact-section\">Get Free Inspection <i class=\"fas fa-arrow-right\"></i></a>\n    </div>\n  </section>\n\n</div>\n\n<!-- \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550";
 
     // Insert before the GHL section or at the start
     var firstChild = container.querySelector('div');
@@ -119,25 +119,76 @@
   setTimeout(injectContent, 3000);
 
   // ═══════════════════════════════════════════════════════
-  // 6. NAVBAR BEHAVIOR
+  // 6. INJECT NAVBAR & FOOTER
   // ═══════════════════════════════════════════════════════
-  function setupNavbar() {
-    var navbar = document.getElementById('milex-navbar');
-    var toggle = document.getElementById('milex-nav-toggle');
-    var links = document.getElementById('milex-nav-links');
-    
-    if (!navbar) return;
-    
-    // Scroll behavior
+  function injectNavFooter() {
+    if (document.getElementById('milex-navbar')) return; // already injected
+    var content = document.getElementById('milex-content');
+    if (!content) return;
+
+    // --- NAVBAR ---
+    var nav = document.createElement('nav');
+    nav.className = 'navbar';
+    nav.id = 'milex-navbar';
+    nav.innerHTML = '<div class="nav-container">'
+      + '<a class="nav-logo" href="/home">'
+      + '<img src="https://betterbranding.github.io/milo-scripts/logo.png" alt="Milo Insulation" class="logo-img">'
+      + '</a>'
+      + '<div class="nav-links" id="milex-nav-links">'
+      + '<a class="nav-link" href="/home">Home</a>'
+      + '<a class="nav-link" href="/homeowners">Homeowners</a>'
+      + '<a class="nav-link" href="/builders">Builders</a>'
+      + '<a class="nav-link active" href="/milex">MILEX\u2122</a>'
+      + '<a class="nav-link nav-cta" href="/home">Free Inspection</a>'
+      + '</div>'
+      + '<button class="nav-toggle" id="milex-nav-toggle" aria-label="Toggle navigation">'
+      + '<span></span><span></span><span></span>'
+      + '</button>'
+      + '</div>';
+    content.insertBefore(nav, content.firstChild);
+
+    // --- FOOTER ---
+    var footer = document.createElement('footer');
+    footer.className = 'footer';
+    footer.innerHTML = '<div class="container">'
+      + '<div class="footer-grid">'
+      + '<div class="footer-col">'
+      + '<img src="https://betterbranding.github.io/milo-scripts/logo.png" alt="Milo Insulation" class="footer-logo">'
+      + '<p class="footer-tagline">Better. Natural. Perfect.</p>'
+      + '<p class="footer-text">The world\u2019s first and only organic, loose-fill insulation made from domestically grown sorghum.</p>'
+      + '</div>'
+      + '<div class="footer-col">'
+      + '<h4>Quick Links</h4>'
+      + '<a href="/home">Home</a>'
+      + '<a href="/homeowners">Homeowners</a>'
+      + '<a href="/builders">Builders</a>'
+      + '<a href="/milex">MILEX\u2122</a>'
+      + '</div>'
+      + '<div class="footer-col">'
+      + '<h4>Contact</h4>'
+      + '<p><i class="fas fa-phone"></i> (806) 995-6500</p>'
+      + '<p><i class="fas fa-envelope"></i> info@miloinsulation.com</p>'
+      + '<p><i class="fas fa-map-marker-alt"></i> Tulia, Texas</p>'
+      + '</div>'
+      + '</div>'
+      + '<div class="footer-bottom">'
+      + '<p>\u00a9 2026 Milo Insulation. All rights reserved.</p>'
+      + '</div>'
+      + '</div>';
+    content.appendChild(footer);
+
+    // --- SCROLL BEHAVIOR ---
     window.addEventListener('scroll', function() {
       if (window.scrollY > 80) {
-        navbar.classList.add('scrolled');
+        nav.classList.add('scrolled');
       } else {
-        navbar.classList.remove('scrolled');
+        nav.classList.remove('scrolled');
       }
     });
-    
-    // Mobile toggle
+
+    // --- MOBILE TOGGLE ---
+    var toggle = document.getElementById('milex-nav-toggle');
+    var links = document.getElementById('milex-nav-links');
     if (toggle && links) {
       toggle.addEventListener('click', function() {
         links.classList.toggle('open');
@@ -145,10 +196,10 @@
     }
   }
 
-  // Run navbar setup after content injection
-  setTimeout(setupNavbar, 600);
-  setTimeout(setupNavbar, 1600);
-  setTimeout(setupNavbar, 3100);
+  // Run nav/footer injection with delays (after content injection)
+  setTimeout(injectNavFooter, 600);
+  setTimeout(injectNavFooter, 1600);
+  setTimeout(injectNavFooter, 3100);
 
 })();
 
