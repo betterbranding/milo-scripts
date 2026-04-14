@@ -64,9 +64,9 @@ function replaceWarrantyImg(){
   });
 }
 
-/* Replace bottom CTA mascot */
+/* Replace bottom CTA mascot with SVG */
 function replaceCTAMascot(){
-  var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/f21b58b6-af3a-4351-86d0-a06abbe4b976.png';
+  var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/56486280-5bf8-459c-aa31-9ee1b40db376.svg';
   /* Find by .mascot-contact class */
   var containers=document.querySelectorAll('.mascot-contact');
   containers.forEach(function(c){
