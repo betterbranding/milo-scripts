@@ -1,5 +1,5 @@
 // navfix-milex.js — Full MILEX page content injection + nav fix
-// Auto-generated from milo-ghl-inline/milex.html
+// Fetches HTML content from milex-content.html
 (function() {
   'use strict';
 
@@ -14,24 +14,19 @@
   };
 
   function fixNav() {
-    window.navigateTo = function(p) {
-      if (linkMap[p]) window.location.href = linkMap[p];
-    };
-    document.querySelectorAll('a[href$="#"]').forEach(function(a) {
+    document.querySelectorAll('a[onclick]').forEach(function(a) {
       var oc = a.getAttribute('onclick') || '';
       var match = oc.match(/navigateTo\('(\w+)'\)/);
       if (match && linkMap[match[1]]) {
-        a.href = linkMap[match[1]];
         a.removeAttribute('onclick');
+        a.href = linkMap[match[1]];
         a.addEventListener('click', function(e) {
           e.stopImmediatePropagation();
           window.location.href = linkMap[match[1]];
-        }, true);
+        });
       }
     });
   }
-  fixNav();
-  setInterval(fixNav, 500);
 
   // ═══════════════════════════════════════════════════════
   // 2. INJECT FONTS + FONTAWESOME
@@ -43,7 +38,7 @@
   }
   loadResource('link', {
     rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&display=swap'
+    href: 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700;800&display=swap'
   });
   loadResource('link', {
     rel: 'stylesheet',
@@ -59,7 +54,7 @@
   document.head.appendChild(style);
 
   // ═══════════════════════════════════════════════════════
-  // 4. HIDE GHL WRAPPER & INJECT CONTENT
+  // 4. HIDE GHL WRAPPER & FETCH + INJECT CONTENT
   // ═══════════════════════════════════════════════════════
   function injectContent() {
     // Hide the GHL section wrapper
@@ -76,9 +71,8 @@
     // Create our content wrapper
     var wrapper = document.createElement('div');
     wrapper.id = 'milex-content';
-    wrapper.innerHTML = "<!-- HERO -->\n  <section class=\"page-hero milex-hero\">\n    <div class=\"page-hero-overlay\"></div>\n    <div class=\"page-hero-content animate-on-scroll\">\n      <div class=\"hero-badge\">Patented Technology</div>\n      <h1>MILEX\u2122 Insulation</h1>\n      <p>with Patented \"Thermal Puff\" Technology</p>\n    </div>\n  </section>\n\n  <!-- WHAT IS MILEX -->\n  <section class=\"section bg-white\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag\">The Product</span>\n        <h2 class=\"section-title\">What is MILEX\u2122 Thermal MAX\u00ae?</h2>\n      </div>\n      <div class=\"two-col align-center\">\n        <div class=\"col animate-on-scroll slide-left\">\n          <h3 class=\"sub-heading\">Nature's Alternative</h3>\n          <p class=\"body-text\">MILEX\u2122 is made from a special type of domestically grown Sorghum Vulgare, commonly referred to as \"Milo\". The process begins when our farmer-growers deliver naturally grown, non-GMO sorghum seeds, or \"berries\", to our processing mill in Tulia, Texas.</p>\n          <p class=\"body-text\">These tiny sorghum berries undergo our patented manufacturing process where they are passed through state-of-the-art equipment. Once refined, they are extruded at high-speed with more than 3000 psi, creating our amazing \"Thermal Puffs\" \u2014 MILEX\u2122.</p>\n        </div>\n        <div class=\"col animate-on-scroll slide-right\">\n          <div class=\"process-visual\">\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">1</div>\n              <i class=\"fas fa-wheat-awn\"></i>\n              <h4>Harvest</h4>\n              <p>Non-GMO sorghum berries delivered by local farmers</p>\n            </div>\n            <div class=\"process-arrow\"><i class=\"fas fa-arrow-down\"></i></div>\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">2</div>\n              <i class=\"fas fa-industry\"></i>\n              <h4>Process</h4>\n              <p>Refined through patented state-of-the-art equipment</p>\n            </div>\n            <div class=\"process-arrow\"><i class=\"fas fa-arrow-down\"></i></div>\n            <div class=\"process-step glass-card\">\n              <div class=\"process-num\">3</div>\n              <i class=\"fas fa-burst\"></i>\n              <h4>Extrude</h4>\n              <p>High-speed extrusion at 3000+ psi creates Thermal Puffs</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- WHY SORGHUM -->\n  <section class=\"section bg-light-green\">\n    <div class=\"container\">\n      <div class=\"two-col align-center\">\n        <div class=\"col animate-on-scroll slide-left\">\n          <span class=\"section-tag\">Sustainability</span>\n          <h2 class=\"section-title\">Why Use Sorghum?</h2>\n          <p class=\"body-text\">Sorghum makes the perfect insulation because it expands naturally without the use of expensive, potentially hazardous polymers, making it safer, better and far less expensive than other expandable materials.</p>\n          <p class=\"body-text\">It has a much lower carbon footprint than other grains. Sorghum is known as one of the most water efficient crops grown, largely due to its drought tolerance properties, and is recognized as one of the most efficient crops in converting solar energy and water use.</p>\n          <div class=\"eco-stats\">\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-droplet\"></i>\n              <span>Drought Tolerant</span>\n            </div>\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-leaf\"></i>\n              <span>Low Carbon Footprint</span>\n            </div>\n            <div class=\"eco-stat glass-card\">\n              <i class=\"fas fa-sun\"></i>\n              <span>Solar Efficient</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"col animate-on-scroll slide-right text-center\">\n          <img src=\"https://betterbranding.github.io/milo-scripts/milex-sustain.jpg\" alt=\"Sorghum Field\" class=\"sorghum-large-img\">\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- PEST SAFE -->\n  <section class=\"section bg-white\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag\">Safe &amp; Clean</span>\n        <h2 class=\"section-title\">Naturally Pest-Free</h2>\n        <p class=\"body-text max-w-lg\">During our exclusive processing technique, all fats and sugars are removed rendering MILEX\u2122 a \"non-food\" source. Pests and insects are naturally not attracted to it. We also use naturally occurring Boric Powder during our curing process for flame retardancy and additional pest protection.</p>\n      </div>\n    </div>\n  </section>\n\n  <!-- THERMAL PUFF -->\n  <section class=\"section thermal-puff-section\">\n    <div class=\"container\">\n      <div class=\"text-center animate-on-scroll\">\n        <span class=\"section-tag light\">The Secret</span>\n        <h2 class=\"section-title light\">Thermal Puff Technology</h2>\n        <p class=\"body-text light max-w-lg\">MILEX\u2122 \"Thermal Puffs\" are the secret to its outstanding thermal resistance properties. Each puff contains thousands of tiny air pockets that create an amazing thermal blanket. And since MILEX\u2122 has minimal shrinkage, those tiny air pockets remain intact \u2014 allowing MILEX\u2122 to retain maximum insulation value over a lifetime.</p>\n        <p class=\"body-text light highlight-text\" style=\"margin-top: 1.5rem; font-size: 1.3rem;\"><strong>It's all in the \"PUFF\"!</strong></p>\n      </div>\n    </div>\n  </section>\n\n  <!-- MILEX CTA -->\n  <section class=\"section bg-white\">\n    <div class=\"container text-center animate-on-scroll\">\n      <h2 class=\"section-title\">Ready to Experience the Difference?</h2>\n      <p class=\"body-text max-w-lg\">Contact us now to learn more about MILEX\u2122 and how it can transform your home's comfort and energy efficiency.</p>\n      <a class=\"btn btn-primary\" href=\"/home#contact-section\">Get Free Inspection <i class=\"fas fa-arrow-right\"></i></a>\n    </div>\n  </section>\n\n</div>\n\n<!-- \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550";
 
-    // Insert before the GHL section or at the start
+    // Insert wrapper into DOM immediately
     var firstChild = container.querySelector('div');
     if (firstChild) {
       container.insertBefore(wrapper, firstChild);
@@ -86,8 +80,19 @@
       container.appendChild(wrapper);
     }
 
-    // Set up scroll animations
-    setupScrollAnimations();
+    // Fetch HTML content from separate file (cache-bust with timestamp)
+    var baseUrl = 'https://betterbranding.github.io/milo-scripts/';
+    fetch(baseUrl + 'milex-content.html?v=' + Date.now())
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        wrapper.innerHTML = html;
+        setupScrollAnimations();
+        setupNavbar();
+        fixNav();
+      })
+      .catch(function(err) {
+        console.error('MILEX content fetch failed:', err);
+      });
   }
 
   // ═══════════════════════════════════════════════════════
@@ -104,6 +109,21 @@
 
     document.querySelectorAll('#milex-content .animate-on-scroll').forEach(function(el) {
       observer.observe(el);
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // 6. NAVBAR SCROLL BEHAVIOR
+  // ═══════════════════════════════════════════════════════
+  function setupNavbar() {
+    var nav = document.getElementById('milex-navbar');
+    if (!nav) return;
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
     });
   }
 
