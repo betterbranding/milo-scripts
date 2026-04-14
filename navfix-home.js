@@ -117,7 +117,7 @@ function injectPuffs(section, id, count, maxSize, maxOpacity){
   wrapper.className='puff-particles';
   wrapper.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden;';
 
-  var puffUrl='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/73a65eb2-7724-4d07-afad-53522c7a274b.svg';
+  var puffUrl='https://betterbranding.github.io/milo-scripts/puff-transparent.png';
 
   for(var i=0;i<count;i++){
     var puff=document.createElement('div');
