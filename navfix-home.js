@@ -104,7 +104,7 @@ function replacePatentedMascot(){
   });
 }
 
-/* Floating thermal puff particles — injects into given section */
+/* Floating thermal puff particles — Patented Technology section only */
 function injectPuffs(section, id, count, maxSize, maxOpacity){
   if(!section) return;
   if(document.getElementById(id)) return;
@@ -175,13 +175,9 @@ function addThermalPuffs(){
     document.head.appendChild(style);
   }
 
-  /* Patented Technology section — 15 puffs */
+  /* Patented Technology section only — 15 puffs */
   var sections=document.querySelectorAll('.thermal-puff-section');
   if(sections.length) injectPuffs(sections[0], 'puffs-patented', 15, 40, 0.12);
-
-  /* Hero section — 12 puffs, slightly larger and more subtle */
-  var hero=document.querySelector('.hero');
-  if(hero) injectPuffs(hero, 'puffs-hero', 12, 50, 0.10);
 }
 
 try{fixNav()}catch(e){}
@@ -199,14 +195,14 @@ setInterval(function(){
   try{addThermalPuffs()}catch(e){}
 },500);
 
-/* MILO mascot injection in hero — shifted left */
+/* MILO mascot injection in hero — original position */
 function addMilo(){
   if(document.querySelector('.hero-mascot-injected')) return;
   var hero=document.querySelector('.hero');
   if(!hero) return;
   var d=document.createElement('div');
   d.className='hero-mascot hero-mascot-injected';
-  d.style.cssText='position:absolute;right:20%;bottom:4%;z-index:3;animation:mascotFloat 4s ease-in-out infinite';
+  d.style.cssText='position:absolute;right:5%;bottom:4%;z-index:3;animation:mascotFloat 4s ease-in-out infinite';
   var img=document.createElement('img');
   img.src='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/e78c98f9-00e8-4722-890b-5a64084ff1e9.png';
   img.alt='MILO - Your Insulation Expert';
