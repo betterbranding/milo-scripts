@@ -104,7 +104,7 @@ function replacePatentedMascot(){
   });
 }
 
-/* Floating thermal puff particles — Patented Technology section only */
+/* Floating thermal puff particles */
 function injectPuffs(section, id, count, maxSize, maxOpacity){
   if(!section) return;
   if(document.getElementById(id)) return;
@@ -159,6 +159,20 @@ function injectPuffs(section, id, count, maxSize, maxOpacity){
   }catch(e){}
 }
 
+function findSectionByTag(text){
+  var tags=document.querySelectorAll('.section-tag');
+  for(var i=0;i<tags.length;i++){
+    if(tags[i].textContent.trim().indexOf(text)>-1){
+      var el=tags[i];
+      while(el && !el.classList.contains('section')){
+        el=el.parentElement;
+      }
+      return el;
+    }
+  }
+  return null;
+}
+
 function addThermalPuffs(){
   /* Inject shared keyframes once */
   if(!document.getElementById('puff-animation-styles')){
@@ -175,9 +189,9 @@ function addThermalPuffs(){
     document.head.appendChild(style);
   }
 
-  /* Patented Technology section only — 15 puffs */
-  var sections=document.querySelectorAll('.thermal-puff-section');
-  if(sections.length) injectPuffs(sections[0], 'puffs-patented', 15, 40, 0.12);
+  /* "Better. Natural. Perfect." section — 15 puffs */
+  var betterSection=findSectionByTag('Better. Natural. Perfect.');
+  if(betterSection) injectPuffs(betterSection, 'puffs-better', 15, 40, 0.12);
 }
 
 try{fixNav()}catch(e){}
