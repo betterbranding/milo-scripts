@@ -115,6 +115,39 @@ function killPatentedGlow(){
   document.head.appendChild(style);
 }
 
+/* Reorder Lurking section threat cards */
+function reorderLurkingCards(){
+  if(document.body.dataset.lurkingFixed) return;
+  var cards=document.querySelectorAll('.threat-card');
+  if(cards.length===0) return;
+
+  /* Build a map: title -> card element */
+  var cardMap={};
+  cards.forEach(function(card){
+    var h4=card.querySelector('h4');
+    if(h4) cardMap[h4.textContent.trim()]=card;
+  });
+
+  /* Desired order (remove Fire Hazards) */
+  var order=['Allergens & Toxins','Pests & Rodents','Money Bleeding Out'];
+  var parent=cards[0].parentElement;
+  if(!parent) return;
+
+  /* Remove Fire Hazards */
+  if(cardMap['Fire Hazards']){
+    cardMap['Fire Hazards'].remove();
+  }
+
+  /* Reorder remaining cards */
+  order.forEach(function(title){
+    if(cardMap[title]){
+      parent.appendChild(cardMap[title]);
+    }
+  });
+
+  document.body.dataset.lurkingFixed='1';
+}
+
 /* Floating thermal puff particles */
 function injectPuffs(section, id, count, maxSize){
   if(!section) return;
@@ -225,6 +258,7 @@ try{initScrollReveal()}catch(e){}
 try{replaceWarrantyImg()}catch(e){}
 try{replaceCTAMascot()}catch(e){}
 try{replacePatentedMascot()}catch(e){}
+try{reorderLurkingCards()}catch(e){}
 try{addThermalPuffs()}catch(e){}
 setInterval(function(){
   try{killPatentedGlow()}catch(e){}
@@ -233,6 +267,7 @@ setInterval(function(){
   try{replaceWarrantyImg()}catch(e){}
   try{replaceCTAMascot()}catch(e){}
   try{replacePatentedMascot()}catch(e){}
+  try{reorderLurkingCards()}catch(e){}
   try{addThermalPuffs()}catch(e){}
 },500);
 
