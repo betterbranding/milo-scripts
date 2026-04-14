@@ -88,7 +88,6 @@ function replaceCTAMascot(){
 /* Replace Patented Technology mascot with MILO holding Thermal Puff */
 function replacePatentedMascot(){
   var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/90ab675e-ebf4-4629-9b5d-db35af5c6930.png';
-  /* Find by .mascot-patented class */
   document.querySelectorAll('.mascot-patented').forEach(function(img){
     if(!img.dataset.replaced){
       img.dataset.replaced='1';
@@ -96,7 +95,6 @@ function replacePatentedMascot(){
       img.alt='MILO with MILEX Thermal MAX';
     }
   });
-  /* Fallback: find by .mascot-img class */
   document.querySelectorAll('.mascot-img').forEach(function(img){
     if(!img.dataset.replaced && img.alt && img.alt.indexOf('Mascot')>-1){
       img.dataset.replaced='1';
@@ -106,11 +104,81 @@ function replacePatentedMascot(){
   });
 }
 
+/* Floating thermal puff particles in Patented Technology section */
+function addThermalPuffs(){
+  var section=document.querySelector('.thermal-puff-section');
+  if(!section || section.querySelector('.puff-particles')) return;
+
+  /* Ensure section has relative positioning for absolute children */
+  section.style.position='relative';
+  section.style.overflow='hidden';
+
+  /* Inject keyframe animations */
+  var style=document.createElement('style');
+  style.textContent=
+    '@keyframes puffFloat{'+
+      '0%{transform:translateY(100%) rotate(0deg) scale(0.3);opacity:0}'+
+      '10%{opacity:var(--puff-opacity,0.12)}'+
+      '80%{opacity:var(--puff-opacity,0.12)}'+
+      '100%{transform:translateY(-120%) rotate(360deg) scale(1);opacity:0}'+
+    '}'+
+    '@keyframes puffDrift{'+
+      '0%,100%{transform:translateX(0)}'+
+      '50%{transform:translateX(var(--drift,20px))}'+
+    '}';
+  document.head.appendChild(style);
+
+  /* Create particle container */
+  var container=document.createElement('div');
+  container.className='puff-particles';
+  container.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden';
+
+  var puffUrl='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/73a65eb2-7724-4d07-afad-53522c7a274b.svg';
+  var count=18;
+
+  for(var i=0;i<count;i++){
+    var puff=document.createElement('div');
+    var size=20+Math.random()*35; /* 20-55px */
+    var left=Math.random()*100;
+    var delay=Math.random()*12;
+    var duration=10+Math.random()*14; /* 10-24s */
+    var driftAmt=-30+Math.random()*60; /* -30 to 30px horizontal drift */
+    var opacity=0.06+Math.random()*0.12; /* 0.06-0.18 opacity */
+
+    puff.style.cssText=
+      'position:absolute;'+
+      'bottom:-60px;'+
+      'left:'+left+'%;'+
+      'width:'+size+'px;'+
+      'height:'+size+'px;'+
+      '--puff-opacity:'+opacity+';'+
+      '--drift:'+driftAmt+'px;'+
+      'animation:puffFloat '+duration+'s ease-in-out '+delay+'s infinite,'+
+        'puffDrift '+(3+Math.random()*4)+'s ease-in-out '+delay+'s infinite;'+
+      'pointer-events:none;';
+
+    var img=document.createElement('img');
+    img.src=puffUrl;
+    img.alt='';
+    img.style.cssText='width:100%;height:100%;object-fit:contain;filter:brightness(1.2);';
+
+    puff.appendChild(img);
+    container.appendChild(puff);
+  }
+
+  section.appendChild(container);
+
+  /* Make sure content stays above particles */
+  var inner=section.querySelector('.container');
+  if(inner) inner.style.position='relative'; inner.style.zIndex='2';
+}
+
 fixNav();
 initScrollReveal();
 replaceWarrantyImg();
 replaceCTAMascot();
 replacePatentedMascot();
+addThermalPuffs();
 setInterval(function(){ fixNav(); initScrollReveal(); replaceWarrantyImg(); replaceCTAMascot(); replacePatentedMascot(); },500);
 
 /* MILO mascot injection in hero */
