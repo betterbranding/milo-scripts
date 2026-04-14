@@ -67,7 +67,6 @@ function replaceWarrantyImg(){
 /* Replace bottom CTA mascot with SVG */
 function replaceCTAMascot(){
   var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/56486280-5bf8-459c-aa31-9ee1b40db376.svg';
-  /* Find by .mascot-contact class */
   var containers=document.querySelectorAll('.mascot-contact');
   containers.forEach(function(c){
     var img=c.querySelector('img');
@@ -77,7 +76,6 @@ function replaceCTAMascot(){
       img.alt='MILO Pointing';
     }
   });
-  /* Also find by alt text fallback */
   document.querySelectorAll('img').forEach(function(img){
     if(img.alt && (img.alt.indexOf('Milo Pointing')>-1 || img.alt.indexOf('farmer-pointing')>-1 || img.alt.indexOf('MILO Pointing')>-1) && !img.dataset.replaced){
       img.dataset.replaced='1';
@@ -87,11 +85,33 @@ function replaceCTAMascot(){
   });
 }
 
+/* Replace Patented Technology mascot with MILO holding Thermal Puff */
+function replacePatentedMascot(){
+  var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/90ab675e-ebf4-4629-9b5d-db35af5c6930.png';
+  /* Find by .mascot-patented class */
+  document.querySelectorAll('.mascot-patented').forEach(function(img){
+    if(!img.dataset.replaced){
+      img.dataset.replaced='1';
+      img.src=newMascot;
+      img.alt='MILO with MILEX Thermal MAX';
+    }
+  });
+  /* Fallback: find by .mascot-img class */
+  document.querySelectorAll('.mascot-img').forEach(function(img){
+    if(!img.dataset.replaced && img.alt && img.alt.indexOf('Mascot')>-1){
+      img.dataset.replaced='1';
+      img.src=newMascot;
+      img.alt='MILO with MILEX Thermal MAX';
+    }
+  });
+}
+
 fixNav();
 initScrollReveal();
 replaceWarrantyImg();
 replaceCTAMascot();
-setInterval(function(){ fixNav(); initScrollReveal(); replaceWarrantyImg(); replaceCTAMascot(); },500);
+replacePatentedMascot();
+setInterval(function(){ fixNav(); initScrollReveal(); replaceWarrantyImg(); replaceCTAMascot(); replacePatentedMascot(); },500);
 
 /* MILO mascot injection in hero */
 function addMilo(){
