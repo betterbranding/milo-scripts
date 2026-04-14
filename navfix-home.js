@@ -66,7 +66,7 @@ function replaceWarrantyImg(){
 
 /* Replace bottom CTA mascot */
 function replaceCTAMascot(){
-  var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/24cef369-f850-483c-bc5e-f789cd7f4904.png';
+  var newMascot='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/f21b58b6-af3a-4351-86d0-a06abbe4b976.png';
   /* Find by .mascot-contact class */
   var containers=document.querySelectorAll('.mascot-contact');
   containers.forEach(function(c){
@@ -79,7 +79,7 @@ function replaceCTAMascot(){
   });
   /* Also find by alt text fallback */
   document.querySelectorAll('img').forEach(function(img){
-    if(img.alt && (img.alt.indexOf('Milo Pointing')>-1 || img.alt.indexOf('farmer-pointing')>-1) && !img.dataset.replaced){
+    if(img.alt && (img.alt.indexOf('Milo Pointing')>-1 || img.alt.indexOf('farmer-pointing')>-1 || img.alt.indexOf('MILO Pointing')>-1) && !img.dataset.replaced){
       img.dataset.replaced='1';
       img.src=newMascot;
       img.alt='MILO Pointing';
