@@ -106,44 +106,50 @@ function replacePatentedMascot(){
 
 /* Floating thermal puff particles in Patented Technology section */
 function addThermalPuffs(){
-  var section=document.querySelector('.thermal-puff-section');
-  if(!section || section.querySelector('.puff-particles')) return;
+  var sections=document.querySelectorAll('.thermal-puff-section');
+  if(!sections.length) return;
 
-  /* Ensure section has relative positioning for absolute children */
-  section.style.position='relative';
-  section.style.overflow='hidden';
+  /* Only inject once */
+  if(document.querySelector('.puff-particles')) return;
 
-  /* Inject keyframe animations */
+  /* Inject keyframe animations and styles */
   var style=document.createElement('style');
+  style.id='puff-animation-styles';
   style.textContent=
-    '@keyframes puffFloat{'+
-      '0%{transform:translateY(100%) rotate(0deg) scale(0.3);opacity:0}'+
-      '10%{opacity:var(--puff-opacity,0.12)}'+
-      '80%{opacity:var(--puff-opacity,0.12)}'+
-      '100%{transform:translateY(-120%) rotate(360deg) scale(1);opacity:0}'+
+    '@keyframes puffRise{'+
+      '0%{transform:translateY(0) rotate(0deg) scale(0.3);opacity:0}'+
+      '10%{opacity:0.12}'+
+      '80%{opacity:0.10}'+
+      '100%{transform:translateY(-800px) rotate(360deg) scale(1);opacity:0}'+
     '}'+
-    '@keyframes puffDrift{'+
-      '0%,100%{transform:translateX(0)}'+
-      '50%{transform:translateX(var(--drift,20px))}'+
+    '.puff-particle{'+
+      'position:absolute;'+
+      'bottom:-60px;'+
+      'pointer-events:none;'+
+    '}'+
+    '.puff-particle img{'+
+      'width:100%;height:100%;object-fit:contain;'+
     '}';
   document.head.appendChild(style);
 
-  /* Create particle container */
-  var container=document.createElement('div');
-  container.className='puff-particles';
-  container.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden';
+  /* Target the first thermal-puff-section (Patented Technology) */
+  var section=sections[0];
+  section.style.position='relative';
+  section.style.overflow='hidden';
+
+  var wrapper=document.createElement('div');
+  wrapper.className='puff-particles';
+  wrapper.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden;';
 
   var puffUrl='https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/73a65eb2-7724-4d07-afad-53522c7a274b.svg';
-  var count=18;
 
-  for(var i=0;i<count;i++){
+  for(var i=0;i<15;i++){
     var puff=document.createElement('div');
-    var size=20+Math.random()*35; /* 20-55px */
-    var left=Math.random()*100;
-    var delay=Math.random()*12;
-    var duration=10+Math.random()*14; /* 10-24s */
-    var driftAmt=-30+Math.random()*60; /* -30 to 30px horizontal drift */
-    var opacity=0.06+Math.random()*0.12; /* 0.06-0.18 opacity */
+    puff.className='puff-particle';
+    var size=25+Math.random()*40;
+    var left=Math.random()*95;
+    var delay=Math.random()*10;
+    var duration=12+Math.random()*12;
 
     puff.style.cssText=
       'position:absolute;'+
@@ -151,35 +157,45 @@ function addThermalPuffs(){
       'left:'+left+'%;'+
       'width:'+size+'px;'+
       'height:'+size+'px;'+
-      '--puff-opacity:'+opacity+';'+
-      '--drift:'+driftAmt+'px;'+
-      'animation:puffFloat '+duration+'s ease-in-out '+delay+'s infinite,'+
-        'puffDrift '+(3+Math.random()*4)+'s ease-in-out '+delay+'s infinite;'+
-      'pointer-events:none;';
+      'pointer-events:none;'+
+      'animation:puffRise '+duration+'s ease-in-out '+delay+'s infinite;';
 
     var img=document.createElement('img');
     img.src=puffUrl;
     img.alt='';
-    img.style.cssText='width:100%;height:100%;object-fit:contain;filter:brightness(1.2);';
-
+    img.setAttribute('aria-hidden','true');
     puff.appendChild(img);
-    container.appendChild(puff);
+    wrapper.appendChild(puff);
   }
 
-  section.appendChild(container);
+  section.appendChild(wrapper);
 
-  /* Make sure content stays above particles */
-  var inner=section.querySelector('.container');
-  if(inner) inner.style.position='relative'; inner.style.zIndex='2';
+  /* Ensure content stays above particles */
+  try{
+    var children=section.children;
+    for(var j=0;j<children.length;j++){
+      if(children[j]!==wrapper){
+        children[j].style.position='relative';
+        children[j].style.zIndex='2';
+      }
+    }
+  }catch(e){/* safe fallback */}
 }
 
-fixNav();
-initScrollReveal();
-replaceWarrantyImg();
-replaceCTAMascot();
-replacePatentedMascot();
-addThermalPuffs();
-setInterval(function(){ fixNav(); initScrollReveal(); replaceWarrantyImg(); replaceCTAMascot(); replacePatentedMascot(); },500);
+try{fixNav()}catch(e){}
+try{initScrollReveal()}catch(e){}
+try{replaceWarrantyImg()}catch(e){}
+try{replaceCTAMascot()}catch(e){}
+try{replacePatentedMascot()}catch(e){}
+try{addThermalPuffs()}catch(e){}
+setInterval(function(){
+  try{fixNav()}catch(e){}
+  try{initScrollReveal()}catch(e){}
+  try{replaceWarrantyImg()}catch(e){}
+  try{replaceCTAMascot()}catch(e){}
+  try{replacePatentedMascot()}catch(e){}
+  try{addThermalPuffs()}catch(e){}
+},500);
 
 /* MILO mascot injection in hero */
 function addMilo(){
