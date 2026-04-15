@@ -193,9 +193,10 @@
       mStyle.textContent =
         '@keyframes mascotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}' +
         '@media(max-width:768px){' +
-          '.hero-mascot-injected{position:relative !important;right:auto !important;bottom:auto !important;' +
-          'display:flex;justify-content:center;margin-top:24px;width:100%;}' +
-          '.hero-mascot-injected img{width:200px !important;}' +
+          '.hero .hero-mascot-injected{position:relative !important;right:auto !important;bottom:auto !important;' +
+          'display:flex !important;justify-content:center;margin-top:24px;width:100% !important;}' +
+          '.hero .hero-mascot-injected img{width:200px !important;}' +
+          '.hero{overflow:visible !important;height:auto !important;min-height:unset !important;}' +
         '}';
       document.head.appendChild(mStyle);
     }
