@@ -171,15 +171,18 @@
     // --- FOOTER ---
     var existingFoot = document.getElementById('milo-foot');
     if (!existingFoot) {
-      // Hide GHL native footer
-      var ghlFoot = document.querySelector('footer.footer');
-      if (ghlFoot) ghlFoot.style.display = 'none';
-
-      // Create and inject shared footer
       var footWrapper = document.createElement('div');
       footWrapper.innerHTML = footHTML;
       var footEl = footWrapper.firstElementChild;
-      document.body.appendChild(footEl);
+
+      var ghlFoot = document.querySelector('footer.footer');
+      if (ghlFoot) {
+        // Replace GHL footer with our shared footer (same DOM position)
+        ghlFoot.parentNode.replaceChild(footEl, ghlFoot);
+      } else {
+        // No GHL footer (e.g. MILEX page) — append to body
+        document.body.appendChild(footEl);
+      }
     }
   }
 
