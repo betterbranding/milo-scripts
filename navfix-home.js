@@ -118,11 +118,11 @@
     var puffUrl = 'https://betterbranding.github.io/milo-scripts/puff-transparent.png';
     for (var i = 0; i < count; i++) {
       var puff = document.createElement('div');
-      var size = 25 + Math.random() * maxSize;
+      var size = 50 + Math.random() * maxSize;
       var left = Math.random() * 95;
       var delay = Math.random() * 12;
       var duration = 12 + Math.random() * 14;
-      var opacity = 0.08 + Math.random() * 0.15;
+      var opacity = 0.75;
       puff.style.cssText =
         'position:absolute;bottom:-60px;left:' + left + '%;width:' + size + 'px;height:' + size + 'px;' +
         'opacity:' + opacity + ';pointer-events:none;animation:thermalPuffRise ' + duration + 's ease-in-out ' + delay + 's infinite;';
@@ -177,7 +177,7 @@
       document.head.appendChild(style);
     }
     var betterSection = findSectionByText('Better. Natural. Perfect.');
-    if (betterSection) injectPuffs(betterSection, 'puffs-better', 18, 45);
+    if (betterSection) injectPuffs(betterSection, 'puffs-better', 18, 90);
   }
 
   /* Hero MILO mascot */
@@ -185,6 +185,21 @@
     if (document.querySelector('.hero-mascot-injected')) return;
     var hero = document.querySelector('.hero');
     if (!hero) return;
+
+    /* Mobile responsive styles */
+    if (!document.getElementById('hero-milo-responsive')) {
+      var mStyle = document.createElement('style');
+      mStyle.id = 'hero-milo-responsive';
+      mStyle.textContent =
+        '@keyframes mascotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}' +
+        '@media(max-width:768px){' +
+          '.hero-mascot-injected{position:relative !important;right:auto !important;bottom:auto !important;' +
+          'display:flex;justify-content:center;margin-top:24px;width:100%;}' +
+          '.hero-mascot-injected img{width:200px !important;}' +
+        '}';
+      document.head.appendChild(mStyle);
+    }
+
     var d = document.createElement('div');
     d.className = 'hero-mascot hero-mascot-injected';
     d.style.cssText = 'position:absolute;right:5%;bottom:4%;z-index:3;animation:mascotFloat 4s ease-in-out infinite';
