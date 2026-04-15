@@ -122,7 +122,7 @@
       var left = Math.random() * 95;
       var delay = Math.random() * 12;
       var duration = 12 + Math.random() * 14;
-      var opacity = 0.75;
+      var opacity = 0.50;
       puff.style.cssText =
         'position:absolute;bottom:-60px;left:' + left + '%;width:' + size + 'px;height:' + size + 'px;' +
         'opacity:' + opacity + ';pointer-events:none;animation:thermalPuffRise ' + duration + 's ease-in-out ' + delay + 's infinite;';
@@ -193,10 +193,11 @@
       mStyle.textContent =
         '@keyframes mascotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}' +
         '@media(max-width:768px){' +
-          '.hero .hero-mascot-injected{position:relative !important;right:auto !important;bottom:auto !important;' +
-          'display:flex !important;justify-content:center;margin-top:24px;width:100% !important;}' +
-          '.hero .hero-mascot-injected img{width:200px !important;}' +
-          '.hero{overflow:visible !important;height:auto !important;min-height:unset !important;}' +
+          '.hero .hero-mascot-injected{position:absolute !important;right:auto !important;' +
+          'bottom:20px !important;left:50% !important;transform:translateX(-50%) !important;' +
+          'display:block !important;width:auto !important;z-index:3 !important;}' +
+          '.hero .hero-mascot-injected img{width:160px !important;}' +
+          '.hero{padding-bottom:200px !important;}' +
         '}';
       document.head.appendChild(mStyle);
     }

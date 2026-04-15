@@ -50,6 +50,32 @@
     '}',
     '.milo-nav-cta:hover { background: #e67300; transform: translateY(-2px); }',
 
+    /* --- HAMBURGER BUTTON --- */
+    '.milo-hamburger {',
+    '  display: none; background: none; border: none; cursor: pointer; padding: 8px;',
+    '  flex-direction: column; gap: 5px; z-index: 10001;',
+    '}',
+    '.milo-hamburger span {',
+    '  display: block; width: 26px; height: 3px; background: white; border-radius: 3px;',
+    '  transition: all 0.3s ease;',
+    '}',
+    '.milo-nav.scrolled .milo-hamburger span { background: #1a1a2e; }',
+    '.milo-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }',
+    '.milo-hamburger.open span:nth-child(2) { opacity: 0; }',
+    '.milo-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }',
+
+    /* --- MOBILE NAV OVERLAY --- */
+    '.milo-nav-links.mobile-open {',
+    '  display: flex !important; flex-direction: column; position: fixed;',
+    '  top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,26,0.97);',
+    '  justify-content: center; align-items: center; gap: 2rem; z-index: 10000;',
+    '  padding: 2rem; animation: fadeInNav 0.3s ease;',
+    '}',
+    '.milo-nav-links.mobile-open a { color: white !important; font-size: 1.3rem; }',
+    '.milo-nav-links.mobile-open a.active { color: #FF8200 !important; }',
+    '.milo-nav-links.mobile-open .milo-nav-cta { font-size: 1.1rem; padding: 0.8rem 2rem; }',
+    '@keyframes fadeInNav { from { opacity: 0; } to { opacity: 1; } }',
+
     /* --- FOOTER (use ID selector for GHL specificity) --- */
     '#milo-foot {',
     '  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 100%) !important;',
@@ -88,7 +114,11 @@
     /* --- RESPONSIVE --- */
     '@media (max-width: 768px) {',
     '  .milo-nav-links { display: none; }',
-    '  .milo-foot-grid { grid-template-columns: 1fr; gap: 2rem; }',
+    '  .milo-hamburger { display: flex; }',
+    '  #milo-foot { padding: 3rem 1.2rem 1.5rem !important; overflow-x: hidden !important; }',
+    '  #milo-foot .milo-foot-grid { grid-template-columns: 1fr !important; gap: 2rem; }',
+    '  #milo-foot .milo-foot-brand img { height: 40px; }',
+    '  #milo-foot .milo-foot-contact p { font-size: 0.85rem; flex-wrap: wrap; }',
     '}'
   ].join('\n');
   document.head.appendChild(css);
@@ -152,6 +182,32 @@
       navWrapper.innerHTML = navHTML;
       var navEl = navWrapper.firstElementChild;
       document.body.insertBefore(navEl, document.body.firstChild);
+
+      // Add hamburger button
+      var hamburger = document.createElement('button');
+      hamburger.className = 'milo-hamburger';
+      hamburger.setAttribute('aria-label', 'Toggle menu');
+      hamburger.innerHTML = '<span></span><span></span><span></span>';
+      var navInner = navEl.querySelector('.milo-nav-inner');
+      if (navInner) navInner.appendChild(hamburger);
+
+      // Hamburger toggle
+      var navLinks = navEl.querySelector('.milo-nav-links');
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('mobile-open');
+        document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
+      });
+      // Close menu on link click
+      if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('mobile-open');
+            document.body.style.overflow = '';
+          });
+        });
+      }
 
       // Set active link
       var links = navEl.querySelectorAll('[data-page]');
