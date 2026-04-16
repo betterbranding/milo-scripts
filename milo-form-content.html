@@ -1,0 +1,226 @@
+
+  <!-- Ambient background orbs -->
+  <div class="ambient-orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+
+  <!-- Header -->
+  <div class="form-header">
+    <a href="https://go.miloinsulation.com/home">
+      <img src="https://betterbranding.github.io/milo-scripts/logo.png" alt="MILO Insulation">
+    </a>
+    <div class="tagline">Nature's Very Best</div>
+  </div>
+
+  <!-- Form Container -->
+  <div class="form-container">
+
+    <!-- Progress Bar -->
+    <div class="progress-section">
+      <div class="progress-label">
+        <span class="step-text">Step <span id="stepNum">1</span> of 5</span>
+        <span id="stepPercent">0%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Glass Card -->
+    <div class="glass-card">
+
+      <!-- STEP 1: Service Type -->
+      <div class="step active" id="step1">
+        <div class="step-category">Service Type</div>
+        <h2>What type of insulation service are you looking for?</h2>
+        <p class="subtitle">Choose the option that best describes your needs</p>
+        <div class="option-cards" data-field="serviceType">
+          <div class="option-card" data-value="remove">
+            <div class="icon">🏚️</div>
+            <div class="option-text">
+              <h4>Remove the Old Insulation</h4>
+              <p>Full removal and fresh install</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="blowover">
+            <div class="icon">💨</div>
+            <div class="option-text">
+              <h4>Blow Over the Existing Insulation</h4>
+              <p>Add new insulation on top</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="both">
+            <div class="icon">⚖️</div>
+            <div class="option-text">
+              <h4>I'd Like to See Both Options</h4>
+              <p>Compare removal vs. blow-over</p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary" id="btn1" disabled onclick="nextStep()">
+            <span class="btn-text">Continue <span class="arrow">→</span></span>
+          </button>
+        </div>
+        <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
+      </div>
+
+      <!-- STEP 2: Home Size -->
+      <div class="step" id="step2">
+        <div class="step-category">Home Size</div>
+        <h2>Roughly what is the square footage range of your home?</h2>
+        <p class="subtitle">Helps us give you the most accurate assessment</p>
+        <div class="option-cards" data-field="homeSize">
+          <div class="option-card" data-value="under1000">
+            <div class="icon">🏠</div>
+            <div class="option-text">
+              <h4>Less than 1,000 sq ft</h4>
+              <p>Smaller home or apartment</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="1000to3000">
+            <div class="icon">🏡</div>
+            <div class="option-text">
+              <h4>1,000 – 3,000 sq ft</h4>
+              <p>Average family home</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="over3000">
+            <div class="icon">🏘️</div>
+            <div class="option-text">
+              <h4>More than 3,000 sq ft</h4>
+              <p>Larger home or property</p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+          <button class="btn-primary" id="btn2" disabled onclick="nextStep()">
+            <span class="btn-text">Continue <span class="arrow">→</span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Scheduling -->
+      <div class="step" id="step3">
+        <div class="step-category">Scheduling</div>
+        <h2>Are <em>mornings</em> or <em>afternoons</em> better to schedule your inspection?</h2>
+        <p class="subtitle">We'll do our best to accommodate your preference</p>
+        <div class="option-cards" data-field="timePreference">
+          <div class="option-card" data-value="morning">
+            <div class="icon">🌅</div>
+            <div class="option-text">
+              <h4>Morning</h4>
+              <p>Before 12:00 PM</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="afternoon">
+            <div class="icon">☀️</div>
+            <div class="option-text">
+              <h4>Afternoon</h4>
+              <p>After 12:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+          <button class="btn-primary" id="btn3" disabled onclick="nextStep()">
+            <span class="btn-text">Continue <span class="arrow">→</span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Address -->
+      <div class="step" id="step4">
+        <div class="step-category">Property Location</div>
+        <h2>What's your address?</h2>
+        <p class="subtitle">We use this to route the right local team to you</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Street Address</label>
+            <input type="text" id="street" placeholder="123 Main St" autocomplete="street-address">
+          </div>
+          <div class="form-grid two-col">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" id="city" placeholder="City" autocomplete="address-level2">
+            </div>
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" id="state" placeholder="State" autocomplete="address-level1">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>ZIP Code</label>
+            <input type="text" id="zip" placeholder="ZIP Code" autocomplete="postal-code" maxlength="10" inputmode="numeric">
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+          <button class="btn-primary" id="btn4" onclick="nextStep()">
+            <span class="btn-text">Continue <span class="arrow">→</span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Contact Info -->
+      <div class="step" id="step5">
+        <div class="step-category">Almost Done!</div>
+        <h2>Confirm your info to schedule your free home efficiency scan</h2>
+        <div class="value-badge">
+          <span class="gift">🎁</span> A <strong>$399 value</strong> — yours free. No SSN required. Zero impact to credit. Your info is never sold.
+        </div>
+        <div class="form-grid two-col">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="First Name" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="(555) 123-4567" autocomplete="tel">
+          </div>
+        </div>
+        <div class="btn-row" style="margin-top: 4px;">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+          <button class="btn-primary" id="btnSubmit" onclick="submitForm()">
+            <span class="btn-text">Schedule My Free Inspection <span class="arrow">→</span></span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 6: Thank You -->
+      <div class="step" id="step6">
+        <div class="thank-you-section">
+          <div class="check-circle">✓</div>
+          <h2>You're all set! 🎉</h2>
+          <p>Our insulation tech will reach out to you shortly to confirm your info and schedule your inspection.</p>
+          <div class="divider-arrow">↓</div>
+          <a href="#" class="btn-schedule" id="scheduleLink">
+            📅 <span>or schedule it now!</span>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /glass-card -->
+
+  </div><!-- /form-container -->
+
+  <!-- Footer -->
+  <div class="form-footer">
+    <div class="lock-text">🔒 Secure &amp; confidential. Your information is never shared or sold.</div>
+    <div class="copyright">MILO Insulation™ — Nature's Very Best. © 2026</div>
+  </div>
+
