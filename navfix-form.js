@@ -1,16 +1,11 @@
-/* navfix-form.js — v1: Multi-step form page
- * 1. Loads milo-shared.js for global nav + footer
- * 2. Injects form-scoped CSS
- * 3. Fetches milo-form-content.html for page body
- * 4. Initializes form logic after injection
+/* navfix-form.js — v2: Multi-step form page
+ * - No nav/footer (standalone form)
+ * - Blue gradient background
+ * - Auto-advance on option card click
+ * - Functions exposed globally for onclick handlers
  */
 (function() {
   'use strict';
-
-  /* Load shared module (provides nav, footer, scroll-reveal) */
-  var shared = document.createElement('script');
-  shared.src = 'https://betterbranding.github.io/milo-scripts/milo-shared.js?v=' + Date.now();
-  document.head.appendChild(shared);
 
   /* Load Google Fonts */
   if (!document.querySelector('link[href*="League+Spartan"]')) {
@@ -31,7 +26,6 @@
     '  min-height: 100vh;\n' +
     '  font-family: \'Nunito Sans\', \'Gotham\', sans-serif;\n' +
     '}\n' +
-    '    /* ====== RESET & BASE ====== */\n' +
     '    #milo-form-content, #milo-form-content *, #milo-form-content *::before, #milo-form-content *::after { margin: 0; padding: 0; box-sizing: border-box; }\n' +
     '\n' +
     '    :root {\n' +
@@ -39,6 +33,8 @@
     '      --green-dark: #1a6b0a;\n' +
     '      --green-deepest: #0d3a06;\n' +
     '      --navy: #074387;\n' +
+    '      --navy-dark: #042c5a;\n' +
+    '      --navy-deepest: #021a38;\n' +
     '      --orange: #FF8200;\n' +
     '      --orange-hover: #e67400;\n' +
     '      --light-blue: #50ACE1;\n' +
@@ -54,12 +50,11 @@
     '      --glass-shadow: rgba(0,0,0,0.15);\n' +
     '    }\n' +
     '\n' +
-    '\n' +
     '    #milo-form-content {\n' +
     '      font-family: \'Nunito Sans\', \'Gotham\', sans-serif;\n' +
     '      color: var(--white);\n' +
     '      min-height: 100vh;\n' +
-    '      background: linear-gradient(160deg, #0d3a06 0%, #154d0b 25%, #1a6b0a 50%, #0d3a06 75%, #071f04 100%);\n' +
+    '      background: linear-gradient(160deg, #021a38 0%, #042c5a 25%, #074387 50%, #042c5a 75%, #021a38 100%);\n' +
     '      background-attachment: fixed;\n' +
     '      display: flex;\n' +
     '      flex-direction: column;\n' +
@@ -88,11 +83,11 @@
     '      border-radius: 50%;\n' +
     '      filter: blur(80px);\n' +
     '      opacity: 0.08;\n' +
-    '      animation: orbFloat 20s ease-in-out infinite;\n' +
+    '      animation: miloOrbFloat 20s ease-in-out infinite;\n' +
     '    }\n' +
     '    #milo-form-content .ambient-orbs .orb:nth-child(1) {\n' +
     '      width: 500px; height: 500px;\n' +
-    '      background: var(--green);\n' +
+    '      background: var(--light-blue);\n' +
     '      top: -10%; left: -10%;\n' +
     '      animation-delay: 0s;\n' +
     '    }\n' +
@@ -108,7 +103,7 @@
     '      bottom: -5%; left: 30%;\n' +
     '      animation-delay: -14s;\n' +
     '    }\n' +
-    '    @keyframes orbFloat {\n' +
+    '    @keyframes miloOrbFloat {\n' +
     '      0%, 100% { transform: translate(0, 0) scale(1); }\n' +
     '      33% { transform: translate(30px, -40px) scale(1.1); }\n' +
     '      66% { transform: translate(-20px, 30px) scale(0.95); }\n' +
@@ -193,12 +188,12 @@
     '    /* ====== STEP CONTENT ====== */\n' +
     '    #milo-form-content .step {\n' +
     '      display: none;\n' +
-    '      animation: stepIn 0.4s ease-out;\n' +
+    '      animation: miloStepIn 0.4s ease-out;\n' +
     '    }\n' +
     '    #milo-form-content .step.active {\n' +
     '      display: block;\n' +
     '    }\n' +
-    '    @keyframes stepIn {\n' +
+    '    @keyframes miloStepIn {\n' +
     '      from { opacity: 0; transform: translateY(16px); }\n' +
     '      to { opacity: 1; transform: translateY(0); }\n' +
     '    }\n' +
@@ -251,9 +246,9 @@
     '      transform: translateY(-1px);\n' +
     '    }\n' +
     '    #milo-form-content .option-card.selected {\n' +
-    '      background: rgba(40,141,17,0.2);\n' +
-    '      border-color: var(--green);\n' +
-    '      box-shadow: 0 0 20px rgba(40,141,17,0.15);\n' +
+    '      background: rgba(7,67,135,0.35);\n' +
+    '      border-color: var(--light-blue);\n' +
+    '      box-shadow: 0 0 20px rgba(80,172,225,0.2);\n' +
     '    }\n' +
     '    #milo-form-content .option-card .icon {\n' +
     '      font-size: 28px;\n' +
@@ -298,7 +293,7 @@
     '      opacity: 0.7;\n' +
     '      font-family: \'League Spartan\', sans-serif;\n' +
     '    }\n' +
-    '    .form-group input,\n' +
+    '    #milo-form-content .form-group input,\n' +
     '    #milo-form-content .form-group select {\n' +
     '      background: rgba(255,255,255,0.08);\n' +
     '      border: 1.5px solid rgba(255,255,255,0.15);\n' +
@@ -314,14 +309,14 @@
     '    #milo-form-content .form-group input::placeholder {\n' +
     '      color: rgba(255,255,255,0.35);\n' +
     '    }\n' +
-    '    .form-group input:focus,\n' +
+    '    #milo-form-content .form-group input:focus,\n' +
     '    #milo-form-content .form-group select:focus {\n' +
-    '      border-color: var(--green);\n' +
+    '      border-color: var(--light-blue);\n' +
     '      background: rgba(255,255,255,0.12);\n' +
-    '      box-shadow: 0 0 16px rgba(40,141,17,0.15);\n' +
+    '      box-shadow: 0 0 16px rgba(80,172,225,0.2);\n' +
     '    }\n' +
     '    #milo-form-content .form-group select option {\n' +
-    '      background: #1a3a10;\n' +
+    '      background: #042c5a;\n' +
     '      color: white;\n' +
     '    }\n' +
     '    #milo-form-content .form-group .input-error {\n' +
@@ -434,10 +429,10 @@
     '      justify-content: center;\n' +
     '      margin: 0 auto 24px;\n' +
     '      font-size: 40px;\n' +
-    '      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n' +
+    '      animation: miloPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n' +
     '      box-shadow: 0 4px 24px rgba(40,141,17,0.3);\n' +
     '    }\n' +
-    '    @keyframes popIn {\n' +
+    '    @keyframes miloPopIn {\n' +
     '      from { transform: scale(0); opacity: 0; }\n' +
     '      to { transform: scale(1); opacity: 1; }\n' +
     '    }\n' +
@@ -474,9 +469,9 @@
     '      font-size: 24px;\n' +
     '      opacity: 0.4;\n' +
     '      margin-bottom: 16px;\n' +
-    '      animation: bounceDown 1.5s ease-in-out infinite;\n' +
+    '      animation: miloBounceDown 1.5s ease-in-out infinite;\n' +
     '    }\n' +
-    '    @keyframes bounceDown {\n' +
+    '    @keyframes miloBounceDown {\n' +
     '      0%, 100% { transform: translateY(0); }\n' +
     '      50% { transform: translateY(6px); }\n' +
     '    }\n' +
@@ -509,26 +504,26 @@
     '      border: 2.5px solid rgba(255,255,255,0.3);\n' +
     '      border-top-color: white;\n' +
     '      border-radius: 50%;\n' +
-    '      animation: spin 0.6s linear infinite;\n' +
+    '      animation: miloSpin 0.6s linear infinite;\n' +
     '      display: none;\n' +
     '    }\n' +
     '    #milo-form-content .btn-primary.loading .spinner { display: inline-block; }\n' +
     '    #milo-form-content .btn-primary.loading .btn-text { display: none; }\n' +
-    '    @keyframes spin { to { transform: rotate(360deg); } }\n' +
+    '    @keyframes miloSpin { to { transform: rotate(360deg); } }\n' +
     '\n' +
     '    /* ====== RESPONSIVE ====== */\n' +
     '    @media (max-width: 600px) {\n' +
-    '      .glass-card {\n' +
+    '      #milo-form-content .glass-card {\n' +
     '        padding: 28px 22px;\n' +
     '        border-radius: 16px;\n' +
     '      }\n' +
-    '      .step h2 { font-size: 22px; }\n' +
-    '      .form-grid.two-col { grid-template-columns: 1fr; }\n' +
-    '      .btn-row { flex-direction: column-reverse; }\n' +
-    '      .btn-back { width: 100%; text-align: center; }\n' +
-    '      .btn-primary { width: 100%; }\n' +
-    '      .form-header { padding-top: 28px; }\n' +
-    '      .option-card { padding: 14px 16px; }\n' +
+    '      #milo-form-content .step h2 { font-size: 22px; }\n' +
+    '      #milo-form-content .form-grid.two-col { grid-template-columns: 1fr; }\n' +
+    '      #milo-form-content .btn-row { flex-direction: column-reverse; }\n' +
+    '      #milo-form-content .btn-back { width: 100%; text-align: center; }\n' +
+    '      #milo-form-content .btn-primary { width: 100%; }\n' +
+    '      #milo-form-content .form-header { padding-top: 28px; }\n' +
+    '      #milo-form-content .option-card { padding: 14px 16px; }\n' +
     '    }\n' +
     '';
   document.head.appendChild(css);
@@ -539,17 +534,28 @@
     var sections = document.querySelectorAll('[class^="section-"]');
     sections.forEach(function(s) { s.style.display = 'none'; });
 
+    /* Hide GHL native nav */
+    var ghlNav = document.querySelector('nav, .navbar, [class*="navbar"]');
+    if (ghlNav) ghlNav.style.display = 'none';
+
+    /* Hide GHL native footer */
+    var ghlFooter = document.querySelector('footer, [class*="footer"]');
+    if (ghlFooter) ghlFooter.style.display = 'none';
+
     if (document.getElementById('milo-form-content')) return;
-    var container = document.getElementById('preview-container');
-    if (!container) return;
+    var container = document.getElementById('preview-container') || document.body;
 
     var wrapper = document.createElement('div');
     wrapper.id = 'milo-form-content';
-    var firstChild = container.querySelector('div');
-    if (firstChild) {
-      container.insertBefore(wrapper, firstChild);
-    } else {
+    if (container === document.body) {
       container.appendChild(wrapper);
+    } else {
+      var firstChild = container.querySelector('div');
+      if (firstChild) {
+        container.insertBefore(wrapper, firstChild);
+      } else {
+        container.appendChild(wrapper);
+      }
     }
 
     var baseUrl = 'https://betterbranding.github.io/milo-scripts/';
@@ -557,7 +563,6 @@
       .then(function(r) { return r.text(); })
       .then(function(html) {
         wrapper.innerHTML = html;
-        /* Initialize form logic after content is injected */
         setTimeout(initFormLogic, 100);
       })
       .catch(function(err) { console.error('Form content fetch failed:', err); });
@@ -570,33 +575,28 @@
     // ==========================================
 
     // ----------- CONFIG -----------
-    const WEBHOOK_URL = 'https://PLACEHOLDER-WEBHOOK-URL.com'; // TODO: Replace with GHL webhook
-    const SCHEDULE_URL = '#'; // TODO: Replace with scheduling link
-    const TOTAL_STEPS = 5;
+    var WEBHOOK_URL = 'https://PLACEHOLDER-WEBHOOK-URL.com'; // TODO: Replace with GHL webhook
+    var SCHEDULE_URL = '#'; // TODO: Replace with scheduling link
+    var TOTAL_STEPS = 5;
 
     // ----------- ZIP CODE ROUTING -----------
-    // Maps ZIP code prefixes to team/region identifiers
-    // Expand this object as new regions are added
-    const ZIP_ROUTES = {
-      // Example: '73' routes to Oklahoma team
+    var ZIP_ROUTES = {
       // '73': { team: 'oklahoma', label: 'Oklahoma Team' },
       // '75': { team: 'dallas', label: 'Dallas Team' },
-      // Add more as needed
     };
 
     function getRouteForZip(zip) {
       if (!zip) return { team: 'default', label: 'Default Team' };
-      // Check full 5-digit first, then 4, 3, 2 digit prefixes
-      for (let len = 5; len >= 2; len--) {
-        const prefix = zip.substring(0, len);
+      for (var len = 5; len >= 2; len--) {
+        var prefix = zip.substring(0, len);
         if (ZIP_ROUTES[prefix]) return ZIP_ROUTES[prefix];
       }
       return { team: 'default', label: 'Default Team' };
     }
 
     // ----------- STATE -----------
-    let currentStep = 1;
-    const formData = {
+    var currentStep = 1;
+    var formData = {
       serviceType: '',
       homeSize: '',
       timePreference: '',
@@ -610,55 +610,56 @@
       phone: ''
     };
 
-    // ----------- OPTION CARD SELECTION -----------
-    document.querySelectorAll('.option-cards').forEach(group => {
-      const field = group.dataset.field;
-      group.querySelectorAll('.option-card').forEach(card => {
-        card.addEventListener('click', () => {
+    // ----------- OPTION CARD SELECTION (auto-advance) -----------
+    var root = document.getElementById('milo-form-content');
+    root.querySelectorAll('.option-cards').forEach(function(group) {
+      var field = group.dataset.field;
+      group.querySelectorAll('.option-card').forEach(function(card) {
+        card.addEventListener('click', function() {
           // Deselect siblings
-          group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+          group.querySelectorAll('.option-card').forEach(function(c) { c.classList.remove('selected'); });
           card.classList.add('selected');
           formData[field] = card.dataset.value;
-          // Enable continue button
-          const stepEl = card.closest('.step');
-          const btn = stepEl.querySelector('.btn-primary');
-          if (btn) btn.disabled = false;
+          // Auto-advance after brief visual feedback
+          setTimeout(function() {
+            goNext();
+          }, 350);
         });
       });
     });
 
     // ----------- NAVIGATION -----------
     function updateProgress() {
-      const pct = Math.round(((currentStep - 1) / TOTAL_STEPS) * 100);
-      document.getElementById('progressFill').style.width = pct + '%';
-      document.getElementById('stepNum').textContent = Math.min(currentStep, TOTAL_STEPS);
-      document.getElementById('stepPercent').textContent = pct + '%';
+      var pct = Math.round(((currentStep - 1) / TOTAL_STEPS) * 100);
+      var fillEl = document.getElementById('progressFill');
+      var numEl = document.getElementById('stepNum');
+      var pctEl = document.getElementById('stepPercent');
+      if (fillEl) fillEl.style.width = pct + '%';
+      if (numEl) numEl.textContent = Math.min(currentStep, TOTAL_STEPS);
+      if (pctEl) pctEl.textContent = pct + '%';
     }
 
     function showStep(n) {
-      document.querySelectorAll('#milo-form-content .step').forEach(s => s.classList.remove('active'));
-      const step = document.getElementById('step' + n);
+      root.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+      var step = document.getElementById('step' + n);
       if (step) {
         step.classList.add('active');
-        // Re-trigger animation
         step.style.animation = 'none';
-        step.offsetHeight; // reflow
+        step.offsetHeight;
         step.style.animation = '';
       }
-      // Hide progress on thank-you
-      document.querySelector('.progress-section').style.display = n > TOTAL_STEPS ? 'none' : 'block';
+      var prog = root.querySelector('.progress-section');
+      if (prog) prog.style.display = n > TOTAL_STEPS ? 'none' : 'block';
     }
 
-    function nextStep() {
-      // Validate current step
+    function goNext() {
       if (currentStep === 4 && !validateAddress()) return;
-
       currentStep++;
       showStep(currentStep);
       updateProgress();
     }
 
-    function prevStep() {
+    function goPrev() {
       if (currentStep > 1) {
         currentStep--;
         showStep(currentStep);
@@ -667,143 +668,128 @@
     }
 
     function validateAddress() {
-      const street = document.getElementById('street').value.trim();
-      const city = document.getElementById('city').value.trim();
-      const state = document.getElementById('state').value.trim();
-      const zip = document.getElementById('zip').value.trim();
-
-      let valid = true;
-      [['street', street], ['city', city], ['state', state], ['zip', zip]].forEach(([id, val]) => {
-        const el = document.getElementById(id);
-        if (!val) {
+      var fields = ['street', 'city', 'state', 'zip'];
+      var valid = true;
+      fields.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (!el.value.trim()) {
           el.classList.add('input-error');
           valid = false;
         } else {
           el.classList.remove('input-error');
         }
       });
-
-      // Save to formData
       if (valid) {
-        formData.street = street;
-        formData.city = city;
-        formData.state = state;
-        formData.zip = zip;
+        formData.street = document.getElementById('street').value.trim();
+        formData.city = document.getElementById('city').value.trim();
+        formData.state = document.getElementById('state').value.trim();
+        formData.zip = document.getElementById('zip').value.trim();
       }
       return valid;
     }
 
     function validateContact() {
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastName = document.getElementById('lastName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-
-      let valid = true;
-      [['firstName', firstName], ['lastName', lastName], ['email', email], ['phone', phone]].forEach(([id, val]) => {
-        const el = document.getElementById(id);
-        if (!val) {
+      var fields = ['firstName', 'lastName', 'email', 'phone'];
+      var valid = true;
+      fields.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (!el.value.trim()) {
           el.classList.add('input-error');
           valid = false;
         } else {
           el.classList.remove('input-error');
         }
       });
-
-      // Basic email check
-      if (email && !email.includes('@')) {
-        document.getElementById('email').classList.add('input-error');
+      var emailEl = document.getElementById('email');
+      if (emailEl && emailEl.value.trim() && emailEl.value.indexOf('@') === -1) {
+        emailEl.classList.add('input-error');
         valid = false;
       }
-
       if (valid) {
-        formData.firstName = firstName;
-        formData.lastName = lastName;
-        formData.email = email;
-        formData.phone = phone;
+        formData.firstName = document.getElementById('firstName').value.trim();
+        formData.lastName = document.getElementById('lastName').value.trim();
+        formData.email = document.getElementById('email').value.trim();
+        formData.phone = document.getElementById('phone').value.trim();
       }
       return valid;
     }
 
     // ----------- PHONE FORMATTING -----------
-    document.getElementById('phone').addEventListener('input', function(e) {
-      let x = e.target.value.replace(/\D/g, '').substring(0, 10);
-      if (x.length > 6) {
-        e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3,6) + '-' + x.substring(6);
-      } else if (x.length > 3) {
-        e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3);
-      } else if (x.length > 0) {
-        e.target.value = '(' + x;
-      }
-    });
+    var phoneEl = document.getElementById('phone');
+    if (phoneEl) {
+      phoneEl.addEventListener('input', function(e) {
+        var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+        if (x.length > 6) {
+          e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3,6) + '-' + x.substring(6);
+        } else if (x.length > 3) {
+          e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3);
+        } else if (x.length > 0) {
+          e.target.value = '(' + x;
+        }
+      });
+    }
 
     // Remove error styling on focus
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('focus', () => input.classList.remove('input-error'));
+    root.querySelectorAll('input').forEach(function(input) {
+      input.addEventListener('focus', function() { input.classList.remove('input-error'); });
     });
 
     // ----------- SUBMIT -----------
-    async function submitForm() {
+    function doSubmit() {
       if (!validateContact()) return;
 
-      const btn = document.getElementById('btnSubmit');
+      var btn = document.getElementById('btnSubmit');
       btn.classList.add('loading');
       btn.disabled = true;
 
-      // Determine ZIP route
-      const route = getRouteForZip(formData.zip);
+      var route = getRouteForZip(formData.zip);
 
-      const payload = {
-        // Contact info
+      var payload = {
         firstName: formData.firstName,
         lastName: formData.lastName,
         name: formData.firstName + ' ' + formData.lastName,
         email: formData.email,
         phone: formData.phone.replace(/\D/g, ''),
-
-        // Address
         address1: formData.street,
         city: formData.city,
         state: formData.state,
         postalCode: formData.zip,
-
-        // Form data
         serviceType: formData.serviceType,
         homeSize: formData.homeSize,
         timePreference: formData.timePreference,
-
-        // Routing
         zipRoute: route.team,
         zipRouteLabel: route.label,
-
-        // Meta
         source: 'milo-form',
         formName: 'Free Home Efficiency Scan',
         submittedAt: new Date().toISOString()
       };
 
-      try {
-        await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          mode: 'no-cors' // GHL webhooks may not send CORS headers
-        });
-      } catch (err) {
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      }).catch(function(err) {
         console.warn('Webhook POST error (may be expected with no-cors):', err);
-      }
-
-      // Always show thank you (no-cors means we can't read the response)
-      btn.classList.remove('loading');
-      currentStep = 6;
-      showStep(6);
-      updateProgress();
-      document.getElementById('scheduleLink').href = SCHEDULE_URL;
+      }).finally(function() {
+        btn.classList.remove('loading');
+        currentStep = 6;
+        showStep(6);
+        updateProgress();
+        var schedLink = document.getElementById('scheduleLink');
+        if (schedLink) schedLink.href = SCHEDULE_URL;
+      });
     }
+
+    // ----------- EXPOSE FUNCTIONS GLOBALLY -----------
+    window.nextStep = goNext;
+    window.prevStep = goPrev;
+    window.submitForm = doSubmit;
 
     // ----------- INIT -----------
     updateProgress();
-
   }
 
   if (document.readyState === 'loading') {
