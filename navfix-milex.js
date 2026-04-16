@@ -72,7 +72,7 @@
     '}',
     '#milex-content .body-text { font-size: 1.05rem; line-height: 1.75; color: var(--gray-700); margin-bottom: 1rem; }',
     '#milex-content .body-text.light { color: rgba(255,255,255,0.9); }',
-    '#milex-content .highlight-text { color: var(--green-dark) !important; }',
+    '#milex-content .highlight-text { color: var(--green-lighter) !important; }',
 
     /* Buttons */
     '#milex-content .btn {',
