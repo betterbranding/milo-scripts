@@ -3,974 +3,276 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MILO Insulation — Free Home Efficiency Scan</title>
-  <link rel="icon" href="https://betterbranding.github.io/milo-scripts/logo.png" type="image/png">
+  <title>Free Home Efficiency Scan | MILO Insulation</title>
+  <link rel="icon" type="image/png" href="https://betterbranding.github.io/milo-scripts/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    /* ====== RESET & BASE ====== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
-      --green: #288D11;
-      --green-dark: #1a6b0a;
-      --green-deepest: #0d3a06;
-      --navy: #074387;
-      --orange: #FF8200;
-      --orange-hover: #e67400;
-      --light-blue: #50ACE1;
-      --white: #ffffff;
-      --gray-50: #f8faf8;
-      --gray-100: #f0f4f0;
-      --gray-200: #dce5dc;
-      --gray-400: #94a894;
-      --gray-600: #5a6b5a;
-      --gray-800: #2a352a;
-      --glass-bg: rgba(255,255,255,0.12);
-      --glass-border: rgba(255,255,255,0.2);
-      --glass-shadow: rgba(0,0,0,0.15);
+      --green: #288D11; --green-dark: #1a6b0a; --navy: #074387; --navy-dark: #042c5a; --navy-deepest: #021a38;
+      --orange: #FF8200; --orange-hover: #e67400; --light-blue: #50ACE1; --white: #ffffff;
     }
-
-    html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Nunito Sans', 'Gotham', sans-serif;
-      color: var(--white);
-      min-height: 100vh;
-      background: linear-gradient(160deg, #0d3a06 0%, #154d0b 25%, #1a6b0a 50%, #0d3a06 75%, #071f04 100%);
-      background-attachment: fixed;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow-x: hidden;
+      font-family: 'Nunito Sans', sans-serif; color: var(--white); min-height: 100vh;
+      background: linear-gradient(160deg, #021a38 0%, #042c5a 25%, #074387 50%, #042c5a 75%, #021a38 100%);
+      background-attachment: fixed; display: flex; flex-direction: column; align-items: center; overflow-x: hidden;
     }
-
-    h1, h2, h3, h4, h5 {
-      font-family: 'League Spartan', sans-serif;
-    }
-
-    /* ====== AMBIENT BACKGROUND ====== */
-    .ambient-orbs {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .ambient-orbs .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.08;
-      animation: orbFloat 20s ease-in-out infinite;
-    }
-    .ambient-orbs .orb:nth-child(1) {
-      width: 500px; height: 500px;
-      background: var(--green);
-      top: -10%; left: -10%;
-      animation-delay: 0s;
-    }
-    .ambient-orbs .orb:nth-child(2) {
-      width: 400px; height: 400px;
-      background: var(--orange);
-      top: 50%; right: -10%;
-      animation-delay: -7s;
-    }
-    .ambient-orbs .orb:nth-child(3) {
-      width: 350px; height: 350px;
-      background: var(--navy);
-      bottom: -5%; left: 30%;
-      animation-delay: -14s;
-    }
-    @keyframes orbFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -40px) scale(1.1); }
-      66% { transform: translate(-20px, 30px) scale(0.95); }
-    }
-
-    /* ====== HEADER ====== */
-    .form-header {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 40px 20px 10px;
-    }
-    .form-header img {
-      height: 50px;
-      filter: brightness(0) invert(1);
-      margin-bottom: 6px;
-    }
+    h1,h2,h3,h4,h5 { font-family: 'League Spartan', sans-serif; }
+    .ambient-orbs { position: fixed; top:0;left:0;right:0;bottom:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .ambient-orbs .orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.08; animation: orbFloat 20s ease-in-out infinite; }
+    .ambient-orbs .orb:nth-child(1) { width:500px;height:500px; background:var(--light-blue); top:-10%;left:-10%; }
+    .ambient-orbs .orb:nth-child(2) { width:400px;height:400px; background:var(--orange); top:50%;right:-10%; animation-delay:-7s; }
+    .ambient-orbs .orb:nth-child(3) { width:350px;height:350px; background:var(--navy); bottom:-5%;left:30%; animation-delay:-14s; }
+    @keyframes orbFloat { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-40px) scale(1.1)} 66%{transform:translate(-20px,30px) scale(0.95)} }
+    .form-header { position:relative; z-index:10; text-align:center; padding:40px 20px 10px; }
+    .form-header img { height:50px; filter:brightness(0) invert(1); margin-bottom:6px; }
     .form-header .tagline {
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.7;
-      font-weight: 600;
-    }
-
-    /* ====== FORM CONTAINER ====== */
-    .form-container {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      max-width: 640px;
-      padding: 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ====== PROGRESS BAR ====== */
-    .progress-section {
-      margin-bottom: 24px;
-    }
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      margin-bottom: 8px;
-      opacity: 0.8;
-    }
-    .progress-label .step-text {
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-family: 'League Spartan', sans-serif;
-    }
-    .progress-bar-track {
-      height: 6px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--orange), #ffaa40);
-      border-radius: 3px;
-      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 12px rgba(255,130,0,0.4);
-    }
-
-    /* ====== GLASS CARD ====== */
-    .glass-card {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 20px;
-      padding: 40px 36px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
-      transition: transform 0.3s ease;
-    }
-
-    /* ====== STEP CONTENT ====== */
-    .step {
-      display: none;
-      animation: stepIn 0.4s ease-out;
-    }
-    .step.active {
-      display: block;
-    }
-    @keyframes stepIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .step-category {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      color: var(--orange);
-      font-weight: 700;
-      margin-bottom: 10px;
-      font-family: 'League Spartan', sans-serif;
-    }
-
-    .step h2 {
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-    .step .subtitle {
-      font-size: 14px;
-      opacity: 0.65;
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-
-    /* ====== OPTION CARDS ====== */
-    .option-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .option-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 20px;
-      background: rgba(255,255,255,0.06);
-      border: 1.5px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      user-select: none;
-    }
-    .option-card:hover {
-      background: rgba(255,255,255,0.12);
-      border-color: rgba(255,255,255,0.25);
-      transform: translateY(-1px);
-    }
-    .option-card.selected {
-      background: rgba(40,141,17,0.2);
-      border-color: var(--green);
-      box-shadow: 0 0 20px rgba(40,141,17,0.15);
-    }
-    .option-card .icon {
-      font-size: 28px;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.08);
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
-    .option-card .option-text h4 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .option-card .option-text p {
-      font-size: 13px;
-      opacity: 0.55;
-    }
-
-    /* ====== FORM INPUTS ====== */
-    .form-grid {
-      display: grid;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-    .form-grid.two-col {
-      grid-template-columns: 1fr 1fr;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-    .form-group label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      opacity: 0.7;
-      font-family: 'League Spartan', sans-serif;
-    }
-    .form-group input,
-    .form-group select {
-      background: rgba(255,255,255,0.08);
-      border: 1.5px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 14px 16px;
-      font-size: 15px;
-      color: var(--white);
-      font-family: 'Nunito Sans', sans-serif;
-      transition: all 0.25s ease;
-      outline: none;
-      -webkit-appearance: none;
-    }
-    .form-group input::placeholder {
-      color: rgba(255,255,255,0.35);
-    }
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: var(--green);
-      background: rgba(255,255,255,0.12);
-      box-shadow: 0 0 16px rgba(40,141,17,0.15);
-    }
-    .form-group select option {
-      background: #1a3a10;
-      color: white;
-    }
-    .form-group .input-error {
-      border-color: #ff4444 !important;
-    }
-    .form-group .error-msg {
-      color: #ff6b6b;
-      font-size: 12px;
-      margin-top: 4px;
-      display: none;
-    }
-    .form-group .error-msg.show {
-      display: block;
-    }
-
-    /* ====== BUTTONS ====== */
-    .btn-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-    .btn-primary {
-      flex: 1;
-      padding: 16px 32px;
-      background: linear-gradient(135deg, var(--orange), var(--orange-hover));
-      color: var(--white);
-      border: none;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 700;
-      font-family: 'League Spartan', sans-serif;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(255,130,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(255,130,0,0.45);
-    }
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-    .btn-primary:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-    .btn-primary .arrow {
-      transition: transform 0.2s;
-    }
-    .btn-primary:hover .arrow {
-      transform: translateX(3px);
-    }
-    .btn-back {
-      padding: 16px 20px;
-      background: rgba(255,255,255,0.08);
-      border: 1.5px solid rgba(255,255,255,0.15);
-      color: var(--white);
-      border-radius: 14px;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: 'Nunito Sans', sans-serif;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-    .btn-back:hover {
-      background: rgba(255,255,255,0.14);
-      border-color: rgba(255,255,255,0.25);
-    }
-
-    /* ====== TRUST BADGE ====== */
-    .trust-line {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 12px;
-      opacity: 0.5;
-      line-height: 1.5;
-    }
-
-    /* ====== VALUE BADGE ====== */
-    .value-badge {
-      background: rgba(255,130,0,0.12);
-      border: 1px solid rgba(255,130,0,0.25);
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-bottom: 24px;
-      font-size: 14px;
-      line-height: 1.5;
-      text-align: center;
-    }
-    .value-badge .gift { font-size: 18px; }
-
-    /* ====== THANK YOU ====== */
-    .thank-you-section {
-      text-align: center;
-    }
-    .thank-you-section .check-circle {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-size: 40px;
-      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 4px 24px rgba(40,141,17,0.3);
-    }
-    @keyframes popIn {
-      from { transform: scale(0); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .thank-you-section h2 {
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
-    .thank-you-section p {
-      font-size: 15px;
-      opacity: 0.7;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .btn-schedule {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      background: rgba(255,255,255,0.1);
-      border: 1.5px solid rgba(255,255,255,0.2);
-      border-radius: 14px;
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: 'Nunito Sans', sans-serif;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-    .btn-schedule:hover {
-      background: rgba(255,255,255,0.18);
-      transform: translateY(-2px);
-    }
-    .divider-arrow {
-      font-size: 24px;
-      opacity: 0.4;
-      margin-bottom: 16px;
-      animation: bounceDown 1.5s ease-in-out infinite;
-    }
-    @keyframes bounceDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
-    }
-
-    /* ====== FOOTER ====== */
-    .form-footer {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 20px;
-      margin-top: auto;
-    }
-    .form-footer .lock-text {
-      font-size: 12px;
-      opacity: 0.4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .form-footer .copyright {
-      font-size: 11px;
-      opacity: 0.3;
-      margin-top: 8px;
-    }
-
-    /* ====== LOADING SPINNER ====== */
-    .spinner {
-      width: 20px; height: 20px;
-      border: 2.5px solid rgba(255,255,255,0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      display: none;
-    }
-    .btn-primary.loading .spinner { display: inline-block; }
-    .btn-primary.loading .btn-text { display: none; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ====== RESPONSIVE ====== */
-    @media (max-width: 600px) {
-      .glass-card {
-        padding: 28px 22px;
-        border-radius: 16px;
-      }
-      .step h2 { font-size: 22px; }
-      .form-grid.two-col { grid-template-columns: 1fr; }
-      .btn-row { flex-direction: column-reverse; }
-      .btn-back { width: 100%; text-align: center; }
-      .btn-primary { width: 100%; }
-      .form-header { padding-top: 28px; }
-      .option-card { padding: 14px 16px; }
+      line-height: 1.4;
+      max-width: 500px;
+      margin: 0 auto; font-size:13px; letter-spacing:2px; text-transform:uppercase; opacity:0.7; font-weight:600; }
+    .form-container { position:relative; z-index:10; width:100%; max-width:640px; padding:20px; flex:1; display:flex; flex-direction:column; }
+    .progress-section { margin-bottom:24px; }
+    .progress-label { display:flex; justify-content:space-between; align-items:center; font-size:13px; margin-bottom:8px; opacity:0.8; }
+    .progress-label .step-text { font-weight:700; letter-spacing:1px; text-transform:uppercase; font-family:'League Spartan',sans-serif; }
+    .progress-bar-track { height:6px; background:rgba(255,255,255,0.15); border-radius:3px; overflow:hidden; }
+    .progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--orange),#ffaa40); border-radius:3px; transition:width 0.5s cubic-bezier(0.4,0,0.2,1); box-shadow:0 0 12px rgba(255,130,0,0.4); }
+    .glass-card { background:rgba(255,255,255,0.08); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.15); border-radius:20px; padding:40px 36px; box-shadow:0 8px 32px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.1); }
+    .step { display:none; animation:stepIn 0.4s ease-out; }
+    .step.active { display:block; }
+    @keyframes stepIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .step-category { font-size:12px; text-transform:uppercase; letter-spacing:2.5px; color:var(--orange); font-weight:700; margin-bottom:10px; font-family:'League Spartan',sans-serif; }
+    .step h2 { font-size:26px; font-weight:800; line-height:1.2; margin-bottom:8px; }
+    .step .subtitle { font-size:14px; opacity:0.65; margin-bottom:28px; line-height:1.5; }
+    .option-cards { display:flex; flex-direction:column; gap:12px; margin-bottom:28px; }
+    .option-card { display:flex; align-items:center; gap:16px; padding:18px 20px; background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.12); border-radius:14px; cursor:pointer; transition:all 0.25s ease; user-select:none; }
+    .option-card:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25); transform:translateY(-1px); }
+    .option-card.selected { background:rgba(7,67,135,0.35); border-color:var(--light-blue); box-shadow:0 0 20px rgba(80,172,225,0.2); }
+    .option-card .icon { font-size:28px; width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border-radius:12px; flex-shrink:0; }
+    .option-card .option-text h4 { font-size:16px; font-weight:700; margin-bottom:2px; }
+    .option-card .option-text p { font-size:13px; opacity:0.55; }
+    .form-grid { display:grid; gap:16px; margin-bottom:28px; }
+    .form-grid.two-col { grid-template-columns:1fr 1fr; }
+    .form-group { display:flex; flex-direction:column; }
+    .form-group label { font-size:12px; text-transform:uppercase; letter-spacing:1.5px; font-weight:700; margin-bottom:8px; opacity:0.7; font-family:'League Spartan',sans-serif; }
+    .form-group input, .form-group select { background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); border-radius:12px; padding:14px 16px; font-size:15px; color:var(--white); font-family:'Nunito Sans',sans-serif; transition:all 0.25s ease; outline:none; -webkit-appearance:none; }
+    .form-group input::placeholder { color:rgba(255,255,255,0.35); }
+    .form-group input:focus, .form-group select:focus { border-color:var(--light-blue); background:rgba(255,255,255,0.12); box-shadow:0 0 16px rgba(80,172,225,0.2); }
+    .form-group .input-error { border-color:#ff4444 !important; }
+    .btn-row { display:flex; gap:12px; align-items:center; }
+    .btn-primary { flex:1; padding:16px 32px; background:linear-gradient(135deg,var(--orange),var(--orange-hover)); color:var(--white); border:none; border-radius:14px; font-size:16px; font-weight:700; font-family:'League Spartan',sans-serif; cursor:pointer; transition:all 0.3s ease; box-shadow:0 4px 20px rgba(255,130,0,0.3); display:flex; align-items:center; justify-content:center; gap:8px; }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(255,130,0,0.45); }
+    .btn-primary:disabled { opacity:0.4; cursor:not-allowed; transform:none; box-shadow:none; }
+    .btn-primary .arrow { transition:transform 0.2s; }
+    .btn-primary:hover .arrow { transform:translateX(3px); }
+    .btn-back { padding:16px 20px; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); color:var(--white); border-radius:14px; font-size:14px; font-weight:600; font-family:'Nunito Sans',sans-serif; cursor:pointer; transition:all 0.25s ease; }
+    .btn-back:hover { background:rgba(255,255,255,0.14); border-color:rgba(255,255,255,0.25); }
+    .trust-line { text-align:center; margin-top:16px; font-size:12px; opacity:0.5; line-height:1.5; }
+    .value-badge { background:rgba(255,130,0,0.12); border:1px solid rgba(255,130,0,0.25); border-radius:12px; padding:14px 18px; margin-bottom:24px; font-size:14px; line-height:1.5; text-align:center; }
+    .value-badge .gift { font-size:18px; }
+    .thank-you-section { text-align:center; }
+    .thank-you-section .check-circle { width:80px; height:80px; background:linear-gradient(135deg,var(--green),var(--green-dark)); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-size:40px; animation:popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow:0 4px 24px rgba(40,141,17,0.3); }
+    @keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+    .thank-you-section h2 { font-size:30px; margin-bottom:12px; }
+    .thank-you-section p { font-size:15px; opacity:0.7; line-height:1.6; margin-bottom:20px; }
+    .btn-schedule { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2); border-radius:14px; color:white; font-size:15px; font-weight:600; font-family:'Nunito Sans',sans-serif; text-decoration:none; transition:all 0.25s ease; }
+    .btn-schedule:hover { background:rgba(255,255,255,0.18); transform:translateY(-2px); }
+    .divider-arrow { font-size:24px; opacity:0.4; margin-bottom:16px; animation:bounceDown 1.5s ease-in-out infinite; }
+    @keyframes bounceDown { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+    .form-footer { position:relative; z-index:10; text-align:center; padding:20px; margin-top:auto; }
+    .form-footer .lock-text { font-size:12px; opacity:0.4; display:flex; align-items:center; justify-content:center; gap:6px; }
+    .form-footer .copyright { font-size:11px; opacity:0.3; margin-top:8px; }
+    .spinner { width:20px;height:20px; border:2.5px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 0.6s linear infinite; display:none; }
+    .btn-primary.loading .spinner { display:inline-block; }
+    .btn-primary.loading .btn-text { display:none; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    @media(max-width:600px) {
+      .glass-card { padding:28px 22px; border-radius:16px; }
+      .step h2 { font-size:22px; }
+      .form-grid.two-col { grid-template-columns:1fr; }
+      .btn-row { flex-direction:column-reverse; }
+      .btn-back { width:100%; text-align:center; }
+      .btn-primary { width:100%; }
+      .form-header { padding-top:28px; }
+      .option-card { padding:14px 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient background orbs -->
-  <div class="ambient-orbs">
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-  </div>
+  <div class="ambient-orbs"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
 
-  <!-- Header -->
   <div class="form-header">
-    <a href="https://go.miloinsulation.com/home">
-      <img src="https://betterbranding.github.io/milo-scripts/logo.png" alt="MILO Insulation">
-    </a>
-    <div class="tagline">Nature's Very Best</div>
+    <a href="https://go.miloinsulation.com/home"><img src="https://betterbranding.github.io/milo-scripts/logo.png" alt="MILO Insulation"></a>
+    <div class="tagline">See if your home qualifies for a <span style="color:#FF8200;font-weight:700;">FREE</span> Home Efficiency Scan <span style="font-size:0.7em;opacity:0.85;">($399 value)</span></div>
   </div>
 
-  <!-- Form Container -->
   <div class="form-container">
-
-    <!-- Progress Bar -->
     <div class="progress-section">
       <div class="progress-label">
         <span class="step-text">Step <span id="stepNum">1</span> of 5</span>
         <span id="stepPercent">0%</span>
       </div>
-      <div class="progress-bar-track">
-        <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
-      </div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
     </div>
 
-    <!-- Glass Card -->
     <div class="glass-card">
 
-      <!-- STEP 1: Service Type -->
       <div class="step active" id="step1">
         <div class="step-category">Service Type</div>
         <h2>What type of insulation service are you looking for?</h2>
         <p class="subtitle">Choose the option that best describes your needs</p>
         <div class="option-cards" data-field="serviceType">
-          <div class="option-card" data-value="remove">
-            <div class="icon">🏚️</div>
-            <div class="option-text">
-              <h4>Remove the Old Insulation</h4>
-              <p>Full removal and fresh install</p>
-            </div>
-          </div>
-          <div class="option-card" data-value="blowover">
-            <div class="icon">💨</div>
-            <div class="option-text">
-              <h4>Blow Over the Existing Insulation</h4>
-              <p>Add new insulation on top</p>
-            </div>
-          </div>
-          <div class="option-card" data-value="both">
-            <div class="icon">⚖️</div>
-            <div class="option-text">
-              <h4>I'd Like to See Both Options</h4>
-              <p>Compare removal vs. blow-over</p>
-            </div>
-          </div>
-        </div>
-        <div class="btn-row">
-          <button class="btn-primary" id="btn1" disabled onclick="nextStep()">
-            <span class="btn-text">Continue <span class="arrow">→</span></span>
-          </button>
+          <div class="option-card" data-value="remove"><div class="icon">🏚️</div><div class="option-text"><h4>Remove the Old Insulation</h4><p>Full removal and fresh install</p></div></div>
+          <div class="option-card" data-value="blowover"><div class="icon">💨</div><div class="option-text"><h4>Blow Over the Existing Insulation</h4><p>Add new insulation on top</p></div></div>
+          <div class="option-card" data-value="both"><div class="icon">⚖️</div><div class="option-text"><h4>I'd Like to See Both Options</h4><p>Compare removal vs. blow-over</p></div></div>
         </div>
         <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
       </div>
 
-      <!-- STEP 2: Home Size -->
       <div class="step" id="step2">
         <div class="step-category">Home Size</div>
         <h2>Roughly what is the square footage range of your home?</h2>
         <p class="subtitle">Helps us give you the most accurate assessment</p>
         <div class="option-cards" data-field="homeSize">
-          <div class="option-card" data-value="under1000">
-            <div class="icon">🏠</div>
-            <div class="option-text">
-              <h4>Less than 1,000 sq ft</h4>
-              <p>Smaller home or apartment</p>
-            </div>
-          </div>
-          <div class="option-card" data-value="1000to3000">
-            <div class="icon">🏡</div>
-            <div class="option-text">
-              <h4>1,000 – 3,000 sq ft</h4>
-              <p>Average family home</p>
-            </div>
-          </div>
-          <div class="option-card" data-value="over3000">
-            <div class="icon">🏘️</div>
-            <div class="option-text">
-              <h4>More than 3,000 sq ft</h4>
-              <p>Larger home or property</p>
-            </div>
-          </div>
+          <div class="option-card" data-value="under1000"><div class="icon">🏠</div><div class="option-text"><h4>Less than 1,000 sq ft</h4><p>Smaller home or apartment</p></div></div>
+          <div class="option-card" data-value="1000to3000"><div class="icon">🏡</div><div class="option-text"><h4>1,000 – 3,000 sq ft</h4><p>Average family home</p></div></div>
+          <div class="option-card" data-value="over3000"><div class="icon">🏘️</div><div class="option-text"><h4>More than 3,000 sq ft</h4><p>Larger home or property</p></div></div>
         </div>
-        <div class="btn-row">
-          <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" id="btn2" disabled onclick="nextStep()">
-            <span class="btn-text">Continue <span class="arrow">→</span></span>
-          </button>
-        </div>
+        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
       </div>
 
-      <!-- STEP 3: Scheduling -->
       <div class="step" id="step3">
         <div class="step-category">Scheduling</div>
         <h2>Are <em>mornings</em> or <em>afternoons</em> better to schedule your inspection?</h2>
         <p class="subtitle">We'll do our best to accommodate your preference</p>
         <div class="option-cards" data-field="timePreference">
-          <div class="option-card" data-value="morning">
-            <div class="icon">🌅</div>
-            <div class="option-text">
-              <h4>Morning</h4>
-              <p>Before 12:00 PM</p>
-            </div>
-          </div>
-          <div class="option-card" data-value="afternoon">
-            <div class="icon">☀️</div>
-            <div class="option-text">
-              <h4>Afternoon</h4>
-              <p>After 12:00 PM</p>
-            </div>
-          </div>
+          <div class="option-card" data-value="morning"><div class="icon">🌅</div><div class="option-text"><h4>Morning</h4><p>Before 12:00 PM</p></div></div>
+          <div class="option-card" data-value="afternoon"><div class="icon">☀️</div><div class="option-text"><h4>Afternoon</h4><p>After 12:00 PM</p></div></div>
         </div>
-        <div class="btn-row">
-          <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" id="btn3" disabled onclick="nextStep()">
-            <span class="btn-text">Continue <span class="arrow">→</span></span>
-          </button>
-        </div>
+        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
       </div>
 
-      <!-- STEP 4: Address -->
       <div class="step" id="step4">
         <div class="step-category">Property Location</div>
         <h2>What's your address?</h2>
         <p class="subtitle">We use this to route the right local team to you</p>
         <div class="form-grid">
-          <div class="form-group">
-            <label>Street Address</label>
-            <input type="text" id="street" placeholder="123 Main St" autocomplete="street-address">
-          </div>
+          <div class="form-group"><label>Street Address</label><input type="text" id="street" placeholder="123 Main St" autocomplete="street-address"></div>
           <div class="form-grid two-col">
-            <div class="form-group">
-              <label>City</label>
-              <input type="text" id="city" placeholder="City" autocomplete="address-level2">
-            </div>
-            <div class="form-group">
-              <label>State</label>
-              <input type="text" id="state" placeholder="State" autocomplete="address-level1">
-            </div>
+            <div class="form-group"><label>City</label><input type="text" id="city" placeholder="City" autocomplete="address-level2"></div>
+            <div class="form-group"><label>State</label><input type="text" id="state" placeholder="State" autocomplete="address-level1"></div>
           </div>
-          <div class="form-group">
-            <label>ZIP Code</label>
-            <input type="text" id="zip" placeholder="ZIP Code" autocomplete="postal-code" maxlength="10" inputmode="numeric">
-          </div>
+          <div class="form-group"><label>ZIP Code</label><input type="text" id="zip" placeholder="ZIP Code" autocomplete="postal-code" maxlength="10" inputmode="numeric"></div>
         </div>
         <div class="btn-row">
           <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" id="btn4" onclick="nextStep()">
-            <span class="btn-text">Continue <span class="arrow">→</span></span>
-          </button>
+          <button class="btn-primary" onclick="nextStep()"><span class="btn-text">Continue <span class="arrow">→</span></span></button>
         </div>
       </div>
 
-      <!-- STEP 5: Contact Info -->
       <div class="step" id="step5">
         <div class="step-category">Almost Done!</div>
         <h2>Confirm your info to schedule your free home efficiency scan</h2>
-        <div class="value-badge">
-          <span class="gift">🎁</span> A <strong>$399 value</strong> — yours free. No SSN required. Zero impact to credit. Your info is never sold.
-        </div>
+        <div class="value-badge"><span class="gift">🎁</span> A <strong>$399 value</strong> — yours free. No SSN required. Zero impact to credit. Your info is never sold.</div>
         <div class="form-grid two-col">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" id="firstName" placeholder="First Name" autocomplete="given-name">
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name">
-          </div>
+          <div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="First Name" autocomplete="given-name"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name"></div>
         </div>
         <div class="form-grid">
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="email" placeholder="you@email.com" autocomplete="email">
-          </div>
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" id="phone" placeholder="(555) 123-4567" autocomplete="tel">
-          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="you@email.com" autocomplete="email"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" placeholder="(555) 123-4567" autocomplete="tel"></div>
         </div>
-        <div class="btn-row" style="margin-top: 4px;">
+        <div class="btn-row" style="margin-top:4px;">
           <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" id="btnSubmit" onclick="submitForm()">
-            <span class="btn-text">Schedule My Free Inspection <span class="arrow">→</span></span>
-            <div class="spinner"></div>
-          </button>
+          <button class="btn-primary" id="btnSubmit" onclick="submitForm()"><span class="btn-text">Schedule My Free Inspection <span class="arrow">→</span></span><div class="spinner"></div></button>
         </div>
       </div>
 
-      <!-- STEP 6: Thank You -->
       <div class="step" id="step6">
         <div class="thank-you-section">
           <div class="check-circle">✓</div>
           <h2>You're all set! 🎉</h2>
           <p>Our insulation tech will reach out to you shortly to confirm your info and schedule your inspection.</p>
           <div class="divider-arrow">↓</div>
-          <a href="#" class="btn-schedule" id="scheduleLink">
-            📅 <span>or schedule it now!</span>
-          </a>
+          <a href="#" class="btn-schedule" id="scheduleLink">📅 <span>or schedule it now!</span></a>
         </div>
       </div>
 
-    </div><!-- /glass-card -->
+    </div>
+  </div>
 
-  </div><!-- /form-container -->
-
-  <!-- Footer -->
   <div class="form-footer">
-    <div class="lock-text">🔒 Secure &amp; confidential. Your information is never shared or sold.</div>
+    <div class="lock-text">🔒 Secure & confidential. Your information is never shared or sold.</div>
     <div class="copyright">MILO Insulation™ — Nature's Very Best. © 2026</div>
   </div>
 
-  <script>
-    // ==========================================
-    // MILO INSULATION — MULTI-STEP FORM
-    // ==========================================
+<script>
+var WEBHOOK_URL = 'https://PLACEHOLDER-WEBHOOK-URL.com';
+var SCHEDULE_URL = '#';
+var TOTAL_STEPS = 5;
+var ZIP_ROUTES = {};
+var currentStep = 1;
+var formData = { serviceType:'',homeSize:'',timePreference:'',street:'',city:'',state:'',zip:'',firstName:'',lastName:'',email:'',phone:'' };
 
-    // ----------- CONFIG -----------
-    const WEBHOOK_URL = 'https://PLACEHOLDER-WEBHOOK-URL.com'; // TODO: Replace with GHL webhook
-    const SCHEDULE_URL = '#'; // TODO: Replace with scheduling link
-    const TOTAL_STEPS = 5;
+function getRouteForZip(zip) {
+  if (!zip) return {team:'default',label:'Default Team'};
+  for (var len=5;len>=2;len--) { var p=zip.substring(0,len); if(ZIP_ROUTES[p]) return ZIP_ROUTES[p]; }
+  return {team:'default',label:'Default Team'};
+}
 
-    // ----------- ZIP CODE ROUTING -----------
-    // Maps ZIP code prefixes to team/region identifiers
-    // Expand this object as new regions are added
-    const ZIP_ROUTES = {
-      // Example: '73' routes to Oklahoma team
-      // '73': { team: 'oklahoma', label: 'Oklahoma Team' },
-      // '75': { team: 'dallas', label: 'Dallas Team' },
-      // Add more as needed
-    };
-
-    function getRouteForZip(zip) {
-      if (!zip) return { team: 'default', label: 'Default Team' };
-      // Check full 5-digit first, then 4, 3, 2 digit prefixes
-      for (let len = 5; len >= 2; len--) {
-        const prefix = zip.substring(0, len);
-        if (ZIP_ROUTES[prefix]) return ZIP_ROUTES[prefix];
-      }
-      return { team: 'default', label: 'Default Team' };
-    }
-
-    // ----------- STATE -----------
-    let currentStep = 1;
-    const formData = {
-      serviceType: '',
-      homeSize: '',
-      timePreference: '',
-      street: '',
-      city: '',
-      state: '',
-      zip: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: ''
-    };
-
-    // ----------- OPTION CARD SELECTION -----------
-    document.querySelectorAll('.option-cards').forEach(group => {
-      const field = group.dataset.field;
-      group.querySelectorAll('.option-card').forEach(card => {
-        card.addEventListener('click', () => {
-          // Deselect siblings
-          group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-          card.classList.add('selected');
-          formData[field] = card.dataset.value;
-          // Enable continue button
-          const stepEl = card.closest('.step');
-          const btn = stepEl.querySelector('.btn-primary');
-          if (btn) btn.disabled = false;
-        });
-      });
+document.querySelectorAll('.option-cards').forEach(function(group) {
+  var field = group.dataset.field;
+  group.querySelectorAll('.option-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      group.querySelectorAll('.option-card').forEach(function(c){c.classList.remove('selected')});
+      card.classList.add('selected');
+      formData[field] = card.dataset.value;
+      setTimeout(function(){ nextStep(); }, 350);
     });
+  });
+});
 
-    // ----------- NAVIGATION -----------
-    function updateProgress() {
-      const pct = Math.round(((currentStep - 1) / TOTAL_STEPS) * 100);
-      document.getElementById('progressFill').style.width = pct + '%';
-      document.getElementById('stepNum').textContent = Math.min(currentStep, TOTAL_STEPS);
-      document.getElementById('stepPercent').textContent = pct + '%';
-    }
+function updateProgress() {
+  var pct = Math.round(((currentStep-1)/TOTAL_STEPS)*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('stepNum').textContent = Math.min(currentStep,TOTAL_STEPS);
+  document.getElementById('stepPercent').textContent = pct+'%';
+}
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active')});
+  var step = document.getElementById('step'+n);
+  if(step){step.classList.add('active');step.style.animation='none';step.offsetHeight;step.style.animation='';}
+  document.querySelector('.progress-section').style.display = n>TOTAL_STEPS?'none':'block';
+}
+function nextStep() { if(currentStep===4&&!validateAddress()) return; currentStep++; showStep(currentStep); updateProgress(); }
+function prevStep() { if(currentStep>1){currentStep--;showStep(currentStep);updateProgress();} }
 
-    function showStep(n) {
-      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-      const step = document.getElementById('step' + n);
-      if (step) {
-        step.classList.add('active');
-        // Re-trigger animation
-        step.style.animation = 'none';
-        step.offsetHeight; // reflow
-        step.style.animation = '';
-      }
-      // Hide progress on thank-you
-      document.querySelector('.progress-section').style.display = n > TOTAL_STEPS ? 'none' : 'block';
-    }
+function validateAddress() {
+  var fields=['street','city','state','zip'], valid=true;
+  fields.forEach(function(id){var el=document.getElementById(id);if(!el.value.trim()){el.classList.add('input-error');valid=false;}else{el.classList.remove('input-error');}});
+  if(valid){formData.street=document.getElementById('street').value.trim();formData.city=document.getElementById('city').value.trim();formData.state=document.getElementById('state').value.trim();formData.zip=document.getElementById('zip').value.trim();}
+  return valid;
+}
+function validateContact() {
+  var fields=['firstName','lastName','email','phone'], valid=true;
+  fields.forEach(function(id){var el=document.getElementById(id);if(!el.value.trim()){el.classList.add('input-error');valid=false;}else{el.classList.remove('input-error');}});
+  var emailEl=document.getElementById('email');if(emailEl&&emailEl.value.trim()&&emailEl.value.indexOf('@')===-1){emailEl.classList.add('input-error');valid=false;}
+  if(valid){formData.firstName=document.getElementById('firstName').value.trim();formData.lastName=document.getElementById('lastName').value.trim();formData.email=document.getElementById('email').value.trim();formData.phone=document.getElementById('phone').value.trim();}
+  return valid;
+}
 
-    function nextStep() {
-      // Validate current step
-      if (currentStep === 4 && !validateAddress()) return;
+var phoneEl=document.getElementById('phone');
+if(phoneEl){phoneEl.addEventListener('input',function(e){var x=e.target.value.replace(/\D/g,'').substring(0,10);if(x.length>6){e.target.value='('+x.substring(0,3)+') '+x.substring(3,6)+'-'+x.substring(6);}else if(x.length>3){e.target.value='('+x.substring(0,3)+') '+x.substring(3);}else if(x.length>0){e.target.value='('+x;}});}
+document.querySelectorAll('input').forEach(function(i){i.addEventListener('focus',function(){i.classList.remove('input-error')});});
 
-      currentStep++;
-      showStep(currentStep);
-      updateProgress();
-    }
-
-    function prevStep() {
-      if (currentStep > 1) {
-        currentStep--;
-        showStep(currentStep);
-        updateProgress();
-      }
-    }
-
-    function validateAddress() {
-      const street = document.getElementById('street').value.trim();
-      const city = document.getElementById('city').value.trim();
-      const state = document.getElementById('state').value.trim();
-      const zip = document.getElementById('zip').value.trim();
-
-      let valid = true;
-      [['street', street], ['city', city], ['state', state], ['zip', zip]].forEach(([id, val]) => {
-        const el = document.getElementById(id);
-        if (!val) {
-          el.classList.add('input-error');
-          valid = false;
-        } else {
-          el.classList.remove('input-error');
-        }
-      });
-
-      // Save to formData
-      if (valid) {
-        formData.street = street;
-        formData.city = city;
-        formData.state = state;
-        formData.zip = zip;
-      }
-      return valid;
-    }
-
-    function validateContact() {
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastName = document.getElementById('lastName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-
-      let valid = true;
-      [['firstName', firstName], ['lastName', lastName], ['email', email], ['phone', phone]].forEach(([id, val]) => {
-        const el = document.getElementById(id);
-        if (!val) {
-          el.classList.add('input-error');
-          valid = false;
-        } else {
-          el.classList.remove('input-error');
-        }
-      });
-
-      // Basic email check
-      if (email && !email.includes('@')) {
-        document.getElementById('email').classList.add('input-error');
-        valid = false;
-      }
-
-      if (valid) {
-        formData.firstName = firstName;
-        formData.lastName = lastName;
-        formData.email = email;
-        formData.phone = phone;
-      }
-      return valid;
-    }
-
-    // ----------- PHONE FORMATTING -----------
-    document.getElementById('phone').addEventListener('input', function(e) {
-      let x = e.target.value.replace(/\D/g, '').substring(0, 10);
-      if (x.length > 6) {
-        e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3,6) + '-' + x.substring(6);
-      } else if (x.length > 3) {
-        e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3);
-      } else if (x.length > 0) {
-        e.target.value = '(' + x;
-      }
-    });
-
-    // Remove error styling on focus
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('focus', () => input.classList.remove('input-error'));
-    });
-
-    // ----------- SUBMIT -----------
-    async function submitForm() {
-      if (!validateContact()) return;
-
-      const btn = document.getElementById('btnSubmit');
-      btn.classList.add('loading');
-      btn.disabled = true;
-
-      // Determine ZIP route
-      const route = getRouteForZip(formData.zip);
-
-      const payload = {
-        // Contact info
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        name: formData.firstName + ' ' + formData.lastName,
-        email: formData.email,
-        phone: formData.phone.replace(/\D/g, ''),
-
-        // Address
-        address1: formData.street,
-        city: formData.city,
-        state: formData.state,
-        postalCode: formData.zip,
-
-        // Form data
-        serviceType: formData.serviceType,
-        homeSize: formData.homeSize,
-        timePreference: formData.timePreference,
-
-        // Routing
-        zipRoute: route.team,
-        zipRouteLabel: route.label,
-
-        // Meta
-        source: 'milo-form',
-        formName: 'Free Home Efficiency Scan',
-        submittedAt: new Date().toISOString()
-      };
-
-      try {
-        await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          mode: 'no-cors' // GHL webhooks may not send CORS headers
-        });
-      } catch (err) {
-        console.warn('Webhook POST error (may be expected with no-cors):', err);
-      }
-
-      // Always show thank you (no-cors means we can't read the response)
-      btn.classList.remove('loading');
-      currentStep = 6;
-      showStep(6);
-      updateProgress();
-      document.getElementById('scheduleLink').href = SCHEDULE_URL;
-    }
-
-    // ----------- INIT -----------
-    updateProgress();
-  </script>
+function submitForm() {
+  if(!validateContact()) return;
+  var btn=document.getElementById('btnSubmit');btn.classList.add('loading');btn.disabled=true;
+  var route=getRouteForZip(formData.zip);
+  var payload={firstName:formData.firstName,lastName:formData.lastName,name:formData.firstName+' '+formData.lastName,email:formData.email,phone:formData.phone.replace(/\D/g,''),address1:formData.street,city:formData.city,state:formData.state,postalCode:formData.zip,serviceType:formData.serviceType,homeSize:formData.homeSize,timePreference:formData.timePreference,zipRoute:route.team,zipRouteLabel:route.label,source:'milo-form',formName:'Free Home Efficiency Scan',submittedAt:new Date().toISOString()};
+  fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'}).catch(function(e){console.warn(e)}).finally(function(){btn.classList.remove('loading');currentStep=6;showStep(6);updateProgress();var sl=document.getElementById('scheduleLink');if(sl)sl.href=SCHEDULE_URL;});
+}
+updateProgress();
+</script>
 </body>
 </html>

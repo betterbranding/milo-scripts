@@ -122,10 +122,13 @@
     '      margin-bottom: 6px;\n' +
     '    }\n' +
     '    #milo-form-content .form-header .tagline {\n' +
-    '      font-size: 13px;\n' +
-    '      letter-spacing: 2px;\n' +
-    '      text-transform: uppercase;\n' +
-    '      opacity: 0.7;\n' +
+    '      font-size: 18px;\n' +
+    '      letter-spacing: 0.5px;\n' +
+    '      text-transform: none;\n' +
+    '      opacity: 1;\n' +
+    '      line-height: 1.4;\n' +
+    '      max-width: 500px;\n' +
+    '      margin: 0 auto;\n' +
     '      font-weight: 600;\n' +
     '    }\n' +
     '\n' +
