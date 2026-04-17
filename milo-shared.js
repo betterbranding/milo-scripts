@@ -123,6 +123,56 @@
   ].join('\n');
   document.head.appendChild(css);
 
+  /* ── LOCATION CONFIG ── */
+  var locationId = window.MILO_LOCATION || 'tulia';
+  var locationConfig = null;
+
+  function fetchLocationConfig(cb) {
+    if (locationConfig) { if (cb) cb(locationConfig); return; }
+    fetch(BASE + 'locations/' + locationId + '.json?v=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(cfg) {
+        locationConfig = cfg;
+        window.MiloLocationConfig = cfg;
+        if (cb) cb(cfg);
+      })
+      .catch(function(err) {
+        console.warn('milo-shared: location config not found for "' + locationId + '", using defaults');
+        locationConfig = {
+          id: locationId,
+          businessName: 'MILO Insulation',
+          locationLabel: 'Tulia, Texas',
+          phone: '(806) 995-6500',
+          email: 'info@miloinsulation.com'
+        };
+        window.MiloLocationConfig = locationConfig;
+        if (cb) cb(locationConfig);
+      });
+  }
+
+  function applyLocationToFooter() {
+    if (!locationConfig) return;
+    var foot = document.getElementById('milo-foot');
+    if (!foot) return;
+    var contactDiv = foot.querySelector('.milo-foot-contact');
+    if (contactDiv) {
+      var ps = contactDiv.querySelectorAll('p');
+      ps.forEach(function(p) {
+        if (p.querySelector('.fa-phone')) {
+          p.innerHTML = '<i class="fas fa-phone"></i> ' + locationConfig.phone;
+        } else if (p.querySelector('.fa-envelope')) {
+          p.innerHTML = '<i class="fas fa-envelope"></i> ' + locationConfig.email;
+        } else if (p.querySelector('.fa-map-marker-alt')) {
+          p.innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + locationConfig.locationLabel;
+        }
+      });
+    }
+    var bottomP = foot.querySelector('.milo-foot-bottom p');
+    if (bottomP) {
+      bottomP.innerHTML = '&copy; 2026 ' + locationConfig.businessName + '. All rights reserved.';
+    }
+  }
+
   /* ── DETECT CURRENT PAGE ── */
   function getCurrentPage() {
     var path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
@@ -263,18 +313,23 @@
   /* ── PUBLIC API ── */
   window.MiloShared = {
     fetchShared: fetchShared,
+    fetchLocationConfig: fetchLocationConfig,
     injectNavFooter: injectNavFooter,
     initScrollReveal: initScrollReveal,
     getCurrentPage: getCurrentPage,
     getNavHTML: function() { return navHTML; },
-    getFootHTML: function() { return footHTML; }
+    getFootHTML: function() { return footHTML; },
+    getLocationConfig: function() { return locationConfig; }
   };
 
   /* ── AUTO-RUN ── */
   function boot() {
-    fetchShared(function() {
-      injectNavFooter();
-      initScrollReveal();
+    fetchLocationConfig(function() {
+      fetchShared(function() {
+        injectNavFooter();
+        applyLocationToFooter();
+        initScrollReveal();
+      });
     });
   }
 

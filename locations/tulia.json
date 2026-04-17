@@ -1,0 +1,16 @@
+{
+  "id": "tulia",
+  "businessName": "MILO Insulation",
+  "locationLabel": "Tulia, Texas",
+  "address": "3631 Shelby Ln",
+  "city": "Tulia",
+  "state": "TX",
+  "zip": "79088",
+  "phone": "(806) 995-6500",
+  "email": "info@miloinsulation.com",
+  "ghlLocationId": "R9iIFpdQnOdHzkj8D4fW",
+  "webhookUrl": "PLACEHOLDER",
+  "scheduleUrl": "PLACEHOLDER",
+  "serviceAreaZips": [],
+  "timezone": "US/Central"
+}

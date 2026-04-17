@@ -1,0 +1,16 @@
+{
+  "id": "etx",
+  "businessName": "MILO Insulation - East Texas",
+  "locationLabel": "Athens, Texas",
+  "address": "1411 Flat Creek Rd A",
+  "city": "Athens",
+  "state": "TX",
+  "zip": "75751",
+  "phone": "(903) 900-6456",
+  "email": "kjackson@miloinsulation.com",
+  "ghlLocationId": "NjcqfaqmvBCDqdQtWJxC",
+  "webhookUrl": "PLACEHOLDER",
+  "scheduleUrl": "PLACEHOLDER",
+  "serviceAreaZips": [],
+  "timezone": "US/Central"
+}

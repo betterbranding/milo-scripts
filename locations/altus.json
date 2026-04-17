@@ -1,0 +1,16 @@
+{
+  "id": "altus",
+  "businessName": "MILO Insulation of Altus, LLC",
+  "locationLabel": "Altus, Oklahoma",
+  "address": "601 Old Mill Rd",
+  "city": "Altus",
+  "state": "OK",
+  "zip": "73521",
+  "phone": "(580) 482-2700",
+  "email": "mcruse@miloinsulation.com",
+  "ghlLocationId": "daGLqYQK0CkpexfGDgR8",
+  "webhookUrl": "PLACEHOLDER",
+  "scheduleUrl": "PLACEHOLDER",
+  "serviceAreaZips": [],
+  "timezone": "US/Central"
+}

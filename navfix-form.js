@@ -579,8 +579,10 @@
     // ==========================================
 
     // ----------- CONFIG -----------
-    var WEBHOOK_URL = 'https://PLACEHOLDER-WEBHOOK-URL.com'; // TODO: Replace with GHL webhook
-    var SCHEDULE_URL = '#'; // TODO: Replace with scheduling link
+    /* Location-aware config */
+    var locCfg = window.MiloLocationConfig || null;
+    var WEBHOOK_URL = (locCfg && locCfg.webhookUrl !== 'PLACEHOLDER') ? locCfg.webhookUrl : 'https://PLACEHOLDER-WEBHOOK-URL.com';
+    var SCHEDULE_URL = (locCfg && locCfg.scheduleUrl !== 'PLACEHOLDER') ? locCfg.scheduleUrl : '#';
     var TOTAL_STEPS = 5;
 
     // ----------- ZIP CODE ROUTING -----------
@@ -767,6 +769,8 @@
         zipRouteLabel: route.label,
         source: 'milo-form',
         formName: 'Free Home Efficiency Scan',
+        locationId: locCfg ? locCfg.id : locationId,
+        locationName: locCfg ? locCfg.businessName : '',
         submittedAt: new Date().toISOString()
       };
 
@@ -796,12 +800,30 @@
     updateProgress();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectContent);
-  } else {
-    injectContent();
+  /* ── LOCATION CONFIG FETCH ── */
+  var locationId = window.MILO_LOCATION || 'tulia';
+  var BASE = 'https://betterbranding.github.io/milo-scripts/';
+
+  function fetchLocConfig(cb) {
+    if (window.MiloLocationConfig) { cb(); return; }
+    fetch(BASE + 'locations/' + locationId + '.json?v=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(cfg) { window.MiloLocationConfig = cfg; cb(); })
+      .catch(function() { cb(); }); // proceed with defaults if config missing
   }
-  setTimeout(injectContent, 500);
-  setTimeout(injectContent, 1500);
-  setTimeout(injectContent, 3000);
+
+  function bootForm() {
+    fetchLocConfig(function() {
+      injectContent();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootForm);
+  } else {
+    bootForm();
+  }
+  setTimeout(bootForm, 500);
+  setTimeout(bootForm, 1500);
+  setTimeout(bootForm, 3000);
 })();
