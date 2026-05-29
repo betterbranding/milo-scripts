@@ -1,7 +1,8 @@
-/* navfix-form.js — v2: Multi-step form page
+/* navfix-form.js — v4: Multi-step form with ZIP-based location routing
  * - No nav/footer (standalone form)
  * - Blue gradient background
- * - Auto-advance on option card click
+ * - Auto-advance on option card click (steps 1-3)
+ * - ZIP-based routing: resolves ZIP → location → webhook + calendar
  * - Functions exposed globally for onclick handlers
  */
 (function() {
@@ -14,6 +15,8 @@
     fonts.href = 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap';
     document.head.appendChild(fonts);
   }
+
+  var BASE = 'https://betterbranding.github.io/milo-scripts/';
 
   /* ── FORM CSS (scoped to #milo-form-content) ── */
   var css = document.createElement('style');
@@ -336,6 +339,21 @@
     '      display: block;\n' +
     '    }\n' +
     '\n' +
+    '    /* ====== ZIP NOT FOUND WARNING ====== */\n' +
+    '    #milo-form-content .zip-warning {\n' +
+    '      background: rgba(255, 130, 0, 0.15);\n' +
+    '      border: 1px solid rgba(255, 130, 0, 0.3);\n' +
+    '      border-radius: 12px;\n' +
+    '      padding: 14px 18px;\n' +
+    '      margin-top: 12px;\n' +
+    '      font-size: 14px;\n' +
+    '      line-height: 1.5;\n' +
+    '      display: none;\n' +
+    '    }\n' +
+    '    #milo-form-content .zip-warning.show {\n' +
+    '      display: block;\n' +
+    '    }\n' +
+    '\n' +
     '    /* ====== BUTTONS ====== */\n' +
     '    #milo-form-content .btn-row {\n' +
     '      display: flex;\n' +
@@ -562,8 +580,7 @@
       }
     }
 
-    var baseUrl = 'https://betterbranding.github.io/milo-scripts/';
-    fetch(baseUrl + 'milo-form-content.html?v=' + Date.now())
+    fetch(BASE + 'milo-form-content.html?v=' + Date.now())
       .then(function(r) { return r.text(); })
       .then(function(html) {
         wrapper.innerHTML = html;
@@ -574,31 +591,7 @@
 
   /* ── FORM LOGIC ── */
   function initFormLogic() {
-    // ==========================================
-    // MILO INSULATION — MULTI-STEP FORM
-    // ==========================================
-
-    // ----------- CONFIG -----------
-    /* Location-aware config */
-    var locCfg = window.MiloLocationConfig || null;
-    var WEBHOOK_URL = (locCfg && locCfg.webhookUrl !== 'PLACEHOLDER') ? locCfg.webhookUrl : 'https://PLACEHOLDER-WEBHOOK-URL.com';
-    var SCHEDULE_URL = (locCfg && locCfg.scheduleUrl !== 'PLACEHOLDER') ? locCfg.scheduleUrl : '#';
     var TOTAL_STEPS = 5;
-
-    // ----------- ZIP CODE ROUTING -----------
-    var ZIP_ROUTES = {
-      // '73': { team: 'oklahoma', label: 'Oklahoma Team' },
-      // '75': { team: 'dallas', label: 'Dallas Team' },
-    };
-
-    function getRouteForZip(zip) {
-      if (!zip) return { team: 'default', label: 'Default Team' };
-      for (var len = 5; len >= 2; len--) {
-        var prefix = zip.substring(0, len);
-        if (ZIP_ROUTES[prefix]) return ZIP_ROUTES[prefix];
-      }
-      return { team: 'default', label: 'Default Team' };
-    }
 
     // ----------- STATE -----------
     var currentStep = 1;
@@ -616,20 +609,39 @@
       phone: ''
     };
 
+    // ----------- ZIP ROUTING (loaded at boot) -----------
+    var zipLookup = window._miloZipLookup || {};
+    var locationCache = {};
+
+    function resolveLocation(zip) {
+      if (!zip) return null;
+      var clean = zip.replace(/\D/g, '').substring(0, 5);
+      return zipLookup[clean] || null;
+    }
+
+    function fetchLocationConfig(locId) {
+      return new Promise(function(resolve) {
+        if (locationCache[locId]) { resolve(locationCache[locId]); return; }
+        fetch(BASE + 'locations/' + locId + '.json?v=' + Date.now())
+          .then(function(r) { return r.json(); })
+          .then(function(cfg) {
+            locationCache[locId] = cfg;
+            resolve(cfg);
+          })
+          .catch(function() { resolve(null); });
+      });
+    }
+
     // ----------- OPTION CARD SELECTION (auto-advance) -----------
     var root = document.getElementById('milo-form-content');
     root.querySelectorAll('.option-cards').forEach(function(group) {
       var field = group.dataset.field;
       group.querySelectorAll('.option-card').forEach(function(card) {
         card.addEventListener('click', function() {
-          // Deselect siblings
           group.querySelectorAll('.option-card').forEach(function(c) { c.classList.remove('selected'); });
           card.classList.add('selected');
           formData[field] = card.dataset.value;
-          // Auto-advance after brief visual feedback
-          setTimeout(function() {
-            goNext();
-          }, 350);
+          setTimeout(function() { goNext(); }, 350);
         });
       });
     });
@@ -691,6 +703,16 @@
         formData.city = document.getElementById('city').value.trim();
         formData.state = document.getElementById('state').value.trim();
         formData.zip = document.getElementById('zip').value.trim();
+
+        /* Check if ZIP is in our service area */
+        var locId = resolveLocation(formData.zip);
+        var warn = root.querySelector('.zip-warning');
+        if (!locId && warn) {
+          warn.classList.add('show');
+          /* Still allow proceeding — lead goes to fallback location */
+        } else if (warn) {
+          warn.classList.remove('show');
+        }
       }
       return valid;
     }
@@ -737,7 +759,6 @@
       });
     }
 
-    // Remove error styling on focus
     root.querySelectorAll('input').forEach(function(input) {
       input.addEventListener('focus', function() { input.classList.remove('input-error'); });
     });
@@ -750,44 +771,62 @@
       btn.classList.add('loading');
       btn.disabled = true;
 
-      var route = getRouteForZip(formData.zip);
+      /* Resolve location from ZIP */
+      var locId = resolveLocation(formData.zip);
+      var fallbackLocId = window.MILO_LOCATION || 'tulia';
+      var targetLocId = locId || fallbackLocId;
 
-      var payload = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        name: formData.firstName + ' ' + formData.lastName,
-        email: formData.email,
-        phone: formData.phone.replace(/\D/g, ''),
-        address1: formData.street,
-        city: formData.city,
-        state: formData.state,
-        postalCode: formData.zip,
-        serviceType: formData.serviceType,
-        homeSize: formData.homeSize,
-        timePreference: formData.timePreference,
-        zipRoute: route.team,
-        zipRouteLabel: route.label,
-        source: 'milo-form',
-        formName: 'Free Home Efficiency Scan',
-        locationId: locCfg ? locCfg.id : locationId,
-        locationName: locCfg ? locCfg.businessName : '',
-        submittedAt: new Date().toISOString()
-      };
+      fetchLocationConfig(targetLocId).then(function(locCfg) {
+        var webhookUrl = (locCfg && locCfg.webhookUrl) ? locCfg.webhookUrl : '';
+        var scheduleUrl = (locCfg && locCfg.scheduleUrl) ? locCfg.scheduleUrl : '#';
 
-      fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        mode: 'no-cors'
-      }).catch(function(err) {
-        console.warn('Webhook POST error (may be expected with no-cors):', err);
-      }).finally(function() {
-        btn.classList.remove('loading');
-        currentStep = 6;
-        showStep(6);
-        updateProgress();
-        var schedLink = document.getElementById('scheduleLink');
-        if (schedLink) schedLink.href = SCHEDULE_URL;
+        var payload = {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          name: formData.firstName + ' ' + formData.lastName,
+          email: formData.email,
+          phone: formData.phone.replace(/\D/g, ''),
+          address1: formData.street,
+          city: formData.city,
+          state: formData.state,
+          postalCode: formData.zip,
+          serviceType: formData.serviceType,
+          homeSize: formData.homeSize,
+          timePreference: formData.timePreference,
+          source: 'milo-form',
+          formName: 'Free Home Efficiency Scan',
+          locationId: targetLocId,
+          ghlLocationId: locCfg ? locCfg.ghlLocationId : '',
+          repName: locCfg ? locCfg.rep : '',
+          repUserId: locCfg ? locCfg.repUserId : '',
+          businessName: locCfg ? locCfg.businessName : '',
+          zipResolved: !!locId,
+          submittedAt: new Date().toISOString()
+        };
+
+        var submitPromise;
+        if (webhookUrl) {
+          submitPromise = fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            mode: 'no-cors'
+          }).catch(function(err) {
+            console.warn('Webhook POST error (may be expected with no-cors):', err);
+          });
+        } else {
+          console.warn('No webhook URL configured for location:', targetLocId);
+          submitPromise = Promise.resolve();
+        }
+
+        submitPromise.finally(function() {
+          btn.classList.remove('loading');
+          currentStep = 6;
+          showStep(6);
+          updateProgress();
+          var schedLink = document.getElementById('scheduleLink');
+          if (schedLink) schedLink.href = scheduleUrl;
+        });
       });
     }
 
@@ -800,22 +839,23 @@
     updateProgress();
   }
 
-  /* ── LOCATION CONFIG FETCH ── */
-  var locationId = window.MILO_LOCATION || 'tulia';
-  var BASE = 'https://betterbranding.github.io/milo-scripts/';
-
-  function fetchLocConfig(cb) {
-    if (window.MiloLocationConfig) { cb(); return; }
-    fetch(BASE + 'locations/' + locationId + '.json?v=' + Date.now())
-      .then(function(r) { return r.json(); })
-      .then(function(cfg) { window.MiloLocationConfig = cfg; cb(); })
-      .catch(function() { cb(); }); // proceed with defaults if config missing
-  }
-
+  /* ── BOOT SEQUENCE ── */
   function bootForm() {
-    fetchLocConfig(function() {
+    /* 1. Fetch master ZIP lookup */
+    if (!window._miloZipLookup) {
+      fetch(BASE + 'locations/zip-lookup.json?v=' + Date.now())
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          window._miloZipLookup = data;
+          injectContent();
+        })
+        .catch(function() {
+          window._miloZipLookup = {};
+          injectContent();
+        });
+    } else {
       injectContent();
-    });
+    }
   }
 
   if (document.readyState === 'loading') {
