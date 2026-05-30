@@ -3,147 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Home Efficiency Scan | MILO Insulation</title>
-  <link rel="icon" type="image/png" href="https://betterbranding.github.io/milo-scripts/logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --green: #288D11; --green-dark: #1a6b0a; --navy: #074387; --navy-dark: #042c5a; --navy-deepest: #021a38;
-      --orange: #FF8200; --orange-hover: #e67400; --light-blue: #50ACE1; --white: #ffffff;
-    }
-    body {
-      font-family: 'Nunito Sans', sans-serif; color: var(--white); min-height: 100vh;
-      background: linear-gradient(160deg, #021a38 0%, #042c5a 25%, #074387 50%, #042c5a 75%, #021a38 100%);
-      background-attachment: fixed; display: flex; flex-direction: column; align-items: center; overflow-x: hidden;
-    }
-    h1,h2,h3,h4,h5 { font-family: 'League Spartan', sans-serif; }
-    .ambient-orbs { position: fixed; top:0;left:0;right:0;bottom:0; pointer-events:none; z-index:0; overflow:hidden; }
-    .ambient-orbs .orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.08; animation: orbFloat 20s ease-in-out infinite; }
-    .ambient-orbs .orb:nth-child(1) { width:500px;height:500px; background:var(--light-blue); top:-10%;left:-10%; }
-    .ambient-orbs .orb:nth-child(2) { width:400px;height:400px; background:var(--orange); top:50%;right:-10%; animation-delay:-7s; }
-    .ambient-orbs .orb:nth-child(3) { width:350px;height:350px; background:var(--navy); bottom:-5%;left:30%; animation-delay:-14s; }
-    @keyframes orbFloat { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-40px) scale(1.1)} 66%{transform:translate(-20px,30px) scale(0.95)} }
-    .form-header { position:relative; z-index:10; text-align:center; padding:40px 20px 10px; }
-    .form-header img { height:50px; filter:brightness(0) invert(1); margin-bottom:6px; }
-    .form-header .tagline { font-size:24px; letter-spacing:0.3px; opacity:1; line-height:1.3; max-width:650px; white-space:nowrap; margin:0 auto; font-weight:600; }
-    .form-container { position:relative; z-index:10; width:100%; max-width:640px; padding:20px; flex:1; display:flex; flex-direction:column; }
-    .progress-section { margin-bottom:24px; }
-    .progress-label { display:flex; justify-content:space-between; align-items:center; font-size:13px; margin-bottom:8px; opacity:0.8; }
-    .progress-label .step-text { font-weight:700; letter-spacing:1px; text-transform:uppercase; font-family:'League Spartan',sans-serif; }
-    .progress-bar-track { height:6px; background:rgba(255,255,255,0.15); border-radius:3px; overflow:hidden; }
-    .progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--orange),#ffaa40); border-radius:3px; transition:width 0.5s cubic-bezier(0.4,0,0.2,1); box-shadow:0 0 12px rgba(255,130,0,0.4); }
-    .glass-card { background:rgba(255,255,255,0.08); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.15); border-radius:20px; padding:40px 36px; box-shadow:0 8px 32px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.1); }
-    .step { display:none; animation:stepIn 0.4s ease-out; }
-    .step.active { display:block; }
-    @keyframes stepIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-    .step-category { font-size:12px; text-transform:uppercase; letter-spacing:2.5px; color:var(--orange); font-weight:700; margin-bottom:10px; font-family:'League Spartan',sans-serif; }
-    .step h2 { font-size:26px; font-weight:800; line-height:1.2; margin-bottom:8px; }
-    .step .subtitle { font-size:14px; opacity:0.65; margin-bottom:28px; line-height:1.5; }
-    .option-cards { display:flex; flex-direction:column; gap:12px; margin-bottom:28px; }
-    .option-card { display:flex; align-items:center; gap:16px; padding:18px 20px; background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.12); border-radius:14px; cursor:pointer; transition:all 0.25s ease; user-select:none; }
-    .option-card:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25); transform:translateY(-1px); }
-    .option-card.selected { background:rgba(7,67,135,0.35); border-color:var(--light-blue); box-shadow:0 0 20px rgba(80,172,225,0.2); }
-    .option-card .icon { font-size:28px; width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border-radius:12px; flex-shrink:0; }
-    .option-card .option-text h4 { font-size:16px; font-weight:700; margin-bottom:2px; }
-    .option-card .option-text p { font-size:13px; opacity:0.55; }
-    .form-grid { display:grid; gap:16px; margin-bottom:28px; }
-    .form-grid.two-col { grid-template-columns:1fr 1fr; }
-    .form-group { display:flex; flex-direction:column; }
-    .form-group label { font-size:12px; text-transform:uppercase; letter-spacing:1.5px; font-weight:700; margin-bottom:8px; opacity:0.7; font-family:'League Spartan',sans-serif; }
-    .form-group input { background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); border-radius:12px; padding:14px 16px; font-size:15px; color:var(--white); font-family:'Nunito Sans',sans-serif; transition:all 0.25s ease; outline:none; }
-    .form-group input::placeholder { color:rgba(255,255,255,0.35); }
-    .form-group input:focus { border-color:var(--light-blue); background:rgba(255,255,255,0.12); box-shadow:0 0 16px rgba(80,172,225,0.2); }
-    .form-group .input-error { border-color:#ff4444 !important; }
-    .zip-warning { background:rgba(255,130,0,0.15); border:1px solid rgba(255,130,0,0.3); border-radius:12px; padding:14px 18px; margin-top:12px; font-size:14px; line-height:1.5; display:none; }
-    .zip-warning.show { display:block; }
-    .btn-row { display:flex; gap:12px; align-items:center; }
-    .btn-primary { flex:1; padding:16px 32px; background:linear-gradient(135deg,var(--orange),var(--orange-hover)); color:var(--white); border:none; border-radius:14px; font-size:16px; font-weight:700; font-family:'League Spartan',sans-serif; cursor:pointer; transition:all 0.3s ease; box-shadow:0 4px 20px rgba(255,130,0,0.3); display:flex; align-items:center; justify-content:center; gap:8px; }
-    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(255,130,0,0.45); }
-    .btn-primary:disabled { opacity:0.4; cursor:not-allowed; transform:none; box-shadow:none; }
-    .btn-primary .arrow { transition:transform 0.2s; }
-    .btn-primary:hover .arrow { transform:translateX(3px); }
-    .btn-back { padding:16px 20px; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); color:var(--white); border-radius:14px; font-size:14px; font-weight:600; font-family:'Nunito Sans',sans-serif; cursor:pointer; transition:all 0.25s ease; }
-    .btn-back:hover { background:rgba(255,255,255,0.14); border-color:rgba(255,255,255,0.25); }
-    .trust-line { text-align:center; margin-top:16px; font-size:12px; opacity:0.5; line-height:1.5; }
-    .value-badge { background:rgba(255,130,0,0.12); border:1px solid rgba(255,130,0,0.25); border-radius:12px; padding:14px 18px; margin-bottom:24px; font-size:14px; line-height:1.5; text-align:center; }
-    .value-badge .gift { font-size:18px; }
-    .thank-you-section { text-align:center; }
-    .thank-you-section .check-circle { width:80px; height:80px; background:linear-gradient(135deg,var(--green),var(--green-dark)); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-size:40px; animation:popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow:0 4px 24px rgba(40,141,17,0.3); }
-    @keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
-    .thank-you-section h2 { font-size:30px; margin-bottom:12px; }
-    .thank-you-section p { font-size:15px; opacity:0.7; line-height:1.6; margin-bottom:20px; }
-    .btn-schedule { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2); border-radius:14px; color:white; font-size:15px; font-weight:600; font-family:'Nunito Sans',sans-serif; text-decoration:none; transition:all 0.25s ease; }
-    .btn-schedule:hover { background:rgba(255,255,255,0.18); transform:translateY(-2px); }
-    .divider-arrow { font-size:24px; opacity:0.4; margin-bottom:16px; animation:bounceDown 1.5s ease-in-out infinite; }
-    @keyframes bounceDown { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
-    .renter-section { text-align:center; }
-    .renter-section .renter-icon { font-size:56px; margin-bottom:20px; }
-    .renter-section h2 { font-size:26px; margin-bottom:16px; }
-    .renter-section p { font-size:15px; opacity:0.7; line-height:1.6; margin-bottom:28px; max-width:440px; margin-left:auto; margin-right:auto; }
-    .share-confirm { display:none; color:var(--green); font-weight:700; font-size:15px; margin-top:12px; animation:popIn 0.3s ease; }
-    .form-footer { position:relative; z-index:10; text-align:center; padding:20px; margin-top:auto; }
-    .form-footer .lock-text { font-size:12px; opacity:0.4; display:flex; align-items:center; justify-content:center; gap:6px; }
-    .form-footer .copyright { font-size:11px; opacity:0.3; margin-top:8px; }
-    .spinner { width:20px;height:20px; border:2.5px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 0.6s linear infinite; display:none; }
-    .btn-primary.loading .spinner { display:inline-block; }
-    .btn-primary.loading .btn-text { display:none; }
-    @keyframes spin { to{transform:rotate(360deg)} }
-    @media(max-width:600px) {
-      .glass-card { padding:28px 22px; border-radius:16px; }
-      .step h2 { font-size:22px; }
-      .form-grid.two-col { grid-template-columns:1fr; }
-      .btn-row { flex-direction:column-reverse; }
-      .btn-back { width:100%; text-align:center; }
-      .btn-primary { width:100%; }
-      .form-header { padding-top:28px; }
-      .option-card { padding:14px 16px; }
-      .form-header .tagline { white-space:normal; font-size:18px; }
-    }
-  </style>
+  <title>MILO Form Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="milo-form-content">
+  <!-- Ambient background orbs -->
+  <div class="ambient-orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
 
-  <div class="ambient-orbs"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
-
+  <!-- Header -->
   <div class="form-header">
-    <a href="#"><img src="https://betterbranding.github.io/milo-scripts/logo.png" alt="MILO Insulation"></a>
+    <a href="https://go.miloinsulation.com/home">
+      <img src="https://betterbranding.github.io/milo-scripts/logo.png" alt="MILO Insulation">
+    </a>
     <div class="tagline">See if your home qualifies for a <span style="color:#FF8200;font-weight:700;">FREE</span> Home Efficiency Scan <span style="font-size:0.7em;opacity:0.85;">($399 value)</span></div>
   </div>
 
+  <!-- Form Container -->
   <div class="form-container">
+
+    <!-- Progress Bar -->
     <div class="progress-section">
       <div class="progress-label">
         <span class="step-text">Step <span id="stepNum">1</span> of 11</span>
         <span id="stepPercent">0%</span>
       </div>
-      <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+      </div>
     </div>
 
+    <!-- Glass Card -->
     <div class="glass-card">
 
-      <!-- STEP 1: Gateway -->
+      <!-- STEP 1: Gateway Question -->
       <div class="step active" id="step1">
         <div class="step-category">Quick Question</div>
         <h2>Is your home uncomfortable in summer or winter?</h2>
         <p class="subtitle">Hot spots, cold drafts, rooms that never feel right — sound familiar?</p>
         <div class="option-cards" data-field="uncomfortable">
-          <div class="option-card" data-value="yes"><div class="icon">🥵</div><div class="option-text"><h4>Yes</h4><p>Some rooms are always too hot or too cold</p></div></div>
-          <div class="option-card" data-value="no"><div class="icon">😌</div><div class="option-text"><h4>No</h4><p>My home stays comfortable year-round</p></div></div>
+          <div class="option-card" data-value="yes">
+            <div class="icon">🥵</div>
+            <div class="option-text">
+              <h4>Yes</h4>
+              <p>Some rooms are always too hot or too cold</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="no">
+            <div class="icon">😌</div>
+            <div class="option-text">
+              <h4>No</h4>
+              <p>My home stays comfortable year-round</p>
+            </div>
+          </div>
         </div>
         <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
       </div>
 
-      <!-- STEP 2: Homeowner -->
+      <!-- STEP 2: Homeowner Check -->
       <div class="step" id="step2">
         <div class="step-category">Eligibility</div>
         <h2>Are you the homeowner?</h2>
         <p class="subtitle">Our free inspections are available to homeowners only</p>
         <div class="option-cards" data-field="isHomeowner">
-          <div class="option-card" data-value="yes"><div class="icon">🏠</div><div class="option-text"><h4>Yes, I Own My Home</h4><p>Ready to see what's hiding in my attic</p></div></div>
-          <div class="option-card" data-value="no"><div class="icon">🏢</div><div class="option-text"><h4>No, I'm Renting</h4><p>I'd like to share this with my landlord</p></div></div>
+          <div class="option-card" data-value="yes">
+            <div class="icon">🏠</div>
+            <div class="option-text">
+              <h4>Yes, I Own My Home</h4>
+              <p>Ready to see what's hiding in my attic</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="no">
+            <div class="icon">🏢</div>
+            <div class="option-text">
+              <h4>No, I'm Renting</h4>
+              <p>I'd like to share this with my landlord</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
       </div>
 
       <!-- STEP 2B: Renter Dead End -->
@@ -152,9 +98,13 @@
           <div class="renter-icon">📨</div>
           <h2>No worries — share this with your landlord!</h2>
           <p>Insulation upgrades can increase property value and reduce tenant complaints. Forward this page to your property owner so they can schedule a free inspection.</p>
-          <button class="btn-primary" onclick="copyShareLink()" id="btnShare"><span class="btn-text">📋 Copy Link to Share</span></button>
+          <button class="btn-primary" onclick="copyShareLink()" id="btnShare">
+            <span class="btn-text">📋 Copy Link to Share</span>
+          </button>
           <div class="share-confirm" id="shareConfirm">✓ Link copied!</div>
-          <div style="margin-top:24px;"><button class="btn-back" onclick="backFromRenter()">← Start Over</button></div>
+          <div style="margin-top:24px;">
+            <button class="btn-back" onclick="backFromRenter()">← Start Over</button>
+          </div>
         </div>
       </div>
 
@@ -164,11 +114,31 @@
         <h2>What type of insulation service are you looking for?</h2>
         <p class="subtitle">Choose the option that best describes your needs</p>
         <div class="option-cards" data-field="serviceType">
-          <div class="option-card" data-value="remove"><div class="icon">🏚️</div><div class="option-text"><h4>Remove the Old Insulation</h4><p>Full removal and fresh install</p></div></div>
-          <div class="option-card" data-value="blowover"><div class="icon">💨</div><div class="option-text"><h4>Blow Over the Existing Insulation</h4><p>Add new insulation on top</p></div></div>
-          <div class="option-card" data-value="both"><div class="icon">⚖️</div><div class="option-text"><h4>I'd Like to See Both Options</h4><p>Compare removal vs. blow-over</p></div></div>
+          <div class="option-card" data-value="remove">
+            <div class="icon">🏚️</div>
+            <div class="option-text">
+              <h4>Remove the Old Insulation</h4>
+              <p>Full removal and fresh install</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="blowover">
+            <div class="icon">💨</div>
+            <div class="option-text">
+              <h4>Blow Over the Existing Insulation</h4>
+              <p>Add new insulation on top</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="both">
+            <div class="icon">⚖️</div>
+            <div class="option-text">
+              <h4>I'd Like to See Both Options</h4>
+              <p>Compare removal vs. blow-over</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
       </div>
 
       <!-- STEP 4: Top Concern -->
@@ -177,12 +147,45 @@
         <h2>What's your biggest concern right now?</h2>
         <p class="subtitle">Select all that apply</p>
         <div class="option-cards multi-select" data-field="topConcern">
-          <div class="option-card" data-value="energy_bills"><div class="icon">💰</div><div class="option-text"><h4>High Energy Bills</h4><p>My electric bill keeps going up</p></div></div>
-          <div class="option-card" data-value="comfort"><div class="icon">🌡️</div><div class="option-text"><h4>Comfort Issues</h4><p>Rooms that are too hot or too cold</p></div></div>
-          <div class="option-card" data-value="air_quality"><div class="icon">🫁</div><div class="option-text"><h4>Indoor Air Quality</h4><p>Allergies, dust, or breathing concerns</p></div></div>
-          <div class="option-card" data-value="pests"><div class="icon">🐀</div><div class="option-text"><h4>Pests &amp; Rodents</h4><p>Critters nesting in the attic</p></div></div>
+          <div class="option-card" data-value="energy_bills">
+            <div class="check-badge">✓</div>
+            <div class="icon">💰</div>
+            <div class="option-text">
+              <h4>High Energy Bills</h4>
+              <p>My electric bill keeps going up</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="comfort">
+            <div class="check-badge">✓</div>
+            <div class="icon">🌡️</div>
+            <div class="option-text">
+              <h4>Comfort Issues</h4>
+              <p>Rooms that are too hot or too cold</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="air_quality">
+            <div class="check-badge">✓</div>
+            <div class="icon">🫁</div>
+            <div class="option-text">
+              <h4>Indoor Air Quality</h4>
+              <p>Allergies, dust, or breathing concerns</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="pests">
+            <div class="check-badge">✓</div>
+            <div class="icon">🐀</div>
+            <div class="option-text">
+              <h4>Pests &amp; Rodents</h4>
+              <p>Critters nesting in the attic</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+          <button class="btn-primary" id="btn4" onclick="nextStep()" disabled>
+            <span class="btn-text">Continue <span class="arrow">→</span></span>
+          </button>
+        </div>
       </div>
 
       <!-- STEP 5: Attic Inspection -->
@@ -191,25 +194,71 @@
         <h2>Have you had your home inspected in the past 5 years?</h2>
         <p class="subtitle">Most homeowners haven't — and that's exactly why we offer free inspections</p>
         <div class="option-cards" data-field="atticInspected">
-          <div class="option-card" data-value="yes"><div class="icon">✅</div><div class="option-text"><h4>Yes</h4><p>I've had someone look at it recently</p></div></div>
-          <div class="option-card" data-value="no"><div class="icon">❌</div><div class="option-text"><h4>No</h4><p>It's been a while — or never</p></div></div>
-          <div class="option-card" data-value="unsure"><div class="icon">🤷</div><div class="option-text"><h4>Not Sure</h4><p>I honestly don't know</p></div></div>
+          <div class="option-card" data-value="yes">
+            <div class="icon">✅</div>
+            <div class="option-text">
+              <h4>Yes</h4>
+              <p>I've had someone look at it recently</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="no">
+            <div class="icon">❌</div>
+            <div class="option-text">
+              <h4>No</h4>
+              <p>It's been a while — or never</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="unsure">
+            <div class="icon">🤷</div>
+            <div class="option-text">
+              <h4>Not Sure</h4>
+              <p>I honestly don't know</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
       </div>
 
-      <!-- STEP 6: Energy Bill -->
+      <!-- STEP 6: Monthly Energy Bill -->
       <div class="step" id="step6">
         <div class="step-category">Energy Costs</div>
         <h2>What's your average monthly energy bill?</h2>
         <p class="subtitle">This helps us estimate your potential savings</p>
         <div class="option-cards" data-field="energyBill">
-          <div class="option-card" data-value="under150"><div class="icon">💵</div><div class="option-text"><h4>Under $150</h4><p>Pretty reasonable</p></div></div>
-          <div class="option-card" data-value="150to250"><div class="icon">💵</div><div class="option-text"><h4>$150 – $250</h4><p>Getting up there</p></div></div>
-          <div class="option-card" data-value="250to400"><div class="icon">💸</div><div class="option-text"><h4>$250 – $400</h4><p>Higher than I'd like</p></div></div>
-          <div class="option-card" data-value="over400"><div class="icon">🔥</div><div class="option-text"><h4>Over $400</h4><p>Way too much</p></div></div>
+          <div class="option-card" data-value="under150">
+            <div class="icon">💵</div>
+            <div class="option-text">
+              <h4>Under $150</h4>
+              <p>Pretty reasonable</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="150to250">
+            <div class="icon">💵</div>
+            <div class="option-text">
+              <h4>$150 – $250</h4>
+              <p>Getting up there</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="250to400">
+            <div class="icon">💸</div>
+            <div class="option-text">
+              <h4>$250 – $400</h4>
+              <p>Higher than I'd like</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="over400">
+            <div class="icon">🔥</div>
+            <div class="option-text">
+              <h4>Over $400</h4>
+              <p>Way too much</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
       </div>
 
       <!-- STEP 7: Timeline -->
@@ -218,11 +267,31 @@
         <h2>How soon are you looking to address this?</h2>
         <p class="subtitle">No wrong answer — we're here when you're ready</p>
         <div class="option-cards" data-field="timeline">
-          <div class="option-card" data-value="asap"><div class="icon">⚡</div><div class="option-text"><h4>As Soon as Possible</h4><p>I want to get this handled now</p></div></div>
-          <div class="option-card" data-value="1to3months"><div class="icon">📅</div><div class="option-text"><h4>Within 1 – 3 Months</h4><p>Planning ahead</p></div></div>
-          <div class="option-card" data-value="researching"><div class="icon">🔍</div><div class="option-text"><h4>Just Researching</h4><p>Exploring my options</p></div></div>
+          <div class="option-card" data-value="asap">
+            <div class="icon">⚡</div>
+            <div class="option-text">
+              <h4>As Soon as Possible</h4>
+              <p>I want to get this handled now</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="1to3months">
+            <div class="icon">📅</div>
+            <div class="option-text">
+              <h4>Within 1 – 3 Months</h4>
+              <p>Planning ahead</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="researching">
+            <div class="icon">🔍</div>
+            <div class="option-text">
+              <h4>Just Researching</h4>
+              <p>Exploring my options</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
       </div>
 
       <!-- STEP 8: Home Size -->
@@ -231,12 +300,38 @@
         <h2>Roughly what is the square footage of your home?</h2>
         <p class="subtitle">Helps us give you the most accurate assessment</p>
         <div class="option-cards" data-field="homeSize">
-          <div class="option-card" data-value="under1000"><div class="icon">🏠</div><div class="option-text"><h4>Less than 1,000 sq ft</h4><p>Smaller home or apartment</p></div></div>
-          <div class="option-card" data-value="1000to2000"><div class="icon">🏡</div><div class="option-text"><h4>1,000 – 2,000 sq ft</h4><p>Average family home</p></div></div>
-          <div class="option-card" data-value="2000to3000"><div class="icon">🏘️</div><div class="option-text"><h4>2,000 – 3,000 sq ft</h4><p>Larger family home</p></div></div>
-          <div class="option-card" data-value="over3000"><div class="icon">🏰</div><div class="option-text"><h4>Over 3,000 sq ft</h4><p>Large home or estate</p></div></div>
+          <div class="option-card" data-value="under1000">
+            <div class="icon">🏠</div>
+            <div class="option-text">
+              <h4>Less than 1,000 sq ft</h4>
+              <p>Smaller home or apartment</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="1000to2000">
+            <div class="icon">🏡</div>
+            <div class="option-text">
+              <h4>1,000 – 2,000 sq ft</h4>
+              <p>Average family home</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="2000to3000">
+            <div class="icon">🏘️</div>
+            <div class="option-text">
+              <h4>2,000 – 3,000 sq ft</h4>
+              <p>Larger family home</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="over3000">
+            <div class="icon">🏰</div>
+            <div class="option-text">
+              <h4>Over 3,000 sq ft</h4>
+              <p>Large home or estate</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
       </div>
 
       <!-- STEP 9: Scheduling -->
@@ -245,10 +340,24 @@
         <h2>Are <em>mornings</em> or <em>afternoons</em> better for your inspection?</h2>
         <p class="subtitle">We'll do our best to accommodate your preference</p>
         <div class="option-cards" data-field="timePreference">
-          <div class="option-card" data-value="morning"><div class="icon">🌅</div><div class="option-text"><h4>Morning</h4><p>Before 12:00 PM</p></div></div>
-          <div class="option-card" data-value="afternoon"><div class="icon">☀️</div><div class="option-text"><h4>Afternoon</h4><p>After 12:00 PM</p></div></div>
+          <div class="option-card" data-value="morning">
+            <div class="icon">🌅</div>
+            <div class="option-text">
+              <h4>Morning</h4>
+              <p>Before 12:00 PM</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="afternoon">
+            <div class="icon">☀️</div>
+            <div class="option-text">
+              <h4>Afternoon</h4>
+              <p>After 12:00 PM</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-row"><button class="btn-back" onclick="prevStep()">Back</button></div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
       </div>
 
       <!-- STEP 10: Address -->
@@ -257,17 +366,32 @@
         <h2>What's your address?</h2>
         <p class="subtitle">We use this to route the right local team to you</p>
         <div class="form-grid">
-          <div class="form-group"><label>Street Address</label><input type="text" id="street" placeholder="123 Main St" autocomplete="street-address"></div>
-          <div class="form-grid two-col">
-            <div class="form-group"><label>City</label><input type="text" id="city" placeholder="City" autocomplete="address-level2"></div>
-            <div class="form-group"><label>State</label><input type="text" id="state" placeholder="State" autocomplete="address-level1"></div>
+          <div class="form-group address-autocomplete-wrap">
+            <label>Street Address</label>
+            <input type="text" id="street" placeholder="Start typing your address..." autocomplete="off">
+            <div class="address-suggestions" id="addressSuggestions"></div>
           </div>
-          <div class="form-group"><label>ZIP Code</label><input type="text" id="zip" placeholder="ZIP Code" autocomplete="postal-code" maxlength="10" inputmode="numeric"></div>
+          <div class="form-grid two-col">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" id="city" placeholder="City" autocomplete="address-level2">
+            </div>
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" id="state" placeholder="State" autocomplete="address-level1">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>ZIP Code</label>
+            <input type="text" id="zip" placeholder="ZIP Code" autocomplete="postal-code" maxlength="10" inputmode="numeric">
+          </div>
         </div>
-        <div class="zip-warning">⚠️ We may not have a local team in your area yet, but go ahead and submit — we'll do our best to help.</div>
+        <div class="zip-warning">⚠️ We may not have a local team in your area yet, but go ahead and submit — we'll do our best to help or connect you with a nearby location.</div>
         <div class="btn-row">
           <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" onclick="nextStep()"><span class="btn-text">Continue <span class="arrow">→</span></span></button>
+          <button class="btn-primary" id="btn10" onclick="nextStep()">
+            <span class="btn-text">Continue <span class="arrow">→</span></span>
+          </button>
         </div>
       </div>
 
@@ -275,18 +399,35 @@
       <div class="step" id="step11">
         <div class="step-category">Almost Done!</div>
         <h2>Confirm your info to schedule your free home efficiency scan</h2>
-        <div class="value-badge"><span class="gift">🎁</span> A <strong>$399 value</strong> — yours free. No SSN required. Zero impact to credit. Your info is never sold.</div>
+        <div class="value-badge">
+          <span class="gift">🎁</span> A <strong>$399 value</strong> — yours free. No SSN required. Zero impact to credit. Your info is never sold.
+        </div>
         <div class="form-grid two-col">
-          <div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="First Name" autocomplete="given-name"></div>
-          <div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name"></div>
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="First Name" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name">
+          </div>
         </div>
         <div class="form-grid">
-          <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="you@email.com" autocomplete="email"></div>
-          <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" placeholder="(555) 123-4567" autocomplete="tel"></div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="(555) 123-4567" autocomplete="tel">
+          </div>
         </div>
-        <div class="btn-row" style="margin-top:4px;">
+        <div class="btn-row" style="margin-top: 4px;">
           <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" id="btnSubmit" onclick="submitForm()"><span class="btn-text">Schedule My Free Inspection <span class="arrow">→</span></span><div class="spinner"></div></button>
+          <button class="btn-primary" id="btnSubmit" onclick="submitForm()">
+            <span class="btn-text">Schedule My Free Inspection <span class="arrow">→</span></span>
+            <div class="spinner"></div>
+          </button>
         </div>
       </div>
 
@@ -297,88 +438,1146 @@
           <h2>You're all set! 🎉</h2>
           <p>Our insulation tech will reach out to you shortly to confirm your info and schedule your inspection.</p>
           <div class="divider-arrow">↓</div>
-          <a href="#" class="btn-schedule" id="scheduleLink">📅 <span>or schedule it now!</span></a>
+          <a href="#" class="btn-schedule" id="scheduleLink">
+            📅 <span>or schedule it now!</span>
+          </a>
         </div>
       </div>
 
-    </div>
-  </div>
+    </div><!-- /glass-card -->
 
+  </div><!-- /form-container -->
+
+  <!-- Footer -->
   <div class="form-footer">
-    <div class="lock-text">🔒 Secure & confidential. Your information is never shared or sold.</div>
+    <div class="lock-text">🔒 Secure &amp; confidential. Your information is never shared or sold.</div>
     <div class="copyright">MILO Insulation™ — Nature's Very Best. © 2026</div>
   </div>
 
-<script>
-var TOTAL_STEPS = 11;
-var THANK_YOU_STEP = 12;
-var RENTER_STEP = '2b';
-var currentStep = 1;
-var formData = {};
+  </div>
+  <script>
+  window.MILO_LOCATION = "tulia";
+  /* navfix-form.js — v5: 11-step qualifying form with ZIP-based location routing
+ * - Gateway yes/no + homeowner check + 5 qualifying questions + address + contact
+ * - Renter dead-end with share link
+ * - Auto-advance on card selection (steps 1-9)
+ * - ZIP-based routing: resolves ZIP → location → webhook + calendar
+ * - Functions exposed globally for onclick handlers
+ */
+(function() {
+  'use strict';
 
-document.querySelectorAll('.option-cards').forEach(function(group) {
-  var field = group.dataset.field;
-  group.querySelectorAll('.option-card').forEach(function(card) {
-    card.addEventListener('click', function() {
-      group.querySelectorAll('.option-card').forEach(function(c){c.classList.remove('selected')});
-      card.classList.add('selected');
-      formData[field] = card.dataset.value;
-      if (field === 'isHomeowner' && card.dataset.value === 'no') {
-        setTimeout(function(){ showRenterDeadEnd(); }, 350);
+  /* Load Google Fonts */
+  if (!document.querySelector('link[href*="League+Spartan"]')) {
+    var fonts = document.createElement('link');
+    fonts.rel = 'stylesheet';
+    fonts.href = 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap';
+    document.head.appendChild(fonts);
+  }
+
+  var BASE = 'https://betterbranding.github.io/milo-scripts/';
+
+  /* ── FORM CSS (scoped to #milo-form-content) ── */
+  var css = document.createElement('style');
+  css.id = 'milo-form-styles';
+  css.textContent = '\n' +
+    '#milo-form-content {\n' +
+    '  all: initial;\n' +
+    '  display: block;\n' +
+    '  width: 100%;\n' +
+    '  min-height: 100vh;\n' +
+    '  font-family: \'Nunito Sans\', \'Gotham\', sans-serif;\n' +
+    '}\n' +
+    '    #milo-form-content, #milo-form-content *, #milo-form-content *::before, #milo-form-content *::after { margin: 0; padding: 0; box-sizing: border-box; }\n' +
+    '\n' +
+    '    :root {\n' +
+    '      --green: #288D11;\n' +
+    '      --green-dark: #1a6b0a;\n' +
+    '      --green-deepest: #0d3a06;\n' +
+    '      --navy: #074387;\n' +
+    '      --navy-dark: #042c5a;\n' +
+    '      --navy-deepest: #021a38;\n' +
+    '      --orange: #FF8200;\n' +
+    '      --orange-hover: #e67400;\n' +
+    '      --light-blue: #50ACE1;\n' +
+    '      --white: #ffffff;\n' +
+    '      --gray-50: #f8faf8;\n' +
+    '      --gray-100: #f0f4f0;\n' +
+    '      --gray-200: #dce5dc;\n' +
+    '      --gray-400: #94a894;\n' +
+    '      --gray-600: #5a6b5a;\n' +
+    '      --gray-800: #2a352a;\n' +
+    '      --glass-bg: rgba(255,255,255,0.12);\n' +
+    '      --glass-border: rgba(255,255,255,0.2);\n' +
+    '      --glass-shadow: rgba(0,0,0,0.15);\n' +
+    '    }\n' +
+    '\n' +
+    '    #milo-form-content {\n' +
+    '      font-family: \'Nunito Sans\', \'Gotham\', sans-serif;\n' +
+    '      color: var(--white);\n' +
+    '      min-height: 100vh;\n' +
+    '      background: linear-gradient(160deg, #021a38 0%, #042c5a 25%, #074387 50%, #042c5a 75%, #021a38 100%);\n' +
+    '      background-attachment: fixed;\n' +
+    '      display: flex;\n' +
+    '      flex-direction: column;\n' +
+    '      align-items: center;\n' +
+    '      overflow-x: hidden;\n' +
+    '    }\n' +
+    '\n' +
+    '    #milo-form-content h1,\n' +
+    '    #milo-form-content h2,\n' +
+    '    #milo-form-content h3,\n' +
+    '    #milo-form-content h4,\n' +
+    '    #milo-form-content h5 {\n' +
+    '      font-family: \'League Spartan\', sans-serif;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== AMBIENT BACKGROUND ====== */\n' +
+    '    #milo-form-content .ambient-orbs {\n' +
+    '      position: fixed;\n' +
+    '      top: 0; left: 0; right: 0; bottom: 0;\n' +
+    '      pointer-events: none;\n' +
+    '      z-index: 0;\n' +
+    '      overflow: hidden;\n' +
+    '    }\n' +
+    '    #milo-form-content .ambient-orbs .orb {\n' +
+    '      position: absolute;\n' +
+    '      border-radius: 50%;\n' +
+    '      filter: blur(80px);\n' +
+    '      opacity: 0.08;\n' +
+    '      animation: miloOrbFloat 20s ease-in-out infinite;\n' +
+    '    }\n' +
+    '    #milo-form-content .ambient-orbs .orb:nth-child(1) {\n' +
+    '      width: 500px; height: 500px;\n' +
+    '      background: var(--light-blue);\n' +
+    '      top: -10%; left: -10%;\n' +
+    '      animation-delay: 0s;\n' +
+    '    }\n' +
+    '    #milo-form-content .ambient-orbs .orb:nth-child(2) {\n' +
+    '      width: 400px; height: 400px;\n' +
+    '      background: var(--orange);\n' +
+    '      top: 50%; right: -10%;\n' +
+    '      animation-delay: -7s;\n' +
+    '    }\n' +
+    '    #milo-form-content .ambient-orbs .orb:nth-child(3) {\n' +
+    '      width: 350px; height: 350px;\n' +
+    '      background: var(--navy);\n' +
+    '      bottom: -5%; left: 30%;\n' +
+    '      animation-delay: -14s;\n' +
+    '    }\n' +
+    '    @keyframes miloOrbFloat {\n' +
+    '      0%, 100% { transform: translate(0, 0) scale(1); }\n' +
+    '      33% { transform: translate(30px, -40px) scale(1.1); }\n' +
+    '      66% { transform: translate(-20px, 30px) scale(0.95); }\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== HEADER ====== */\n' +
+    '    #milo-form-content .form-header {\n' +
+    '      position: relative;\n' +
+    '      z-index: 10;\n' +
+    '      text-align: center;\n' +
+    '      padding: 40px 20px 10px;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-header img {\n' +
+    '      height: 50px;\n' +
+    '      filter: brightness(0) invert(1);\n' +
+    '      margin-bottom: 6px;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-header .tagline {\n' +
+    '      font-size: 24px;\n' +
+    '      letter-spacing: 0.3px;\n' +
+    '      text-transform: none;\n' +
+    '      opacity: 1;\n' +
+    '      line-height: 1.3;\n' +
+    '      max-width: 650px;\n' +
+    '      white-space: nowrap;\n' +
+    '      margin: 0 auto;\n' +
+    '      font-weight: 600;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== FORM CONTAINER ====== */\n' +
+    '    #milo-form-content .form-container {\n' +
+    '      position: relative;\n' +
+    '      z-index: 10;\n' +
+    '      width: 100%;\n' +
+    '      max-width: 640px;\n' +
+    '      padding: 20px;\n' +
+    '      flex: 1;\n' +
+    '      display: flex;\n' +
+    '      flex-direction: column;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== PROGRESS BAR ====== */\n' +
+    '    #milo-form-content .progress-section {\n' +
+    '      margin-bottom: 24px;\n' +
+    '    }\n' +
+    '    #milo-form-content .progress-label {\n' +
+    '      display: flex;\n' +
+    '      justify-content: space-between;\n' +
+    '      align-items: center;\n' +
+    '      font-size: 13px;\n' +
+    '      margin-bottom: 8px;\n' +
+    '      opacity: 0.8;\n' +
+    '    }\n' +
+    '    #milo-form-content .progress-label .step-text {\n' +
+    '      font-weight: 700;\n' +
+    '      letter-spacing: 1px;\n' +
+    '      text-transform: uppercase;\n' +
+    '      font-family: \'League Spartan\', sans-serif;\n' +
+    '    }\n' +
+    '    #milo-form-content .progress-bar-track {\n' +
+    '      height: 6px;\n' +
+    '      background: rgba(255,255,255,0.15);\n' +
+    '      border-radius: 3px;\n' +
+    '      overflow: hidden;\n' +
+    '    }\n' +
+    '    #milo-form-content .progress-bar-fill {\n' +
+    '      height: 100%;\n' +
+    '      background: linear-gradient(90deg, var(--orange), #ffaa40);\n' +
+    '      border-radius: 3px;\n' +
+    '      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);\n' +
+    '      box-shadow: 0 0 12px rgba(255,130,0,0.4);\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== GLASS CARD ====== */\n' +
+    '    #milo-form-content .glass-card {\n' +
+    '      background: rgba(255,255,255,0.08);\n' +
+    '      backdrop-filter: blur(20px);\n' +
+    '      -webkit-backdrop-filter: blur(20px);\n' +
+    '      border: 1px solid rgba(255,255,255,0.15);\n' +
+    '      border-radius: 20px;\n' +
+    '      padding: 40px 36px;\n' +
+    '      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);\n' +
+    '      transition: transform 0.3s ease;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== STEP CONTENT ====== */\n' +
+    '    #milo-form-content .step {\n' +
+    '      display: none;\n' +
+    '      animation: miloStepIn 0.4s ease-out;\n' +
+    '    }\n' +
+    '    #milo-form-content .step.active {\n' +
+    '      display: block;\n' +
+    '    }\n' +
+    '    @keyframes miloStepIn {\n' +
+    '      from { opacity: 0; transform: translateY(16px); }\n' +
+    '      to { opacity: 1; transform: translateY(0); }\n' +
+    '    }\n' +
+    '\n' +
+    '    #milo-form-content .step-category {\n' +
+    '      font-size: 12px;\n' +
+    '      text-transform: uppercase;\n' +
+    '      letter-spacing: 2.5px;\n' +
+    '      color: var(--orange);\n' +
+    '      font-weight: 700;\n' +
+    '      margin-bottom: 10px;\n' +
+    '      font-family: \'League Spartan\', sans-serif;\n' +
+    '    }\n' +
+    '\n' +
+    '    #milo-form-content .step h2 {\n' +
+    '      font-size: 26px;\n' +
+    '      font-weight: 800;\n' +
+    '      line-height: 1.2;\n' +
+    '      margin-bottom: 8px;\n' +
+    '    }\n' +
+    '    #milo-form-content .step .subtitle {\n' +
+    '      font-size: 14px;\n' +
+    '      opacity: 0.65;\n' +
+    '      margin-bottom: 28px;\n' +
+    '      line-height: 1.5;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== OPTION CARDS ====== */\n' +
+    '    #milo-form-content .option-cards {\n' +
+    '      display: flex;\n' +
+    '      flex-direction: column;\n' +
+    '      gap: 12px;\n' +
+    '      margin-bottom: 28px;\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card {\n' +
+    '      display: flex;\n' +
+    '      align-items: center;\n' +
+    '      gap: 16px;\n' +
+    '      padding: 18px 20px;\n' +
+    '      background: rgba(255,255,255,0.06);\n' +
+    '      border: 1.5px solid rgba(255,255,255,0.12);\n' +
+    '      border-radius: 14px;\n' +
+    '      cursor: pointer;\n' +
+    '      transition: all 0.25s ease;\n' +
+    '      user-select: none;\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card:hover {\n' +
+    '      background: rgba(255,255,255,0.12);\n' +
+    '      border-color: rgba(255,255,255,0.25);\n' +
+    '      transform: translateY(-1px);\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card.selected {\n' +
+    '      background: rgba(7,67,135,0.35);\n' +
+    '      border-color: var(--light-blue);\n' +
+    '      box-shadow: 0 0 20px rgba(80,172,225,0.2);\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card .check-badge {\n' +
+    '      display: none;\n' +
+    '      position: absolute;\n' +
+    '      top: 8px;\n' +
+    '      right: 10px;\n' +
+    '      width: 22px;\n' +
+    '      height: 22px;\n' +
+    '      border-radius: 50%;\n' +
+    '      background: var(--light-blue);\n' +
+    '      color: #fff;\n' +
+    '      font-size: 13px;\n' +
+    '      font-weight: 700;\n' +
+    '      line-height: 22px;\n' +
+    '      text-align: center;\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card.selected .check-badge {\n' +
+    '      display: block;\n' +
+    '    }\n' +
+    '    #milo-form-content .multi-select .option-card {\n' +
+    '      position: relative;\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card .icon {\n' +
+    '      font-size: 28px;\n' +
+    '      width: 48px;\n' +
+    '      height: 48px;\n' +
+    '      display: flex;\n' +
+    '      align-items: center;\n' +
+    '      justify-content: center;\n' +
+    '      background: rgba(255,255,255,0.08);\n' +
+    '      border-radius: 12px;\n' +
+    '      flex-shrink: 0;\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card .option-text h4 {\n' +
+    '      font-size: 16px;\n' +
+    '      font-weight: 700;\n' +
+    '      margin-bottom: 2px;\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card .option-text p {\n' +
+    '      font-size: 13px;\n' +
+    '      opacity: 0.55;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== FORM INPUTS ====== */\n' +
+    '    #milo-form-content .form-grid {\n' +
+    '      display: grid;\n' +
+    '      gap: 16px;\n' +
+    '      margin-bottom: 28px;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-grid.two-col {\n' +
+    '      grid-template-columns: 1fr 1fr;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group {\n' +
+    '      display: flex;\n' +
+    '      flex-direction: column;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group label {\n' +
+    '      font-size: 12px;\n' +
+    '      text-transform: uppercase;\n' +
+    '      letter-spacing: 1.5px;\n' +
+    '      font-weight: 700;\n' +
+    '      margin-bottom: 8px;\n' +
+    '      opacity: 0.7;\n' +
+    '      font-family: \'League Spartan\', sans-serif;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group input,\n' +
+    '    #milo-form-content .form-group select {\n' +
+    '      background: rgba(255,255,255,0.08);\n' +
+    '      border: 1.5px solid rgba(255,255,255,0.15);\n' +
+    '      border-radius: 12px;\n' +
+    '      padding: 14px 16px;\n' +
+    '      font-size: 15px;\n' +
+    '      color: var(--white);\n' +
+    '      font-family: \'Nunito Sans\', sans-serif;\n' +
+    '      transition: all 0.25s ease;\n' +
+    '      outline: none;\n' +
+    '      -webkit-appearance: none;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group input::placeholder {\n' +
+    '      color: rgba(255,255,255,0.35);\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group input:focus,\n' +
+    '    #milo-form-content .form-group select:focus {\n' +
+    '      border-color: var(--light-blue);\n' +
+    '      background: rgba(255,255,255,0.12);\n' +
+    '      box-shadow: 0 0 16px rgba(80,172,225,0.2);\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group select option {\n' +
+    '      background: #042c5a;\n' +
+    '      color: white;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group .input-error {\n' +
+    '      border-color: #ff4444 !important;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group .error-msg {\n' +
+    '      color: #ff6b6b;\n' +
+    '      font-size: 12px;\n' +
+    '      margin-top: 4px;\n' +
+    '      display: none;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-group .error-msg.show {\n' +
+    '      display: block;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== ADDRESS AUTOCOMPLETE ====== */\n' +
+    '    #milo-form-content .address-autocomplete-wrap { position: relative; }\n' +
+    '    #milo-form-content .address-suggestions {\n' +
+    '      position: absolute;\n' +
+    '      top: 100%;\n' +
+    '      left: 0;\n' +
+    '      right: 0;\n' +
+    '      background: rgba(10, 30, 60, 0.95);\n' +
+    '      backdrop-filter: blur(12px);\n' +
+    '      border: 1px solid rgba(255,255,255,0.15);\n' +
+    '      border-radius: 12px;\n' +
+    '      margin-top: 4px;\n' +
+    '      max-height: 220px;\n' +
+    '      overflow-y: auto;\n' +
+    '      z-index: 100;\n' +
+    '      display: none;\n' +
+    '    }\n' +
+    '    #milo-form-content .address-suggestions.show { display: block; }\n' +
+    '    #milo-form-content .address-suggestions .suggestion-item {\n' +
+    '      padding: 12px 16px;\n' +
+    '      color: #fff;\n' +
+    '      font-size: 14px;\n' +
+    '      cursor: pointer;\n' +
+    '      border-bottom: 1px solid rgba(255,255,255,0.06);\n' +
+    '      transition: background 0.2s;\n' +
+    '    }\n' +
+    '    #milo-form-content .address-suggestions .suggestion-item:last-child { border-bottom: none; }\n' +
+    '    #milo-form-content .address-suggestions .suggestion-item:hover {\n' +
+    '      background: rgba(255, 130, 0, 0.2);\n' +
+    '    }\n' +
+    '    #milo-form-content .address-suggestions .suggestion-item .suggestion-main {\n' +
+    '      font-weight: 600;\n' +
+    '    }\n' +
+    '    #milo-form-content .address-suggestions .suggestion-item .suggestion-sub {\n' +
+    '      font-size: 12px;\n' +
+    '      color: rgba(255,255,255,0.5);\n' +
+    '      margin-top: 2px;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== ZIP NOT FOUND WARNING ====== */\n' +
+    '    #milo-form-content .zip-warning {\n' +
+    '      background: rgba(255, 130, 0, 0.15);\n' +
+    '      border: 1px solid rgba(255, 130, 0, 0.3);\n' +
+    '      border-radius: 12px;\n' +
+    '      padding: 14px 18px;\n' +
+    '      margin-top: 12px;\n' +
+    '      font-size: 14px;\n' +
+    '      line-height: 1.5;\n' +
+    '      display: none;\n' +
+    '    }\n' +
+    '    #milo-form-content .zip-warning.show {\n' +
+    '      display: block;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== BUTTONS ====== */\n' +
+    '    #milo-form-content .btn-row {\n' +
+    '      display: flex;\n' +
+    '      gap: 12px;\n' +
+    '      align-items: center;\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-primary {\n' +
+    '      flex: 1;\n' +
+    '      padding: 16px 32px;\n' +
+    '      background: linear-gradient(135deg, var(--orange), var(--orange-hover));\n' +
+    '      color: var(--white);\n' +
+    '      border: none;\n' +
+    '      border-radius: 14px;\n' +
+    '      font-size: 16px;\n' +
+    '      font-weight: 700;\n' +
+    '      font-family: \'League Spartan\', sans-serif;\n' +
+    '      letter-spacing: 0.5px;\n' +
+    '      cursor: pointer;\n' +
+    '      transition: all 0.3s ease;\n' +
+    '      box-shadow: 0 4px 20px rgba(255,130,0,0.3);\n' +
+    '      display: flex;\n' +
+    '      align-items: center;\n' +
+    '      justify-content: center;\n' +
+    '      gap: 8px;\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-primary:hover {\n' +
+    '      transform: translateY(-2px);\n' +
+    '      box-shadow: 0 6px 28px rgba(255,130,0,0.45);\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-primary:active {\n' +
+    '      transform: translateY(0);\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-primary:disabled {\n' +
+    '      opacity: 0.4;\n' +
+    '      cursor: not-allowed;\n' +
+    '      transform: none;\n' +
+    '      box-shadow: none;\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-primary .arrow {\n' +
+    '      transition: transform 0.2s;\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-primary:hover .arrow {\n' +
+    '      transform: translateX(3px);\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-back {\n' +
+    '      padding: 16px 20px;\n' +
+    '      background: rgba(255,255,255,0.08);\n' +
+    '      border: 1.5px solid rgba(255,255,255,0.15);\n' +
+    '      color: var(--white);\n' +
+    '      border-radius: 14px;\n' +
+    '      font-size: 14px;\n' +
+    '      font-weight: 600;\n' +
+    '      font-family: \'Nunito Sans\', sans-serif;\n' +
+    '      cursor: pointer;\n' +
+    '      transition: all 0.25s ease;\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-back:hover {\n' +
+    '      background: rgba(255,255,255,0.14);\n' +
+    '      border-color: rgba(255,255,255,0.25);\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== TRUST BADGE ====== */\n' +
+    '    #milo-form-content .trust-line {\n' +
+    '      text-align: center;\n' +
+    '      margin-top: 16px;\n' +
+    '      font-size: 12px;\n' +
+    '      opacity: 0.5;\n' +
+    '      line-height: 1.5;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== VALUE BADGE ====== */\n' +
+    '    #milo-form-content .value-badge {\n' +
+    '      background: rgba(255,130,0,0.12);\n' +
+    '      border: 1px solid rgba(255,130,0,0.25);\n' +
+    '      border-radius: 12px;\n' +
+    '      padding: 14px 18px;\n' +
+    '      margin-bottom: 24px;\n' +
+    '      font-size: 14px;\n' +
+    '      line-height: 1.5;\n' +
+    '      text-align: center;\n' +
+    '    }\n' +
+    '    #milo-form-content .value-badge .gift { font-size: 18px; }\n' +
+    '\n' +
+    '    /* ====== THANK YOU ====== */\n' +
+    '    #milo-form-content .thank-you-section {\n' +
+    '      text-align: center;\n' +
+    '    }\n' +
+    '    #milo-form-content .thank-you-section .check-circle {\n' +
+    '      width: 80px;\n' +
+    '      height: 80px;\n' +
+    '      background: linear-gradient(135deg, var(--green), var(--green-dark));\n' +
+    '      border-radius: 50%;\n' +
+    '      display: flex;\n' +
+    '      align-items: center;\n' +
+    '      justify-content: center;\n' +
+    '      margin: 0 auto 24px;\n' +
+    '      font-size: 40px;\n' +
+    '      animation: miloPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n' +
+    '      box-shadow: 0 4px 24px rgba(40,141,17,0.3);\n' +
+    '    }\n' +
+    '    @keyframes miloPopIn {\n' +
+    '      from { transform: scale(0); opacity: 0; }\n' +
+    '      to { transform: scale(1); opacity: 1; }\n' +
+    '    }\n' +
+    '    #milo-form-content .thank-you-section h2 {\n' +
+    '      font-size: 30px;\n' +
+    '      margin-bottom: 12px;\n' +
+    '    }\n' +
+    '    #milo-form-content .thank-you-section p {\n' +
+    '      font-size: 15px;\n' +
+    '      opacity: 0.7;\n' +
+    '      line-height: 1.6;\n' +
+    '      margin-bottom: 20px;\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-schedule {\n' +
+    '      display: inline-flex;\n' +
+    '      align-items: center;\n' +
+    '      gap: 8px;\n' +
+    '      padding: 14px 28px;\n' +
+    '      background: rgba(255,255,255,0.1);\n' +
+    '      border: 1.5px solid rgba(255,255,255,0.2);\n' +
+    '      border-radius: 14px;\n' +
+    '      color: white;\n' +
+    '      font-size: 15px;\n' +
+    '      font-weight: 600;\n' +
+    '      font-family: \'Nunito Sans\', sans-serif;\n' +
+    '      text-decoration: none;\n' +
+    '      transition: all 0.25s ease;\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-schedule:hover {\n' +
+    '      background: rgba(255,255,255,0.18);\n' +
+    '      transform: translateY(-2px);\n' +
+    '    }\n' +
+    '    #milo-form-content .divider-arrow {\n' +
+    '      font-size: 24px;\n' +
+    '      opacity: 0.4;\n' +
+    '      margin-bottom: 16px;\n' +
+    '      animation: miloBounceDown 1.5s ease-in-out infinite;\n' +
+    '    }\n' +
+    '    @keyframes miloBounceDown {\n' +
+    '      0%, 100% { transform: translateY(0); }\n' +
+    '      50% { transform: translateY(6px); }\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== FOOTER ====== */\n' +
+    '    #milo-form-content .form-footer {\n' +
+    '      position: relative;\n' +
+    '      z-index: 10;\n' +
+    '      text-align: center;\n' +
+    '      padding: 20px;\n' +
+    '      margin-top: auto;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-footer .lock-text {\n' +
+    '      font-size: 12px;\n' +
+    '      opacity: 0.4;\n' +
+    '      display: flex;\n' +
+    '      align-items: center;\n' +
+    '      justify-content: center;\n' +
+    '      gap: 6px;\n' +
+    '    }\n' +
+    '    #milo-form-content .form-footer .copyright {\n' +
+    '      font-size: 11px;\n' +
+    '      opacity: 0.3;\n' +
+    '      margin-top: 8px;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== LOADING SPINNER ====== */\n' +
+    '    #milo-form-content .spinner {\n' +
+    '      width: 20px; height: 20px;\n' +
+    '      border: 2.5px solid rgba(255,255,255,0.3);\n' +
+    '      border-top-color: white;\n' +
+    '      border-radius: 50%;\n' +
+    '      animation: miloSpin 0.6s linear infinite;\n' +
+    '      display: none;\n' +
+    '    }\n' +
+    '    #milo-form-content .btn-primary.loading .spinner { display: inline-block; }\n' +
+    '    #milo-form-content .btn-primary.loading .btn-text { display: none; }\n' +
+    '    @keyframes miloSpin { to { transform: rotate(360deg); } }\n' +
+    '\n' +
+    '
+    /* ====== RENTER DEAD END ====== */
+    #milo-form-content .renter-section {
+      text-align: center;
+    }
+    #milo-form-content .renter-section .renter-icon {
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+    #milo-form-content .renter-section h2 {
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+    #milo-form-content .renter-section p {
+      font-size: 15px;
+      opacity: 0.7;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #milo-form-content .share-confirm {
+      display: none;
+      color: var(--green);
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 12px;
+      animation: miloPopIn 0.3s ease;
+    }
+
+    /* ====== RESPONSIVE ====== */\n' +
+    '    @media (max-width: 600px) {\n' +
+    '      #milo-form-content .glass-card {\n' +
+    '        padding: 28px 22px;\n' +
+    '        border-radius: 16px;\n' +
+    '      }\n' +
+    '      #milo-form-content .step h2 { font-size: 22px; }\n' +
+    '      #milo-form-content .form-grid.two-col { grid-template-columns: 1fr; }\n' +
+    '      #milo-form-content .btn-row { flex-direction: column-reverse; }\n' +
+    '      #milo-form-content .btn-back { width: 100%; text-align: center; }\n' +
+    '      #milo-form-content .btn-primary { width: 100%; }\n' +
+    '      #milo-form-content .form-header { padding-top: 28px; }\n' +
+    '      #milo-form-content .option-card { padding: 14px 16px; }\n' +
+    '    }\n' +
+    '';
+  document.head.appendChild(css);
+
+  /* ── INJECT FORM CONTENT ── */
+  function injectContent() {
+    /* Hide GHL native sections */
+    var sections = document.querySelectorAll('[class^="section-"]');
+    sections.forEach(function(s) { s.style.display = 'none'; });
+
+    /* Hide GHL native nav */
+    var ghlNav = document.querySelector('nav, .navbar, [class*="navbar"]');
+    if (ghlNav) ghlNav.style.display = 'none';
+
+    /* Hide GHL native footer */
+    var ghlFooter = document.querySelector('footer, [class*="footer"]');
+    if (ghlFooter) ghlFooter.style.display = 'none';
+
+    if (document.getElementById('milo-form-content')) return;
+    var container = document.getElementById('preview-container') || document.body;
+
+    var wrapper = document.createElement('div');
+    wrapper.id = 'milo-form-content';
+    if (container === document.body) {
+      container.appendChild(wrapper);
+    } else {
+      var firstChild = container.querySelector('div');
+      if (firstChild) {
+        container.insertBefore(wrapper, firstChild);
+      } else {
+        container.appendChild(wrapper);
+      }
+    }
+
+    fetch(BASE + 'milo-form-content.html?v=' + Date.now())
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        wrapper.innerHTML = html;
+        setTimeout(initFormLogic, 100);
+      })
+      .catch(function(err) { console.error('Form content fetch failed:', err); });
+  }
+
+  /* ── FORM LOGIC ── */
+  function initFormLogic() {
+    var TOTAL_STEPS = 11;
+    var THANK_YOU_STEP = 12;
+    var RENTER_STEP = '2b';
+
+    // ----------- STATE -----------
+    var currentStep = 1;
+    var formData = {
+      uncomfortable: '',
+      isHomeowner: '',
+      serviceType: '',
+      topConcern: [],
+      atticInspected: '',
+      energyBill: '',
+      timeline: '',
+      homeSize: '',
+      timePreference: '',
+      street: '',
+      city: '',
+      state: '',
+      zip: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: ''
+    };
+
+    // ----------- ZIP ROUTING (loaded at boot) -----------
+    var zipLookup = window._miloZipLookup || {};
+    var locationCache = {};
+
+    function resolveLocation(zip) {
+      if (!zip) return null;
+      var clean = zip.replace(/\D/g, '').substring(0, 5);
+      return zipLookup[clean] || null;
+    }
+
+    function fetchLocationConfig(locId) {
+      return new Promise(function(resolve) {
+        if (locationCache[locId]) { resolve(locationCache[locId]); return; }
+        fetch(BASE + 'locations/' + locId + '.json?v=' + Date.now())
+          .then(function(r) { return r.json(); })
+          .then(function(cfg) {
+            locationCache[locId] = cfg;
+            resolve(cfg);
+          })
+          .catch(function() { resolve(null); });
+      });
+    }
+
+    // ----------- OPTION CARD SELECTION (auto-advance) -----------
+    var root = document.getElementById('milo-form-content');
+    root.querySelectorAll('.option-cards').forEach(function(group) {
+      var field = group.dataset.field;
+      var isMulti = group.classList.contains('multi-select');
+      group.querySelectorAll('.option-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          if (isMulti) {
+            /* Multi-select: toggle card */
+            card.classList.toggle('selected');
+            var selected = group.querySelectorAll('.option-card.selected');
+            var vals = [];
+            selected.forEach(function(c) { vals.push(c.dataset.value); });
+            formData[field] = vals;
+            /* Enable/disable Continue button */
+            var btn = document.getElementById('btn4');
+            if (btn) btn.disabled = vals.length === 0;
+            return;
+          }
+
+          group.querySelectorAll('.option-card').forEach(function(c) { c.classList.remove('selected'); });
+          card.classList.add('selected');
+          formData[field] = card.dataset.value;
+
+          /* Renter dead-end: if homeowner question answered "no" */
+          if (field === 'isHomeowner' && card.dataset.value === 'no') {
+            setTimeout(function() { showRenterDeadEnd(); }, 350);
+            return;
+          }
+
+          setTimeout(function() { goNext(); }, 350);
+        });
+      });
+    });
+
+    // ----------- NAVIGATION -----------
+    function updateProgress() {
+      var step = (typeof currentStep === 'string') ? TOTAL_STEPS : currentStep;
+      var pct = Math.round(((step - 1) / TOTAL_STEPS) * 100);
+      var fillEl = document.getElementById('progressFill');
+      var numEl = document.getElementById('stepNum');
+      var pctEl = document.getElementById('stepPercent');
+      if (fillEl) fillEl.style.width = pct + '%';
+      if (numEl) numEl.textContent = Math.min(step, TOTAL_STEPS);
+      if (pctEl) pctEl.textContent = pct + '%';
+    }
+
+    function showStep(n) {
+      root.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+      var step = document.getElementById('step' + n);
+      if (step) {
+        step.classList.add('active');
+        step.style.animation = 'none';
+        step.offsetHeight;
+        step.style.animation = '';
+      }
+      var prog = root.querySelector('.progress-section');
+      if (prog) prog.style.display = (n === THANK_YOU_STEP || n === RENTER_STEP) ? 'none' : 'block';
+    }
+
+    function showRenterDeadEnd() {
+      currentStep = RENTER_STEP;
+      showStep(RENTER_STEP);
+      var prog = root.querySelector('.progress-section');
+      if (prog) prog.style.display = 'none';
+    }
+
+    function goNext() {
+      if (currentStep === 10 && !validateAddress()) return;
+      currentStep++;
+      showStep(currentStep);
+      updateProgress();
+    }
+
+    function goPrev() {
+      if (typeof currentStep === 'string') {
+        /* From renter dead-end, go back to step 2 */
+        currentStep = 2;
+        showStep(2);
+        updateProgress();
         return;
       }
-      setTimeout(function(){ nextStep(); }, 350);
-    });
-  });
-});
+      if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+        updateProgress();
+      }
+    }
 
-function updateProgress() {
-  var step = (typeof currentStep === 'string') ? TOTAL_STEPS : currentStep;
-  var pct = Math.round(((step-1)/TOTAL_STEPS)*100);
-  document.getElementById('progressFill').style.width = pct+'%';
-  document.getElementById('stepNum').textContent = Math.min(step,TOTAL_STEPS);
-  document.getElementById('stepPercent').textContent = pct+'%';
-}
-function showStep(n) {
-  document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active')});
-  var step = document.getElementById('step'+n);
-  if(step){step.classList.add('active');step.style.animation='none';step.offsetHeight;step.style.animation='';}
-  document.querySelector('.progress-section').style.display = (n===THANK_YOU_STEP||n===RENTER_STEP)?'none':'block';
-}
-function showRenterDeadEnd() { currentStep=RENTER_STEP; showStep(RENTER_STEP); document.querySelector('.progress-section').style.display='none'; }
-function nextStep() { if(currentStep===10&&!validateAddress()) return; currentStep++; showStep(currentStep); updateProgress(); }
-function prevStep() {
-  if(typeof currentStep==='string'){currentStep=2;showStep(2);updateProgress();return;}
-  if(currentStep>1){currentStep--;showStep(currentStep);updateProgress();}
-}
-function backFromRenter() { currentStep=1; document.querySelectorAll('#step2 .option-card').forEach(function(c){c.classList.remove('selected')}); formData.isHomeowner=''; showStep(1); updateProgress(); }
-function copyShareLink() {
-  var url=window.location.href;
-  if(navigator.clipboard){navigator.clipboard.writeText(url);}else{var t=document.createElement('textarea');t.value=url;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);}
-  var c=document.getElementById('shareConfirm');if(c){c.style.display='block';setTimeout(function(){c.style.display='none';},2000);}
-}
-function validateAddress() {
-  var fields=['street','city','state','zip'],valid=true;
-  fields.forEach(function(id){var el=document.getElementById(id);if(!el.value.trim()){el.classList.add('input-error');valid=false;}else{el.classList.remove('input-error');}});
-  if(valid){formData.street=document.getElementById('street').value.trim();formData.city=document.getElementById('city').value.trim();formData.state=document.getElementById('state').value.trim();formData.zip=document.getElementById('zip').value.trim();}
-  return valid;
-}
-function validateContact() {
-  var fields=['firstName','lastName','email','phone'],valid=true;
-  fields.forEach(function(id){var el=document.getElementById(id);if(!el.value.trim()){el.classList.add('input-error');valid=false;}else{el.classList.remove('input-error');}});
-  var emailEl=document.getElementById('email');if(emailEl&&emailEl.value.trim()&&emailEl.value.indexOf('@')===-1){emailEl.classList.add('input-error');valid=false;}
-  if(valid){formData.firstName=document.getElementById('firstName').value.trim();formData.lastName=document.getElementById('lastName').value.trim();formData.email=document.getElementById('email').value.trim();formData.phone=document.getElementById('phone').value.trim();}
-  return valid;
-}
-var phoneEl=document.getElementById('phone');
-if(phoneEl){phoneEl.addEventListener('input',function(e){var x=e.target.value.replace(/\D/g,'').substring(0,10);if(x.length>6){e.target.value='('+x.substring(0,3)+') '+x.substring(3,6)+'-'+x.substring(6);}else if(x.length>3){e.target.value='('+x.substring(0,3)+') '+x.substring(3);}else if(x.length>0){e.target.value='('+x;}});}
-document.querySelectorAll('input').forEach(function(i){i.addEventListener('focus',function(){i.classList.remove('input-error')});});
-function submitForm() {
-  if(!validateContact()) return;
-  var btn=document.getElementById('btnSubmit');btn.classList.add('loading');btn.disabled=true;
-  setTimeout(function(){btn.classList.remove('loading');currentStep=THANK_YOU_STEP;showStep(THANK_YOU_STEP);updateProgress();},1500);
-}
-updateProgress();
-</script>
+    function validateAddress() {
+      var fields = ['street', 'city', 'state', 'zip'];
+      var valid = true;
+      fields.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (!el.value.trim()) {
+          el.classList.add('input-error');
+          valid = false;
+        } else {
+          el.classList.remove('input-error');
+        }
+      });
+      if (valid) {
+        formData.street = document.getElementById('street').value.trim();
+        formData.city = document.getElementById('city').value.trim();
+        formData.state = document.getElementById('state').value.trim();
+        formData.zip = document.getElementById('zip').value.trim();
+
+        /* Check if ZIP is in our service area */
+        var locId = resolveLocation(formData.zip);
+        var warn = root.querySelector('.zip-warning');
+        if (!locId && warn) {
+          warn.classList.add('show');
+          /* Still allow proceeding — lead goes to fallback location */
+        } else if (warn) {
+          warn.classList.remove('show');
+        }
+      }
+      return valid;
+    }
+
+    /* ----------- SHARE LINK (renter dead-end) ----------- */
+    function copyLink() {
+      var url = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url);
+      } else {
+        var t = document.createElement('textarea');
+        t.value = url;
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+      }
+      var confirm = document.getElementById('shareConfirm');
+      if (confirm) {
+        confirm.style.display = 'block';
+        setTimeout(function() { confirm.style.display = 'none'; }, 2000);
+      }
+    }
+
+    function backToStart() {
+      currentStep = 1;
+      /* Reset step 2 selection */
+      root.querySelectorAll('#step2 .option-card').forEach(function(c) { c.classList.remove('selected'); });
+      formData.isHomeowner = '';
+      showStep(1);
+      updateProgress();
+    }
+
+    function validateContact() {
+      var fields = ['firstName', 'lastName', 'email', 'phone'];
+      var valid = true;
+      fields.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (!el.value.trim()) {
+          el.classList.add('input-error');
+          valid = false;
+        } else {
+          el.classList.remove('input-error');
+        }
+      });
+      var emailEl = document.getElementById('email');
+      if (emailEl && emailEl.value.trim() && emailEl.value.indexOf('@') === -1) {
+        emailEl.classList.add('input-error');
+        valid = false;
+      }
+      if (valid) {
+        formData.firstName = document.getElementById('firstName').value.trim();
+        formData.lastName = document.getElementById('lastName').value.trim();
+        formData.email = document.getElementById('email').value.trim();
+        formData.phone = document.getElementById('phone').value.trim();
+      }
+      return valid;
+    }
+
+    // ----------- ADDRESS AUTOCOMPLETE (Nominatim / OpenStreetMap) -----------
+    (function() {
+      var streetInput = document.getElementById('street');
+      var suggestionsBox = document.getElementById('addressSuggestions');
+      if (!streetInput || !suggestionsBox) return;
+
+      var debounceTimer = null;
+      var lastQuery = '';
+
+      streetInput.addEventListener('input', function() {
+        var q = streetInput.value.trim();
+        if (q.length < 4) {
+          suggestionsBox.classList.remove('show');
+          suggestionsBox.innerHTML = '';
+          return;
+        }
+        if (q === lastQuery) return;
+        lastQuery = q;
+
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+          fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&limit=5&q=' + encodeURIComponent(q))
+            .then(function(r) { return r.json(); })
+            .then(function(results) {
+              suggestionsBox.innerHTML = '';
+              if (!results || results.length === 0) {
+                suggestionsBox.classList.remove('show');
+                return;
+              }
+              results.forEach(function(r) {
+                var addr = r.address || {};
+                var houseNum = addr.house_number || '';
+                var road = addr.road || '';
+                var streetLine = (houseNum + ' ' + road).trim();
+                var city = addr.city || addr.town || addr.village || addr.hamlet || '';
+                var state = addr.state || '';
+                var zip = addr.postcode || '';
+
+                if (!streetLine) return;
+
+                var div = document.createElement('div');
+                div.className = 'suggestion-item';
+                div.innerHTML = '<div class="suggestion-main">' + streetLine + '</div>' +
+                  '<div class="suggestion-sub">' + [city, state, zip].filter(Boolean).join(', ') + '</div>';
+
+                div.addEventListener('click', function() {
+                  streetInput.value = streetLine;
+                  var cityEl = document.getElementById('city');
+                  var stateEl = document.getElementById('state');
+                  var zipEl = document.getElementById('zip');
+                  if (cityEl) cityEl.value = city;
+                  if (stateEl) stateEl.value = state;
+                  if (zipEl) zipEl.value = zip;
+                  suggestionsBox.classList.remove('show');
+                  suggestionsBox.innerHTML = '';
+                  // Remove error styling
+                  [cityEl, stateEl, zipEl].forEach(function(el) {
+                    if (el) el.classList.remove('input-error');
+                  });
+                });
+
+                suggestionsBox.appendChild(div);
+              });
+              suggestionsBox.classList.add('show');
+            })
+            .catch(function() {
+              suggestionsBox.classList.remove('show');
+            });
+        }, 1000); // 1s debounce to respect Nominatim rate limit
+      });
+
+      // Close suggestions when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!streetInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+          suggestionsBox.classList.remove('show');
+        }
+      });
+    })();
+
+    // ----------- PHONE FORMATTING -----------
+    var phoneEl = document.getElementById('phone');
+    if (phoneEl) {
+      phoneEl.addEventListener('input', function(e) {
+        var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+        if (x.length > 6) {
+          e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3,6) + '-' + x.substring(6);
+        } else if (x.length > 3) {
+          e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3);
+        } else if (x.length > 0) {
+          e.target.value = '(' + x;
+        }
+      });
+    }
+
+    root.querySelectorAll('input').forEach(function(input) {
+      input.addEventListener('focus', function() { input.classList.remove('input-error'); });
+    });
+
+    // ----------- SUBMIT -----------
+    function doSubmit() {
+      if (!validateContact()) return;
+
+      var btn = document.getElementById('btnSubmit');
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      /* Resolve location from ZIP */
+      var locId = resolveLocation(formData.zip);
+      var fallbackLocId = window.MILO_LOCATION || 'tulia';
+      var targetLocId = locId || fallbackLocId;
+
+      fetchLocationConfig(targetLocId).then(function(locCfg) {
+        var webhookUrl = (locCfg && locCfg.webhookUrl) ? locCfg.webhookUrl : '';
+        var scheduleUrl = (locCfg && locCfg.scheduleUrl) ? locCfg.scheduleUrl : '#';
+
+        var payload = {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          name: formData.firstName + ' ' + formData.lastName,
+          email: formData.email,
+          phone: formData.phone.replace(/\D/g, ''),
+          address1: formData.street,
+          city: formData.city,
+          state: formData.state,
+          postalCode: formData.zip,
+          uncomfortable: formData.uncomfortable,
+          isHomeowner: formData.isHomeowner,
+          serviceType: formData.serviceType,
+          topConcern: Array.isArray(formData.topConcern) ? formData.topConcern.join(', ') : formData.topConcern,
+          atticInspected: formData.atticInspected,
+          energyBill: formData.energyBill,
+          timeline: formData.timeline,
+          homeSize: formData.homeSize,
+          timePreference: formData.timePreference,
+          source: 'milo-form',
+          formName: 'Free Home Efficiency Scan',
+          locationId: targetLocId,
+          ghlLocationId: locCfg ? locCfg.ghlLocationId : '',
+          repName: locCfg ? locCfg.rep : '',
+          repUserId: locCfg ? locCfg.repUserId : '',
+          businessName: locCfg ? locCfg.businessName : '',
+          zipResolved: !!locId,
+          submittedAt: new Date().toISOString()
+        };
+
+        var submitPromise;
+        if (webhookUrl) {
+          submitPromise = fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            mode: 'no-cors'
+          }).catch(function(err) {
+            console.warn('Webhook POST error (may be expected with no-cors):', err);
+          });
+        } else {
+          console.warn('No webhook URL configured for location:', targetLocId);
+          submitPromise = Promise.resolve();
+        }
+
+        submitPromise.finally(function() {
+          btn.classList.remove('loading');
+          currentStep = THANK_YOU_STEP;
+          showStep(THANK_YOU_STEP);
+          updateProgress();
+          var schedLink = document.getElementById('scheduleLink');
+          if (schedLink) schedLink.href = scheduleUrl;
+        });
+      });
+    }
+
+    // ----------- EXPOSE FUNCTIONS GLOBALLY -----------
+    window.nextStep = goNext;
+    window.prevStep = goPrev;
+    window.submitForm = doSubmit;
+    window.copyShareLink = copyLink;
+    window.backFromRenter = backToStart;
+
+    // ----------- INIT -----------
+    updateProgress();
+  }
+
+  /* ── BOOT SEQUENCE ── */
+  function bootForm() {
+    /* 1. Fetch master ZIP lookup */
+    if (!window._miloZipLookup) {
+      fetch(BASE + 'locations/zip-lookup.json?v=' + Date.now())
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          window._miloZipLookup = data;
+          injectContent();
+        })
+        .catch(function() {
+          window._miloZipLookup = {};
+          injectContent();
+        });
+    } else {
+      injectContent();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootForm);
+  } else {
+    bootForm();
+  }
+  setTimeout(bootForm, 500);
+  setTimeout(bootForm, 1500);
+  setTimeout(bootForm, 3000);
+})();
+
+  </script>
 </body>
 </html>
