@@ -1,7 +1,7 @@
-/* navfix-form.js — v4: Multi-step form with ZIP-based location routing
- * - No nav/footer (standalone form)
- * - Blue gradient background
- * - Auto-advance on option card click (steps 1-3)
+/* navfix-form.js — v5: 11-step qualifying form with ZIP-based location routing
+ * - Gateway yes/no + homeowner check + 5 qualifying questions + address + contact
+ * - Renter dead-end with share link
+ * - Auto-advance on card selection (steps 1-9)
  * - ZIP-based routing: resolves ZIP → location → webhook + calendar
  * - Functions exposed globally for onclick handlers
  */
@@ -533,7 +533,38 @@
     '    #milo-form-content .btn-primary.loading .btn-text { display: none; }\n' +
     '    @keyframes miloSpin { to { transform: rotate(360deg); } }\n' +
     '\n' +
-    '    /* ====== RESPONSIVE ====== */\n' +
+    '
+    /* ====== RENTER DEAD END ====== */
+    #milo-form-content .renter-section {
+      text-align: center;
+    }
+    #milo-form-content .renter-section .renter-icon {
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+    #milo-form-content .renter-section h2 {
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+    #milo-form-content .renter-section p {
+      font-size: 15px;
+      opacity: 0.7;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #milo-form-content .share-confirm {
+      display: none;
+      color: var(--green);
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 12px;
+      animation: miloPopIn 0.3s ease;
+    }
+
+    /* ====== RESPONSIVE ====== */\n' +
     '    @media (max-width: 600px) {\n' +
     '      #milo-form-content .glass-card {\n' +
     '        padding: 28px 22px;\n' +
@@ -591,12 +622,20 @@
 
   /* ── FORM LOGIC ── */
   function initFormLogic() {
-    var TOTAL_STEPS = 5;
+    var TOTAL_STEPS = 11;
+    var THANK_YOU_STEP = 12;
+    var RENTER_STEP = '2b';
 
     // ----------- STATE -----------
     var currentStep = 1;
     var formData = {
+      uncomfortable: '',
+      isHomeowner: '',
       serviceType: '',
+      topConcern: '',
+      atticInspected: '',
+      energyBill: '',
+      timeline: '',
       homeSize: '',
       timePreference: '',
       street: '',
@@ -641,6 +680,13 @@
           group.querySelectorAll('.option-card').forEach(function(c) { c.classList.remove('selected'); });
           card.classList.add('selected');
           formData[field] = card.dataset.value;
+
+          /* Renter dead-end: if homeowner question answered "no" */
+          if (field === 'isHomeowner' && card.dataset.value === 'no') {
+            setTimeout(function() { showRenterDeadEnd(); }, 350);
+            return;
+          }
+
           setTimeout(function() { goNext(); }, 350);
         });
       });
@@ -648,12 +694,13 @@
 
     // ----------- NAVIGATION -----------
     function updateProgress() {
-      var pct = Math.round(((currentStep - 1) / TOTAL_STEPS) * 100);
+      var step = (typeof currentStep === 'string') ? TOTAL_STEPS : currentStep;
+      var pct = Math.round(((step - 1) / TOTAL_STEPS) * 100);
       var fillEl = document.getElementById('progressFill');
       var numEl = document.getElementById('stepNum');
       var pctEl = document.getElementById('stepPercent');
       if (fillEl) fillEl.style.width = pct + '%';
-      if (numEl) numEl.textContent = Math.min(currentStep, TOTAL_STEPS);
+      if (numEl) numEl.textContent = Math.min(step, TOTAL_STEPS);
       if (pctEl) pctEl.textContent = pct + '%';
     }
 
@@ -667,17 +714,31 @@
         step.style.animation = '';
       }
       var prog = root.querySelector('.progress-section');
-      if (prog) prog.style.display = n > TOTAL_STEPS ? 'none' : 'block';
+      if (prog) prog.style.display = (n === THANK_YOU_STEP || n === RENTER_STEP) ? 'none' : 'block';
+    }
+
+    function showRenterDeadEnd() {
+      currentStep = RENTER_STEP;
+      showStep(RENTER_STEP);
+      var prog = root.querySelector('.progress-section');
+      if (prog) prog.style.display = 'none';
     }
 
     function goNext() {
-      if (currentStep === 4 && !validateAddress()) return;
+      if (currentStep === 10 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
       updateProgress();
     }
 
     function goPrev() {
+      if (typeof currentStep === 'string') {
+        /* From renter dead-end, go back to step 2 */
+        currentStep = 2;
+        showStep(2);
+        updateProgress();
+        return;
+      }
       if (currentStep > 1) {
         currentStep--;
         showStep(currentStep);
@@ -715,6 +776,35 @@
         }
       }
       return valid;
+    }
+
+    /* ----------- SHARE LINK (renter dead-end) ----------- */
+    function copyLink() {
+      var url = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url);
+      } else {
+        var t = document.createElement('textarea');
+        t.value = url;
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+      }
+      var confirm = document.getElementById('shareConfirm');
+      if (confirm) {
+        confirm.style.display = 'block';
+        setTimeout(function() { confirm.style.display = 'none'; }, 2000);
+      }
+    }
+
+    function backToStart() {
+      currentStep = 1;
+      /* Reset step 2 selection */
+      root.querySelectorAll('#step2 .option-card').forEach(function(c) { c.classList.remove('selected'); });
+      formData.isHomeowner = '';
+      showStep(1);
+      updateProgress();
     }
 
     function validateContact() {
@@ -790,7 +880,13 @@
           city: formData.city,
           state: formData.state,
           postalCode: formData.zip,
+          uncomfortable: formData.uncomfortable,
+          isHomeowner: formData.isHomeowner,
           serviceType: formData.serviceType,
+          topConcern: formData.topConcern,
+          atticInspected: formData.atticInspected,
+          energyBill: formData.energyBill,
+          timeline: formData.timeline,
           homeSize: formData.homeSize,
           timePreference: formData.timePreference,
           source: 'milo-form',
@@ -821,8 +917,8 @@
 
         submitPromise.finally(function() {
           btn.classList.remove('loading');
-          currentStep = 6;
-          showStep(6);
+          currentStep = THANK_YOU_STEP;
+          showStep(THANK_YOU_STEP);
           updateProgress();
           var schedLink = document.getElementById('scheduleLink');
           if (schedLink) schedLink.href = scheduleUrl;
@@ -834,6 +930,8 @@
     window.nextStep = goNext;
     window.prevStep = goPrev;
     window.submitForm = doSubmit;
+    window.copyShareLink = copyLink;
+    window.backFromRenter = backToStart;
 
     // ----------- INIT -----------
     updateProgress();

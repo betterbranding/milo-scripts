@@ -1,4 +1,3 @@
-
   <!-- Ambient background orbs -->
   <div class="ambient-orbs">
     <div class="orb"></div>
@@ -20,7 +19,7 @@
     <!-- Progress Bar -->
     <div class="progress-section">
       <div class="progress-label">
-        <span class="step-text">Step <span id="stepNum">1</span> of 5</span>
+        <span class="step-text">Step <span id="stepNum">1</span> of 11</span>
         <span id="stepPercent">0%</span>
       </div>
       <div class="progress-bar-track">
@@ -31,8 +30,74 @@
     <!-- Glass Card -->
     <div class="glass-card">
 
-      <!-- STEP 1: Service Type -->
+      <!-- STEP 1: Gateway Question -->
       <div class="step active" id="step1">
+        <div class="step-category">Quick Question</div>
+        <h2>Is your home uncomfortable in summer or winter?</h2>
+        <p class="subtitle">Hot spots, cold drafts, rooms that never feel right — sound familiar?</p>
+        <div class="option-cards" data-field="uncomfortable">
+          <div class="option-card" data-value="yes">
+            <div class="icon">🥵</div>
+            <div class="option-text">
+              <h4>Yes</h4>
+              <p>Some rooms are always too hot or too cold</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="no">
+            <div class="icon">😌</div>
+            <div class="option-text">
+              <h4>No</h4>
+              <p>My home stays comfortable year-round</p>
+            </div>
+          </div>
+        </div>
+        <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
+      </div>
+
+      <!-- STEP 2: Homeowner Check -->
+      <div class="step" id="step2">
+        <div class="step-category">Eligibility</div>
+        <h2>Are you the homeowner?</h2>
+        <p class="subtitle">Our free inspections are available to homeowners only</p>
+        <div class="option-cards" data-field="isHomeowner">
+          <div class="option-card" data-value="yes">
+            <div class="icon">🏠</div>
+            <div class="option-text">
+              <h4>Yes, I Own My Home</h4>
+              <p>Ready to see what's hiding in my attic</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="no">
+            <div class="icon">🏢</div>
+            <div class="option-text">
+              <h4>No, I'm Renting</h4>
+              <p>I'd like to share this with my landlord</p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 2B: Renter Dead End -->
+      <div class="step" id="step2b">
+        <div class="renter-section">
+          <div class="renter-icon">📨</div>
+          <h2>No worries — share this with your landlord!</h2>
+          <p>Insulation upgrades can increase property value and reduce tenant complaints. Forward this page to your property owner so they can schedule a free inspection.</p>
+          <button class="btn-primary" onclick="copyShareLink()" id="btnShare">
+            <span class="btn-text">📋 Copy Link to Share</span>
+          </button>
+          <div class="share-confirm" id="shareConfirm">✓ Link copied!</div>
+          <div style="margin-top:24px;">
+            <button class="btn-back" onclick="backFromRenter()">← Start Over</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Service Type -->
+      <div class="step" id="step3">
         <div class="step-category">Service Type</div>
         <h2>What type of insulation service are you looking for?</h2>
         <p class="subtitle">Choose the option that best describes your needs</p>
@@ -59,13 +124,161 @@
             </div>
           </div>
         </div>
-        <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
       </div>
 
-      <!-- STEP 2: Home Size -->
-      <div class="step" id="step2">
+      <!-- STEP 4: Top Concern -->
+      <div class="step" id="step4">
+        <div class="step-category">Your Priority</div>
+        <h2>What's your biggest concern right now?</h2>
+        <p class="subtitle">Pick the one that matters most to you</p>
+        <div class="option-cards" data-field="topConcern">
+          <div class="option-card" data-value="energy_bills">
+            <div class="icon">💰</div>
+            <div class="option-text">
+              <h4>High Energy Bills</h4>
+              <p>My electric bill keeps going up</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="comfort">
+            <div class="icon">🌡️</div>
+            <div class="option-text">
+              <h4>Comfort Issues</h4>
+              <p>Rooms that are too hot or too cold</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="air_quality">
+            <div class="icon">🫁</div>
+            <div class="option-text">
+              <h4>Indoor Air Quality</h4>
+              <p>Allergies, dust, or breathing concerns</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="pests">
+            <div class="icon">🐀</div>
+            <div class="option-text">
+              <h4>Pests &amp; Rodents</h4>
+              <p>Critters nesting in the attic</p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Attic Inspection -->
+      <div class="step" id="step5">
+        <div class="step-category">Attic History</div>
+        <h2>Have you had your attic inspected in the last 2 years?</h2>
+        <p class="subtitle">Most homeowners haven't — and that's exactly why we offer free inspections</p>
+        <div class="option-cards" data-field="atticInspected">
+          <div class="option-card" data-value="yes">
+            <div class="icon">✅</div>
+            <div class="option-text">
+              <h4>Yes</h4>
+              <p>I've had someone look at it recently</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="no">
+            <div class="icon">❌</div>
+            <div class="option-text">
+              <h4>No</h4>
+              <p>It's been a while — or never</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="unsure">
+            <div class="icon">🤷</div>
+            <div class="option-text">
+              <h4>Not Sure</h4>
+              <p>I honestly don't know</p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: Monthly Energy Bill -->
+      <div class="step" id="step6">
+        <div class="step-category">Energy Costs</div>
+        <h2>What's your average monthly energy bill?</h2>
+        <p class="subtitle">This helps us estimate your potential savings</p>
+        <div class="option-cards" data-field="energyBill">
+          <div class="option-card" data-value="under150">
+            <div class="icon">💵</div>
+            <div class="option-text">
+              <h4>Under $150</h4>
+              <p>Pretty reasonable</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="150to250">
+            <div class="icon">💵</div>
+            <div class="option-text">
+              <h4>$150 – $250</h4>
+              <p>Getting up there</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="250to400">
+            <div class="icon">💸</div>
+            <div class="option-text">
+              <h4>$250 – $400</h4>
+              <p>Higher than I'd like</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="over400">
+            <div class="icon">🔥</div>
+            <div class="option-text">
+              <h4>Over $400</h4>
+              <p>Way too much</p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 7: Timeline -->
+      <div class="step" id="step7">
+        <div class="step-category">Timeline</div>
+        <h2>How soon are you looking to address this?</h2>
+        <p class="subtitle">No wrong answer — we're here when you're ready</p>
+        <div class="option-cards" data-field="timeline">
+          <div class="option-card" data-value="asap">
+            <div class="icon">⚡</div>
+            <div class="option-text">
+              <h4>As Soon as Possible</h4>
+              <p>I want to get this handled now</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="1to3months">
+            <div class="icon">📅</div>
+            <div class="option-text">
+              <h4>Within 1 – 3 Months</h4>
+              <p>Planning ahead</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="researching">
+            <div class="icon">🔍</div>
+            <div class="option-text">
+              <h4>Just Researching</h4>
+              <p>Exploring my options</p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 8: Home Size -->
+      <div class="step" id="step8">
         <div class="step-category">Home Size</div>
-        <h2>Roughly what is the square footage range of your home?</h2>
+        <h2>Roughly what is the square footage of your home?</h2>
         <p class="subtitle">Helps us give you the most accurate assessment</p>
         <div class="option-cards" data-field="homeSize">
           <div class="option-card" data-value="under1000">
@@ -75,18 +288,25 @@
               <p>Smaller home or apartment</p>
             </div>
           </div>
-          <div class="option-card" data-value="1000to3000">
+          <div class="option-card" data-value="1000to2000">
             <div class="icon">🏡</div>
             <div class="option-text">
-              <h4>1,000 – 3,000 sq ft</h4>
+              <h4>1,000 – 2,000 sq ft</h4>
               <p>Average family home</p>
             </div>
           </div>
-          <div class="option-card" data-value="over3000">
+          <div class="option-card" data-value="2000to3000">
             <div class="icon">🏘️</div>
             <div class="option-text">
-              <h4>More than 3,000 sq ft</h4>
-              <p>Larger home or property</p>
+              <h4>2,000 – 3,000 sq ft</h4>
+              <p>Larger family home</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="over3000">
+            <div class="icon">🏰</div>
+            <div class="option-text">
+              <h4>Over 3,000 sq ft</h4>
+              <p>Large home or estate</p>
             </div>
           </div>
         </div>
@@ -95,10 +315,10 @@
         </div>
       </div>
 
-      <!-- STEP 3: Scheduling -->
-      <div class="step" id="step3">
+      <!-- STEP 9: Scheduling -->
+      <div class="step" id="step9">
         <div class="step-category">Scheduling</div>
-        <h2>Are <em>mornings</em> or <em>afternoons</em> better to schedule your inspection?</h2>
+        <h2>Are <em>mornings</em> or <em>afternoons</em> better for your inspection?</h2>
         <p class="subtitle">We'll do our best to accommodate your preference</p>
         <div class="option-cards" data-field="timePreference">
           <div class="option-card" data-value="morning">
@@ -121,8 +341,8 @@
         </div>
       </div>
 
-      <!-- STEP 4: Address -->
-      <div class="step" id="step4">
+      <!-- STEP 10: Address -->
+      <div class="step" id="step10">
         <div class="step-category">Property Location</div>
         <h2>What's your address?</h2>
         <p class="subtitle">We use this to route the right local team to you</p>
@@ -149,14 +369,14 @@
         <div class="zip-warning">⚠️ We may not have a local team in your area yet, but go ahead and submit — we'll do our best to help or connect you with a nearby location.</div>
         <div class="btn-row">
           <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" id="btn4" onclick="nextStep()">
+          <button class="btn-primary" id="btn10" onclick="nextStep()">
             <span class="btn-text">Continue <span class="arrow">→</span></span>
           </button>
         </div>
       </div>
 
-      <!-- STEP 5: Contact Info -->
-      <div class="step" id="step5">
+      <!-- STEP 11: Contact Info -->
+      <div class="step" id="step11">
         <div class="step-category">Almost Done!</div>
         <h2>Confirm your info to schedule your free home efficiency scan</h2>
         <div class="value-badge">
@@ -191,8 +411,8 @@
         </div>
       </div>
 
-      <!-- STEP 6: Thank You -->
-      <div class="step" id="step6">
+      <!-- STEP 12: Thank You -->
+      <div class="step" id="step12">
         <div class="thank-you-section">
           <div class="check-circle">✓</div>
           <h2>You're all set! 🎉</h2>
