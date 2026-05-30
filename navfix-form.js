@@ -257,6 +257,27 @@
     '      border-color: var(--light-blue);\n' +
     '      box-shadow: 0 0 20px rgba(80,172,225,0.2);\n' +
     '    }\n' +
+    '    #milo-form-content .option-card .check-badge {\n' +
+    '      display: none;\n' +
+    '      position: absolute;\n' +
+    '      top: 8px;\n' +
+    '      right: 10px;\n' +
+    '      width: 22px;\n' +
+    '      height: 22px;\n' +
+    '      border-radius: 50%;\n' +
+    '      background: var(--light-blue);\n' +
+    '      color: #fff;\n' +
+    '      font-size: 13px;\n' +
+    '      font-weight: 700;\n' +
+    '      line-height: 22px;\n' +
+    '      text-align: center;\n' +
+    '    }\n' +
+    '    #milo-form-content .option-card.selected .check-badge {\n' +
+    '      display: block;\n' +
+    '    }\n' +
+    '    #milo-form-content .multi-select .option-card {\n' +
+    '      position: relative;\n' +
+    '    }\n' +
     '    #milo-form-content .option-card .icon {\n' +
     '      font-size: 28px;\n' +
     '      width: 48px;\n' +
@@ -632,7 +653,7 @@
       uncomfortable: '',
       isHomeowner: '',
       serviceType: '',
-      topConcern: '',
+      topConcern: [],
       atticInspected: '',
       energyBill: '',
       timeline: '',
@@ -675,8 +696,22 @@
     var root = document.getElementById('milo-form-content');
     root.querySelectorAll('.option-cards').forEach(function(group) {
       var field = group.dataset.field;
+      var isMulti = group.classList.contains('multi-select');
       group.querySelectorAll('.option-card').forEach(function(card) {
         card.addEventListener('click', function() {
+          if (isMulti) {
+            /* Multi-select: toggle card */
+            card.classList.toggle('selected');
+            var selected = group.querySelectorAll('.option-card.selected');
+            var vals = [];
+            selected.forEach(function(c) { vals.push(c.dataset.value); });
+            formData[field] = vals;
+            /* Enable/disable Continue button */
+            var btn = document.getElementById('btn4');
+            if (btn) btn.disabled = vals.length === 0;
+            return;
+          }
+
           group.querySelectorAll('.option-card').forEach(function(c) { c.classList.remove('selected'); });
           card.classList.add('selected');
           formData[field] = card.dataset.value;
@@ -883,7 +918,7 @@
           uncomfortable: formData.uncomfortable,
           isHomeowner: formData.isHomeowner,
           serviceType: formData.serviceType,
-          topConcern: formData.topConcern,
+          topConcern: Array.isArray(formData.topConcern) ? formData.topConcern.join(', ') : formData.topConcern,
           atticInspected: formData.atticInspected,
           energyBill: formData.energyBill,
           timeline: formData.timeline,

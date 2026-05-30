@@ -133,9 +133,10 @@
       <div class="step" id="step4">
         <div class="step-category">Your Priority</div>
         <h2>What's your biggest concern right now?</h2>
-        <p class="subtitle">Pick the one that matters most to you</p>
-        <div class="option-cards" data-field="topConcern">
+        <p class="subtitle">Select all that apply</p>
+        <div class="option-cards multi-select" data-field="topConcern">
           <div class="option-card" data-value="energy_bills">
+            <div class="check-badge">✓</div>
             <div class="icon">💰</div>
             <div class="option-text">
               <h4>High Energy Bills</h4>
@@ -143,6 +144,7 @@
             </div>
           </div>
           <div class="option-card" data-value="comfort">
+            <div class="check-badge">✓</div>
             <div class="icon">🌡️</div>
             <div class="option-text">
               <h4>Comfort Issues</h4>
@@ -150,6 +152,7 @@
             </div>
           </div>
           <div class="option-card" data-value="air_quality">
+            <div class="check-badge">✓</div>
             <div class="icon">🫁</div>
             <div class="option-text">
               <h4>Indoor Air Quality</h4>
@@ -157,6 +160,7 @@
             </div>
           </div>
           <div class="option-card" data-value="pests">
+            <div class="check-badge">✓</div>
             <div class="icon">🐀</div>
             <div class="option-text">
               <h4>Pests &amp; Rodents</h4>
@@ -166,13 +170,16 @@
         </div>
         <div class="btn-row">
           <button class="btn-back" onclick="prevStep()">Back</button>
+          <button class="btn-primary" id="btn4" onclick="nextStep()" disabled>
+            <span class="btn-text">Continue <span class="arrow">→</span></span>
+          </button>
         </div>
       </div>
 
       <!-- STEP 5: Attic Inspection -->
       <div class="step" id="step5">
         <div class="step-category">Attic History</div>
-        <h2>Have you had your attic inspected in the last 2 years?</h2>
+        <h2>Have you had your home inspected in the past 5 years?</h2>
         <p class="subtitle">Most homeowners haven't — and that's exactly why we offer free inspections</p>
         <div class="option-cards" data-field="atticInspected">
           <div class="option-card" data-value="yes">
