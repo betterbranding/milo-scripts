@@ -360,44 +360,6 @@
     '      display: block;\n' +
     '    }\n' +
     '\n' +
-    '    /* ====== ADDRESS AUTOCOMPLETE ====== */\n' +
-    '    #milo-form-content .address-autocomplete-wrap { position: relative; }\n' +
-    '    #milo-form-content .address-suggestions {\n' +
-    '      position: absolute;\n' +
-    '      top: 100%;\n' +
-    '      left: 0;\n' +
-    '      right: 0;\n' +
-    '      background: rgba(10, 30, 60, 0.95);\n' +
-    '      backdrop-filter: blur(12px);\n' +
-    '      border: 1px solid rgba(255,255,255,0.15);\n' +
-    '      border-radius: 12px;\n' +
-    '      margin-top: 4px;\n' +
-    '      max-height: 220px;\n' +
-    '      overflow-y: auto;\n' +
-    '      z-index: 100;\n' +
-    '      display: none;\n' +
-    '    }\n' +
-    '    #milo-form-content .address-suggestions.show { display: block; }\n' +
-    '    #milo-form-content .address-suggestions .suggestion-item {\n' +
-    '      padding: 12px 16px;\n' +
-    '      color: #fff;\n' +
-    '      font-size: 14px;\n' +
-    '      cursor: pointer;\n' +
-    '      border-bottom: 1px solid rgba(255,255,255,0.06);\n' +
-    '      transition: background 0.2s;\n' +
-    '    }\n' +
-    '    #milo-form-content .address-suggestions .suggestion-item:last-child { border-bottom: none; }\n' +
-    '    #milo-form-content .address-suggestions .suggestion-item:hover {\n' +
-    '      background: rgba(255, 130, 0, 0.2);\n' +
-    '    }\n' +
-    '    #milo-form-content .address-suggestions .suggestion-item .suggestion-main {\n' +
-    '      font-weight: 600;\n' +
-    '    }\n' +
-    '    #milo-form-content .address-suggestions .suggestion-item .suggestion-sub {\n' +
-    '      font-size: 12px;\n' +
-    '      color: rgba(255,255,255,0.5);\n' +
-    '      margin-top: 2px;\n' +
-    '    }\n' +
     '\n' +
     '    /* ====== ZIP NOT FOUND WARNING ====== */\n' +
     '    #milo-form-content .zip-warning {\n' +
@@ -907,85 +869,6 @@
       }
       return valid;
     }
-
-    // ----------- ADDRESS AUTOCOMPLETE (Nominatim / OpenStreetMap) -----------
-    (function() {
-      var streetInput = document.getElementById('street');
-      var suggestionsBox = document.getElementById('addressSuggestions');
-      if (!streetInput || !suggestionsBox) return;
-
-      var debounceTimer = null;
-      var lastQuery = '';
-
-      streetInput.addEventListener('input', function() {
-        var q = streetInput.value.trim();
-        if (q.length < 4) {
-          suggestionsBox.classList.remove('show');
-          suggestionsBox.innerHTML = '';
-          return;
-        }
-        if (q === lastQuery) return;
-        lastQuery = q;
-
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(function() {
-          fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&limit=5&q=' + encodeURIComponent(q))
-            .then(function(r) { return r.json(); })
-            .then(function(results) {
-              suggestionsBox.innerHTML = '';
-              if (!results || results.length === 0) {
-                suggestionsBox.classList.remove('show');
-                return;
-              }
-              results.forEach(function(r) {
-                var addr = r.address || {};
-                var houseNum = addr.house_number || '';
-                var road = addr.road || '';
-                var streetLine = (houseNum + ' ' + road).trim();
-                var city = addr.city || addr.town || addr.village || addr.hamlet || '';
-                var state = addr.state || '';
-                var zip = addr.postcode || '';
-
-                if (!streetLine) return;
-
-                var div = document.createElement('div');
-                div.className = 'suggestion-item';
-                div.innerHTML = '<div class="suggestion-main">' + streetLine + '</div>' +
-                  '<div class="suggestion-sub">' + [city, state, zip].filter(Boolean).join(', ') + '</div>';
-
-                div.addEventListener('click', function() {
-                  streetInput.value = streetLine;
-                  var cityEl = document.getElementById('city');
-                  var stateEl = document.getElementById('state');
-                  var zipEl = document.getElementById('zip');
-                  if (cityEl) cityEl.value = city;
-                  if (stateEl) stateEl.value = state;
-                  if (zipEl) zipEl.value = zip;
-                  suggestionsBox.classList.remove('show');
-                  suggestionsBox.innerHTML = '';
-                  // Remove error styling
-                  [cityEl, stateEl, zipEl].forEach(function(el) {
-                    if (el) el.classList.remove('input-error');
-                  });
-                });
-
-                suggestionsBox.appendChild(div);
-              });
-              suggestionsBox.classList.add('show');
-            })
-            .catch(function() {
-              suggestionsBox.classList.remove('show');
-            });
-        }, 1000); // 1s debounce to respect Nominatim rate limit
-      });
-
-      // Close suggestions when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!streetInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
-          suggestionsBox.classList.remove('show');
-        }
-      });
-    })();
 
     // ----------- PHONE FORMATTING -----------
     var phoneEl = document.getElementById('phone');
