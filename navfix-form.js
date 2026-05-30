@@ -977,7 +977,7 @@
   function bootForm() {
     /* 1. Fetch master ZIP lookup */
     if (!window._miloZipLookup) {
-      fetch(BASE + 'locations/zip-lookup.json?v=' + Date.now())
+      fetch(BASE + 'zip-lookup.json?v=' + Date.now())
         .then(function(r) { return r.json(); })
         .then(function(data) {
           window._miloZipLookup = data;
