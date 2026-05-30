@@ -555,38 +555,20 @@
     '    #milo-form-content .btn-primary.loading .btn-text { display: none; }\n' +
     '    @keyframes miloSpin { to { transform: rotate(360deg); } }\n' +
     '\n' +
-    '
-    /* ====== RENTER DEAD END ====== */
-    #milo-form-content .renter-section {
-      text-align: center;
-    }
-    #milo-form-content .renter-section .renter-icon {
-      font-size: 56px;
-      margin-bottom: 20px;
-    }
-    #milo-form-content .renter-section h2 {
-      font-size: 26px;
-      margin-bottom: 16px;
-    }
-    #milo-form-content .renter-section p {
-      font-size: 15px;
-      opacity: 0.7;
-      line-height: 1.6;
-      margin-bottom: 28px;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    #milo-form-content .share-confirm {
-      display: none;
-      color: var(--green);
-      font-weight: 700;
-      font-size: 15px;
-      margin-top: 12px;
-      animation: miloPopIn 0.3s ease;
-    }
-
-    /* ====== RESPONSIVE ====== */\n' +
+    '    /* ====== RENTER DEAD END ====== */\n' +
+    '    #milo-form-content .renter-section { text-align: center; }\n' +
+    '    #milo-form-content .renter-section .renter-icon { font-size: 56px; margin-bottom: 20px; }\n' +
+    '    #milo-form-content .renter-section h2 { font-size: 26px; margin-bottom: 16px; }\n' +
+    '    #milo-form-content .renter-section p {\n' +
+    '      font-size: 15px; opacity: 0.7; line-height: 1.6; margin-bottom: 28px;\n' +
+    '      max-width: 440px; margin-left: auto; margin-right: auto;\n' +
+    '    }\n' +
+    '    #milo-form-content .share-confirm {\n' +
+    '      display: none; color: var(--green); font-weight: 700; font-size: 15px;\n' +
+    '      margin-top: 12px; animation: miloPopIn 0.3s ease;\n' +
+    '    }\n' +
+    '\n' +
+    '    /* ====== RESPONSIVE ====== */\n' +
     '    @media (max-width: 600px) {\n' +
     '      #milo-form-content .glass-card {\n' +
     '        padding: 28px 22px;\n' +
