@@ -131,7 +131,7 @@
     '      opacity: 1;\n' +
     '      line-height: 1.3;\n' +
     '      max-width: 650px;\n' +
-    '      white-space: nowrap;\n' +
+    '      white-space: normal;\n' +
     '      margin: 0 auto;\n' +
     '      font-weight: 600;\n' +
     '    }\n' +
@@ -580,6 +580,7 @@
     '      #milo-form-content .btn-back { width: 100%; text-align: center; }\n' +
     '      #milo-form-content .btn-primary { width: 100%; }\n' +
     '      #milo-form-content .form-header { padding-top: 28px; }\n' +
+    '      #milo-form-content .form-header .tagline { font-size: 17px; }\n' +
     '      #milo-form-content .option-card { padding: 14px 16px; }\n' +
     '    }\n' +
     '';
