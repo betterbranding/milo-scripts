@@ -182,10 +182,10 @@
     '\n' +
     '    /* ====== GLASS CARD ====== */\n' +
     '    #milo-form-content .glass-card {\n' +
-    '      background: rgba(255,255,255,0.08);\n' +
-    '      backdrop-filter: blur(20px);\n' +
-    '      -webkit-backdrop-filter: blur(20px);\n' +
-    '      border: 1px solid rgba(255,255,255,0.15);\n' +
+    '      background: rgba(0,0,0,0.35);\n' +
+    '      backdrop-filter: blur(24px);\n' +
+    '      -webkit-backdrop-filter: blur(24px);\n' +
+    '      border: 1px solid rgba(255,255,255,0.12);\n' +
     '      border-radius: 20px;\n' +
     '      padding: 40px 36px;\n' +
     '      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);\n' +
