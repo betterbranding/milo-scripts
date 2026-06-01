@@ -627,8 +627,8 @@
 
   /* ── FORM LOGIC ── */
   function initFormLogic() {
-    var TOTAL_STEPS = 11;
-    var THANK_YOU_STEP = 12;
+    var TOTAL_STEPS = 12;
+    var THANK_YOU_STEP = 13;
     var RENTER_STEP = '2b';
 
     // ----------- STATE -----------
@@ -691,7 +691,7 @@
             selected.forEach(function(c) { vals.push(c.dataset.value); });
             formData[field] = vals;
             /* Enable/disable Continue button */
-            var btn = document.getElementById('btn4');
+            var btn = document.getElementById('btn5');
             if (btn) btn.disabled = vals.length === 0;
             return;
           }
@@ -743,8 +743,36 @@
       if (prog) prog.style.display = 'none';
     }
 
+    function validateZipStep() {
+      var zipEl = document.getElementById('earlyZip');
+      if (!zipEl) return true;
+      var val = zipEl.value.replace(/\D/g, '');
+      if (val.length < 5) {
+        zipEl.classList.add('input-error');
+        return false;
+      }
+      zipEl.classList.remove('input-error');
+      formData.zip = val.substring(0, 5);
+
+      /* Check service area */
+      var locId = resolveLocation(formData.zip);
+      var warn = document.getElementById('earlyZipWarning');
+      if (!locId && warn) {
+        warn.classList.add('show');
+      } else if (warn) {
+        warn.classList.remove('show');
+      }
+
+      /* Pre-fill the address step ZIP field */
+      var addrZip = document.getElementById('zip');
+      if (addrZip) addrZip.value = formData.zip;
+
+      return true;
+    }
+
     function goNext() {
-      if (currentStep === 10 && !validateAddress()) return;
+      if (currentStep === 3 && !validateZipStep()) return;
+      if (currentStep === 11 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
       updateProgress();

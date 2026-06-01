@@ -19,7 +19,7 @@
     <!-- Progress Bar -->
     <div class="progress-section">
       <div class="progress-label">
-        <span class="step-text">Step <span id="stepNum">1</span> of 11</span>
+        <span class="step-text">Step <span id="stepNum">1</span></span>
         <span id="stepPercent">0%</span>
       </div>
       <div class="progress-bar-track">
@@ -96,8 +96,27 @@
         </div>
       </div>
 
-      <!-- STEP 3: Service Type -->
+      <!-- STEP 3: ZIP Code -->
       <div class="step" id="step3">
+        <div class="step-category">Your Area</div>
+        <h2>What is your ZIP code?</h2>
+        <p class="subtitle">We'll match you with the closest local team</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <input type="text" id="earlyZip" placeholder="Enter your ZIP code" inputmode="numeric" maxlength="5" style="text-align:center;font-size:1.3rem;letter-spacing:0.15em;">
+          </div>
+        </div>
+        <div class="zip-warning" id="earlyZipWarning">⚠️ We may not have a local team in your area yet, but go ahead — we'll do our best to help or connect you with a nearby location.</div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep()">Back</button>
+          <button class="btn-primary" id="btn3" onclick="nextStep()">
+            <span class="btn-text">Continue <span class="arrow">→</span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Service Type -->
+      <div class="step" id="step4">
         <div class="step-category">Service Type</div>
         <h2>What type of insulation service are you looking for?</h2>
         <p class="subtitle">Choose the option that best describes your needs</p>
@@ -129,8 +148,8 @@
         </div>
       </div>
 
-      <!-- STEP 4: Top Concern -->
-      <div class="step" id="step4">
+      <!-- STEP 5: Top Concern -->
+      <div class="step" id="step5">
         <div class="step-category">Your Priority</div>
         <h2>What's your biggest concern right now?</h2>
         <p class="subtitle">Select all that apply</p>
@@ -170,14 +189,14 @@
         </div>
         <div class="btn-row">
           <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" id="btn4" onclick="nextStep()" disabled>
+          <button class="btn-primary" id="btn5" onclick="nextStep()" disabled>
             <span class="btn-text">Continue <span class="arrow">→</span></span>
           </button>
         </div>
       </div>
 
-      <!-- STEP 5: Attic Inspection -->
-      <div class="step" id="step5">
+      <!-- STEP 6: Attic Inspection -->
+      <div class="step" id="step6">
         <div class="step-category">Attic History</div>
         <h2>Have you had your home inspected in the past 5 years?</h2>
         <p class="subtitle">Most homeowners haven't — and that's exactly why we offer free inspections</p>
@@ -209,8 +228,8 @@
         </div>
       </div>
 
-      <!-- STEP 6: Monthly Energy Bill -->
-      <div class="step" id="step6">
+      <!-- STEP 7: Monthly Energy Bill -->
+      <div class="step" id="step7">
         <div class="step-category">Energy Costs</div>
         <h2>What's your average monthly energy bill?</h2>
         <p class="subtitle">This helps us estimate your potential savings</p>
@@ -249,8 +268,8 @@
         </div>
       </div>
 
-      <!-- STEP 7: Timeline -->
-      <div class="step" id="step7">
+      <!-- STEP 8: Timeline -->
+      <div class="step" id="step8">
         <div class="step-category">Timeline</div>
         <h2>How soon are you looking to address this?</h2>
         <p class="subtitle">No wrong answer — we're here when you're ready</p>
@@ -282,8 +301,8 @@
         </div>
       </div>
 
-      <!-- STEP 8: Home Size -->
-      <div class="step" id="step8">
+      <!-- STEP 9: Home Size -->
+      <div class="step" id="step9">
         <div class="step-category">Home Size</div>
         <h2>Roughly what is the square footage of your home?</h2>
         <p class="subtitle">Helps us give you the most accurate assessment</p>
@@ -322,8 +341,8 @@
         </div>
       </div>
 
-      <!-- STEP 9: Scheduling -->
-      <div class="step" id="step9">
+      <!-- STEP 10: Scheduling -->
+      <div class="step" id="step10">
         <div class="step-category">Scheduling</div>
         <h2>Are <em>mornings</em> or <em>afternoons</em> better for your inspection?</h2>
         <p class="subtitle">We'll do our best to accommodate your preference</p>
@@ -348,8 +367,8 @@
         </div>
       </div>
 
-      <!-- STEP 10: Address -->
-      <div class="step" id="step10">
+      <!-- STEP 11: Address -->
+      <div class="step" id="step11">
         <div class="step-category">Property Location</div>
         <h2>What's your address?</h2>
         <p class="subtitle">We use this to route the right local team to you</p>
@@ -376,14 +395,14 @@
         <div class="zip-warning">⚠️ We may not have a local team in your area yet, but go ahead and submit — we'll do our best to help or connect you with a nearby location.</div>
         <div class="btn-row">
           <button class="btn-back" onclick="prevStep()">Back</button>
-          <button class="btn-primary" id="btn10" onclick="nextStep()">
+          <button class="btn-primary" id="btn11" onclick="nextStep()">
             <span class="btn-text">Continue <span class="arrow">→</span></span>
           </button>
         </div>
       </div>
 
-      <!-- STEP 11: Contact Info -->
-      <div class="step" id="step11">
+      <!-- STEP 12: Contact Info -->
+      <div class="step" id="step12">
         <div class="step-category">Almost Done!</div>
         <h2>Confirm your info to schedule your free home efficiency scan</h2>
         <div class="value-badge">
@@ -418,8 +437,8 @@
         </div>
       </div>
 
-      <!-- STEP 12: Thank You -->
-      <div class="step" id="step12">
+      <!-- STEP 13: Thank You -->
+      <div class="step" id="step13">
         <div class="thank-you-section">
           <div class="check-circle">✓</div>
           <h2>You're all set! 🎉</h2>
