@@ -627,9 +627,10 @@
 
   /* ── FORM LOGIC ── */
   function initFormLogic() {
-    var TOTAL_STEPS = 12;
-    var THANK_YOU_STEP = 13;
-    var RENTER_STEP = '2b';
+    var TOTAL_STEPS = 13;
+    var THANK_YOU_STEP = 14;
+    var RENTER_STEP = '4b';
+    var NOT_IN_AREA_STEP = '2x';
 
     // ----------- STATE -----------
     var currentStep = 1;
@@ -691,7 +692,7 @@
             selected.forEach(function(c) { vals.push(c.dataset.value); });
             formData[field] = vals;
             /* Enable/disable Continue button */
-            var btn = document.getElementById('btn5');
+            var btn = document.getElementById('btn6');
             if (btn) btn.disabled = vals.length === 0;
             return;
           }
@@ -733,7 +734,8 @@
         step.style.animation = '';
       }
       var prog = root.querySelector('.progress-section');
-      if (prog) prog.style.display = (n === THANK_YOU_STEP || n === RENTER_STEP) ? 'none' : 'block';
+      var hideProgress = (n === THANK_YOU_STEP || n === RENTER_STEP);
+      if (prog) prog.style.display = hideProgress ? 'none' : 'block';
     }
 
     function showRenterDeadEnd() {
@@ -743,36 +745,59 @@
       if (prog) prog.style.display = 'none';
     }
 
-    function validateZipStep() {
+    function handleZipStep() {
       var zipEl = document.getElementById('earlyZip');
-      if (!zipEl) return true;
+      if (!zipEl) return;
       var val = zipEl.value.replace(/\D/g, '');
       if (val.length < 5) {
         zipEl.classList.add('input-error');
-        return false;
+        return;
       }
       zipEl.classList.remove('input-error');
       formData.zip = val.substring(0, 5);
-
-      /* Check service area */
-      var locId = resolveLocation(formData.zip);
-      var warn = document.getElementById('earlyZipWarning');
-      if (!locId && warn) {
-        warn.classList.add('show');
-      } else if (warn) {
-        warn.classList.remove('show');
-      }
 
       /* Pre-fill the address step ZIP field */
       var addrZip = document.getElementById('zip');
       if (addrZip) addrZip.value = formData.zip;
 
-      return true;
+      var locId = resolveLocation(formData.zip);
+      var successDiv = document.getElementById('zipSuccess');
+      var notFoundDiv = document.getElementById('zipNotFound');
+
+      if (locId) {
+        /* Fetch location config to get business name */
+        fetchLocationConfig(locId).then(function(cfg) {
+          var biz = (cfg && cfg.businessName) ? cfg.businessName : 'MILO Insulation';
+          var msgEl = document.getElementById('zipSuccessMsg');
+          if (msgEl) msgEl.textContent = 'Great news! ' + biz + ' has openings this week in your area!';
+          if (successDiv) successDiv.style.display = 'block';
+          if (notFoundDiv) notFoundDiv.style.display = 'none';
+          currentStep = 2;
+          showStep(2);
+          updateProgress();
+        });
+      } else {
+        /* Not in service area — show dead end with phone */
+        var fallbackLocId = window.MILO_LOCATION || 'tulia';
+        fetchLocationConfig(fallbackLocId).then(function(cfg) {
+          var phone = (cfg && cfg.phone) ? cfg.phone : '(806) 401-9750';
+          var phoneLink = document.getElementById('notInAreaPhone');
+          var phoneText = document.getElementById('notInAreaPhoneText');
+          if (phoneText) phoneText.textContent = phone;
+          if (phoneLink) phoneLink.href = 'tel:' + phone.replace(/\D/g, '');
+          if (successDiv) successDiv.style.display = 'none';
+          if (notFoundDiv) notFoundDiv.style.display = 'block';
+          currentStep = 2;
+          showStep(2);
+          var prog = root.querySelector('.progress-section');
+          if (prog) prog.style.display = 'none';
+        });
+      }
     }
 
     function goNext() {
-      if (currentStep === 3 && !validateZipStep()) return;
-      if (currentStep === 11 && !validateAddress()) return;
+      if (currentStep === 1) { handleZipStep(); return; }
+      if (currentStep === 12 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
       updateProgress();
@@ -780,9 +805,16 @@
 
     function goPrev() {
       if (typeof currentStep === 'string') {
-        /* From renter dead-end, go back to step 2 */
-        currentStep = 2;
-        showStep(2);
+        /* From renter dead-end, go back to step 4 */
+        currentStep = 4;
+        showStep(4);
+        updateProgress();
+        return;
+      }
+      if (currentStep === 2) {
+        /* Back from ZIP result goes to step 1 */
+        currentStep = 1;
+        showStep(1);
         updateProgress();
         return;
       }
@@ -847,8 +879,8 @@
 
     function backToStart() {
       currentStep = 1;
-      /* Reset step 2 selection */
-      root.querySelectorAll('#step2 .option-card').forEach(function(c) { c.classList.remove('selected'); });
+      /* Reset step 4 selection */
+      root.querySelectorAll('#step4 .option-card').forEach(function(c) { c.classList.remove('selected'); });
       formData.isHomeowner = '';
       showStep(1);
       updateProgress();
