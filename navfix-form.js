@@ -133,7 +133,7 @@
     '      max-width: 650px;\n' +
     '      white-space: normal;\n' +
     '      margin: 0 auto;\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '    }\n' +
     '\n' +
     '    /* ====== FORM CONTAINER ====== */\n' +
@@ -161,7 +161,7 @@
     '      opacity: 0.8;\n' +
     '    }\n' +
     '    #milo-form-content .progress-label .step-text {\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '      letter-spacing: 1px;\n' +
     '      text-transform: uppercase;\n' +
     '      font-family: \'League Spartan\', sans-serif;\n' +
@@ -210,7 +210,7 @@
     '      text-transform: uppercase;\n' +
     '      letter-spacing: 2.5px;\n' +
     '      color: var(--orange);\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '      margin-bottom: 10px;\n' +
     '      font-family: \'League Spartan\', sans-serif;\n' +
     '    }\n' +
@@ -268,7 +268,7 @@
     '      background: var(--light-blue);\n' +
     '      color: #fff;\n' +
     '      font-size: 13px;\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '      font-family: \'League Spartan\', sans-serif;\n' +
     '      line-height: 22px;\n' +
     '      text-align: center;\n' +
@@ -292,7 +292,7 @@
     '    }\n' +
     '    #milo-form-content .option-card .option-text h4 {\n' +
     '      font-size: 18px;\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '      font-family: \'League Spartan\', sans-serif;\n' +
     '      margin-bottom: 2px;\n' +
     '    }\n' +
@@ -318,7 +318,7 @@
     '      font-size: 12px;\n' +
     '      text-transform: uppercase;\n' +
     '      letter-spacing: 1.5px;\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '      margin-bottom: 8px;\n' +
     '      opacity: 0.7;\n' +
     '      font-family: \'League Spartan\', sans-serif;\n' +
@@ -392,7 +392,7 @@
     '      border: none;\n' +
     '      border-radius: 14px;\n' +
     '      font-size: 16px;\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '      font-family: \'League Spartan\', sans-serif;\n' +
     '      letter-spacing: 0.5px;\n' +
     '      cursor: pointer;\n' +
@@ -429,7 +429,7 @@
     '      color: var(--white);\n' +
     '      border-radius: 14px;\n' +
     '      font-size: 14px;\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '      font-family: \'Nunito Sans\', sans-serif;\n' +
     '      cursor: pointer;\n' +
     '      transition: all 0.25s ease;\n' +
@@ -502,7 +502,7 @@
     '      border-radius: 14px;\n' +
     '      color: white;\n' +
     '      font-size: 15px;\n' +
-    '      font-weight: 600;\n' +
+    '      font-weight: 500;\n' +
     '      font-family: \'Nunito Sans\', sans-serif;\n' +
     '      text-decoration: none;\n' +
     '      transition: all 0.25s ease;\n' +
