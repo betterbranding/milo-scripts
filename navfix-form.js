@@ -269,6 +269,7 @@
     '      color: #fff;\n' +
     '      font-size: 13px;\n' +
     '      font-weight: 700;\n' +
+    '      font-family: \'League Spartan\', sans-serif;\n' +
     '      line-height: 22px;\n' +
     '      text-align: center;\n' +
     '    }\n' +
@@ -290,12 +291,13 @@
     '      flex-shrink: 0;\n' +
     '    }\n' +
     '    #milo-form-content .option-card .option-text h4 {\n' +
-    '      font-size: 16px;\n' +
+    '      font-size: 18px;\n' +
     '      font-weight: 700;\n' +
+    '      font-family: \'League Spartan\', sans-serif;\n' +
     '      margin-bottom: 2px;\n' +
     '    }\n' +
     '    #milo-form-content .option-card .option-text p {\n' +
-    '      font-size: 13px;\n' +
+    '      font-size: 15px;\n' +
     '      opacity: 0.55;\n' +
     '    }\n' +
     '\n' +
