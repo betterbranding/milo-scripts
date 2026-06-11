@@ -631,7 +631,7 @@
   function initFormLogic() {
     var TOTAL_STEPS = 13;
     var THANK_YOU_STEP = 14;
-    var RENTER_STEP = '4b';
+    var RENTER_STEP = '2b';
     var NOT_IN_AREA_STEP = '2x';
 
     // ----------- STATE -----------
@@ -774,8 +774,8 @@
           if (msgEl) msgEl.textContent = 'Great news! ' + biz + ' has openings this week in your area!';
           if (successDiv) successDiv.style.display = 'block';
           if (notFoundDiv) notFoundDiv.style.display = 'none';
-          currentStep = 2;
-          showStep(2);
+          currentStep = 4;
+          showStep(4);
           updateProgress();
         });
       } else {
@@ -789,8 +789,8 @@
           if (phoneLink) phoneLink.href = 'tel:' + phone.replace(/\D/g, '');
           if (successDiv) successDiv.style.display = 'none';
           if (notFoundDiv) notFoundDiv.style.display = 'block';
-          currentStep = 2;
-          showStep(2);
+          currentStep = 4;
+          showStep(4);
           var prog = root.querySelector('.progress-section');
           if (prog) prog.style.display = 'none';
         });
@@ -798,7 +798,7 @@
     }
 
     function goNext() {
-      if (currentStep === 1) { handleZipStep(); return; }
+      if (currentStep === 3) { handleZipStep(); return; }
       if (currentStep === 12 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
@@ -807,16 +807,16 @@
 
     function goPrev() {
       if (typeof currentStep === 'string') {
-        /* From renter dead-end, go back to step 4 */
-        currentStep = 4;
-        showStep(4);
+        /* From renter dead-end, go back to step 2 */
+        currentStep = 2;
+        showStep(2);
         updateProgress();
         return;
       }
-      if (currentStep === 2) {
-        /* Back from ZIP result goes to step 1 */
-        currentStep = 1;
-        showStep(1);
+      if (currentStep === 4) {
+        /* Back from ZIP result goes to step 3 */
+        currentStep = 3;
+        showStep(3);
         updateProgress();
         return;
       }
@@ -882,8 +882,10 @@
     function backToStart() {
       currentStep = 1;
       /* Reset step 4 selection */
-      root.querySelectorAll('#step4 .option-card').forEach(function(c) { c.classList.remove('selected'); });
+      root.querySelectorAll('#step2 .option-card').forEach(function(c) { c.classList.remove('selected'); });
       formData.isHomeowner = '';
+      formData.uncomfortable = '';
+      root.querySelectorAll('#step1 .option-card').forEach(function(c) { c.classList.remove('selected'); });
       showStep(1);
       updateProgress();
     }

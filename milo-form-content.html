@@ -30,55 +30,8 @@
     <!-- Glass Card -->
     <div class="glass-card">
 
-      <!-- STEP 1: ZIP Code -->
+      <!-- STEP 1: Gateway Question -->
       <div class="step active" id="step1">
-        <div class="step-category">Your Area</div>
-        <h2>Enter your ZIP code so we can check availability in your area</h2>
-        <p class="subtitle">We'll match you with a local insulation team near you</p>
-        <div class="form-grid">
-          <div class="form-group">
-            <input type="text" id="earlyZip" placeholder="Enter your ZIP code" inputmode="numeric" maxlength="5" style="text-align:center;font-size:1.3rem;letter-spacing:0.15em;">
-          </div>
-        </div>
-        <div class="btn-row" style="justify-content:center;">
-          <button class="btn-primary" id="btn1" onclick="nextStep()">
-            <span class="btn-text">Check Availability <span class="arrow">→</span></span>
-          </button>
-        </div>
-        <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
-      </div>
-
-      <!-- STEP 2: ZIP Result -->
-      <div class="step" id="step2">
-        <!-- Success state (shown when ZIP matches a location) -->
-        <div id="zipSuccess" style="display:none;">
-          <div class="step-category" style="color:#4CAF50;">✅ Great News!</div>
-          <h2 id="zipSuccessMsg">Great news! MILO Insulation has openings this week in your area!</h2>
-          <p class="subtitle">Let's see if your home qualifies for a free inspection.</p>
-          <div class="btn-row" style="justify-content:center;">
-            <button class="btn-primary" onclick="nextStep()">
-              <span class="btn-text">Let's Go <span class="arrow">→</span></span>
-            </button>
-          </div>
-        </div>
-        <!-- Not-in-area state -->
-        <div id="zipNotFound" style="display:none;">
-          <div class="step-category" style="color:#FF8200;">📍 Not in Your Area Yet</div>
-          <h2>We're not currently servicing your area</h2>
-          <p class="subtitle">But we're growing fast! Give us a call and we'll do our best to help or connect you with a location near you.</p>
-          <div style="text-align:center;margin:28px 0;">
-            <a href="tel:+18005551234" id="notInAreaPhone" class="btn-primary" style="text-decoration:none;display:inline-block;">
-              <span class="btn-text">📞 Call <span id="notInAreaPhoneText">(800) 555-1234</span></span>
-            </a>
-          </div>
-          <div class="btn-row" style="justify-content:center;">
-            <button class="btn-back" onclick="prevStep()">← Try a Different ZIP</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- STEP 3: Gateway Question -->
-      <div class="step" id="step3">
         <div class="step-category">Quick Question</div>
         <h2>Is your home uncomfortable in summer or winter?</h2>
         <p class="subtitle">Hot spots, cold drafts, rooms that never feel right — sound familiar?</p>
@@ -103,8 +56,8 @@
         </div>
       </div>
 
-      <!-- STEP 4: Homeowner Check -->
-      <div class="step" id="step4">
+      <!-- STEP 2: Homeowner Check -->
+      <div class="step" id="step2">
         <div class="step-category">Eligibility</div>
         <h2>Are you the homeowner?</h2>
         <p class="subtitle">Our free inspections are available to homeowners only</p>
@@ -129,8 +82,8 @@
         </div>
       </div>
 
-      <!-- STEP 4B: Renter Dead End -->
-      <div class="step" id="step4b">
+      <!-- STEP 2B: Renter Dead End -->
+      <div class="step" id="step2b">
         <div class="renter-section">
           <div class="renter-icon">📨</div>
           <h2>No worries — share this with your landlord!</h2>
@@ -141,6 +94,53 @@
           <div class="share-confirm" id="shareConfirm">✓ Link copied!</div>
           <div style="margin-top:24px;">
             <button class="btn-back" onclick="backFromRenter()">← Start Over</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: ZIP Code -->
+      <div class="step" id="step3">
+        <div class="step-category">Your Area</div>
+        <h2>Enter your ZIP code so we can check availability in your area</h2>
+        <p class="subtitle">We'll match you with a local insulation team near you</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <input type="text" id="earlyZip" placeholder="Enter your ZIP code" inputmode="numeric" maxlength="5" style="text-align:center;font-size:1.3rem;letter-spacing:0.15em;">
+          </div>
+        </div>
+        <div class="btn-row" style="justify-content:center;">
+          <button class="btn-primary" id="btn1" onclick="nextStep()">
+            <span class="btn-text">Check Availability <span class="arrow">→</span></span>
+          </button>
+        </div>
+        <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
+      </div>
+
+      <!-- STEP 4: ZIP Result -->
+      <div class="step" id="step4">
+        <!-- Success state (shown when ZIP matches a location) -->
+        <div id="zipSuccess" style="display:none;">
+          <div class="step-category" style="color:#4CAF50;">✅ Great News!</div>
+          <h2 id="zipSuccessMsg">Great news! MILO Insulation has openings this week in your area!</h2>
+          <p class="subtitle">Let's see if your home qualifies for a free inspection.</p>
+          <div class="btn-row" style="justify-content:center;">
+            <button class="btn-primary" onclick="nextStep()">
+              <span class="btn-text">Let's Go <span class="arrow">→</span></span>
+            </button>
+          </div>
+        </div>
+        <!-- Not-in-area state -->
+        <div id="zipNotFound" style="display:none;">
+          <div class="step-category" style="color:#FF8200;">📍 Not in Your Area Yet</div>
+          <h2>We're not currently servicing your area</h2>
+          <p class="subtitle">But we're growing fast! Give us a call and we'll do our best to help or connect you with a location near you.</p>
+          <div style="text-align:center;margin:28px 0;">
+            <a href="tel:+18005551234" id="notInAreaPhone" class="btn-primary" style="text-decoration:none;display:inline-block;">
+              <span class="btn-text">📞 Call <span id="notInAreaPhoneText">(800) 555-1234</span></span>
+            </a>
+          </div>
+          <div class="btn-row" style="justify-content:center;">
+            <button class="btn-back" onclick="prevStep()">← Try a Different ZIP</button>
           </div>
         </div>
       </div>
