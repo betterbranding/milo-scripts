@@ -630,7 +630,7 @@
   /* ── FORM LOGIC ── */
   function initFormLogic() {
     var TOTAL_STEPS = 13;
-    var THANK_YOU_STEP = 14;
+    var THANK_YOU_STEP = 13;
     var RENTER_STEP = '2b';
     var NOT_IN_AREA_STEP = '2x';
 
@@ -799,7 +799,7 @@
 
     function goNext() {
       if (currentStep === 3) { handleZipStep(); return; }
-      if (currentStep === 12 && !validateAddress()) return;
+      if (currentStep === 11 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
       updateProgress();
