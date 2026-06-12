@@ -618,7 +618,7 @@
       }
     }
 
-    fetch(BASE + 'milo-form-content.html?v=' + Date.now())
+    fetch(BASE + 'milo-form-content-altus-tv.html?v=' + Date.now())
       .then(function(r) { return r.text(); })
       .then(function(html) {
         wrapper.innerHTML = html;
@@ -629,8 +629,8 @@
 
   /* ── FORM LOGIC ── */
   function initFormLogic() {
-    var TOTAL_STEPS = 13;
-    var THANK_YOU_STEP = 13;
+    var TOTAL_STEPS = 11;
+    var THANK_YOU_STEP = 11;
     var RENTER_STEP = '2b';
     var NOT_IN_AREA_STEP = '2x';
 
@@ -798,8 +798,7 @@
     }
 
     function goNext() {
-      if (currentStep === 3) { handleZipStep(); return; }
-      if (currentStep === 11 && !validateAddress()) return;
+      if (currentStep === 9 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
       updateProgress();
@@ -810,13 +809,6 @@
         /* From renter dead-end, go back to step 2 */
         currentStep = 2;
         showStep(2);
-        updateProgress();
-        return;
-      }
-      if (currentStep === 4) {
-        /* Back from ZIP result goes to step 3 */
-        currentStep = 3;
-        showStep(3);
         updateProgress();
         return;
       }
@@ -975,6 +967,7 @@
           source: 'milo-form',
           formName: 'Free Home Efficiency Scan',
           locationId: targetLocId,
+          leadSource: 'TV Spot',
           ghlLocationId: locCfg ? locCfg.ghlLocationId : '',
           repName: locCfg ? locCfg.rep : '',
           repUserId: locCfg ? locCfg.repUserId : '',
@@ -1038,21 +1031,9 @@
 
   /* ── BOOT SEQUENCE ── */
   function bootForm() {
-    /* 1. Fetch master ZIP lookup */
-    if (!window._miloZipLookup) {
-      fetch(BASE + 'zip-lookup.json?v=' + Date.now())
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          window._miloZipLookup = data;
-          injectContent();
-        })
-        .catch(function() {
-          window._miloZipLookup = {};
-          injectContent();
-        });
-    } else {
-      injectContent();
-    }
+    /* Altus TV - no ZIP lookup needed, go straight to content */
+    window._miloZipLookup = {};
+    injectContent();
   }
 
   if (document.readyState === 'loading') {
