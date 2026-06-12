@@ -173,6 +173,14 @@
     }
   }
 
+  function applyLocationToNav() {
+    if (!locationConfig) return;
+    if (locationConfig.formUrl) {
+      var ctaLinks = document.querySelectorAll('.milo-nav-cta');
+      ctaLinks.forEach(function(a) { a.href = locationConfig.formUrl; });
+    }
+  }
+
   /* ── DETECT CURRENT PAGE ── */
   function getCurrentPage() {
     var path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
@@ -328,6 +336,7 @@
       fetchShared(function() {
         injectNavFooter();
         applyLocationToFooter();
+        applyLocationToNav();
         initScrollReveal();
       });
     });

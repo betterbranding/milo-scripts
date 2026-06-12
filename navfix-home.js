@@ -227,6 +227,19 @@
     try { reorderLurkingCards(); } catch(e) {}
     try { addThermalPuffs(); } catch(e) {}
     try { addMilo(); } catch(e) {}
+    try { fixFranchiseLink(); } catch(e) {}
+  }
+
+  /* Rewrite franchise link to new domain */
+  function fixFranchiseLink() {
+    document.querySelectorAll('a[href*="miloinsulationfranchise"], [onclick*="miloinsulationfranchise"]').forEach(function(el) {
+      if (el.dataset.franchiseFixed) return;
+      el.dataset.franchiseFixed = '1';
+      if (el.href) el.href = 'https://franchise.miloinsulation.com';
+      if (el.getAttribute('onclick')) {
+        el.setAttribute('onclick', "window.open('https://franchise.miloinsulation.com', '_blank')");
+      }
+    });
   }
 
   if (document.readyState === 'loading') {
