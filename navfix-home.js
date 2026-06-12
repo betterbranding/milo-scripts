@@ -218,6 +218,16 @@
     hero.appendChild(d);
   }
 
+  /* Rewrite body CTA links from # to /free-inspection */
+  function fixCTALinks() {
+    var formUrl = (window.MILO_LOCATION_CONFIG && window.MILO_LOCATION_CONFIG.formUrl) || '/free-inspection';
+    document.querySelectorAll('a[href="#"]').forEach(function(a) {
+      if (a.dataset.ctaFixed) return;
+      a.dataset.ctaFixed = '1';
+      a.href = formUrl;
+    });
+  }
+
   /* ── RUN ALL ── */
   function runHomeEnhancements() {
     try { killPatentedGlow(); } catch(e) {}
@@ -227,6 +237,7 @@
     try { reorderLurkingCards(); } catch(e) {}
     try { addThermalPuffs(); } catch(e) {}
     try { addMilo(); } catch(e) {}
+    try { fixCTALinks(); } catch(e) {}
     try { fixFranchiseLink(); } catch(e) {}
   }
 
