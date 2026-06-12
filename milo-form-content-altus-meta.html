@@ -1,0 +1,554 @@
+  <!-- ============ LANDING PAGE ============ -->
+  <div class="lp-wrapper" id="lpWrapper">
+
+    <!-- HERO SECTION -->
+    <section class="lp-hero" id="lpHero">
+      <video autoplay muted loop playsinline class="lp-hero-video" poster="">
+        <source src="https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/69cff2296eb38b2de03b461b.mp4" type="video/mp4">
+      </video>
+      <div class="lp-hero-overlay"></div>
+      <div class="lp-hero-content">
+        <img src="https://betterbranding.github.io/milo-scripts/logo.png" class="lp-logo" alt="MILO Insulation">
+        <h1>Is Your Home Bleeding Money Through the Attic?</h1>
+        <p class="lp-hero-sub">Most homes lose up to 40% of their energy through poor insulation. Find out if yours qualifies for a <strong>FREE</strong> Home Efficiency Scan.</p>
+        <button class="lp-cta" onclick="scrollToForm()">Check If You Qualify <span class="arrow">→</span></button>
+        <div class="lp-hero-value">🎁 $399 value — yours free. No obligation.</div>
+      </div>
+      <div class="lp-scroll-hint" onclick="document.getElementById('lpProblem').scrollIntoView({behavior:'smooth'})">
+        <span>↓</span>
+      </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="lp-section lp-problem" id="lpProblem">
+      <h2>What's Lurking Above You?</h2>
+      <p class="lp-subtitle">Your attic might be hiding more than you think</p>
+      <div class="lp-cards">
+        <div class="lp-card">
+          <div class="lp-card-icon">🦠</div>
+          <h3>Allergens &amp; Toxins</h3>
+          <p>Old insulation harbors mold, dust mites, and harmful particles your family breathes every day.</p>
+        </div>
+        <div class="lp-card">
+          <div class="lp-card-icon">🐀</div>
+          <h3>Pests &amp; Rodents</h3>
+          <p>Mice, rats, and insects nest in deteriorating insulation, leaving droppings and damage behind.</p>
+        </div>
+        <div class="lp-card">
+          <div class="lp-card-icon">💸</div>
+          <h3>Money Bleeding Out</h3>
+          <p>Poor insulation means your HVAC works overtime. That is hundreds of dollars wasted every year.</p>
+        </div>
+      </div>
+      <button class="lp-cta" onclick="scrollToForm()">Get Your Free Inspection <span class="arrow">→</span></button>
+    </section>
+
+    <!-- SOLUTION SECTION -->
+    <section class="lp-section lp-solution" id="lpSolution">
+      <div class="lp-solution-img-wrap">
+        <img src="https://assets.cdn.filesafe.space/R9iIFpdQnOdHzkj8D4fW/media/e78c98f9-00e8-4722-890b-5a64084ff1e9.png" class="lp-solution-img" alt="MILO Insulation">
+      </div>
+      <h2>Nature's Very Best Insulation</h2>
+      <p class="lp-subtitle">MILO's patented boric acid-infused cellulose insulation protects your home from the inside out.</p>
+      <div class="lp-benefits">
+        <div class="lp-benefit"><span class="lp-check">✓</span> Pest-resistant — built-in boric acid keeps critters out</div>
+        <div class="lp-benefit"><span class="lp-check">✓</span> Fire-retardant — Class 1 fire rating for peace of mind</div>
+        <div class="lp-benefit"><span class="lp-check">✓</span> Energy savings — up to 40% reduction in energy bills</div>
+        <div class="lp-benefit"><span class="lp-check">✓</span> Lifetime warranty — we stand behind every install</div>
+      </div>
+      <button class="lp-cta" onclick="scrollToForm()">See If You Qualify <span class="arrow">→</span></button>
+    </section>
+
+    <!-- TRUST / SOCIAL PROOF SECTION -->
+    <section class="lp-section lp-trust" id="lpTrust">
+      <h2>Trusted by Homeowners Across the Region</h2>
+      <div class="lp-stats">
+        <div class="lp-stat">
+          <div class="lp-stat-num">5,000+</div>
+          <div class="lp-stat-label">Homes Insulated</div>
+        </div>
+        <div class="lp-stat">
+          <div class="lp-stat-num">$399</div>
+          <div class="lp-stat-label">Value — Yours FREE</div>
+        </div>
+        <div class="lp-stat">
+          <div class="lp-stat-num">Lifetime</div>
+          <div class="lp-stat-label">Warranty Included</div>
+        </div>
+      </div>
+      <div class="lp-final-pitch">
+        <p>Your home deserves better. Our free Home Efficiency Scan takes less than an hour and could save you thousands.</p>
+      </div>
+      <button class="lp-cta lp-cta-final" onclick="scrollToForm()">Claim Your Free Scan <span class="arrow">→</span></button>
+      <div class="lp-no-obligation">No SSN required. Zero impact to credit. No obligation.</div>
+    </section>
+
+  </div>
+
+  <!-- ============ FORM SECTION ============ -->
+  <div class="form-wrapper" id="formSection">
+
+    <!-- Ambient background orbs -->
+    <div class="ambient-orbs">
+      <div class="orb"></div>
+      <div class="orb"></div>
+      <div class="orb"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="form-header" id="formHeader">
+      <a href="https://go.miloinsulation.com/home">
+        <img src="https://betterbranding.github.io/milo-scripts/logo.png" alt="MILO Insulation">
+      </a>
+      <div class="tagline">See if your home qualifies for a <span style="color:#FF8200;font-weight:700;">FREE</span> Home Efficiency Scan <span style="font-size:0.7em;opacity:0.85;">($399 value)</span></div>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+
+      <!-- Progress Bar -->
+      <div class="progress-section">
+        <div class="progress-label">
+          <span class="step-text">Step <span id="stepNum">1</span></span>
+          <span id="stepPercent">0%</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Glass Card -->
+      <div class="glass-card">
+
+        <!-- STEP 1: Gateway Question -->
+        <div class="step active" id="step1">
+          <div class="step-category">Quick Question</div>
+          <h2>Is your home uncomfortable in summer or winter?</h2>
+          <p class="subtitle">Hot spots, cold drafts, rooms that never feel right — sound familiar?</p>
+          <div class="option-cards" data-field="uncomfortable">
+            <div class="option-card" data-value="yes">
+              <div class="icon">🥵</div>
+              <div class="option-text">
+                <h4>Yes</h4>
+                <p>Some rooms are always too hot or too cold</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="no">
+              <div class="icon">😌</div>
+              <div class="option-text">
+                <h4>No</h4>
+                <p>My home stays comfortable year-round</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Homeowner Check -->
+        <div class="step" id="step2">
+          <div class="step-category">Eligibility</div>
+          <h2>Are you the homeowner?</h2>
+          <p class="subtitle">Our free inspections are available to homeowners only</p>
+          <div class="option-cards" data-field="isHomeowner">
+            <div class="option-card" data-value="yes">
+              <div class="icon">🏠</div>
+              <div class="option-text">
+                <h4>Yes, I Own My Home</h4>
+                <p>Ready to see what is hiding in my attic</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="no">
+              <div class="icon">🏢</div>
+              <div class="option-text">
+                <h4>No, I am Renting</h4>
+                <p>I would like to share this with my landlord</p>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+          </div>
+        </div>
+
+        <!-- STEP 2B: Renter Dead End -->
+        <div class="step" id="step2b">
+          <div class="renter-section">
+            <div class="renter-icon">📨</div>
+            <h2>No worries — share this with your landlord!</h2>
+            <p>Insulation upgrades can increase property value and reduce tenant complaints. Forward this page to your property owner so they can schedule a free inspection.</p>
+            <button class="btn-primary" onclick="copyShareLink()" id="btnShare">
+              <span class="btn-text">📋 Copy Link to Share</span>
+            </button>
+            <div class="share-confirm" id="shareConfirm">✓ Link copied!</div>
+            <div style="margin-top:24px;">
+              <button class="btn-back" onclick="backFromRenter()">← Start Over</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: ZIP Code -->
+        <div class="step" id="step3">
+          <div class="step-category">Your Area</div>
+          <h2>Enter your ZIP code so we can check availability in your area</h2>
+          <p class="subtitle">We will match you with a local insulation team near you</p>
+          <div class="form-grid">
+            <div class="form-group">
+              <input type="text" id="earlyZip" placeholder="Enter your ZIP code" inputmode="numeric" maxlength="5" style="text-align:center;font-size:1.3rem;letter-spacing:0.15em;">
+            </div>
+          </div>
+          <div class="btn-row" style="justify-content:center;">
+            <button class="btn-primary" id="btn1" onclick="nextStep()">
+              <span class="btn-text">Check Availability <span class="arrow">→</span></span>
+            </button>
+          </div>
+          <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
+        </div>
+
+        <!-- STEP 4: ZIP Result -->
+        <div class="step" id="step4">
+          <div id="zipSuccess" style="display:none;">
+            <div class="step-category" style="color:#4CAF50;">✅ Great News!</div>
+            <h2 id="zipSuccessMsg">Great news! MILO Insulation has openings this week in your area!</h2>
+            <p class="subtitle">Let us see if your home qualifies for a free inspection.</p>
+            <div class="btn-row" style="justify-content:center;">
+              <button class="btn-primary" onclick="nextStep()">
+                <span class="btn-text">Let's Go <span class="arrow">→</span></span>
+              </button>
+            </div>
+          </div>
+          <div id="zipNotFound" style="display:none;">
+            <div class="step-category" style="color:#FF8200;">📍 Not in Your Area Yet</div>
+            <h2>We are not currently servicing your area</h2>
+            <p class="subtitle">But we are growing fast! Give us a call and we will do our best to help or connect you with a location near you.</p>
+            <div style="text-align:center;margin:28px 0;">
+              <a href="tel:+18005551234" id="notInAreaPhone" class="btn-primary" style="text-decoration:none;display:inline-block;">
+                <span class="btn-text">📞 Call <span id="notInAreaPhoneText">(800) 555-1234</span></span>
+              </a>
+            </div>
+            <div class="btn-row" style="justify-content:center;">
+              <button class="btn-back" onclick="prevStep()">← Try a Different ZIP</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: Service Type -->
+        <div class="step" id="step5">
+          <div class="step-category">Service Type</div>
+          <h2>What type of insulation service are you looking for?</h2>
+          <p class="subtitle">Choose the option that best describes your needs</p>
+          <div class="option-cards" data-field="serviceType">
+            <div class="option-card" data-value="remove">
+              <div class="icon">🏚️</div>
+              <div class="option-text">
+                <h4>Remove the Old Insulation</h4>
+                <p>Full removal and fresh install</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="blowover">
+              <div class="icon">💨</div>
+              <div class="option-text">
+                <h4>Blow Over the Existing Insulation</h4>
+                <p>Add new insulation on top</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="both">
+              <div class="icon">⚖️</div>
+              <div class="option-text">
+                <h4>I Would Like to See Both Options</h4>
+                <p>Compare removal vs. blow-over</p>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: Top Concern (Multi-select) -->
+        <div class="step" id="step6">
+          <div class="step-category">Your Priority</div>
+          <h2>What is your biggest concern right now?</h2>
+          <p class="subtitle">Select all that apply</p>
+          <div class="option-cards multi-select" data-field="topConcern">
+            <div class="option-card" data-value="energy_bills">
+              <div class="check-badge">✓</div>
+              <div class="icon">💰</div>
+              <div class="option-text">
+                <h4>High Energy Bills</h4>
+                <p>My electric bill keeps going up</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="comfort">
+              <div class="check-badge">✓</div>
+              <div class="icon">🌡️</div>
+              <div class="option-text">
+                <h4>Comfort Issues</h4>
+                <p>Rooms that are too hot or too cold</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="air_quality">
+              <div class="check-badge">✓</div>
+              <div class="icon">🫁</div>
+              <div class="option-text">
+                <h4>Indoor Air Quality</h4>
+                <p>Allergies, dust, or breathing concerns</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="pests">
+              <div class="check-badge">✓</div>
+              <div class="icon">🐀</div>
+              <div class="option-text">
+                <h4>Pests &amp; Rodents</h4>
+                <p>Critters nesting in the attic</p>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+            <button class="btn-primary" id="btn6" onclick="nextStep()" disabled>
+              <span class="btn-text">Continue <span class="arrow">→</span></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 7: Attic Inspection -->
+        <div class="step" id="step7">
+          <div class="step-category">Attic History</div>
+          <h2>Have you had your home inspected in the past 5 years?</h2>
+          <p class="subtitle">Most homeowners have not — and that is exactly why we offer free inspections</p>
+          <div class="option-cards" data-field="atticInspected">
+            <div class="option-card" data-value="yes">
+              <div class="icon">✅</div>
+              <div class="option-text">
+                <h4>Yes</h4>
+                <p>I have had someone look at it recently</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="no">
+              <div class="icon">❌</div>
+              <div class="option-text">
+                <h4>No</h4>
+                <p>It has been a while — or never</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="unsure">
+              <div class="icon">🤷</div>
+              <div class="option-text">
+                <h4>Not Sure</h4>
+                <p>I honestly do not know</p>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+          </div>
+        </div>
+
+        <!-- STEP 8: Monthly Energy Bill -->
+        <div class="step" id="step8">
+          <div class="step-category">Energy Costs</div>
+          <h2>What is your average monthly energy bill?</h2>
+          <p class="subtitle">This helps us estimate your potential savings</p>
+          <div class="option-cards" data-field="energyBill">
+            <div class="option-card" data-value="under150">
+              <div class="icon">💵</div>
+              <div class="option-text">
+                <h4>Under $150</h4>
+                <p>Pretty reasonable</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="150to250">
+              <div class="icon">💵</div>
+              <div class="option-text">
+                <h4>$150 – $250</h4>
+                <p>Getting up there</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="250to400">
+              <div class="icon">💸</div>
+              <div class="option-text">
+                <h4>$250 – $400</h4>
+                <p>Higher than I would like</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="over400">
+              <div class="icon">🔥</div>
+              <div class="option-text">
+                <h4>Over $400</h4>
+                <p>Way too much</p>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+          </div>
+        </div>
+
+        <!-- STEP 9: Timeline -->
+        <div class="step" id="step9">
+          <div class="step-category">Timeline</div>
+          <h2>How soon are you looking to address this?</h2>
+          <p class="subtitle">No wrong answer — we are here when you are ready</p>
+          <div class="option-cards" data-field="timeline">
+            <div class="option-card" data-value="asap">
+              <div class="icon">⚡</div>
+              <div class="option-text">
+                <h4>As Soon as Possible</h4>
+                <p>I want to get this handled now</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="1to3months">
+              <div class="icon">📅</div>
+              <div class="option-text">
+                <h4>Within 1 – 3 Months</h4>
+                <p>Planning ahead</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="researching">
+              <div class="icon">🔍</div>
+              <div class="option-text">
+                <h4>Just Researching</h4>
+                <p>Exploring my options</p>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+          </div>
+        </div>
+
+        <!-- STEP 10: Home Size -->
+        <div class="step" id="step10">
+          <div class="step-category">Home Size</div>
+          <h2>Roughly what is the square footage of your home?</h2>
+          <p class="subtitle">Helps us give you the most accurate assessment</p>
+          <div class="option-cards" data-field="homeSize">
+            <div class="option-card" data-value="under1000">
+              <div class="icon">🏠</div>
+              <div class="option-text">
+                <h4>Less than 1,000 sq ft</h4>
+                <p>Smaller home or apartment</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="1000to2000">
+              <div class="icon">🏡</div>
+              <div class="option-text">
+                <h4>1,000 – 2,000 sq ft</h4>
+                <p>Average family home</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="2000to3000">
+              <div class="icon">🏘️</div>
+              <div class="option-text">
+                <h4>2,000 – 3,000 sq ft</h4>
+                <p>Larger family home</p>
+              </div>
+            </div>
+            <div class="option-card" data-value="over3000">
+              <div class="icon">🏰</div>
+              <div class="option-text">
+                <h4>Over 3,000 sq ft</h4>
+                <p>Large home or estate</p>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+          </div>
+        </div>
+
+        <!-- STEP 11: Address -->
+        <div class="step" id="step11">
+          <div class="step-category">Property Location</div>
+          <h2>What is your address?</h2>
+          <p class="subtitle">We use this to route the right local team to you</p>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Street Address</label>
+              <input type="text" id="street" placeholder="123 Main St" autocomplete="street-address">
+            </div>
+            <div class="form-grid two-col">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" id="city" placeholder="City" autocomplete="address-level2">
+              </div>
+              <div class="form-group">
+                <label>State</label>
+                <input type="text" id="state" placeholder="State" autocomplete="address-level1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>ZIP Code</label>
+              <input type="text" id="zip" placeholder="ZIP Code" autocomplete="postal-code" maxlength="10" inputmode="numeric">
+            </div>
+          </div>
+          <div class="zip-warning">⚠️ We may not have a local team in your area yet, but go ahead and submit — we will do our best to help or connect you with a nearby location.</div>
+          <div class="btn-row">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+            <button class="btn-primary" id="btn12" onclick="nextStep()">
+              <span class="btn-text">Continue <span class="arrow">→</span></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 12: Contact Info -->
+        <div class="step" id="step12">
+          <div class="step-category">Almost Done!</div>
+          <h2>Confirm your info to schedule your free home efficiency scan</h2>
+          <div class="value-badge">
+            <span class="gift">🎁</span> A <strong>$399 value</strong> — yours free. No SSN required. Zero impact to credit. Your info is never sold.
+          </div>
+          <div class="form-grid two-col">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" id="firstName" placeholder="First Name" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="email" placeholder="you@email.com" autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="phone" placeholder="(555) 123-4567" autocomplete="tel">
+            </div>
+          </div>
+          <div class="btn-row" style="margin-top: 4px;">
+            <button class="btn-back" onclick="prevStep()">Back</button>
+            <button class="btn-primary" id="btnSubmit" onclick="submitForm()">
+              <span class="btn-text">Schedule My Free Inspection <span class="arrow">→</span></span>
+              <div class="spinner"></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 13: Thank You -->
+        <div class="step" id="step13">
+          <div class="thank-you-section">
+            <div class="check-circle">✓</div>
+            <h2>You are all set!</h2>
+            <p>Thank you for choosing MILO. One of our insulation specialists will contact you shortly to confirm your details and get your free Home Efficiency Scan scheduled.</p>
+            <div class="thank-you-details">
+              <div class="thank-you-item">📞 <span>Expect a call or text within 24 hours</span></div>
+              <div class="thank-you-item">📋 <span>Your scan is valued at $399 — yours free</span></div>
+              <div class="thank-you-item">🏠 <span>No obligation. No pressure. Just honest answers.</span></div>
+            </div>
+            <p class="thank-you-note">Questions in the meantime? Call us at <strong id="thankYouPhone"></strong></p>
+          </div>
+        </div>
+
+      </div><!-- /glass-card -->
+
+    </div><!-- /form-container -->
+
+    <!-- Footer -->
+    <div class="form-footer">
+      <div class="lock-text">🔒 Secure &amp; confidential. Your information is never shared or sold.</div>
+      <div class="copyright">MILO Insulation™ — Nature's Very Best. © 2026</div>
+    </div>
+
+  </div><!-- /form-wrapper -->
