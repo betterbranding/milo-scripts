@@ -22,6 +22,7 @@
   var css = document.createElement('style');
   css.id = 'milo-form-styles';
   css.textContent = '\n' +
+    'html, body { margin: 0; padding: 0; background: #021a38 !important; min-height: 100vh; }\n' +
     '#milo-form-content {\n' +
     '  all: initial;\n' +
     '  display: block;\n' +
