@@ -4,7 +4,7 @@
  * - All CTAs scroll to form section
  * - 13-step form with ZIP routing, multi-select step 6, manual address
  * - Meta Pixel fires PageView + Lead on thank-you step
- * - leadSource: "Meta Ad", tags: ["meta lead"]
+ * - leadSource: "FACEBOOK", tags: ["meta lead"]
  */
 (function() {
   'use strict';
@@ -749,7 +749,7 @@
           homeSize: formData.homeSize,
           timePreference: formData.timePreference,
           source: 'milo-form',
-          leadSource: 'Meta Ad',
+          leadSource: 'FACEBOOK',
           tags: ['meta lead'],
           formName: 'Free Home Efficiency Scan',
           locationId: targetLocId,
