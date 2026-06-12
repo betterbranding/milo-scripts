@@ -766,8 +766,7 @@
           submitPromise = fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            mode: 'no-cors'
+            body: JSON.stringify(payload)
           }).catch(function(err) { console.warn('Webhook POST error:', err); });
         } else {
           console.warn('No webhook URL for location:', targetLocId);

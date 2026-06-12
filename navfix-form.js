@@ -990,9 +990,9 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
-            mode: 'no-cors'
+
           }).catch(function(err) {
-            console.warn('Webhook POST error (may be expected with no-cors):', err);
+            console.warn('Webhook POST error:', err);
           });
         } else {
           console.warn('No webhook URL configured for location:', targetLocId);
