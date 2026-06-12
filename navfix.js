@@ -8,11 +8,16 @@
   document.head.appendChild(s);
 
   function fixCTALinks() {
-    var formUrl = (window.MILO_LOCATION_CONFIG && window.MILO_LOCATION_CONFIG.formUrl) || '/free-inspection';
-    document.querySelectorAll('a[href="#"]').forEach(function(a) {
+    var formUrl = (window.MILO_LOCATION_CONFIG && window.MILO_LOCATION_CONFIG.formUrl)
+      || (window.MiloLocationConfig && window.MiloLocationConfig.formUrl)
+      || '/free-inspection';
+    document.querySelectorAll('a').forEach(function(a) {
       if (a.dataset.ctaFixed) return;
-      a.dataset.ctaFixed = '1';
-      a.href = formUrl;
+      var href = a.getAttribute('href');
+      if (href === '#' || (href && href.endsWith('#') && !href.includes('#section'))) {
+        a.dataset.ctaFixed = '1';
+        a.href = formUrl;
+      }
     });
   }
 

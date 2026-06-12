@@ -208,6 +208,14 @@
           entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         wrapper.querySelectorAll('.animate-on-scroll').forEach(function(el) { obs.observe(el); });
+        /* Fix any CTA links still pointing to # or #contact-section */
+        var formUrl = (window.MILO_LOCATION_CONFIG && window.MILO_LOCATION_CONFIG.formUrl) || '/free-inspection';
+        wrapper.querySelectorAll('a').forEach(function(a) {
+          var h = a.getAttribute('href') || '';
+          if (h === '#' || h.includes('#contact') || /\/#$/.test(h) || /^https?:\/\/[^\/]+\/?#/.test(h)) {
+            a.setAttribute('href', formUrl);
+          }
+        });
       })
       .catch(function(err) { console.error('MILEX content fetch failed:', err); });
   }
