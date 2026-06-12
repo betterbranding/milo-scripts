@@ -236,6 +236,11 @@
     '      gap: 12px;\n' +
     '      margin-bottom: 28px;\n' +
     '    }\n' +
+    '    #milo-form-content .option-cards.two-col-cards {\n' +
+    '      display: grid;\n' +
+    '      grid-template-columns: 1fr 1fr;\n' +
+    '      gap: 12px;\n' +
+    '    }\n' +
     '    #milo-form-content .option-card {\n' +
     '      display: flex;\n' +
     '      align-items: center;\n' +
@@ -579,6 +584,7 @@
     '      }\n' +
     '      #milo-form-content .step h2 { font-size: 22px; }\n' +
     '      #milo-form-content .form-grid.two-col { grid-template-columns: 1fr; }\n' +
+    '      #milo-form-content .option-cards.two-col-cards { grid-template-columns: 1fr 1fr; }\n' +
     '      #milo-form-content .btn-row { flex-direction: column-reverse; }\n' +
     '      #milo-form-content .btn-back { width: 100%; text-align: center; }\n' +
     '      #milo-form-content .btn-primary { width: 100%; }\n' +
@@ -630,8 +636,8 @@
 
   /* ── FORM LOGIC ── */
   function initFormLogic() {
-    var TOTAL_STEPS = 11;
-    var THANK_YOU_STEP = 11;
+    var TOTAL_STEPS = 12;
+    var THANK_YOU_STEP = 12;
     var RENTER_STEP = '2b';
     var NOT_IN_AREA_STEP = '2x';
 
@@ -647,6 +653,7 @@
       timeline: '',
       homeSize: '',
       timePreference: '',
+      hearAboutUs: '',
       street: '',
       city: '',
       state: '',
@@ -799,7 +806,7 @@
     }
 
     function goNext() {
-      if (currentStep === 9 && !validateAddress()) return;
+      if (currentStep === 10 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
       updateProgress();
@@ -968,7 +975,8 @@
           source: 'milo-form',
           formName: 'Free Home Efficiency Scan',
           locationId: targetLocId,
-          leadSource: 'TV Spot',
+          leadSource: 'Main Website',
+          hearAboutUs: formData.hearAboutUs,
           ghlLocationId: locCfg ? locCfg.ghlLocationId : '',
           repName: locCfg ? locCfg.rep : '',
           repUserId: locCfg ? locCfg.repUserId : '',
