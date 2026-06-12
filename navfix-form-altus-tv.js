@@ -584,7 +584,11 @@
     '      }\n' +
     '      #milo-form-content .step h2 { font-size: 22px; }\n' +
     '      #milo-form-content .form-grid.two-col { grid-template-columns: 1fr; }\n' +
-    '      #milo-form-content .option-cards.two-col-cards { grid-template-columns: 1fr 1fr; }\n' +
+    '      #milo-form-content .option-cards.two-col-cards { grid-template-columns: 1fr 1fr; gap: 10px; }\n' +
+    '      #milo-form-content .option-cards.two-col-cards .option-card { padding: 12px 10px; flex-direction: column; text-align: center; gap: 6px; }\n' +
+    '      #milo-form-content .option-cards.two-col-cards .option-card .icon { width: 36px; height: 36px; font-size: 20px; margin: 0 auto; }\n' +
+    '      #milo-form-content .option-cards.two-col-cards .option-card .option-text h4 { font-size: 14px; }\n' +
+    '      #milo-form-content .option-cards.two-col-cards .option-card .option-text p { display: none; }\n' +
     '      #milo-form-content .btn-row { flex-direction: column-reverse; }\n' +
     '      #milo-form-content .btn-back { width: 100%; text-align: center; }\n' +
     '      #milo-form-content .btn-primary { width: 100%; }\n' +
