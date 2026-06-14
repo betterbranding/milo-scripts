@@ -1,5 +1,5 @@
 /* navfix-form-meta.js — Shared Meta Landing Page + 13-step form with ZIP routing
- * - Landing page: Hero (video), Problem, Solution, Trust sections
+ * - Landing page: Hero (gradient), Problem, Solution, Trust sections
  * - Each section fits mobile viewport (1080x1920)
  * - All CTAs scroll to form section
  * - 13-step form with ZIP routing, multi-select step 6, manual address
@@ -9,11 +9,22 @@
 (function() {
   'use strict';
 
-  /* Load Google Fonts */
+  /* Preconnect to external origins for faster resource loading */
+  ['https://fonts.googleapis.com', 'https://fonts.gstatic.com', 'https://assets.cdn.filesafe.space'].forEach(function(origin) {
+    if (!document.querySelector('link[href="' + origin + '"]')) {
+      var link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = origin;
+      if (origin.indexOf('gstatic') > -1) link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    }
+  });
+
+  /* Load Google Fonts — trimmed weights + swap */
   if (!document.querySelector('link[href*="League+Spartan"]')) {
     var fonts = document.createElement('link');
     fonts.rel = 'stylesheet';
-    fonts.href = 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap';
+    fonts.href = 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800&family=Nunito+Sans:wght@400;600;700&display=swap';
     document.head.appendChild(fonts);
   }
 
@@ -402,6 +413,12 @@
     '  #milo-form-content .form-header { padding-top: 28px; }\n' +
     '  #milo-form-content .form-header .tagline { font-size: 17px; }\n' +
     '  #milo-form-content .option-card { padding: 14px 16px; }\n' +
+    '}\n' +
+    '/* ---- PERF: reduce GPU load on mobile ---- */\n' +
+    '@media (max-width: 768px) {\n' +
+    '  #milo-form-content .lp-card,\n' +
+    '  #milo-form-content .lp-stat { backdrop-filter: none; -webkit-backdrop-filter: none; }\n' +
+    '  #milo-form-content .ambient-orbs { display: none; }\n' +
     '}\n' +
     '';
   document.head.appendChild(css);
