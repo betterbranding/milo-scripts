@@ -43,15 +43,7 @@
     '  position: relative; min-height: 100vh; min-height: 100dvh;\n' +
     '  display: flex; flex-direction: column; align-items: center; justify-content: center;\n' +
     '  overflow: hidden; text-align: center;\n' +
-    '}\n' +
-    '#milo-form-content .lp-hero-video {\n' +
-    '  position: absolute; top: 0; left: 0; width: 100%; height: 100%;\n' +
-    '  object-fit: cover; z-index: 0;\n' +
-    '}\n' +
-    '#milo-form-content .lp-hero-overlay {\n' +
-    '  position: absolute; top: 0; left: 0; width: 100%; height: 100%;\n' +
-    '  background: linear-gradient(180deg, rgba(13,58,6,0.85) 0%, rgba(13,58,6,0.7) 40%, rgba(2,26,56,0.9) 100%);\n' +
-    '  z-index: 1;\n' +
+    '  background: linear-gradient(180deg, rgba(13,58,6,1) 0%, rgba(13,58,6,0.9) 40%, rgba(2,26,56,1) 100%);\n' +
     '}\n' +
     '#milo-form-content .lp-hero-content {\n' +
     '  position: relative; z-index: 2; padding: 60px 24px 40px;\n' +
