@@ -22,9 +22,12 @@
   }
 
   function hidePhoneLine() {
-    document.querySelectorAll('p, span, div').forEach(function(el) {
-      if (el.textContent.indexOf('Give Us a Call') !== -1 || el.textContent.indexOf('give us a call') !== -1) {
-        el.style.display = 'none';
+    document.querySelectorAll('p, span, a, h1, h2, h3, h4, h5, h6').forEach(function(el) {
+      if (el.children.length === 0 || el.tagName === 'P' || el.tagName === 'A') {
+        var txt = el.textContent || '';
+        if (txt.indexOf('Give Us a Call') !== -1 || txt.indexOf('give us a call') !== -1) {
+          el.style.display = 'none';
+        }
       }
     });
   }
