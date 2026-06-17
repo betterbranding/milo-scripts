@@ -253,7 +253,7 @@
       el.dataset.franchiseFixed = '1';
       if (el.href) el.href = 'https://franchise.miloinsulation.com';
       if (el.getAttribute('onclick')) {
-        el.setAttribute('onclick', "window.open('https://franchise.miloinsulation.com/get-started', '_blank')");
+        el.setAttribute('onclick', "window.open('https://franchise.miloinsulation.com', '_blank')");
       }
     });
   }
