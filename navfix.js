@@ -21,12 +21,21 @@
     });
   }
 
+  function hidePhoneLine() {
+    document.querySelectorAll('p, span, div').forEach(function(el) {
+      if (el.textContent.indexOf('Give Us a Call') !== -1 || el.textContent.indexOf('give us a call') !== -1) {
+        el.style.display = 'none';
+      }
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fixCTALinks);
+    document.addEventListener('DOMContentLoaded', function() { fixCTALinks(); hidePhoneLine(); });
   } else {
     fixCTALinks();
+    hidePhoneLine();
   }
-  setTimeout(fixCTALinks, 500);
-  setTimeout(fixCTALinks, 1500);
-  setTimeout(fixCTALinks, 3000);
+  setTimeout(function() { fixCTALinks(); hidePhoneLine(); }, 500);
+  setTimeout(function() { fixCTALinks(); hidePhoneLine(); }, 1500);
+  setTimeout(function() { fixCTALinks(); hidePhoneLine(); }, 3000);
 })();
