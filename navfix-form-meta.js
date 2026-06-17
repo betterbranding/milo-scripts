@@ -1,8 +1,8 @@
-/* navfix-form-meta.js — Shared Meta Landing Page + 13-step form with ZIP routing
+/* navfix-form-meta.js — Shared Meta Landing Page + 11-step form with ZIP routing
  * - Landing page: Hero (gradient), Problem, Solution, Trust sections
  * - Each section fits mobile viewport (1080x1920)
  * - All CTAs scroll to form section
- * - 13-step form with ZIP routing, multi-select step 6, manual address
+ * - 11-step form with ZIP routing, multi-select step 6, manual address
  * - Meta Pixel fires PageView + Lead on thank-you step
  * - leadSource: "Facebook", tags: ["meta lead"]
  */
@@ -490,14 +490,14 @@
 
   /* ── FORM LOGIC ── */
   function initFormLogic() {
-    var TOTAL_STEPS = 13;
+    var TOTAL_STEPS = 11;
     var THANK_YOU_STEP = 13;
     var RENTER_STEP = '2b';
 
     var currentStep = 1;
     var formData = {
-      uncomfortable: '', isHomeowner: '', serviceType: '',
-      topConcern: [], atticInspected: '', energyBill: '',
+      uncomfortable: '', isHomeowner: '',
+      topConcern: [], atticInspected: '',
       timeline: '', homeSize: '', timePreference: '',
       street: '', city: '', state: '', zip: '',
       firstName: '', lastName: '', email: '', phone: ''
@@ -630,7 +630,7 @@
 
     function goNext() {
       if (currentStep === 3) { handleZipStep(); return; }
-      if (currentStep === 11 && !validateAddress()) return;
+      if (currentStep === 9 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
       updateProgress();
@@ -750,10 +750,8 @@
           postalCode: formData.zip,
           uncomfortable: formData.uncomfortable,
           isHomeowner: formData.isHomeowner,
-          serviceType: formData.serviceType,
           topConcern: Array.isArray(formData.topConcern) ? formData.topConcern.join(', ') : formData.topConcern,
           atticInspected: formData.atticInspected,
-          energyBill: formData.energyBill,
           timeline: formData.timeline,
           homeSize: formData.homeSize,
           timePreference: formData.timePreference,

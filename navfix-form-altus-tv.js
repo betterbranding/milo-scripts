@@ -640,7 +640,7 @@
 
   /* ── FORM LOGIC ── */
   function initFormLogic() {
-    var TOTAL_STEPS = 12;
+    var TOTAL_STEPS = 10;
     var THANK_YOU_STEP = 12;
     var RENTER_STEP = '2b';
     var NOT_IN_AREA_STEP = '2x';
@@ -650,10 +650,8 @@
     var formData = {
       uncomfortable: '',
       isHomeowner: '',
-      serviceType: '',
       topConcern: [],
       atticInspected: '',
-      energyBill: '',
       timeline: '',
       homeSize: '',
       timePreference: '',
@@ -810,7 +808,7 @@
     }
 
     function goNext() {
-      if (currentStep === 10 && !validateAddress()) return;
+      if (currentStep === 8 && !validateAddress()) return;
       currentStep++;
       showStep(currentStep);
       updateProgress();
@@ -969,10 +967,8 @@
           postalCode: formData.zip,
           uncomfortable: formData.uncomfortable,
           isHomeowner: formData.isHomeowner,
-          serviceType: formData.serviceType,
           topConcern: Array.isArray(formData.topConcern) ? formData.topConcern.join(', ') : formData.topConcern,
           atticInspected: formData.atticInspected,
-          energyBill: formData.energyBill,
           timeline: formData.timeline,
           homeSize: formData.homeSize,
           timePreference: formData.timePreference,
