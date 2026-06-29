@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MILO Insulation — The Form Switch · Lead Engine Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#13110D;
+    --bg-2:#1A1712;
+    --card:#1F1B15;
+    --card-2:#251F18;
+    --line:#352D23;
+    --cream:#F4ECDD;
+    --muted:#A99A84;
+    --muted-2:#7E715E;
+    --orange:#FF7A2F;
+    --orange-soft:#FFA46A;
+    --green:#84C25A;
+    --green-deep:#4F8F3A;
+    --red:#E06A4A;
+    --navy:#5C8DB5;
+    --shadow:0 30px 60px -25px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Spline Sans',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(900px 500px at 85% -5%, rgba(255,122,47,.13), transparent 60%),
+      radial-gradient(800px 600px at -5% 30%, rgba(92,141,181,.10), transparent 55%),
+      radial-gradient(700px 500px at 50% 120%, rgba(132,194,90,.08), transparent 60%);
+  }
+  /* grain */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 26px}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 26px;max-width:1080px;margin:0 auto;position:relative;z-index:2;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.02em}
+  .brand .dot{width:13px;height:13px;border-radius:50%;background:var(--orange);box-shadow:0 0 18px var(--orange)}
+  .brand small{display:block;font-size:.62rem;letter-spacing:.32em;color:var(--muted-2);font-weight:600;text-transform:uppercase}
+  .brand b{font-size:.95rem}
+  .topbar .tag{font-family:'Spline Sans Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+  /* ---------- hero ---------- */
+  .hero{padding:72px 0 40px;position:relative}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;font-family:'Spline Sans Mono',monospace;
+    font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--orange-soft);
+    border:1px solid var(--line);border-radius:100px;padding:7px 15px;margin-bottom:26px;
+    background:rgba(255,122,47,.05);
+  }
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  h1{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(2.7rem,7vw,5.1rem);line-height:.98;letter-spacing:-.02em;
+    margin-bottom:24px;
+  }
+  h1 .em{
+    background:linear-gradient(100deg,var(--orange),var(--orange-soft) 55%,var(--green));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .lede{font-size:clamp(1.05rem,2vw,1.28rem);color:var(--muted);max-width:660px;margin-bottom:14px}
+  .lede b{color:var(--cream);font-weight:600}
+
+  /* ---------- hero stat row ---------- */
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:46px;
+  }
+  .hstat{
+    background:linear-gradient(165deg,var(--card-2),var(--card));
+    border:1px solid var(--line);border-radius:18px;padding:24px 22px;position:relative;overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .hstat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
+  .hstat.green::before{background:var(--green)}
+  .hstat.navy::before{background:var(--navy)}
+  .hstat .k{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);margin-bottom:12px}
+  .hstat .v{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,2.9rem);line-height:1;letter-spacing:-.02em}
+  .hstat .v small{font-size:.5em;font-weight:600;color:var(--muted)}
+  .hstat .sub{margin-top:9px;font-size:.82rem;color:var(--muted)}
+  .hstat .sub .up{color:var(--green);font-weight:600}
+  .hstat .sub .dn{color:var(--orange-soft);font-weight:600}
+
+  /* ---------- section ---------- */
+  section{padding:62px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-num{font-family:'Spline Sans Mono',monospace;font-size:.78rem;color:var(--orange);letter-spacing:.1em}
+  h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.7rem,4vw,2.6rem);letter-spacing:-.015em;line-height:1.04}
+  .sec-sub{color:var(--muted);max-width:640px;margin:14px 0 34px;font-size:1.02rem}
+
+  /* ---------- bars ---------- */
+  .bars{display:flex;flex-direction:column;gap:20px}
+  .barrow{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;
+  }
+  .barrow .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+  .barrow .loc{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.12rem}
+  .barrow .verdict{font-family:'Spline Sans Mono',monospace;font-size:.72rem;letter-spacing:.06em;padding:5px 11px;border-radius:100px;font-weight:600}
+  .verdict.win{color:var(--green);background:rgba(132,194,90,.12);border:1px solid rgba(132,194,90,.3)}
+  .verdict.lose{color:var(--orange-soft);background:rgba(255,122,47,.1);border:1px solid rgba(255,122,47,.28)}
+  .track{display:grid;grid-template-columns:64px 1fr 86px;align-items:center;gap:12px;margin-bottom:9px}
+  .track:last-child{margin-bottom:0}
+  .track .lab{font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.08em;color:var(--muted)}
+  .track .meter{height:26px;background:var(--bg-2);border-radius:8px;overflow:hidden;position:relative}
+  .track .fill{height:100%;width:0;border-radius:8px;transition:width 1.3s cubic-bezier(.22,1,.36,1)}
+  .fill.abo{background:linear-gradient(90deg,var(--green-deep),var(--green))}
+  .fill.cbo{background:linear-gradient(90deg,#6b4a3a,var(--orange))}
+  .track .val{font-family:'Spline Sans Mono',monospace;font-weight:600;font-size:.92rem;text-align:right}
+  .track .val.abo{color:var(--green)}
+  .track .val.cbo{color:var(--orange-soft)}
+
+  /* ---------- table ---------- */
+  .tablewrap{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);overflow-x:auto}
+  table{width:100%;border-collapse:collapse;min-width:620px}
+  th,td{padding:14px 16px;text-align:right;font-size:.9rem}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);background:var(--bg-2);font-weight:600}
+  tbody td{border-top:1px solid var(--line);font-family:'Spline Sans Mono',monospace;color:var(--cream)}
+  tbody td:first-child{font-family:'Spline Sans',sans-serif;font-weight:600}
+  .pill{display:inline-block;font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:100px;font-family:'Spline Sans',sans-serif}
+  .pill.abo{color:var(--green);background:rgba(132,194,90,.13)}
+  .pill.cbo{color:var(--orange-soft);background:rgba(255,122,47,.12)}
+  tfoot td{border-top:2px solid var(--orange);font-family:'Spline Sans Mono',monospace;font-weight:600;background:var(--bg-2)}
+  tfoot td:first-child{font-family:'Spline Sans',sans-serif}
+  .g{color:var(--green)} .o{color:var(--orange-soft)}
+
+  /* ---------- plan ---------- */
+  .plan{display:grid;gap:16px}
+  .step{
+    display:grid;grid-template-columns:54px 1fr;gap:20px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;
+    transition:transform .3s ease,border-color .3s ease;
+  }
+  .step:hover{transform:translateX(6px);border-color:var(--orange)}
+  .step .n{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.6rem;
+    width:54px;height:54px;display:grid;place-items:center;border-radius:13px;
+    background:linear-gradient(160deg,rgba(255,122,47,.18),rgba(255,122,47,.04));
+    border:1px solid rgba(255,122,47,.3);color:var(--orange-soft);
+  }
+  .step h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.18rem;margin-bottom:5px}
+  .step p{color:var(--muted);font-size:.95rem}
+  .step p .hl{color:var(--cream);font-weight:600}
+  .callout{
+    margin-top:24px;display:flex;gap:14px;align-items:flex-start;
+    background:rgba(92,141,181,.08);border:1px solid rgba(92,141,181,.3);border-radius:14px;padding:18px 20px;
+  }
+  .callout .ic{flex:0 0 auto;width:30px;height:30px;border-radius:8px;background:rgba(92,141,181,.2);display:grid;place-items:center;color:var(--navy);font-weight:800}
+  .callout p{font-size:.92rem;color:var(--muted)}
+  .callout b{color:var(--cream)}
+
+  /* ---------- captions / ad cards ---------- */
+  .ads{display:grid;gap:22px}
+  .ad{
+    background:linear-gradient(168deg,var(--card-2),var(--card));border:1px solid var(--line);
+    border-radius:20px;overflow:hidden;box-shadow:var(--shadow);
+  }
+  .ad-head{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:10px}
+  .ad-head .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.15rem;display:flex;align-items:center;gap:11px}
+  .ad-head .name .chip{width:34px;height:34px;border-radius:9px;background:var(--bg-2);display:grid;place-items:center;font-size:1rem}
+  .badge{font-family:'Spline Sans Mono',monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:100px;font-weight:600}
+  .badge.fix{color:var(--orange);background:rgba(255,122,47,.12);border:1px solid rgba(255,122,47,.3)}
+  .badge.clean{color:var(--green);background:rgba(132,194,90,.12);border:1px solid rgba(132,194,90,.3)}
+  .ad-meta{padding:11px 24px;display:flex;flex-wrap:wrap;gap:7px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.12)}
+  .ad-meta span{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 9px}
+  .ad-img{padding:22px 24px 2px;display:grid;place-items:center;background:rgba(0,0,0,.12)}
+  .ad-img img{width:100%;max-width:340px;border-radius:14px;border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.55);display:block}
+  .ad-img .cap{font-family:'Spline Sans Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);margin-top:9px}
+  .ad-body{padding:24px 26px;font-size:.98rem;color:#E7DECE;white-space:pre-line}
+  .ad-body .strike{color:var(--muted-2);text-decoration:line-through;text-decoration-color:var(--red);opacity:.75}
+  .ad-body .new{
+    display:block;background:rgba(132,194,90,.08);border-left:3px solid var(--green);
+    padding:11px 14px;border-radius:0 9px 9px 0;margin:10px 0;color:#EAF3DF;
+  }
+  .ad-body .new b{color:var(--green)}
+  .ad-foot{padding:13px 24px 18px;display:flex;flex-wrap:wrap;gap:9px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+  .note-line{display:flex;align-items:center;gap:8px}
+  .note-line .d{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
+  .d.o{background:var(--orange)} .d.g{background:var(--green)} .d.n{background:var(--navy)}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:40px 0 60px;margin-top:30px;text-align:center}
+  footer .brand{justify-content:center;margin-bottom:14px}
+  footer p{color:var(--muted-2);font-size:.8rem;font-family:'Spline Sans Mono',monospace;letter-spacing:.04em}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:720px){
+    .hero-stats{grid-template-columns:1fr}
+    .hero{padding:50px 0 24px}
+    .track{grid-template-columns:54px 1fr 70px}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <span><small>MILO Insulation</small><b>Lead Engine Strategy</b></span>
+    </div>
+    <div class="tag">Internal Memo · Jun 29, 2026</div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="eyebrow"><span class="pulse"></span> CBO → ABO · The Form Switch</div>
+      <h1>One form to<br>run the <span class="em">whole funnel.</span></h1>
+      <p class="lede">The new ABO Instant Form is converting clicks into leads at roughly <b>twice</b> the rate of our legacy forms — at <b>a third of the cost per lead</b>. The plan: move every CBO ad onto that same form, keep our proven creative, and let the better form do the heavy lifting.</p>
+
+      <div class="hero-stats">
+        <div class="hstat green">
+          <div class="k">ABO Cost / Lead — MTD</div>
+          <div class="v" data-count="39.37" data-prefix="$">$39.37</div>
+          <div class="sub"><span class="up">&#9660; 66%</span> vs CBO&rsquo;s $115.05</div>
+        </div>
+        <div class="hstat">
+          <div class="k">ABO Conversion Rate</div>
+          <div class="v" data-count="9.69" data-suffix="%">9.69%</div>
+          <div class="sub"><span class="up">2.1&times;</span> the CBO rate of 4.62%</div>
+        </div>
+        <div class="hstat navy">
+          <div class="k">Markets ABO Wins</div>
+          <div class="v">4<small> / 5</small></div>
+          <div class="sub">Altus, Tulia, Dallas &amp; ETX &mdash; on a fraction of spend</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 01 EVIDENCE -->
+    <section>
+      <div class="sec-head reveal"><span class="sec-num">01</span><h2>The evidence</h2></div>
+      <p class="sec-sub reveal">Cost per lead, head-to-head, month-to-date. Shorter green bar = cheaper leads. The new form (ABO) is winning almost everywhere &mdash; and it&rsquo;s not close.</p>
+
+      <div class="bars">
+        <div class="barrow reveal">
+          <div class="top"><span class="loc">Altus (OKA)</span><span class="verdict win">ABO &minus;87%</span></div>
+          <div class="track"><span class="lab">ABO</span><div class="meter"><div class="fill abo" data-w="11.3"></div></div><span class="val abo">$22.51</span></div>
+          <div class="track"><span class="lab">CBO</span><div class="meter"><div class="fill cbo" data-w="89.3"></div></div><span class="val cbo">$178.50</span></div>
+        </div>
+        <div class="barrow reveal">
+          <div class="top"><span class="loc">Tulia</span><span class="verdict win">ABO &minus;83%</span></div>
+          <div class="track"><span class="lab">ABO</span><div class="meter"><div class="fill abo" data-w="16.5"></div></div><span class="val abo">$33.04</span></div>
+          <div class="track"><span class="lab">CBO</span><div class="meter"><div class="fill cbo" data-w="97.6"></div></div><span class="val cbo">$195.22</span></div>
+        </div>
+        <div class="barrow reveal">
+          <div class="top"><span class="loc">DFW &mdash; Dallas</span><span class="verdict win">ABO &minus;61%</span></div>
+          <div class="track"><span class="lab">ABO</span><div class="meter"><div class="fill abo" data-w="14.8"></div></div><span class="val abo">$29.69</span></div>
+          <div class="track"><span class="lab">CBO</span><div class="meter"><div class="fill cbo" data-w="38.5"></div></div><span class="val cbo">$77.03</span></div>
+        </div>
+        <div class="barrow reveal">
+          <div class="top"><span class="loc">ETX &amp; Tyler</span><span class="verdict win">ABO &minus;41%</span></div>
+          <div class="track"><span class="lab">ABO</span><div class="meter"><div class="fill abo" data-w="39.7"></div></div><span class="val abo">$79.33</span></div>
+          <div class="track"><span class="lab">CBO</span><div class="meter"><div class="fill cbo" data-w="67.0"></div></div><span class="val cbo">$134.03</span></div>
+        </div>
+        <div class="barrow reveal">
+          <div class="top"><span class="loc">DFW &mdash; Ft. Worth</span><span class="verdict lose">CBO leads &mdash; in learning</span></div>
+          <div class="track"><span class="lab">ABO</span><div class="meter"><div class="fill cbo" data-w="48.0"></div></div><span class="val cbo">$95.89</span></div>
+          <div class="track"><span class="lab">CBO</span><div class="meter"><div class="fill abo" data-w="39.2"></div></div><span class="val abo">$78.43</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 NUMBERS -->
+    <section>
+      <div class="sec-head reveal"><span class="sec-num">02</span><h2>The full scorecard</h2></div>
+      <p class="sec-sub reveal">Every market, month-to-date. The new form (ABO) lifts conversion rate in 4 of 5 markets while slashing cost per lead. Target is sub-$50 CPL.</p>
+
+      <div class="tablewrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th>Market</th>
+              <th>ABO CPL</th>
+              <th>CBO CPL</th>
+              <th>ABO Conv</th>
+              <th>CBO Conv</th>
+              <th>Winner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Altus (OKA)</td><td class="g">$22.51</td><td>$178.50</td><td class="g">12.36%</td><td>2.33%</td><td><span class="pill abo">ABO</span></td></tr>
+            <tr><td>DFW &mdash; Dallas</td><td class="g">$29.69</td><td>$77.03</td><td class="g">14.12%</td><td>7.40%</td><td><span class="pill abo">ABO</span></td></tr>
+            <tr><td>Tulia</td><td class="g">$33.04</td><td>$195.22</td><td class="g">9.86%</td><td>2.75%</td><td><span class="pill abo">ABO</span></td></tr>
+            <tr><td>ETX &amp; Tyler</td><td class="g">$79.33</td><td>$134.03</td><td class="g">5.00%</td><td>4.59%</td><td><span class="pill abo">ABO</span></td></tr>
+            <tr><td>DFW &mdash; Ft. Worth</td><td class="o">$95.89</td><td>$78.43</td><td>5.19%</td><td class="o">7.10%</td><td><span class="pill cbo">CBO</span></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Blended</td><td class="g">$39.37</td><td>$115.05</td><td class="g">9.69%</td><td>4.62%</td><td><span class="pill abo">ABO</span></td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="sec-sub reveal" style="margin-top:20px;font-size:.86rem">Ft. Worth is the lone hold-out and is still inside its learning phase. It stays on watch &mdash; no scaling there until it settles.</p>
+    </section>
+
+    <!-- 03 PLAN -->
+    <section>
+      <div class="sec-head reveal"><span class="sec-num">03</span><h2>The rollout plan</h2></div>
+      <p class="sec-sub reveal">Keep the proven creative. Swap the engine underneath it. Here&rsquo;s how the switch happens &mdash; cleanly, in five moves.</p>
+
+      <div class="plan">
+        <div class="step reveal"><div class="n">1</div><div><h3>Replicate the winners</h3><p>Rebuild the live CBO ad sets in all five markets with the <span class="hl">same proven creative</span> &mdash; wired to the new ABO Instant Form. Built paused for a final review.</p></div></div>
+        <div class="step reveal"><div class="n">2</div><div><h3>Refresh the copy</h3><p>Captions corrected to use the real product name, <span class="hl">all natural MILEX Thermal MAX</span>. Spray-foam-sounding language removed; Altus now speaks to an <span class="hl">Oklahoma</span> summer.</p></div></div>
+        <div class="step reveal"><div class="n">3</div><div><h3>Go live &amp; retire the old</h3><p>Activate the new ad sets, then <span class="hl">pause the legacy CBO ad sets</span>. Same ads keep running &mdash; now feeding the better form.</p></div></div>
+        <div class="step reveal"><div class="n">4</div><div><h3>One shared form</h3><p>CBO and ABO both feed the <span class="hl">single new form</span> &mdash; less to reconnect, one source of truth. Lead source stays cleanly separated by campaign in reporting.</p></div></div>
+        <div class="step reveal"><div class="n">5</div><div><h3>Re-learn &amp; watch</h3><p>The new ad sets re-enter a fresh <span class="hl">learning phase</span>. We monitor CPL closely for the first three days and flag anything drifting above target.</p></div></div>
+      </div>
+
+      <div class="callout reveal">
+        <div class="ic">i</div>
+        <p><b>Reporting note:</b> when the legacy CBO campaigns pause, the ETX &amp; Altus daily lead reports get switched to pull from the new form &mdash; timed to the pause so not a single lead is missed or double-counted in the hand-off.</p>
+      </div>
+    </section>
+
+    <!-- 04 CAPTIONS -->
+    <section>
+      <div class="sec-head reveal"><span class="sec-num">04</span><h2>The ads &amp; new captions</h2></div>
+      <p class="sec-sub reveal">Three Summer Static creatives carry the campaign. Below is exactly what runs &mdash; with the corrected copy called out.</p>
+
+      <div class="ads">
+
+        <!-- Attic Oven -->
+        <div class="ad reveal">
+          <div class="ad-head">
+            <span class="name"><span class="chip">&#128293;</span> Attic Oven</span>
+            <span class="badge fix">Caption updated</span>
+          </div>
+          <div class="ad-meta"><span>DFW &mdash; Ft. Worth</span><span>DFW &mdash; Dallas</span><span>Tulia</span><span>ETX &amp; Tyler</span><span>Altus (OKA)</span></div>
+          <div class="ad-img"><img src="images/attic-oven.jpg" alt="Attic Oven ad creative — Your Attic Is An Oven"><div class="cap">Live creative &middot; Summer Static</div></div>
+          <div class="ad-body">Quick question &mdash; if your oven was on all day, every day, right above your bedroom ceiling&hellip; would you notice?
+
+Because that&rsquo;s exactly what&rsquo;s happening.
+
+Your attic reaches 150&deg; in a Texas summer. Exposed rafters. Old insulation that&rsquo;s compressed and failing. Heat pouring down into every room while your AC burns money trying to keep up.
+
+Most people never look up there. The ones who do are shocked.
+<span class="strike">MILO Insulation coats every surface &mdash; wood, metal, ductwork &mdash; creating a thermal seal that stops the heat where it starts.</span><span class="new"><b>MILEX Thermal MAX</b> creates an amazing thermal barrier that stops the heat where it starts.</span>No chemicals. No synthetics. Just an all natural barrier made from sorghum.
+
+One visit. We show you what&rsquo;s happening above your head. What you do next is up to you.</div>
+          <div class="ad-foot">
+            <span class="note-line"><span class="d o"></span>Replaced spray-foam-sounding &ldquo;coats every surface&hellip; thermal seal&rdquo; line</span>
+            <span class="note-line"><span class="d g"></span>Product now named: <b style="color:var(--green)">&nbsp;MILEX Thermal MAX</b></span>
+            <span class="note-line"><span class="d n"></span>Altus version reads <b style="color:var(--cream)">&nbsp;&ldquo;150&deg; in an Oklahoma summer&rdquo;</b></span>
+          </div>
+        </div>
+
+        <!-- Before After -->
+        <div class="ad reveal">
+          <div class="ad-head">
+            <span class="name"><span class="chip">&#127968;</span> Before &amp; After</span>
+            <span class="badge fix">Caption updated</span>
+          </div>
+          <div class="ad-meta"><span>DFW &mdash; Dallas</span><span>Tulia</span><span>ETX &amp; Tyler</span><span>Altus (OKA)</span></div>
+          <div class="ad-body">Two homes. Same neighborhood. Same summer heat.
+
+One family adjusts the thermostat five times a day. Closes blinds. Runs fans in every room. Still sweating. Still paying $300+ electric bills. Still uncomfortable.
+
+The other family? They don&rsquo;t think about it. Their home stays cool. Their AC cycles normally. Their bill dropped 40% last summer.
+
+The difference isn&rsquo;t the AC. It&rsquo;s not the windows. It&rsquo;s not the roof.
+
+It&rsquo;s what&rsquo;s between the roof and the ceiling.
+<span class="strike">All natural MILO Insulation seals your attic from the inside out.</span><span class="new">All natural <b>MILEX Thermal MAX</b> creates a thermal barrier in your attic from the inside out.</span>The before and after isn&rsquo;t subtle. You feel it the first day.
+
+Find out which side of this picture your home is on. Free scan. No obligation.</div>
+          <div class="ad-foot">
+            <span class="note-line"><span class="d o"></span>Removed &ldquo;seals your attic&rdquo; (reads like spray foam)</span>
+            <span class="note-line"><span class="d g"></span>Now &ldquo;<b style="color:var(--green)">MILEX Thermal MAX</b> creates a thermal barrier&rdquo;</span>
+          </div>
+        </div>
+
+        <!-- Thermal Scan -->
+        <div class="ad reveal">
+          <div class="ad-head">
+            <span class="name"><span class="chip">&#128247;</span> Thermal Scan</span>
+            <span class="badge clean">No change needed</span>
+          </div>
+          <div class="ad-meta"><span>DFW &mdash; Ft. Worth</span><span>DFW &mdash; Dallas</span></div>
+          <div class="ad-body">That screen isn&rsquo;t lying. The red zones are real. And they&rsquo;re inside your home right now.
+
+Every bright spot on a thermal camera is heat leaking through your ceiling, around your ducts, past your insulation. Your AC sees it. Your electric bill sees it. You just can&rsquo;t &mdash; until someone points a camera at it.
+
+This scan normally costs $399. For a limited time, we&rsquo;re doing them free.
+
+A trained MILO tech. A professional FLIR camera. 30 minutes. And you&rsquo;ll see exactly where your home is bleeding energy &mdash; and exactly how to stop it.
+
+No sales pitch. No pressure. Just the picture most homeowners wish they&rsquo;d seen years ago.
+
+Spots fill up fast once summer hits. Don&rsquo;t wait until August to find out what July cost you.</div>
+          <div class="ad-foot">
+            <span class="note-line"><span class="d g"></span>Clean &mdash; references &ldquo;a MILO tech&rdquo; (the company), no spray-foam language</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="brand">
+      <span class="dot"></span>
+      <span style="text-align:left"><small>MILO Insulation</small><b>all natural MILEX Thermal MAX</b></span>
+    </div>
+    <p>Lead Engine Strategy &middot; Generated for Better Branding &middot; Figures month-to-date, June 29 2026</p>
+  </footer>
+
+<script>
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // bar fills
+  const bio=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ const f=e.target; f.style.width=f.dataset.w+'%'; bio.unobserve(f);} });
+  },{threshold:.4});
+  document.querySelectorAll('.fill').forEach(el=>bio.observe(el));
+
+  // count-up on hero stats
+  function countUp(el){
+    const target=parseFloat(el.dataset.count);
+    const pre=el.dataset.prefix||'', suf=el.dataset.suffix||'';
+    const dec=(target%1!==0)?2:0; let start=null, dur=1300;
+    function step(t){
+      if(!start)start=t; const p=Math.min((t-start)/dur,1);
+      const eased=1-Math.pow(1-p,3);
+      el.textContent=pre+(target*eased).toFixed(dec)+suf;
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const cio=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting && e.target.dataset.count){ countUp(e.target); cio.unobserve(e.target);} });
+  },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+</script>
+</body>
+</html>
