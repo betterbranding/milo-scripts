@@ -33,7 +33,7 @@
   var css = document.createElement('style');
   css.id = 'milo-cards-styles';
   css.textContent = '\n' +
-    'html, body { margin: 0; padding: 0; background: #0a0a0a !important; min-height: 100vh; overflow-x: hidden; }\n' +
+    'html, body { margin: 0; padding: 0; background: #ffffff !important; min-height: 100vh; overflow-x: hidden; }\n' +
     '#milo-form-content { all: initial; display: block; width: 100%; font-family: \'Nunito Sans\', \'Gotham\', sans-serif; color: #fff; }\n' +
     '#milo-form-content, #milo-form-content *, #milo-form-content *::before, #milo-form-content *::after { margin: 0; padding: 0; box-sizing: border-box; }\n' +
     '#milo-form-content h1, #milo-form-content h2, #milo-form-content h3, #milo-form-content h4, #milo-form-content h5 { font-family: \'League Spartan\', sans-serif; }\n' +
@@ -72,7 +72,7 @@
     '#milo-form-content .c-hero {\n' +
     '  background: linear-gradient(165deg, #2a9e14 0%, #1a6b0a 35%, #0d3a06 80%, #071f04 100%);\n' +
     '  padding-top: 56px; padding-bottom: 56px;\n' +
-    '  box-shadow: 0 8px 40px rgba(40,141,17,0.2);\n' +
+    '  box-shadow: 0 8px 40px rgba(0,0,0,0.18);\n' +
     '}\n' +
     '#milo-form-content .c-hero::before {\n' +
     '  content: ""; position: absolute; top: -60%; right: -40%; width: 300px; height: 300px;\n' +
@@ -83,7 +83,7 @@
     '/* ---- PROBLEM CARD ---- */\n' +
     '#milo-form-content .c-problem {\n' +
     '  background: linear-gradient(165deg, #122c4f 0%, #0a1e3d 45%, #071830 100%);\n' +
-    '  box-shadow: 0 8px 40px rgba(7,67,135,0.15);\n' +
+    '  box-shadow: 0 8px 40px rgba(0,0,0,0.18);\n' +
     '}\n' +
     '#milo-form-content .c-problem::before {\n' +
     '  content: ""; position: absolute; bottom: -40%; left: -30%; width: 250px; height: 250px;\n' +
@@ -105,7 +105,7 @@
     '/* ---- TRUST CARD ---- */\n' +
     '#milo-form-content .c-trust {\n' +
     '  background: linear-gradient(165deg, #0f3060 0%, #0a1e3d 50%, #071830 100%);\n' +
-    '  box-shadow: 0 8px 40px rgba(7,67,135,0.15);\n' +
+    '  box-shadow: 0 8px 40px rgba(0,0,0,0.18);\n' +
     '}\n' +
     '#milo-form-content .c-trust::before {\n' +
     '  content: ""; position: absolute; top: -50%; left: -20%; width: 280px; height: 280px;\n' +
