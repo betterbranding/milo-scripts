@@ -457,6 +457,10 @@
           initScrollAnimations();
           initFormLogic();
         }, 100);
+        /* Fire MediaHub/Jelly pixel — page load */
+        if (typeof mhPixelEvent === 'function') {
+          mhPixelEvent('track', 'PageView');
+        }
       })
       .catch(function(err) { console.error('Content fetch failed:', err); });
   }
@@ -790,6 +794,11 @@
           var tyPhone = document.getElementById('thankYouPhone');
           if (tyPhone && locCfg && locCfg.phone) { tyPhone.textContent = locCfg.phone; }
           else if (tyPhone) { tyPhone.parentElement.style.display = 'none'; }
+
+          /* Fire MediaHub/Jelly pixel — lead event */
+          if (typeof mhPixelEvent === 'function') {
+            mhPixelEvent('track', 'Lead');
+          }
 
           /* Fire Meta Pixel */
           if (locCfg && locCfg.metaPixelId) {
