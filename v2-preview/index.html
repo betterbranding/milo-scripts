@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MILO Insulation | Nature's Very Best</title>
+  <meta name="description" content="MILEX Thermal MAX is all-natural blow-in insulation crafted exclusively from grain sorghum. Better for your home. Better for the planet.">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a class="nav-logo" href="#" onclick="navigateTo('home')">
+      <img src="assets/logo.png" alt="MILO Insulation" class="logo-img">
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a class="nav-link active" data-page="home" href="#" onclick="navigateTo('home')">Home</a>
+      <a class="nav-link" data-page="milex" href="#" onclick="navigateTo('milex')">MILEX™</a>
+      <a class="nav-link" data-page="homeowners" href="#" onclick="navigateTo('homeowners')">Homeowners</a>
+      <a class="nav-link" data-page="builders" href="#" onclick="navigateTo('builders')">Builders &amp; Contractors</a>
+      <a class="btn btn-orange btn-nav" href="#" onclick="navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({behavior:'smooth'}), 300)">Get Free Inspection</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     PAGE: HOME
+     ════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- PAGE HEADER -->
+  <header class="page-header header-tall header-green">
+    <div class="header-media">
+      <img src="assets/header-home.jpg" alt="Modern energy efficient home" class="header-img">
+      <div class="header-overlay"></div>
+    </div>
+    <div class="header-content container">
+      <p class="header-kicker hdr-stagger">Nature's Very Best™</p>
+      <h1 class="header-title hdr-stagger">Maximize comfort.<br>Save money.</h1>
+      <p class="header-sub hdr-stagger">Revolutionary natural insulation crafted exclusively from grain sorghum. Better for your home. Better for the planet.</p>
+      <div class="header-actions hdr-stagger">
+        <a class="btn btn-orange btn-lg" href="#" onclick="document.getElementById('contact-section')?.scrollIntoView({behavior:'smooth'})">Free Home Efficiency Scan</a>
+        <a class="header-link" href="#" onclick="navigateTo('milex')">Discover MILEX™ <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- STAT BAND -->
+  <section class="stat-band">
+    <div class="container stat-band-grid reveal-group">
+      <div class="stat reveal">
+        <span class="stat-number"><span class="count" data-count="3.25" data-decimals="2" data-prefix="R-">R-3.25</span></span>
+        <span class="stat-label">Per inch of MILEX™</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-number"><span class="count" data-count="30" data-suffix="+">30+</span></span>
+        <span class="stat-label">Years proven performance</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-number"><span class="count" data-count="5000" data-suffix="+" data-format="comma">5,000+</span></span>
+        <span class="stat-label">Homes insulated</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-number"><span class="count" data-count="100" data-suffix="%">100%</span></span>
+        <span class="stat-label">Natural, all sorghum</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT HIGHLIGHT -->
+  <section class="section">
+    <div class="container split">
+      <div class="split-media reveal">
+        <figure class="photo-frame">
+          <img src="assets/product-photo.jpg" alt="MILEX Thermal Puffs held in hand">
+          <figcaption class="photo-chip"><i class="fas fa-leaf"></i> 100% Natural</figcaption>
+        </figure>
+      </div>
+      <div class="split-copy reveal-group">
+        <p class="overline reveal">Better. Natural. Perfect.</p>
+        <h2 class="section-title reveal">MILEX™ Thermal MAX®</h2>
+        <ul class="check-list reveal">
+          <li><i class="fas fa-check"></i> R-value 3.25 per inch</li>
+          <li><i class="fas fa-check"></i> Naturally repels pests and rodents</li>
+          <li><i class="fas fa-check"></i> Doesn't shrink like traditional blow-in insulation</li>
+          <li><i class="fas fa-check"></i> Made from organically sourced grain sorghum</li>
+          <li><i class="fas fa-check"></i> Exclusive Transferable Lifetime Warranty</li>
+        </ul>
+        <a class="text-link reveal" href="#" onclick="navigateTo('milex')">Learn more about MILEX™ <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S LURKING -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">The hidden threat above you</p>
+        <h2 class="section-title reveal">What's lurking in your attic?</h2>
+        <p class="section-lede reveal">Most homeowners never look up. But what's hiding above your ceiling could be costing you thousands, degrading your air quality, and putting your family at risk.</p>
+      </div>
+      <div class="split split-wide">
+        <div class="split-media reveal">
+          <figure class="photo-frame">
+            <img src="assets/thermal-scan.jpg" alt="Infrared thermal scan revealing attic heat loss">
+            <figcaption class="photo-chip chip-navy"><i class="fas fa-camera"></i> Infrared thermal scan of an under-insulated attic</figcaption>
+          </figure>
+          <div class="notice-bar reveal">
+            <i class="fas fa-triangle-exclamation"></i>
+            <p><strong>1 in 4 homes</strong> have insulation so degraded it no longer meets minimum energy code. Is yours one of them?</p>
+          </div>
+        </div>
+        <div class="split-copy reveal-group">
+          <div class="threat reveal">
+            <div class="threat-icon"><i class="fas fa-bug"></i></div>
+            <div>
+              <h3>Pests and rodents</h3>
+              <p>Traditional insulation is a five-star hotel for rodents, cockroaches, and termites. They nest, breed, and leave behind droppings that contaminate the air your family breathes every single day.</p>
+            </div>
+          </div>
+          <div class="threat reveal">
+            <div class="threat-icon"><i class="fas fa-fire"></i></div>
+            <div>
+              <h3>Fire hazards</h3>
+              <p>Aging fiberglass and cellulose insulation degrades over time. Exposed wiring meets compressed, dusty material, a silent fire risk sitting inches above where your children sleep.</p>
+            </div>
+          </div>
+          <div class="threat reveal">
+            <div class="threat-icon"><i class="fas fa-lungs"></i></div>
+            <div>
+              <h3>Allergens and toxins</h3>
+              <p>Mold spores. Formaldehyde off-gassing. Fiberglass particles. These invisible airborne toxins cycle through your HVAC system into every room, triggering asthma, allergies, and long-term respiratory damage.</p>
+            </div>
+          </div>
+          <div class="threat reveal">
+            <div class="threat-icon"><i class="fas fa-dollar-sign"></i></div>
+            <div>
+              <h3>Money bleeding out</h3>
+              <p>That glow on the thermal scan is your money escaping through the roof. Inadequate insulation can add $600 to $1,200+ per year to energy bills while your HVAC works overtime. You pay the price.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center-cta reveal">
+        <a class="btn btn-orange btn-lg" href="#" onclick="document.getElementById('contact-section')?.scrollIntoView({behavior:'smooth'})">Schedule Your Free Home Efficiency Scan</a>
+        <p class="reassurance"><i class="fas fa-shield-halved"></i> No cost. No obligation. Just clarity on what's really going on up there.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WELCOME / ABOUT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">Welcome to the future</p>
+        <h2 class="section-title reveal">The future of blow-in insulation</h2>
+      </div>
+      <div class="prose-cols reveal-group">
+        <div class="reveal">
+          <p>MILO INSULATION proudly produces MILEX™, an innovative natural insulation crafted exclusively from grain Sorghum. Using state-of-the-art equipment and a patented production process, our flagship loose-fill insulation product, MILEX™ Thermal MAX®, is made using natural, sustainable, plant-based ingredients without the use of expensive, potentially harmful polymers.</p>
+          <p>Unlike traditional insulation materials, MILEX™ Thermal MAX® maintains its structure over time, significantly reducing or even eliminating the need for reinsulating. This durability can save homeowners hundreds or even thousands of dollars over the life of their home.</p>
+        </div>
+        <div class="reveal">
+          <p>Biodegradable to ISO standards, MILEX™ Thermal MAX® is produced from sustainably-sourced sorghum grain, a renewable agricultural crop grown by local farmers on our nation's high plains.</p>
+          <p>MILEX™ Thermal MAX® offers homeowners the perfect, affordable solution to traditional, potentially hazardous insulation products. We feel it's the very best blow-in insulation available anywhere in the world, and we're fully confident you will too.</p>
+          <p class="lead-green"><strong>Experience the MILEX™ difference!</strong></p>
+        </div>
+      </div>
+      <figure class="wide-figure reveal">
+        <img src="assets/before-after.png" alt="Attic before and after MILEX insulation">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ADVANTAGES -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">Why choose MILEX™</p>
+        <h2 class="section-title reveal">MILEX™ Thermal MAX® advantages</h2>
+      </div>
+      <div class="card-grid grid-3 reveal-group">
+        <article class="card reveal">
+          <span class="card-num">01</span>
+          <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3>No shrinkage</h3>
+          <p>MILEX™ doesn't shrink like traditional insulation, reducing the need to reinsulate. One and done.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">02</span>
+          <div class="card-icon"><i class="fas fa-seedling"></i></div>
+          <h3>Natural &amp; renewable</h3>
+          <p>Made from natural and renewable raw materials: organically sourced grain sorghum.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">03</span>
+          <div class="card-icon"><i class="fas fa-temperature-low"></i></div>
+          <h3>Amazing thermal blanket</h3>
+          <p>Creates an incredible thermal blanket, maximizing energy efficiency in your home.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">04</span>
+          <div class="card-icon"><i class="fas fa-flask"></i></div>
+          <h3>Chemical free</h3>
+          <p>Free of potentially hazardous polymers or chemicals. Safe for your family.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">05</span>
+          <div class="card-icon"><i class="fas fa-tractor"></i></div>
+          <h3>Locally grown</h3>
+          <p>Grown by local farmers on the nation's high plains, supporting American agriculture.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">06</span>
+          <div class="card-icon"><i class="fas fa-bug-slash"></i></div>
+          <h3>Pest repellent</h3>
+          <p>Naturally repels pests and rodents. No extra treatments needed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- THERMAL PUFF BAND -->
+  <section class="band band-green">
+    <div class="container band-inner reveal-group">
+      <div class="reveal">
+        <p class="overline overline-light">Patented technology</p>
+        <h2 class="section-title">Our "Thermal Puff" technology</h2>
+        <p class="band-text">MILEX™ provides maximum efficiency and comfort in your home through our exclusive patented process. Each Thermal Puff contains thousands of tiny air pockets that create an amazing thermal blanket.</p>
+        <a class="btn btn-orange" href="#" onclick="navigateTo('milex')">Learn More About MILEX™</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE CARDS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">Who we serve</p>
+        <h2 class="section-title reveal">How can we help you?</h2>
+      </div>
+      <div class="card-grid grid-3 reveal-group">
+        <article class="card card-click reveal" onclick="navigateTo('homeowners')">
+          <img src="assets/home-icon.png" alt="" class="card-img-icon">
+          <p class="overline">Improve efficiency</p>
+          <h3>Homeowners</h3>
+          <p>Utility bills through the roof? It may be a sign of inadequate attic insulation.</p>
+          <span class="text-link">Read more <i class="fas fa-arrow-right"></i></span>
+        </article>
+        <article class="card card-click reveal" onclick="navigateTo('builders')">
+          <img src="assets/contractor-icon.png" alt="" class="card-img-icon">
+          <p class="overline">Offer the best</p>
+          <h3>Builders &amp; Contractors</h3>
+          <p>Use MILEX™ to offer your homebuyers a new home with natural insulation.</p>
+          <span class="text-link">Read more <i class="fas fa-arrow-right"></i></span>
+        </article>
+        <article class="card card-click reveal" onclick="window.open('https://www.miloinsulationfranchise.com/', '_blank')">
+          <img src="assets/sorghum-icon.png" alt="" class="card-img-icon">
+          <p class="overline">Want to help?</p>
+          <h3>Franchise Opportunities</h3>
+          <p>Interested in supplying MILEX™ in your area? Explore franchise opportunities.</p>
+          <span class="text-link">Learn more <i class="fas fa-arrow-right"></i></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="band band-navy">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline overline-blue reveal">Testimonials</p>
+        <h2 class="section-title reveal">What our customers say</h2>
+      </div>
+      <div class="card-grid grid-3 reveal-group">
+        <article class="quote-card reveal">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>"I didn't even know what Milex was. After learning more about the product and doing some research, I was sold. They were in and out in about 3 hours and everything was done perfectly."</blockquote>
+          <div class="quote-author">
+            <img src="assets/avatar-man.jpg" alt="Chase H.">
+            <div><strong>Chase H.</strong><span>Sherman, TX</span></div>
+          </div>
+        </article>
+        <article class="quote-card reveal">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>"Excellent experience from Sales to installation. The explanation of Milex insulation peaked my interest because of the support for our local growers, its non-toxicity, and the lifetime guarantee."</blockquote>
+          <div class="quote-author">
+            <img src="assets/avatar-female.png" alt="Joyce H.">
+            <div><strong>Joyce H.</strong><span>Frisco, TX</span></div>
+          </div>
+        </article>
+        <article class="quote-card reveal">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>"I have noticed a significant improvement in my home. Very professional, on time, worked nonstop. I don't hesitate to recommend to anyone and everyone."</blockquote>
+          <div class="quote-author">
+            <img src="assets/avatar-female2.png" alt="Linda S.">
+            <div><strong>Linda S.</strong><span>Lubbock, TX</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARRANTY -->
+  <section class="section">
+    <div class="container split">
+      <div class="split-media split-media-center reveal">
+        <img src="assets/warranty.png" alt="MILEX Transferable Lifetime Warranty seal" class="warranty-img">
+      </div>
+      <div class="split-copy reveal-group">
+        <p class="overline reveal">Peace of mind</p>
+        <h2 class="section-title reveal">Exclusive Lifetime Warranty</h2>
+        <h3 class="section-subtitle reveal">A warranty that means business</h3>
+        <p class="reveal">Since 1992, we have been manufacturing MILEX™ products and have years of testing and use experience. Over the years, we have seen exactly how this product performs in just about any climate or conditions imaginable.</p>
+        <p class="reveal">That's why MILO Insulation is proud to offer our EXCLUSIVE Transferable Lifetime Warranty on all MILEX™ insulation. That's a lifetime warranty for you and a lifetime warranty for whoever buys your home should you ever move!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS BAR -->
+  <section class="awards-bar">
+    <div class="container awards-row reveal-group">
+      <img src="assets/badge-angi.png" alt="Angi Super Service Award 2023" class="award-badge reveal">
+      <img src="assets/badge-ssa.png" alt="Super Service Award 2022" class="award-badge reveal">
+      <img src="assets/badge-ha.png" alt="HomeAdvisor Elite Service" class="award-badge reveal">
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-gray" id="contact-section">
+    <div class="container split">
+      <div class="split-copy reveal-group">
+        <p class="overline reveal">Get started</p>
+        <h2 class="section-title reveal">Schedule a Home Efficiency Inspection today</h2>
+        <p class="reveal">To improve your family's comfort, call us direct at <strong>(800) 574-MILO</strong> or request your Home Energy Efficiency Inspection &amp; Report.</p>
+        <ul class="inline-checks reveal">
+          <li><i class="fas fa-check"></i> Quick &amp; easy</li>
+          <li><i class="fas fa-check"></i> Completely free</li>
+          <li><i class="fas fa-check"></i> $399 value</li>
+        </ul>
+      </div>
+      <div class="split-media reveal">
+        <div class="panel-card">
+          <h3>Ready to get started?</h3>
+          <p>Schedule your free home efficiency scan today and discover how much you could save.</p>
+          <a href="#" class="btn btn-orange btn-full" id="homeFormBtn">Request Free Inspection</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: MILEX
+     ════════════════════════════════════════════ -->
+<div class="page" id="page-milex">
+
+  <header class="page-header header-green">
+    <div class="header-media">
+      <img src="assets/header-milex.jpg" alt="Sorghum field at golden hour" class="header-img">
+      <div class="header-overlay"></div>
+    </div>
+    <div class="header-content container">
+      <p class="header-kicker hdr-stagger">Patented technology</p>
+      <h1 class="header-title hdr-stagger">MILEX™ Insulation</h1>
+      <p class="header-sub hdr-stagger">With patented "Thermal Puff" technology.</p>
+      <div class="header-actions hdr-stagger">
+        <a class="btn btn-orange btn-lg" href="#" onclick="navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({behavior:'smooth'}), 300)">Get Free Inspection</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- WHAT IS MILEX -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">The product</p>
+        <h2 class="section-title reveal">What is MILEX™ Thermal MAX®?</h2>
+      </div>
+      <div class="split split-wide">
+        <div class="split-copy reveal-group">
+          <h3 class="section-subtitle reveal">Nature's alternative</h3>
+          <p class="reveal">MILEX™ is made from a special type of domestically grown Sorghum Vulgare, commonly referred to as "Milo". The process begins when our farmer-growers deliver naturally grown, non-GMO sorghum seeds, or "berries", to our processing mill in Tulia, Texas.</p>
+          <p class="reveal">These tiny sorghum berries undergo our patented manufacturing process where they are passed through state-of-the-art equipment. Once refined, they are extruded at high-speed with more than 3000 psi, creating our amazing "Thermal Puffs": MILEX™.</p>
+        </div>
+        <div class="split-media reveal-group">
+          <ol class="step-list">
+            <li class="step reveal">
+              <span class="step-num">1</span>
+              <div>
+                <h4>Harvest</h4>
+                <p>Non-GMO sorghum berries delivered by local farmers.</p>
+              </div>
+            </li>
+            <li class="step reveal">
+              <span class="step-num">2</span>
+              <div>
+                <h4>Process</h4>
+                <p>Refined through patented state-of-the-art equipment.</p>
+              </div>
+            </li>
+            <li class="step reveal">
+              <span class="step-num">3</span>
+              <div>
+                <h4>Extrude</h4>
+                <p>High-speed extrusion at 3000+ psi creates Thermal Puffs.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SORGHUM -->
+  <section class="section section-gray">
+    <div class="container split">
+      <div class="split-copy reveal-group">
+        <p class="overline reveal">Sustainability</p>
+        <h2 class="section-title reveal">Why use sorghum?</h2>
+        <p class="reveal">Sorghum makes the perfect insulation because it expands naturally without the use of expensive, potentially hazardous polymers, making it safer, better and far less expensive than other expandable materials.</p>
+        <p class="reveal">It has a much lower carbon footprint than other grains. Sorghum is known as one of the most water efficient crops grown, largely due to its drought tolerance properties, and is recognized as one of the most efficient crops in converting solar energy and water use.</p>
+        <div class="pill-row reveal">
+          <span class="pill"><i class="fas fa-droplet"></i> Drought tolerant</span>
+          <span class="pill"><i class="fas fa-leaf"></i> Low carbon footprint</span>
+          <span class="pill"><i class="fas fa-sun"></i> Solar efficient</span>
+        </div>
+      </div>
+      <div class="split-media split-media-center reveal">
+        <img src="assets/sorghum-icon.png" alt="Sorghum grain illustration" class="sorghum-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- PEST FREE -->
+  <section class="section">
+    <div class="container narrow center reveal-group">
+      <p class="overline reveal">Safe &amp; clean</p>
+      <h2 class="section-title reveal">Naturally pest-free</h2>
+      <p class="section-lede reveal">During our exclusive processing technique, all fats and sugars are removed rendering MILEX™ a "non-food" source. Pests and insects are naturally not attracted to it. We also use naturally occurring Boric Powder during our curing process for flame retardancy and additional pest protection.</p>
+    </div>
+  </section>
+
+  <!-- THERMAL PUFF BAND -->
+  <section class="band band-green">
+    <div class="container band-inner reveal-group">
+      <div class="reveal">
+        <p class="overline overline-light">The secret</p>
+        <h2 class="section-title">Thermal Puff technology</h2>
+        <p class="band-text">MILEX™ "Thermal Puffs" are the secret to its outstanding thermal resistance properties. Each puff contains thousands of tiny air pockets that create an amazing thermal blanket. And since MILEX™ has minimal shrinkage, those tiny air pockets remain intact, allowing MILEX™ to retain maximum insulation value over a lifetime.</p>
+        <p class="band-highlight"><strong>It's all in the "PUFF"!</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MILEX CTA -->
+  <section class="section">
+    <div class="container narrow center reveal-group">
+      <h2 class="section-title reveal">Ready to experience the difference?</h2>
+      <p class="section-lede reveal">Contact us now to learn more about MILEX™ and how it can transform your home's comfort and energy efficiency.</p>
+      <div class="center-cta reveal">
+        <a class="btn btn-orange btn-lg" href="#" onclick="navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({behavior:'smooth'}), 300)">Get Free Inspection</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: HOMEOWNERS
+     ════════════════════════════════════════════ -->
+<div class="page" id="page-homeowners">
+
+  <header class="page-header header-navy">
+    <div class="header-media">
+      <img src="assets/header-homeowners.jpg" alt="Family relaxing in a comfortable home" class="header-img">
+      <div class="header-overlay"></div>
+    </div>
+    <div class="header-content container">
+      <p class="header-kicker hdr-stagger">Residential insulation</p>
+      <h1 class="header-title hdr-stagger">Your family's comfort<br>depends on it</h1>
+      <p class="header-sub hdr-stagger">Continuous comfort through the hottest summer days and the coldest winter nights.</p>
+      <div class="header-actions hdr-stagger">
+        <a class="btn btn-orange btn-lg" href="#" onclick="navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({behavior:'smooth'}), 300)">Request Free Inspection</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- COMFORT ZONE -->
+  <section class="section">
+    <div class="container split">
+      <div class="split-copy reveal-group">
+        <p class="overline reveal">Your home</p>
+        <h2 class="section-title reveal">Your family's comfort zone</h2>
+        <p class="reveal">Whether you have an existing home or you're building the home of your dreams, insulating with MILEX™ will provide your family with continuous comfort during the hottest summer days or through the coldest winter nights.</p>
+        <p class="reveal">Alleviate any health concerns when it comes to residential insulation. MILEX™ is made from naturally grown ingredients, free of any potentially harmful polymers, and is chosen by homeowners looking for hypoallergenic insulation.</p>
+      </div>
+      <div class="split-media split-media-center reveal">
+        <img src="assets/house.png" alt="Illustrated MILEX insulated home" class="house-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- REDUCE REINSULATE -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">Long-term savings</p>
+        <h2 class="section-title reveal">Reduce the need to re-insulate</h2>
+      </div>
+      <div class="split split-wide">
+        <div class="split-copy reveal-group">
+          <p class="reveal">Since the majority of heating and cooling loss is experienced through the attic, it's recommended you "re-fresh" your attic insulation periodically to maintain maximum efficiency levels.</p>
+          <p class="reveal">With MILEX™, there isn't a need to re-fresh or re-insulate the attic because of MILEX™'s exclusive "Thermal Puff" technology. MILEX™ has little to no shrinkage, meaning it will maintain its insulating thermal barrier for the life of your home.</p>
+          <p class="lead-green reveal"><strong>This could translate into years of energy savings and lower insulation maintenance costs.</strong></p>
+        </div>
+        <div class="split-media reveal-group">
+          <div class="compare">
+            <div class="compare-col compare-old reveal">
+              <h4><i class="fas fa-times"></i> Traditional insulation</h4>
+              <ul>
+                <li>Shrinks over time</li>
+                <li>Needs periodic replacement</li>
+                <li>Contains chemical polymers</li>
+                <li>Higher long-term costs</li>
+              </ul>
+            </div>
+            <div class="compare-col compare-new reveal">
+              <h4><i class="fas fa-check"></i> MILEX™ Thermal MAX®</h4>
+              <ul>
+                <li>No shrinkage, ever</li>
+                <li>One-time installation</li>
+                <li>100% natural ingredients</li>
+                <li>Lifetime warranty included</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIMATE ZONES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">R-value guide</p>
+        <h2 class="section-title reveal">How much insulation do I need?</h2>
+        <p class="section-lede reveal">Based on recommendations from the US Department of Energy and the International Energy Conservation Code.</p>
+      </div>
+      <div class="zone-grid reveal-group">
+        <div class="zone reveal"><span class="zone-label">Zone 1</span><span class="zone-value">R-30</span></div>
+        <div class="zone reveal"><span class="zone-label">Zone 2</span><span class="zone-value">R-38</span></div>
+        <div class="zone reveal"><span class="zone-label">Zone 3</span><span class="zone-value">R-38</span></div>
+        <div class="zone reveal"><span class="zone-label">Zone 4</span><span class="zone-value">R-49</span></div>
+        <div class="zone reveal"><span class="zone-label">Zone 5</span><span class="zone-value">R-49</span></div>
+        <div class="zone reveal"><span class="zone-label">Zone 6</span><span class="zone-value">R-60</span></div>
+        <div class="zone reveal"><span class="zone-label">Zone 7</span><span class="zone-value">R-60</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW HOMES -->
+  <section class="section section-gray">
+    <div class="container narrow center reveal-group">
+      <p class="overline reveal">Building new?</p>
+      <h2 class="section-title reveal">New homes or additions?</h2>
+      <p class="section-lede reveal">All too often, the type of insulation for your home is completely overlooked. Many people just assume the builder will make the best choice. However, insulation type is a key decision that will impact your family's overall comfort and monthly utility cost for as long as you own your home.</p>
+      <p class="lead-green reveal"><strong>Today, more and more home buyers are asking their builder about installing MILEX™. It's just plain better!</strong></p>
+    </div>
+  </section>
+
+  <!-- MILO DIFFERENCE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">Our promise</p>
+        <h2 class="section-title reveal">The MILO Insulation difference</h2>
+        <p class="section-lede reveal">Our number one priority is making sure your home insulation process is a smooth and enjoyable experience.</p>
+      </div>
+      <div class="card-grid grid-3 reveal-group">
+        <article class="card reveal">
+          <div class="card-icon"><i class="fas fa-handshake"></i></div>
+          <h3>Advise, not pressure</h3>
+          <p>Our goal is to help you find the best solution without any pressure. We'll provide all the information you need to make the best choice.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon"><i class="fas fa-clock"></i></div>
+          <h3>Convenience</h3>
+          <p>We make insulating your home clean and simple. You'll never even know we were there. Plus, convenient financing options available.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon"><i class="fas fa-heart"></i></div>
+          <h3>Comfort for your family</h3>
+          <p>With our knowledgeable staff and lifetime warranty, we're here for you throughout every stage, even after the job is complete.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOMEOWNER CTA -->
+  <section class="band band-navy">
+    <div class="container band-inner center reveal-group">
+      <div class="reveal">
+        <h2 class="section-title">Don't wait another minute</h2>
+        <p class="band-text">Give us a call: <strong>(800) 574-MILO</strong>. It's quick, it's easy and it's FREE!</p>
+        <a class="btn btn-orange btn-lg" href="#" onclick="navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({behavior:'smooth'}), 300)">Request Free Inspection</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: BUILDERS
+     ════════════════════════════════════════════ -->
+<div class="page" id="page-builders">
+
+  <header class="page-header header-navy">
+    <div class="header-media">
+      <img src="assets/header-builders.jpg" alt="New home construction framing" class="header-img">
+      <div class="header-overlay"></div>
+    </div>
+    <div class="header-content container">
+      <p class="header-kicker hdr-stagger">For professionals</p>
+      <h1 class="header-title hdr-stagger">Builders &amp; Contractors</h1>
+      <p class="header-sub hdr-stagger">Affordable green energy efficiency your homebuyers will ask for by name.</p>
+      <div class="header-actions hdr-stagger">
+        <a class="btn btn-orange btn-lg" href="#" onclick="document.getElementById('builderFormBtn')?.scrollIntoView({behavior:'smooth'})">Request Builder Info Packet</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- B2B CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">Partner with us</p>
+        <h2 class="section-title reveal">Home buyers are happier with MILEX™</h2>
+      </div>
+      <div class="split split-wide">
+        <div class="split-copy reveal-group">
+          <p class="reveal">As a builder or contractor, you're well aware today's home buyers are requesting more natural, eco-friendly products. At the same time, you want to provide quality service at a reasonable price.</p>
+          <p class="reveal">Insulating with MILEX™ provides homeowners with a natural, environmentally safe, energy-efficient insulation without potentially harmful polymers. MILEX™ gives customers an option that alleviates their health concerns.</p>
+          <p class="lead-green reveal"><strong>MILEX™ provides customers with insulation that has little likelihood of needing to be refreshed or re-insulated, potentially saving them thousands. Now, that's a competitive selling point!</strong></p>
+        </div>
+        <div class="split-media reveal">
+          <div class="panel-card panel-left">
+            <h3><i class="fas fa-helmet-safety"></i> Builder benefits</h3>
+            <ul class="check-list">
+              <li><i class="fas fa-check"></i> Competitive selling point for buyers</li>
+              <li><i class="fas fa-check"></i> Natural &amp; eco-friendly product</li>
+              <li><i class="fas fa-check"></i> No callbacks for re-insulation</li>
+              <li><i class="fas fa-check"></i> Transferable lifetime warranty</li>
+              <li><i class="fas fa-check"></i> Cost-effective installation</li>
+              <li><i class="fas fa-check"></i> Meets all Federal requirements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAB RESULTS -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <p class="overline reveal">Lab tested</p>
+        <h2 class="section-title reveal">MILEX™ lab test results</h2>
+        <p class="section-lede reveal">U.S. Accredited Product Testing. MILEX™ meets or exceeds all Federal insulation requirements for new and existing homes.</p>
+      </div>
+      <div class="card-grid grid-4 reveal-group">
+        <article class="card spec-card reveal">
+          <div class="card-icon"><i class="fas fa-temperature-half"></i></div>
+          <h4>R-Values</h4>
+          <p class="spec-value">R-11 to R-60</p>
+          <span class="spec-note">Full range coverage</span>
+        </article>
+        <article class="card spec-card reveal">
+          <div class="card-icon"><i class="fas fa-weight-scale"></i></div>
+          <h4>Net weight</h4>
+          <p class="spec-value">0.66 lbs</p>
+          <span class="spec-note">Per cubic foot</span>
+        </article>
+        <article class="card spec-card reveal">
+          <div class="card-icon"><i class="fas fa-cube"></i></div>
+          <h4>Volume</h4>
+          <p class="spec-value">1 Cu-Ft</p>
+          <span class="spec-note">Per unit</span>
+        </article>
+        <article class="card spec-card reveal">
+          <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+          <h4>Shrinkage</h4>
+          <p class="spec-value">Near zero</p>
+          <span class="spec-note">Lifetime retention</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDER CTA -->
+  <section class="section">
+    <div class="container split">
+      <div class="split-copy reveal-group">
+        <p class="overline reveal">Get started</p>
+        <h2 class="section-title reveal">Request a builder info packet</h2>
+        <p class="reveal">Find out how your company can offer All-Natural MILEX™ for your home buyers. Our team will provide you with everything you need to get started.</p>
+      </div>
+      <div class="split-media reveal">
+        <div class="panel-card">
+          <h3>Partner with MILO</h3>
+          <p>Request a builder info packet today and give your home buyers the insulation they're asking for.</p>
+          <a href="#" class="btn btn-orange btn-full" id="builderFormBtn">Request Builder Info Packet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST SIGNALS -->
+  <section class="awards-bar">
+    <div class="container awards-row reveal-group">
+      <img src="assets/badge-angi.png" alt="Angi Super Service Award" class="award-badge reveal">
+      <img src="assets/badge-ssa.png" alt="Super Service Award" class="award-badge reveal">
+      <img src="assets/badge-ha.png" alt="HomeAdvisor Elite Service" class="award-badge reveal">
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-cta">
+      <div class="footer-cta-copy">
+        <h2>Ready for nature's very best?</h2>
+        <p>Schedule your Free Home Efficiency Scan today. No cost, no obligation.</p>
+      </div>
+      <div class="footer-cta-action">
+        <img src="assets/mascot.png" alt="Milo mascot" class="footer-mascot">
+        <a class="btn btn-orange btn-lg" href="#" onclick="navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({behavior:'smooth'}), 300)">Get Free Inspection</a>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="assets/logo.png" alt="MILO Insulation" class="footer-logo">
+        <p class="footer-tagline">Nature's Very Best™</p>
+        <p class="footer-text">Revolutionary natural insulation crafted exclusively from grain sorghum.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick links</h4>
+        <a href="#" onclick="navigateTo('home')">Home</a>
+        <a href="#" onclick="navigateTo('milex')">MILEX™</a>
+        <a href="#" onclick="navigateTo('homeowners')">Homeowners</a>
+        <a href="#" onclick="navigateTo('builders')">Builders &amp; Contractors</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><i class="fas fa-phone"></i> (800) 574-MILO</p>
+        <p><i class="fas fa-map-marker-alt"></i> Tulia, Texas</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MILO Insulation. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
