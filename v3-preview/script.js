@@ -175,9 +175,12 @@
     const dots = scrolly.querySelectorAll('.scrolly-progress i');
     const steps = scrolly.querySelectorAll('.scrolly-step');
 
+    const trackEl = scrolly.querySelector('.scrolly-track');
+    const swipeMode = () => trackEl && trackEl.scrollWidth > trackEl.clientWidth + 40;
+
     function activate(index) {
       images.forEach((img) => img.classList.toggle('active', img.dataset.step === String(index)));
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      if (!swipeMode()) dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
       steps.forEach((s) => s.classList.toggle('active', s.dataset.step === String(index)));
     }
 
@@ -195,6 +198,21 @@
     );
 
     steps.forEach((step) => scrollyObserver.observe(step));
+
+    // Mobile: swipeable image track syncs the progress bars
+    const track = scrolly.querySelector('.scrolly-track');
+    if (track && !track.dataset.swipeBound) {
+      track.dataset.swipeBound = '1';
+      let raf;
+      track.addEventListener('scroll', () => {
+        if (track.scrollWidth <= track.clientWidth + 40) return;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const i = Math.round(track.scrollLeft / track.clientWidth);
+          dots.forEach((dot, j) => dot.classList.toggle('active', j === i));
+        });
+      }, { passive: true });
+    }
   }
 
   // ───── CTA PLACEHOLDERS ─────
