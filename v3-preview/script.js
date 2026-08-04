@@ -212,3 +212,51 @@
     showPage(currentPageFromHash(), false);
   });
 })();
+
+/* ============ BEFORE / AFTER CAROUSEL ============ */
+(function () {
+  const track = document.getElementById('baTrack');
+  if (!track) return;
+  const slides = Array.from(track.children);
+  const dotsWrap = document.getElementById('baDots');
+  const prev = document.getElementById('baPrev');
+  const next = document.getElementById('baNext');
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'ba-dot' + (i === 0 ? ' active' : '');
+    d.type = 'button';
+    d.setAttribute('aria-label', 'Go to project ' + (i + 1));
+    d.addEventListener('click', () => {
+      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    });
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function current() {
+    let best = 0, bestDist = Infinity;
+    slides.forEach((s, i) => {
+      const dist = Math.abs((s.offsetLeft - track.offsetLeft) - track.scrollLeft);
+      if (dist < bestDist) { bestDist = dist; best = i; }
+    });
+    return best;
+  }
+  function sync() {
+    const i = current();
+    dots.forEach((d, j) => d.classList.toggle('active', j === i));
+    prev.disabled = i === 0;
+    next.disabled = i === slides.length - 1;
+  }
+  let raf;
+  track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(sync); }, { passive: true });
+  prev.addEventListener('click', () => {
+    const i = Math.max(0, current() - 1);
+    track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+  });
+  next.addEventListener('click', () => {
+    const i = Math.min(slides.length - 1, current() + 1);
+    track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+  });
+  sync();
+})();
