@@ -214,13 +214,13 @@
 })();
 
 /* ============ BEFORE / AFTER CAROUSEL ============ */
-(function () {
-  const track = document.getElementById('baTrack');
+document.querySelectorAll('.ba-carousel').forEach(function (root) {
+  const track = root.querySelector('.ba-track');
   if (!track) return;
   const slides = Array.from(track.children);
-  const dotsWrap = document.getElementById('baDots');
-  const prev = document.getElementById('baPrev');
-  const next = document.getElementById('baNext');
+  const dotsWrap = root.querySelector('.ba-dots');
+  const prev = root.querySelector('.ba-arrow-prev');
+  const next = root.querySelector('.ba-arrow-next');
 
   slides.forEach((_, i) => {
     const d = document.createElement('button');
@@ -259,4 +259,4 @@
     track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
   });
   sync();
-})();
+});
