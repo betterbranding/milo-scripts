@@ -797,6 +797,7 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   font-size: 0.98rem;
   color: var(--muted);
 }
+.mini-steps .ms-desc { font-style: normal; }
 .mini-steps span {
   font-family: var(--display);
   font-weight: 800;
@@ -1415,9 +1416,9 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   .spec-grid { grid-template-columns: 1fr; }
   .spec:nth-child(even) { border-left: 0; padding-left: 0; }
 
-  .mini-steps li { grid-template-columns: 2.4rem 1fr; }
-  .mini-steps li strong { grid-column: 2; }
-  .mini-steps li { grid-template-rows: auto auto; }
+  .mini-steps li { grid-template-columns: 2.4rem 1fr; grid-template-rows: auto auto; }
+  .mini-steps li strong { grid-column: 2; grid-row: 1; }
+  .mini-steps li .ms-desc { grid-column: 2; grid-row: 2; }
 
   .serve-row { grid-template-columns: 3rem minmax(0, 1fr) auto; gap: 1rem; }
 
