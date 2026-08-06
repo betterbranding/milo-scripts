@@ -405,7 +405,7 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   position: relative;
   overflow: hidden;
   border-radius: 4px;
-  aspect-ratio: 4 / 4.6;
+  aspect-ratio: 1 / 1;
   max-height: 76vh;
   z-index: 1;
 }
@@ -1319,6 +1319,7 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-title { width: 100%; }
   .hero-media { aspect-ratio: 16 / 10; max-height: none; order: 2; }
+  .hero:not(.hero-sub-page) .hero-media { aspect-ratio: 1 / 1; }
 
   .prose-layout { grid-template-columns: 1fr; }
   .prose-rail { position: static; }
