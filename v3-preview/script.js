@@ -7,7 +7,7 @@
   'use strict';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const PAGES = ['home', 'milex', 'homeowners', 'builders'];
+  const PAGES = ['home', 'milex', 'science', 'homeowners', 'builders'];
 
   // ───── SPA NAVIGATION (hash-based) ─────
   function currentPageFromHash() {

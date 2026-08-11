@@ -1489,3 +1489,94 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   .ba-slide { flex-basis: 92%; gap: 8px; }
   .ba-arrow { width: 44px; height: 44px; font-size: 17px; }
 }
+
+
+/* ═══════ SCIENCE PAGE ═══════ */
+.season-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+.season-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  padding: 2.2rem 2rem;
+}
+.season-card h3 { font-family: 'League Spartan', sans-serif; font-size: 1.35rem; margin: 0.5rem 0 0.8rem; }
+.check-list { list-style: none; padding: 0; margin: 1.4rem 0; }
+.check-list li { position: relative; padding-left: 1.9rem; margin-bottom: 0.85rem; line-height: 1.55; }
+.check-list li::before { content: '\2713'; position: absolute; left: 0; top: 0; color: var(--green, #288D11); font-weight: 700; }
+
+/* Puff lab: rotating thermal puff with callouts */
+.puff-lab .puff-stage {
+  position: relative;
+  max-width: 940px;
+  margin: 4.5rem auto 1rem;
+  min-height: 560px;
+}
+.puff-glow {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 560px; height: 560px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(40, 141, 17, 0.22) 0%, rgba(40, 141, 17, 0.06) 45%, transparent 70%);
+  pointer-events: none;
+}
+.puff-orbit {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.puff-spin {
+  width: min(52%, 430px);
+  animation: puffZoom 9s ease-in-out infinite;
+  filter: drop-shadow(0 34px 60px rgba(0, 0, 0, 0.6));
+}
+.puff-spin img {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: puffSpin 28s linear infinite;
+}
+@keyframes puffSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes puffZoom { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.16) translateY(-10px); } }
+@media (prefers-reduced-motion: reduce) {
+  .puff-spin, .puff-spin img { animation: none !important; }
+}
+.puff-callout {
+  position: absolute;
+  width: 230px;
+  z-index: 2;
+}
+.puff-callout h4 {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin: 0 0 0.4rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--green, #288D11);
+  display: inline-block;
+}
+.puff-callout p { font-size: 0.88rem; line-height: 1.5; color: rgba(255, 255, 255, 0.72); margin: 0; }
+.pc-tl { left: 0; top: 6%; text-align: right; }
+.pc-tr { right: 0; top: 6%; text-align: left; }
+.pc-bl { left: 0; bottom: 6%; text-align: right; }
+.pc-br { right: 0; bottom: 6%; text-align: left; }
+.pc-tl h4, .pc-bl h4 { border-bottom-color: var(--orange, #FF8200); }
+
+@media (max-width: 860px) {
+  .puff-lab .puff-stage { min-height: 0; display: flex; flex-direction: column; }
+  .puff-glow { width: 340px; height: 340px; top: 190px; }
+  .puff-orbit { position: static; order: 0; margin-bottom: 2.2rem; }
+  .puff-spin { width: min(72%, 320px); }
+  .puff-callout { position: static; width: auto; text-align: left !important; margin-bottom: 1.4rem; padding-left: 1rem; border-left: 2px solid var(--green, #288D11); }
+  .puff-callout h4 { border-bottom: none; padding-bottom: 0; }
+  .pc-tl, .pc-bl { border-left-color: var(--orange, #FF8200); }
+  .season-grid { grid-template-columns: 1fr; }
+}
