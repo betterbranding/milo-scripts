@@ -1580,3 +1580,9 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   .pc-tl, .pc-bl { border-left-color: var(--orange, #FF8200); }
   .season-grid { grid-template-columns: 1fr; }
 }
+
+/* Green outline on MILEX hero image */
+.hero-media-outline {
+  border: 3px solid var(--green, #288D11);
+  border-radius: inherit;
+}
