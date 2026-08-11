@@ -378,8 +378,7 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   line-height: 0.94;
   letter-spacing: -0.025em;
   margin: 0 0 1.6rem;
-  /* type overlaps into the image column */
-  width: 130%;
+  width: 100%;
   max-width: none;
 }
 .hero-title em {
