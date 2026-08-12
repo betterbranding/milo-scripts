@@ -422,7 +422,7 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
 .hero-media-video video {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
