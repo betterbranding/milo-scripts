@@ -417,6 +417,32 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
 }
 @keyframes heroZoom { to { transform: scale(1); } }
 
+/* hero video (home) */
+.hero-media-video { background: #08230d; }
+.hero-media-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.hero-video-text {
+  position: absolute;
+  left: 50%;
+  bottom: 8.5%;
+  transform: translateX(-50%);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 2.6vw, 2.3rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 .hero-caption {
   position: absolute;
   left: 1.1rem;
