@@ -613,7 +613,7 @@
       } else {
         var fallbackLocId = window.MILO_LOCATION || 'altus';
         fetchLocationConfig(fallbackLocId).then(function(cfg) {
-          var phone = (cfg && cfg.phone) ? cfg.phone : '(580) 808-3780';
+          var phone = (cfg && cfg.phone) ? cfg.phone : '(580) 500-6456';
           var phoneLink = document.getElementById('notInAreaPhone');
           var phoneText = document.getElementById('notInAreaPhoneText');
           if (phoneText) phoneText.textContent = phone;
