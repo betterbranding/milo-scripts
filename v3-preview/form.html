@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Home Efficiency Scan | MILO INSULATION&trade;</title>
+  <meta name="description" content="See if your home qualifies for a free Home Efficiency Scan, a $399 value. MILO INSULATION&trade;, Nature's Very Best.">
+  <link rel="icon" type="image/png" href="https://betterbranding.github.io/milo-scripts/v3-preview/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       MILO INSULATION V3 "Editorial Material" lead form
+       Paper canvas · type-led · controlled motion
+       ═══════════════════════════════════════════════════════ */
+    :root {
+      --paper: #FAFAF7;
+      --ink: #141414;
+      --green: #288D11;
+      --green-deep: #1E6E0C;
+      --navy: #074387;
+      --orange: #FF8200;
+      --orange-hot: #E67400;
+      --sky: #50ACE1;
+      --line: rgba(20, 20, 20, 0.14);
+      --line-soft: rgba(20, 20, 20, 0.08);
+      --muted: rgba(20, 20, 20, 0.64);
+      --faint: rgba(20, 20, 20, 0.42);
+      --display: "League Spartan", "Helvetica Neue", sans-serif;
+      --body: "Nunito Sans", "Segoe UI", sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      font-size: 1.0313rem;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* grain atmosphere, straight from the V3 site */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: var(--grain);
+      background-size: 160px;
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 50;
+      mix-blend-mode: overlay;
+    }
+
+    ::selection { background: var(--green); color: #fff; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Top progress bar (fixed, hairline) ─────────────── */
+    .progress-rail {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: rgba(20, 20, 20, 0.07);
+      z-index: 100;
+      transition: opacity 0.4s var(--ease);
+    }
+    .progress-rail .fill {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green-deep), var(--green));
+      transition: width 0.6s var(--ease);
+    }
+    .progress-rail.done .fill { background: var(--green); }
+
+    /* ── Header ─────────────────────────────────────────── */
+    .form-header {
+      width: min(680px, calc(100% - 3rem));
+      margin-inline: auto;
+      text-align: center;
+      padding: clamp(2rem, 5vw, 3rem) 0 0;
+    }
+    .form-header .logo-link { display: inline-block; }
+    .form-header img.logo { height: 46px; width: auto; margin-inline: auto; }
+    .offer-line {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      max-width: 30em;
+      margin: 1.1rem auto 0;
+    }
+    .offer-line strong {
+      font-weight: 600;
+      color: var(--orange);
+      letter-spacing: 0.02em;
+    }
+    .offer-line .value {
+      font-size: 0.78em;
+      color: var(--muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .header-rule {
+      width: min(680px, calc(100% - 3rem));
+      margin: 1.4rem auto 0;
+      border: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    /* ── Wizard column ──────────────────────────────────── */
+    .wizard {
+      width: min(560px, calc(100% - 2.6rem));
+      margin-inline: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(1.2rem, 3.5vw, 2.2rem) 0 2rem;
+    }
+
+    /* step meta row: count + percent over a hairline */
+    .step-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--line-soft);
+      margin-bottom: clamp(1.6rem, 4vw, 2.4rem);
+    }
+    .step-meta .count {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+    .step-meta .count b { font-weight: 600; color: var(--green); }
+    .step-meta .pct {
+      font-family: var(--body);
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--faint);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Steps ──────────────────────────────────────────── */
+    .step { display: none; }
+    .step.active { display: block; animation: stepIn 0.45s var(--ease); }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45em;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      background: none;
+      border: 0;
+      padding: 0.4em 0;
+      cursor: pointer;
+      margin-bottom: 1.1rem;
+      transition: color 0.25s;
+    }
+    .back-link:hover { color: var(--ink); }
+    .back-link .chev {
+      display: inline-block;
+      transition: transform 0.3s var(--ease);
+    }
+    .back-link:hover .chev { transform: translateX(-3px); }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      font-family: var(--body);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--green-deep);
+      margin-bottom: 0.9rem;
+    }
+    /* the puff dot motif */
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(40, 141, 17, 0.14);
+      flex: 0 0 auto;
+      animation: puffPulse 3s ease-in-out infinite;
+    }
+    @keyframes puffPulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(40, 141, 17, 0.14); }
+      50% { box-shadow: 0 0 0 6px rgba(40, 141, 17, 0.07); }
+    }
+    .eyebrow-orange { color: var(--orange-hot); }
+    .eyebrow-orange::before { background: var(--orange); box-shadow: 0 0 0 3px rgba(255, 130, 0, 0.16); }
+
+    .q-title {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.7rem, 5.4vw, 2.3rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.7rem;
+      text-wrap: balance;
+    }
+    .q-sub {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 34em;
+      margin-bottom: 1.7rem;
+    }
+
+    /* ── Option cards ───────────────────────────────────── */
+    .option-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 1.6rem;
+    }
+    .option-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 2.6rem minmax(0, 1fr) 1.6rem;
+      align-items: center;
+      gap: 0.9rem;
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 1.05rem 1.1rem;
+      font-family: var(--body);
+      cursor: pointer;
+      transition: border-color 0.25s var(--ease), background 0.25s var(--ease),
+                  transform 0.25s var(--ease), box-shadow 0.3s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .option-card:hover {
+      border-color: rgba(20, 20, 20, 0.34);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px -22px rgba(20, 20, 20, 0.4);
+    }
+    .option-card:active { transform: translateY(0) scale(0.99); }
+    .option-card.selected {
+      border-color: var(--green);
+      background: rgba(40, 141, 17, 0.055);
+      box-shadow: 0 0 0 1px var(--green), 0 12px 26px -20px rgba(40, 141, 17, 0.5);
+    }
+    .oc-index {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.35rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1.1px rgba(20, 20, 20, 0.32);
+      text-align: center;
+      transition: color 0.25s, -webkit-text-stroke-color 0.25s;
+      padding-top: 0.1em;
+    }
+    .option-card.selected .oc-index {
+      color: var(--green);
+      -webkit-text-stroke-color: var(--green);
+    }
+    .oc-text { display: block; min-width: 0; }
+    .oc-text strong {
+      display: block;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.08rem;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .oc-text em {
+      display: block;
+      font-style: normal;
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+      line-height: 1.4;
+    }
+    .oc-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.3s var(--ease);
+      transform: scale(0.9);
+    }
+    .oc-check svg { width: 11px; height: 11px; opacity: 0; transition: opacity 0.2s; }
+    .option-card.selected .oc-check {
+      background: var(--green);
+      border-color: var(--green);
+      transform: scale(1);
+      animation: checkPop 0.3s var(--ease);
+    }
+    .option-card.selected .oc-check svg { opacity: 1; }
+    @keyframes checkPop {
+      0% { transform: scale(0.7); }
+      60% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+
+    /* ── Inputs ─────────────────────────────────────────── */
+    .form-grid { display: grid; gap: 0.95rem; margin-bottom: 1.6rem; }
+    .form-grid.two-col { grid-template-columns: 1fr 1fr; margin-bottom: 0.95rem; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group label {
+      font-family: var(--body);
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--faint);
+      margin-bottom: 0.45rem;
+    }
+    .form-group input {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0.95rem 1rem;
+      font-size: 1rem;
+      font-family: var(--body);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group input::placeholder { color: rgba(20, 20, 20, 0.32); }
+    .form-group input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(40, 141, 17, 0.12);
+    }
+    .form-group input.input-error {
+      border-color: #C62828;
+      box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+    }
+    .zip-input {
+      text-align: center;
+      font-family: var(--display) !important;
+      font-weight: 600;
+      font-size: 1.5rem !important;
+      letter-spacing: 0.22em;
+      padding: 1.05rem 1rem 0.9rem !important;
+    }
+
+    /* ── Buttons ────────────────────────────────────────── */
+    .btn-row {
+      display: flex;
+      gap: 0.7rem;
+      align-items: stretch;
+    }
+    .btn-primary {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7em;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--orange);
+      border: 0;
+      border-radius: 4px;
+      padding: 1.05em 1.7em 0.9em;
+      cursor: pointer;
+      transition: background 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease), opacity 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--orange-hot);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px -10px rgba(255, 130, 0, 0.55);
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .btn-primary .btn-arrow { display: inline-block; transition: transform 0.3s var(--ease); }
+    .btn-primary:hover:not(:disabled) .btn-arrow { transform: translateX(5px); }
+
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(20, 20, 20, 0.25);
+      border-top-color: var(--ink);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: none;
+    }
+    .btn-primary.loading .spinner { display: inline-block; }
+    .btn-primary.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .trust-line {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--faint);
+    }
+
+    /* ── Value badge (contact step) ─────────────────────── */
+    .value-badge {
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--orange);
+      border-radius: 4px;
+      background: #fff;
+      padding: 0.85rem 1.05rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+    .value-badge b { color: var(--ink); font-weight: 800; }
+
+    /* ── ZIP result / notice panels ─────────────────────── */
+    .zip-warning {
+      display: none;
+      border: 1px solid rgba(255, 130, 0, 0.4);
+      border-left: 3px solid var(--orange);
+      border-radius: 4px;
+      background: rgba(255, 130, 0, 0.06);
+      padding: 0.85rem 1.05rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: -0.5rem 0 1.4rem;
+    }
+    .zip-warning.show { display: block; }
+
+    .phone-cta {
+      text-align: center;
+      margin: 1.6rem 0;
+    }
+    .phone-cta a { flex: none; width: 100%; }
+
+    /* ── Terminal screens (renter / thank you) ──────────── */
+    .terminal { text-align: center; padding-top: 0.6rem; }
+    .terminal .mark {
+      width: 74px; height: 74px;
+      margin: 0 auto 1.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--green);
+      box-shadow: 0 14px 34px -14px rgba(40, 141, 17, 0.6);
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .terminal .mark.mark-navy { background: var(--navy); box-shadow: 0 14px 34px -14px rgba(7, 67, 135, 0.55); }
+    .terminal .mark svg { width: 32px; height: 32px; }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .terminal h2 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.6rem, 5vw, 2.1rem);
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      margin-bottom: 0.8rem;
+      text-wrap: balance;
+    }
+    .terminal > p {
+      font-size: 0.96rem;
+      color: var(--muted);
+      max-width: 30em;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+    .ty-list {
+      list-style: none;
+      text-align: left;
+      max-width: 26rem;
+      margin: 0 auto 1.6rem;
+      border-top: 1px solid var(--line);
+    }
+    .ty-list li {
+      position: relative;
+      padding: 0.75rem 0 0.65rem 1.9rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .ty-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.25em;
+      width: 1.05rem;
+      height: 2px;
+      background: var(--green);
+    }
+    .ty-phone { font-size: 0.92rem; color: var(--muted); }
+    .ty-phone a {
+      font-family: var(--display);
+      font-weight: 600;
+      color: var(--green-deep);
+      text-decoration: none;
+      border-bottom: 2px solid rgba(40, 141, 17, 0.35);
+      padding-bottom: 0.1em;
+      transition: border-color 0.25s;
+    }
+    .ty-phone a:hover { border-color: var(--green); }
+    .submit-note {
+      display: none;
+      margin: 0 auto 1.4rem;
+      max-width: 28rem;
+      border: 1px solid rgba(255, 130, 0, 0.4);
+      border-left: 3px solid var(--orange);
+      border-radius: 4px;
+      background: rgba(255, 130, 0, 0.06);
+      padding: 0.85rem 1.05rem;
+      font-size: 0.88rem;
+      text-align: left;
+      color: var(--muted);
+    }
+    .submit-note.show { display: block; }
+
+    .share-confirm {
+      display: none;
+      color: var(--green-deep);
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-top: 0.8rem;
+      animation: popIn 0.3s var(--ease);
+    }
+    .terminal .restart {
+      margin-top: 1.6rem;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    .form-footer {
+      width: min(680px, calc(100% - 3rem));
+      margin-inline: auto;
+      text-align: center;
+      padding: 1.4rem 0 1.8rem;
+      border-top: 1px solid var(--line-soft);
+    }
+    .form-footer .lock-text {
+      font-size: 0.76rem;
+      color: var(--faint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45em;
+    }
+    .form-footer .lock-text svg { width: 11px; height: 11px; opacity: 0.55; }
+    .form-footer .copyright {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(20, 20, 20, 0.3);
+      margin-top: 0.5rem;
+    }
+
+    /* ── Entrance stagger ───────────────────────────────── */
+    .rise {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: rise 0.8s var(--ease) forwards;
+    }
+    .rise-1 { animation-delay: 0.05s; }
+    .rise-2 { animation-delay: 0.16s; }
+    .rise-3 { animation-delay: 0.28s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Mobile ─────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      body { font-size: 1rem; }
+      .form-header img.logo { height: 38px; }
+      .option-card { padding: 0.9rem 0.9rem; grid-template-columns: 2.1rem minmax(0, 1fr) 1.5rem; gap: 0.7rem; }
+      .oc-index { font-size: 1.15rem; }
+      .form-grid.two-col { grid-template-columns: 1fr; }
+      .btn-row.sticky-cta {
+        position: sticky;
+        bottom: 0;
+        z-index: 40;
+        padding: 0.7rem 0 max(0.9rem, env(safe-area-inset-bottom));
+        background: linear-gradient(to top, var(--paper) 62%, rgba(250, 250, 247, 0));
+        margin-bottom: -0.5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .rise { animation: none; opacity: 1; transform: none; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed hairline progress -->
+  <div class="progress-rail" id="progressRail" aria-hidden="true">
+    <span class="fill" id="progressFill"></span>
+  </div>
+
+  <!-- Header -->
+  <header class="form-header rise rise-1">
+    <a class="logo-link" href="https://go.miloinsulation.com/home" aria-label="MILO INSULATION home">
+      <img class="logo" src="https://betterbranding.github.io/milo-scripts/v3-preview/assets/logo.png" alt="MILO INSULATION">
+    </a>
+    <p class="offer-line">See if your home qualifies for a <strong>FREE</strong> Home Efficiency Scan <span class="value">($399 value)</span></p>
+  </header>
+  <hr class="header-rule rise rise-2">
+
+  <!-- Wizard -->
+  <main class="wizard rise rise-3">
+
+    <div class="step-meta" id="stepMeta">
+      <span class="count"><b id="stepNum">01</b>&nbsp;/&nbsp;<span id="stepTotal">10</span></span>
+      <span class="pct" id="stepPercent">0%</span>
+    </div>
+
+    <!-- STEP 1: Gateway -->
+    <section class="step active" id="step1">
+      <div class="eyebrow">Quick Question</div>
+      <h1 class="q-title">Is your home uncomfortable in summer or winter?</h1>
+      <p class="q-sub">Hot spots, cold drafts, rooms that never feel right. Sound familiar?</p>
+      <div class="option-cards" data-field="uncomfortable">
+        <button type="button" class="option-card" data-value="yes">
+          <span class="oc-index">A</span>
+          <span class="oc-text"><strong>Yes</strong><em>Some rooms are always too hot or too cold</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="no">
+          <span class="oc-index">B</span>
+          <span class="oc-text"><strong>No</strong><em>My home stays comfortable year-round</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Homeowner check -->
+    <section class="step" id="step2">
+      <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+      <div class="eyebrow">Eligibility</div>
+      <h1 class="q-title">Are you the homeowner?</h1>
+      <p class="q-sub">Our free inspections are available to homeowners only</p>
+      <div class="option-cards" data-field="isHomeowner">
+        <button type="button" class="option-card" data-value="yes">
+          <span class="oc-index">A</span>
+          <span class="oc-text"><strong>Yes, I Own My Home</strong><em>Ready to see what's hiding in my attic</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="no">
+          <span class="oc-index">B</span>
+          <span class="oc-text"><strong>No, I'm Renting</strong><em>I'd like to share this with my landlord</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 2B: Renter dead end -->
+    <section class="step" id="step2b">
+      <div class="terminal">
+        <div class="mark mark-navy">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 7.5 12 13l9-5.5M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>No worries, share this with your landlord!</h2>
+        <p>Insulation upgrades can increase property value and reduce tenant complaints. Forward this page to your property owner so they can schedule a free inspection.</p>
+        <div class="btn-row" style="max-width: 22rem; margin-inline: auto;">
+          <button type="button" class="btn-primary" id="btnShare" onclick="copyShareLink()">
+            <span class="btn-text">Copy Link to Share</span>
+          </button>
+        </div>
+        <div class="share-confirm" id="shareConfirm">Link copied!</div>
+        <div class="restart">
+          <button type="button" class="back-link" onclick="backFromRenter()" style="margin-bottom: 0;"><span class="chev">&larr;</span> Start Over</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: ZIP -->
+    <section class="step" id="step3">
+      <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+      <div class="eyebrow">Your Area</div>
+      <h1 class="q-title">Enter your ZIP code so we can check availability in your area</h1>
+      <p class="q-sub">We'll match you with a local insulation team near you</p>
+      <div class="form-grid">
+        <div class="form-group">
+          <input type="text" id="earlyZip" class="zip-input" placeholder="ZIP code" inputmode="numeric" maxlength="5" autocomplete="postal-code">
+        </div>
+      </div>
+      <div class="btn-row sticky-cta">
+        <button type="button" class="btn-primary" id="btn1" onclick="nextStep()">
+          <span class="btn-text">Check Availability <span class="btn-arrow">&rarr;</span></span>
+        </button>
+      </div>
+      <div class="trust-line">No obligation. Free inspection with zero pressure.</div>
+    </section>
+
+    <!-- STEP 4: ZIP result -->
+    <section class="step" id="step4">
+      <!-- Success -->
+      <div id="zipSuccess" style="display:none;">
+        <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+        <div class="eyebrow">Great News</div>
+        <h1 class="q-title" id="zipSuccessMsg">Great news! MILO INSULATION&trade; has openings this week in your area!</h1>
+        <p class="q-sub">Let's see if your home qualifies for a free inspection.</p>
+        <div class="btn-row sticky-cta">
+          <button type="button" class="btn-primary" onclick="nextStep()">
+            <span class="btn-text">Let's Go <span class="btn-arrow">&rarr;</span></span>
+          </button>
+        </div>
+      </div>
+      <!-- Not in area -->
+      <div id="zipNotFound" style="display:none;">
+        <div class="eyebrow eyebrow-orange">Not in Your Area Yet</div>
+        <h1 class="q-title">We're not currently servicing your area</h1>
+        <p class="q-sub">But we're growing fast! Give us a call and we'll do our best to help or connect you with a location near you.</p>
+        <div class="phone-cta btn-row">
+          <a href="tel:+18064019750" id="notInAreaPhone" class="btn-primary">
+            <span class="btn-text">Call <span id="notInAreaPhoneText">(806) 401-9750</span></span>
+          </a>
+        </div>
+        <div style="text-align:center;">
+          <button type="button" class="back-link" onclick="prevStep()" style="margin-bottom: 0;"><span class="chev">&larr;</span> Try a Different ZIP</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 5: Top concern (multi-select) -->
+    <section class="step" id="step5">
+      <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+      <div class="eyebrow">Your Priority</div>
+      <h1 class="q-title">What's your biggest concern right now?</h1>
+      <p class="q-sub">Select all that apply</p>
+      <div class="option-cards multi-select" data-field="topConcern">
+        <button type="button" class="option-card" data-value="energy_bills">
+          <span class="oc-index">A</span>
+          <span class="oc-text"><strong>High Energy Bills</strong><em>My electric bill keeps going up</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="comfort">
+          <span class="oc-index">B</span>
+          <span class="oc-text"><strong>Comfort Issues</strong><em>Rooms that are too hot or too cold</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="air_quality">
+          <span class="oc-index">C</span>
+          <span class="oc-text"><strong>Indoor Air Quality</strong><em>Dust or stale air in the house</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="pests">
+          <span class="oc-index">D</span>
+          <span class="oc-text"><strong>Pests &amp; Rodents</strong><em>Critters nesting in the attic</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+      <div class="btn-row sticky-cta">
+        <button type="button" class="btn-primary" id="btn6" onclick="nextStep()" disabled>
+          <span class="btn-text">Continue <span class="btn-arrow">&rarr;</span></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 6: Attic inspection history -->
+    <section class="step" id="step6">
+      <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+      <div class="eyebrow">Attic History</div>
+      <h1 class="q-title">Have you had your home inspected in the past 5 years?</h1>
+      <p class="q-sub">Most homeowners haven't, and that's exactly why we offer free inspections</p>
+      <div class="option-cards" data-field="atticInspected">
+        <button type="button" class="option-card" data-value="yes">
+          <span class="oc-index">A</span>
+          <span class="oc-text"><strong>Yes</strong><em>I've had someone look at it recently</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="no">
+          <span class="oc-index">B</span>
+          <span class="oc-text"><strong>No</strong><em>It's been a while, or never</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="unsure">
+          <span class="oc-index">C</span>
+          <span class="oc-text"><strong>Not Sure</strong><em>I honestly don't know</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 7: Timeline -->
+    <section class="step" id="step7">
+      <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+      <div class="eyebrow">Timeline</div>
+      <h1 class="q-title">How soon are you looking to address this?</h1>
+      <p class="q-sub">No wrong answer. We're here when you're ready</p>
+      <div class="option-cards" data-field="timeline">
+        <button type="button" class="option-card" data-value="asap">
+          <span class="oc-index">A</span>
+          <span class="oc-text"><strong>As Soon as Possible</strong><em>I want to get this handled now</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="1to3months">
+          <span class="oc-index">B</span>
+          <span class="oc-text"><strong>Within 1 to 3 Months</strong><em>Planning ahead</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="researching">
+          <span class="oc-index">C</span>
+          <span class="oc-text"><strong>Just Researching</strong><em>Exploring my options</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 8: Home size -->
+    <section class="step" id="step8">
+      <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+      <div class="eyebrow">Home Size</div>
+      <h1 class="q-title">Roughly what is the square footage of your home?</h1>
+      <p class="q-sub">Helps us give you the most accurate assessment</p>
+      <div class="option-cards" data-field="homeSize">
+        <button type="button" class="option-card" data-value="under1000">
+          <span class="oc-index">A</span>
+          <span class="oc-text"><strong>Less than 1,000 sq ft</strong><em>Smaller home or apartment</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="1000to2000">
+          <span class="oc-index">B</span>
+          <span class="oc-text"><strong>1,000 to 2,000 sq ft</strong><em>Average family home</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="2000to3000">
+          <span class="oc-index">C</span>
+          <span class="oc-text"><strong>2,000 to 3,000 sq ft</strong><em>Larger family home</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="option-card" data-value="over3000">
+          <span class="oc-index">D</span>
+          <span class="oc-text"><strong>Over 3,000 sq ft</strong><em>Large home or estate</em></span>
+          <span class="oc-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 9: Address -->
+    <section class="step" id="step9">
+      <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+      <div class="eyebrow">Property Location</div>
+      <h1 class="q-title">What's your address?</h1>
+      <p class="q-sub">We use this to route the right local team to you</p>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="street">Street Address</label>
+          <input type="text" id="street" placeholder="123 Main St" autocomplete="street-address">
+        </div>
+        <div class="form-grid two-col" style="margin-bottom:0;">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" placeholder="City" autocomplete="address-level2">
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" placeholder="State" autocomplete="address-level1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="zip">ZIP Code</label>
+          <input type="text" id="zip" placeholder="ZIP Code" autocomplete="postal-code" maxlength="10" inputmode="numeric">
+        </div>
+      </div>
+      <div class="zip-warning" id="zipWarning">We may not have a local team in your area yet, but go ahead and submit. We'll do our best to help or connect you with a nearby location.</div>
+      <div class="btn-row sticky-cta">
+        <button type="button" class="btn-primary" id="btn12" onclick="nextStep()">
+          <span class="btn-text">Continue <span class="btn-arrow">&rarr;</span></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 10: Contact -->
+    <section class="step" id="step10">
+      <button type="button" class="back-link" onclick="prevStep()"><span class="chev">&larr;</span> Back</button>
+      <div class="eyebrow">Almost Done</div>
+      <h1 class="q-title">Confirm your info to schedule your free home efficiency scan</h1>
+      <div class="value-badge">A <b>$399 value</b>, yours free. No SSN required. Zero impact to credit. Your info is never sold.</div>
+      <div class="form-grid two-col">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="First Name" autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="(555) 123-4567" autocomplete="tel">
+        </div>
+      </div>
+      <div class="btn-row sticky-cta">
+        <button type="button" class="btn-primary" id="btnSubmit" onclick="submitForm()">
+          <span class="btn-text">Schedule My Free Inspection <span class="btn-arrow">&rarr;</span></span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 11: Thank you -->
+    <section class="step" id="step11">
+      <div class="terminal">
+        <div class="mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>You're all set!</h2>
+        <p>Thank you for choosing MILO INSULATION&trade;. One of our insulation specialists will contact you shortly to confirm your details and get your free Home Efficiency Scan scheduled.</p>
+        <div class="submit-note" id="submitNote">We had trouble sending your info online. Please call us at <b id="submitNotePhone"></b> and we'll get your free scan scheduled right away.</div>
+        <ul class="ty-list">
+          <li>Expect a call or text within 24 hours</li>
+          <li>Your scan is valued at $399, yours free</li>
+          <li>No obligation. No pressure. Just honest answers.</li>
+        </ul>
+        <p class="ty-phone" id="thankYouPhoneWrap">Questions in the meantime? Call us at <a href="#" id="thankYouPhoneLink"><span id="thankYouPhone"></span></a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="form-footer">
+    <div class="lock-text">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
+      Secure &amp; confidential. Your information is never shared or sold.
+    </div>
+    <div class="copyright">MILO INSULATION&trade; &middot; Nature's Very Best. &copy; 2026</div>
+  </footer>
+
+  <script>
+  (function() {
+    'use strict';
+
+    var BASE = 'https://betterbranding.github.io/milo-scripts/';
+    var TOTAL_STEPS = 10;      /* question steps 1-10; 11 is the thank-you */
+    var THANK_YOU_STEP = 11;
+    var RENTER_STEP = '2b';
+
+    // ----------- STATE -----------
+    var currentStep = 1;
+    var formData = {
+      uncomfortable: '',
+      isHomeowner: '',
+      topConcern: [],
+      atticInspected: '',
+      timeline: '',
+      homeSize: '',
+      timePreference: '',
+      street: '',
+      city: '',
+      state: '',
+      zip: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: ''
+    };
+
+    // ----------- ZIP ROUTING -----------
+    var zipLookup = {};
+    var locationCache = {};
+
+    function resolveLocation(zip) {
+      if (!zip) return null;
+      var clean = zip.replace(/\D/g, '').substring(0, 5);
+      return zipLookup[clean] || null;
+    }
+
+    function fetchLocationConfig(locId) {
+      return new Promise(function(resolve) {
+        if (locationCache[locId]) { resolve(locationCache[locId]); return; }
+        fetch(BASE + 'locations/' + locId + '.json?v=' + Date.now())
+          .then(function(r) { return r.json(); })
+          .then(function(cfg) {
+            locationCache[locId] = cfg;
+            resolve(cfg);
+          })
+          .catch(function() { resolve(null); });
+      });
+    }
+
+    // ----------- META PIXEL -----------
+    var pixelsInitialized = {};
+    function ensurePixel(pixelId) {
+      if (!pixelId) return false;
+      if (!window.fbq) {
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
+        }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      }
+      if (!pixelsInitialized[pixelId]) {
+        fbq('init', pixelId);
+        pixelsInitialized[pixelId] = true;
+      }
+      return true;
+    }
+
+    // ----------- OPTION CARDS (auto-advance singles, toggle multi) -----------
+    document.querySelectorAll('.option-cards').forEach(function(group) {
+      var field = group.dataset.field;
+      var isMulti = group.classList.contains('multi-select');
+      group.querySelectorAll('.option-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          if (isMulti) {
+            card.classList.toggle('selected');
+            var vals = [];
+            group.querySelectorAll('.option-card.selected').forEach(function(c) { vals.push(c.dataset.value); });
+            formData[field] = vals;
+            var btn = document.getElementById('btn6');
+            if (btn) btn.disabled = vals.length === 0;
+            return;
+          }
+
+          group.querySelectorAll('.option-card').forEach(function(c) { c.classList.remove('selected'); });
+          card.classList.add('selected');
+          formData[field] = card.dataset.value;
+
+          /* Renter dead-end */
+          if (field === 'isHomeowner' && card.dataset.value === 'no') {
+            setTimeout(function() { showRenterDeadEnd(); }, 350);
+            return;
+          }
+
+          setTimeout(function() { goNext(); }, 350);
+        });
+      });
+    });
+
+    // ----------- NAVIGATION -----------
+    function updateProgress() {
+      var step = (typeof currentStep === 'string') ? TOTAL_STEPS : Math.min(currentStep, TOTAL_STEPS);
+      var pct = (currentStep === THANK_YOU_STEP)
+        ? 100
+        : Math.round(((step - 1) / TOTAL_STEPS) * 100);
+      var fillEl = document.getElementById('progressFill');
+      var numEl = document.getElementById('stepNum');
+      var pctEl = document.getElementById('stepPercent');
+      var rail = document.getElementById('progressRail');
+      if (fillEl) fillEl.style.width = pct + '%';
+      if (numEl) numEl.textContent = (step < 10 ? '0' : '') + step;
+      if (pctEl) pctEl.textContent = pct + '%';
+      if (rail && pct === 100) rail.classList.add('done');
+    }
+
+    function showStep(n) {
+      document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+      var step = document.getElementById('step' + n);
+      if (step) {
+        step.classList.add('active');
+        step.style.animation = 'none';
+        void step.offsetHeight;
+        step.style.animation = '';
+      }
+      var meta = document.getElementById('stepMeta');
+      var hideMeta = (n === THANK_YOU_STEP || n === RENTER_STEP);
+      if (meta) meta.style.display = hideMeta ? 'none' : 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showRenterDeadEnd() {
+      currentStep = RENTER_STEP;
+      showStep(RENTER_STEP);
+      updateProgress();
+    }
+
+    function handleZipStep() {
+      var zipEl = document.getElementById('earlyZip');
+      if (!zipEl) return;
+      var val = zipEl.value.replace(/\D/g, '');
+      if (val.length < 5) {
+        zipEl.classList.add('input-error');
+        return;
+      }
+      zipEl.classList.remove('input-error');
+      formData.zip = val.substring(0, 5);
+
+      /* Pre-fill the address-step ZIP field */
+      var addrZip = document.getElementById('zip');
+      if (addrZip) addrZip.value = formData.zip;
+
+      var locId = resolveLocation(formData.zip);
+      var successDiv = document.getElementById('zipSuccess');
+      var notFoundDiv = document.getElementById('zipNotFound');
+
+      if (locId) {
+        fetchLocationConfig(locId).then(function(cfg) {
+          var biz = (cfg && cfg.businessName) ? cfg.businessName : 'MILO Insulation';
+          var msgEl = document.getElementById('zipSuccessMsg');
+          if (msgEl) msgEl.textContent = 'Great news! ' + biz + ' has openings this week in your area!';
+          if (successDiv) successDiv.style.display = 'block';
+          if (notFoundDiv) notFoundDiv.style.display = 'none';
+          currentStep = 4;
+          showStep(4);
+          updateProgress();
+        });
+      } else {
+        /* Not in service area: dead end with phone */
+        var fallbackLocId = window.MILO_LOCATION || 'tulia';
+        fetchLocationConfig(fallbackLocId).then(function(cfg) {
+          var phone = (cfg && cfg.phone) ? cfg.phone : '(806) 401-9750';
+          var phoneLink = document.getElementById('notInAreaPhone');
+          var phoneText = document.getElementById('notInAreaPhoneText');
+          if (phoneText) phoneText.textContent = phone;
+          if (phoneLink) phoneLink.href = 'tel:' + phone.replace(/\D/g, '');
+          if (successDiv) successDiv.style.display = 'none';
+          if (notFoundDiv) notFoundDiv.style.display = 'block';
+          currentStep = 4;
+          showStep(4);
+          var meta = document.getElementById('stepMeta');
+          if (meta) meta.style.display = 'none';
+        });
+      }
+    }
+
+    function goNext() {
+      if (currentStep === 3) { handleZipStep(); return; }
+      if (currentStep === 9 && !validateAddress()) return;
+      currentStep++;
+      showStep(currentStep);
+      updateProgress();
+    }
+
+    function goPrev() {
+      if (typeof currentStep === 'string') {
+        /* From renter dead-end back to step 2 */
+        currentStep = 2;
+        showStep(2);
+        updateProgress();
+        return;
+      }
+      if (currentStep === 4) {
+        currentStep = 3;
+        showStep(3);
+        updateProgress();
+        return;
+      }
+      if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+        updateProgress();
+      }
+    }
+
+    function validateAddress() {
+      var fields = ['street', 'city', 'state', 'zip'];
+      var valid = true;
+      fields.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (!el.value.trim()) {
+          el.classList.add('input-error');
+          valid = false;
+        } else {
+          el.classList.remove('input-error');
+        }
+      });
+      if (valid) {
+        formData.street = document.getElementById('street').value.trim();
+        formData.city = document.getElementById('city').value.trim();
+        formData.state = document.getElementById('state').value.trim();
+        formData.zip = document.getElementById('zip').value.trim();
+
+        var locId = resolveLocation(formData.zip);
+        var warn = document.getElementById('zipWarning');
+        if (!locId && warn) {
+          warn.classList.add('show');
+          /* Still allow proceeding: lead goes to fallback location */
+        } else if (warn) {
+          warn.classList.remove('show');
+        }
+      }
+      return valid;
+    }
+
+    function copyLink() {
+      var url = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url);
+      } else {
+        var t = document.createElement('textarea');
+        t.value = url;
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+      }
+      var confirmEl = document.getElementById('shareConfirm');
+      if (confirmEl) {
+        confirmEl.style.display = 'block';
+        setTimeout(function() { confirmEl.style.display = 'none'; }, 2000);
+      }
+    }
+
+    function backToStart() {
+      currentStep = 1;
+      document.querySelectorAll('#step2 .option-card').forEach(function(c) { c.classList.remove('selected'); });
+      formData.isHomeowner = '';
+      formData.uncomfortable = '';
+      document.querySelectorAll('#step1 .option-card').forEach(function(c) { c.classList.remove('selected'); });
+      showStep(1);
+      updateProgress();
+    }
+
+    function validateContact() {
+      var fields = ['firstName', 'lastName', 'email', 'phone'];
+      var valid = true;
+      fields.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (!el.value.trim()) {
+          el.classList.add('input-error');
+          valid = false;
+        } else {
+          el.classList.remove('input-error');
+        }
+      });
+      var emailEl = document.getElementById('email');
+      if (emailEl && emailEl.value.trim() && emailEl.value.indexOf('@') === -1) {
+        emailEl.classList.add('input-error');
+        valid = false;
+      }
+      if (valid) {
+        formData.firstName = document.getElementById('firstName').value.trim();
+        formData.lastName = document.getElementById('lastName').value.trim();
+        formData.email = document.getElementById('email').value.trim();
+        formData.phone = document.getElementById('phone').value.trim();
+      }
+      return valid;
+    }
+
+    // ----------- PHONE FORMATTING -----------
+    var phoneEl = document.getElementById('phone');
+    if (phoneEl) {
+      phoneEl.addEventListener('input', function(e) {
+        var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+        if (x.length > 6) {
+          e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3,6) + '-' + x.substring(6);
+        } else if (x.length > 3) {
+          e.target.value = '(' + x.substring(0,3) + ') ' + x.substring(3);
+        } else if (x.length > 0) {
+          e.target.value = '(' + x;
+        }
+      });
+    }
+
+    document.querySelectorAll('input').forEach(function(input) {
+      input.addEventListener('focus', function() { input.classList.remove('input-error'); });
+    });
+
+    /* Enter key advances on ZIP step */
+    var earlyZipEl = document.getElementById('earlyZip');
+    if (earlyZipEl) {
+      earlyZipEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); goNext(); }
+      });
+    }
+
+    // ----------- SUBMIT -----------
+    function doSubmit() {
+      if (!validateContact()) return;
+
+      var btn = document.getElementById('btnSubmit');
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      var locId = resolveLocation(formData.zip);
+      var fallbackLocId = window.MILO_LOCATION || 'tulia';
+      var targetLocId = locId || fallbackLocId;
+
+      fetchLocationConfig(targetLocId).then(function(locCfg) {
+        var webhookUrl = (locCfg && locCfg.webhookUrl) ? locCfg.webhookUrl : '';
+
+        var payload = {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          name: formData.firstName + ' ' + formData.lastName,
+          email: formData.email,
+          phone: formData.phone.replace(/\D/g, ''),
+          address1: formData.street,
+          city: formData.city,
+          state: formData.state,
+          postalCode: formData.zip,
+          uncomfortable: formData.uncomfortable,
+          isHomeowner: formData.isHomeowner,
+          topConcern: Array.isArray(formData.topConcern) ? formData.topConcern.join(', ') : formData.topConcern,
+          atticInspected: formData.atticInspected,
+          timeline: formData.timeline,
+          homeSize: formData.homeSize,
+          timePreference: formData.timePreference,
+          source: 'milo-form',
+          formName: 'Free Home Efficiency Scan',
+          locationId: targetLocId,
+          ghlLocationId: locCfg ? locCfg.ghlLocationId : '',
+          repName: locCfg ? locCfg.rep : '',
+          repUserId: locCfg ? locCfg.repUserId : '',
+          businessName: locCfg ? locCfg.businessName : '',
+          zipResolved: !!locId,
+          submittedAt: new Date().toISOString()
+        };
+
+        var submitPromise;
+        if (webhookUrl) {
+          submitPromise = fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          }).then(function(res) {
+            if (!res.ok) { throw new Error('Webhook HTTP ' + res.status); }
+            return true;
+          }).catch(function(err) {
+            console.warn('Webhook POST error:', err);
+            return false;
+          });
+        } else {
+          console.warn('No webhook URL configured for location:', targetLocId);
+          submitPromise = Promise.resolve(true);
+        }
+
+        submitPromise.then(function(sent) {
+          btn.classList.remove('loading');
+          currentStep = THANK_YOU_STEP;
+          showStep(THANK_YOU_STEP);
+          updateProgress();
+
+          /* Populate phone */
+          var phone = (locCfg && locCfg.phone) ? locCfg.phone : '';
+          var phoneSpan = document.getElementById('thankYouPhone');
+          var phoneLink = document.getElementById('thankYouPhoneLink');
+          var phoneWrap = document.getElementById('thankYouPhoneWrap');
+          if (phone) {
+            if (phoneSpan) phoneSpan.textContent = phone;
+            if (phoneLink) phoneLink.href = 'tel:' + phone.replace(/\D/g, '');
+          } else if (phoneWrap) {
+            phoneWrap.style.display = 'none';
+          }
+
+          /* Graceful failure: prompt a call */
+          if (!sent) {
+            var note = document.getElementById('submitNote');
+            var notePhone = document.getElementById('submitNotePhone');
+            if (notePhone) notePhone.textContent = phone || '(806) 401-9750';
+            if (note) note.classList.add('show');
+          }
+
+          /* Meta Pixel: Lead */
+          if (locCfg && locCfg.metaPixelId && ensurePixel(locCfg.metaPixelId)) {
+            fbq('track', 'PageView');
+            fbq('track', 'Lead');
+          }
+        });
+      });
+    }
+
+    // ----------- EXPOSE GLOBALS -----------
+    window.nextStep = goNext;
+    window.prevStep = goPrev;
+    window.submitForm = doSubmit;
+    window.copyShareLink = copyLink;
+    window.backFromRenter = backToStart;
+
+    // ----------- BOOT -----------
+    function boot() {
+      /* ZIP lookup */
+      fetch(BASE + 'zip-lookup.json?v=' + Date.now())
+        .then(function(r) { return r.json(); })
+        .then(function(data) { zipLookup = data || {}; })
+        .catch(function() { zipLookup = {}; });
+
+      /* Warm the default location config; fire pixel PageView if configured */
+      var fallbackLocId = window.MILO_LOCATION || 'tulia';
+      fetchLocationConfig(fallbackLocId).then(function(cfg) {
+        if (cfg && cfg.metaPixelId && ensurePixel(cfg.metaPixelId)) {
+          fbq('track', 'PageView');
+        }
+      });
+
+      updateProgress();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+  </script>
+</body>
+</html>
