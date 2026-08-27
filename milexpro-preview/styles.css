@@ -233,16 +233,16 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   gap: 2.5rem;
 }
 
-.nav-logo { text-decoration: none; }
-.nav-wordmark {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--orange);
+.nav-logo { text-decoration: none; display: inline-flex; align-items: center; }
+.nav-logo-img {
+  display: block;
+  height: 34px;
+  width: auto;
+  max-width: 190px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35));
 }
-.nav-wordmark sup { color: var(--paper); font-size: 0.55em; }
+@media (max-width: 640px) { .nav-logo-img { height: 28px; max-width: 150px; } }
 
 .nav-links {
   display: flex;
@@ -431,13 +431,25 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   z-index: 1;
   background: #0d0d0d;
 }
-.hero-media img {
+.hero-media img,
+.hero-media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transform: scale(1.06);
   animation: heroZoom 7s var(--ease) forwards;
+  display: block;
 }
+.hero-media-video { aspect-ratio: 4 / 5; background: #000; }
+.hero-media-video::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-media-video .hero-caption { z-index: 2; }
+@media (max-width: 780px) { .hero-media-video { aspect-ratio: 1 / 1; } }
 @keyframes heroZoom { to { transform: scale(1); } }
 
 .hero-caption {
@@ -1315,15 +1327,13 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   gap: 2.5rem;
   padding: clamp(2.5rem, 5vw, 4rem) 0;
 }
-.footer-wordmark {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: 1.6rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--orange);
+.footer-logo-img {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
 }
-.footer-wordmark sup { color: var(--paper); font-size: 0.55em; }
 .footer-tagline {
   margin-top: 1rem;
   font-family: var(--display);
