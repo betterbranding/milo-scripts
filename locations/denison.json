@@ -14,7 +14,7 @@
   "repUserId": "",
   "calendarId": "",
   "scheduleUrl": "",
-  "webhookUrl": "",
+  "webhookUrl": "https://services.leadconnectorhq.com/hooks/R9iIFpdQnOdHzkj8D4fW/webhook-trigger/a25cba70-5c7b-4f15-80f8-e625d2c6f345",
   "status": "on_hold",
   "zipCodes": [
     "73032",
