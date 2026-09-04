@@ -8,7 +8,7 @@
 
   function apply(cfg) {
     if (!cfg) return;
-    var formUrl = cfg.formUrl || '/free-inspection';
+    var formUrl = cfg.v3FormUrl || cfg.formUrl || '/free-inspection';
     document.querySelectorAll('[data-cta]').forEach(function (a) {
       var h = a.getAttribute('href');
       if (!h || h === '#' || h === '') a.setAttribute('href', formUrl);
@@ -32,7 +32,7 @@
     fetch(BASE + 'locations/' + loc + '.json?v=' + Math.floor(Date.now() / 600000))
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(apply)
-      .catch(function () { apply({ formUrl: '/free-inspection' }); });
+      .catch(function () { apply({ formUrl: '/free-inspection-form' }); });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
