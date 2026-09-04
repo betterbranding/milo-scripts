@@ -1,0 +1,33 @@
+<script>
+/* MILO INSULATION loader v5 (body element) | Homeowners | location: tulia */
+(function () {
+  var GH = 'https://betterbranding.github.io/milo-scripts';
+  var LOC = 'tulia';
+  try {
+    var st = document.createElement('style');
+    st.id = 'fastSplash';
+    st.textContent = 'html{background:#FFFFFF!important}body>*{visibility:hidden!important}' +
+      'html::before{content:\"\";position:fixed;inset:0;z-index:2147483646;background-color:#FFFFFF;' +
+      'background-image:url(https://betterbranding.github.io/milo-scripts/v3-preview/assets/logo.png);background-repeat:no-repeat;' +
+      'background-position:center calc(50% - 26px);background-size:min(240px,62vw) auto}' +
+      'html::after{content:\"\";position:fixed;top:calc(50% + 30px);left:50%;width:28px;height:28px;margin-left:-14px;' +
+      'border-radius:50%;border:3px solid rgba(40,141,17,.18);border-top-color:#FF8200;' +
+      'animation:fastspin .8s linear infinite;z-index:2147483647}' +
+      '@keyframes fastspin{to{transform:rotate(360deg)}}' +
+      '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
+    (document.head || document.documentElement).appendChild(st);
+  } catch (e) {}
+  fetch(GH + '/v3/pages/homeowners.html?v=1').then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.text();
+  }).then(function (html) {
+    html = html.replace('__MILO_LOCATION__', LOC);
+    document.open();
+    document.write(html);
+    document.close();
+  }).catch(function (e) {
+    var s = document.getElementById('fastSplash');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  });
+})();
+</script>

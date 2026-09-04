@@ -11,6 +11,9 @@
 
   // ───── SPA NAVIGATION (hash-based) ─────
   function currentPageFromHash() {
+    // Per-page GHL mode: <body data-page="x"> wins over the hash
+    const bodyPage = document.body && document.body.dataset.page;
+    if (bodyPage && PAGES.includes(bodyPage)) return bodyPage;
     const hash = window.location.hash.replace(/^#\/?/, '');
     return PAGES.includes(hash) ? hash : 'home';
   }
