@@ -105,7 +105,7 @@
         <div class="loc-list" id="locList" role="list"></div>
         <div class="loc-map-wrap">
           <div class="loc-map" id="locMap" aria-label="Map of MILO INSULATION locations"></div>
-          <p class="loc-map-note">Map data &copy; OpenStreetMap contributors &middot; Tiles &copy; CARTO</p>
+          <p class="loc-map-note">Map data &copy; OpenStreetMap contributors &middot; Tiles by OpenFreeMap</p>
         </div>
       </div>
     </div>
@@ -192,15 +192,16 @@
     '</button>';
   }).join('');
 
-  var map, markers = [];
+  var map, markers = [], popups = [];
   function setActive(i, fly) {
     list.querySelectorAll('.loc-card').forEach(function (c, j) { c.classList.toggle('active', j === i); });
     var card = list.children[i];
     if (card && card.scrollIntoView && window.innerWidth > 860) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     if (map && markers[i]) {
-      markers.forEach(function (m, j) { var el = m.getElement(); if (el) el.classList.toggle('is-active', j === i); });
-      if (fly) map.flyTo([LOCS[i].lat, LOCS[i].lng], 9, { duration: 0.9 });
-      markers[i].openPopup();
+      markers.forEach(function (m, j) { m.getElement().classList.toggle('is-active', j === i); });
+      popups.forEach(function (p, j) { if (j !== i && p.isOpen()) p.remove(); });
+      if (fly) map.flyTo({ center: [LOCS[i].lng, LOCS[i].lat], zoom: 8.5, duration: 1100, essential: true });
+      if (!popups[i].isOpen()) popups[i].addTo(map);
     }
   }
   list.addEventListener('click', function (e) {
@@ -211,33 +212,36 @@
   });
 
   function initMap() {
-    if (!window.L) return;
-    map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: true, attributionControl: false });
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
-    var bounds = [];
+    if (!window.maplibregl) return;
+    var b = new maplibregl.LngLatBounds();
+    LOCS.forEach(function (l) { b.extend([l.lng, l.lat]); });
+    map = new maplibregl.Map({ container: mapEl, style: 'https://tiles.openfreemap.org/styles/positron', bounds: b, fitBoundsOptions: { padding: { top: 70, bottom: 60, left: 60, right: 60 } }, attributionControl: false, scrollZoom: false, cooperativeGestures: false });
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+    map.on('click', function () { map.scrollZoom.enable(); });
     LOCS.forEach(function (l, i) {
       var seen = LOCS.findIndex(function (o) { return o.lat === l.lat && o.lng === l.lng; });
       var offset = (seen !== i) ? 0.0001 * (i - seen) : 0;
-      var icon = L.divIcon({ className: 'loc-pin', html: '<span class="loc-pin-dot"><img src="' + ASSET + 'assets/sorghum-icon.png" alt=""></span><span class="loc-pin-ring"></span>', iconSize: [44, 44], iconAnchor: [22, 22], popupAnchor: [0, -26] });
-      var m = L.marker([l.lat + offset, l.lng], { icon: icon, title: l.name }).addTo(map);
-      m.bindPopup('<strong>' + esc(l.name) + (l.sub ? ' <em>' + esc(l.sub) + '</em>' : '') + '</strong><span>' + esc(l.role) + '</span><span>' + esc(l.addr ? l.addr + ', ' + l.city : l.city) + '</span><a href="tel:' + l.tel + '">' + esc(l.phone) + '</a>', { className: 'loc-popup', closeButton: false, offset: [0, 0] });
-      m.on('click', function () { setActive(i, false); });
-      markers.push(m); bounds.push([l.lat, l.lng]);
+      var el = document.createElement('div'); el.className = 'loc-pin'; el.title = l.name;
+      el.innerHTML = '<span class="loc-pin-dot"><img src="' + ASSET + 'assets/sorghum-icon.png" alt=""></span><span class="loc-pin-ring"></span>';
+      var popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 28, className: 'loc-popup', maxWidth: '280px' })
+        .setLngLat([l.lng, l.lat + offset])
+        .setHTML('<strong>' + esc(l.name) + (l.sub ? ' <em>' + esc(l.sub) + '</em>' : '') + '</strong><span>' + esc(l.role) + '</span><span>' + esc(l.addr ? l.addr + ', ' + l.city : l.city) + '</span><a href="tel:' + l.tel + '">' + esc(l.phone) + '</a>');
+      var m = new maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat([l.lng, l.lat + offset]).addTo(map);
+      el.addEventListener('click', function (e) { e.stopPropagation(); setActive(i, false); });
+      markers.push(m); popups.push(popup);
     });
-    map.fitBounds(bounds, { padding: [56, 56] });
-    map.on('click', function(){ map.scrollWheelZoom.enable(); });
-    setTimeout(function(){ setActive(0, false); }, 400);
-    new ResizeObserver(function(){ map.invalidateSize(); }).observe(mapEl);
+    map.on('load', function () { setActive(0, false); });
+    new ResizeObserver(function () { map.resize(); }).observe(mapEl);
   }
-  function loadLeaflet() {
-    if (window.L) return initMap();
-    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
-    var js = document.createElement('script'); js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; js.onload = initMap; document.head.appendChild(js);
+  function loadMapLib() {
+    if (window.maplibregl) return initMap();
+    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css'; document.head.appendChild(css);
+    var js = document.createElement('script'); js.src = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js'; js.onload = initMap; document.head.appendChild(js);
   }
   if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (en) { if (en.some(function (e) { return e.isIntersecting; })) { io.disconnect(); loadLeaflet(); } }, { rootMargin: '600px' });
+    var io = new IntersectionObserver(function (en) { if (en.some(function (e) { return e.isIntersecting; })) { io.disconnect(); loadMapLib(); } }, { rootMargin: '600px' });
     io.observe(mapEl);
-  } else loadLeaflet();
+  } else loadMapLib();
   document.querySelectorAll('[data-scroll-map]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); document.getElementById('locationsMap').scrollIntoView({ behavior: 'smooth' }); }); });
 })();
 </script>
@@ -288,7 +292,7 @@
   </div>
 </footer>
 
-<script src="https://betterbranding.github.io/milo-scripts/v3-preview/script.js?v=2"></script>
+<script src="https://betterbranding.github.io/milo-scripts/v3-preview/script.js?v=3"></script>
 <script>window.MILO_LOCATION = "__MILO_LOCATION__";</script>
 <script src="https://betterbranding.github.io/milo-scripts/v3/location.js?v=3"></script>
 

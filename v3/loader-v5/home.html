@@ -17,7 +17,7 @@
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/home.html?v=2').then(function (r) {
+  fetch(GH + '/v3/pages/home.html?v=3').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {

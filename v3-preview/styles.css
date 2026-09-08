@@ -1622,7 +1622,7 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(250,250,247,0.12);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  color: var(--paper); font: inherit;
+  color: var(--paper); font: inherit; flex: none;
   transition: transform .35s var(--ease), background .35s, border-color .35s, box-shadow .35s;
   position: relative; overflow: hidden;
 }
@@ -1652,10 +1652,10 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
   background: #eef0ec; z-index: 1;
 }
 .loc-map-note { margin-top: 0.6rem; font-size: 0.68rem; color: rgba(250,250,247,0.45); text-align: right; }
-.leaflet-container { font-family: var(--body); }
-.leaflet-bar { border: none !important; border-radius: 12px !important; overflow: hidden; box-shadow: 0 10px 24px -12px rgba(0,0,0,0.5) !important; }
-.leaflet-bar a { color: var(--ink) !important; border-bottom-color: var(--line) !important; }
-.loc-pin { background: none !important; border: none !important; }
+.maplibregl-map { font-family: var(--body); }
+.maplibregl-ctrl-group { border-radius: 12px !important; box-shadow: 0 10px 24px -12px rgba(0,0,0,0.5) !important; overflow: hidden; }
+.maplibregl-ctrl-group button + button { border-top-color: var(--line) !important; }
+.loc-pin { width: 44px; height: 44px; position: relative; cursor: pointer; }
 .loc-pin-dot {
   position: absolute; inset: 6px; border-radius: 50%; background: #fff;
   border: 2.5px solid var(--green); display: grid; place-items: center;
@@ -1664,18 +1664,18 @@ h3 { font-family: var(--display); letter-spacing: -0.01em; }
 .loc-pin-dot img { width: 20px; height: 20px; object-fit: contain; }
 .loc-pin-ring {
   position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(40,141,17,0.55);
-  animation: locPulse 2.4s ease-out infinite;
+  animation: locPulse 2.4s ease-out infinite; pointer-events: none;
 }
+.loc-pin.is-active { z-index: 5; }
 .loc-pin.is-active .loc-pin-dot { transform: scale(1.18); border-color: var(--orange); }
 .loc-pin.is-active .loc-pin-ring { border-color: rgba(255,130,0,0.7); }
 @keyframes locPulse { 0% { transform: scale(0.7); opacity: 0.9; } 100% { transform: scale(1.5); opacity: 0; } }
-.loc-popup .leaflet-popup-content-wrapper { border-radius: 14px; padding: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.5); border: 1px solid var(--line); }
-.loc-popup .leaflet-popup-content { margin: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.86rem; color: var(--ink); line-height: 1.35; min-width: 200px; }
-.loc-popup .leaflet-popup-content strong { font-family: var(--display); font-size: 1.02rem; color: var(--green-deep); }
-.loc-popup .leaflet-popup-content strong em { display: block; font-family: var(--body); font-style: normal; font-size: 0.8rem; color: var(--green); }
-.loc-popup .leaflet-popup-content span:first-of-type { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.68rem; color: var(--muted); }
-.loc-popup .leaflet-popup-content a { color: var(--orange-hot); font-weight: 700; text-decoration: none; margin-top: 0.15rem; }
-.loc-popup .leaflet-popup-tip { box-shadow: none; }
+.loc-popup { z-index: 6; }
+.loc-popup .maplibregl-popup-content { border-radius: 14px; padding: 0.9rem 1.1rem; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.5); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.86rem; color: var(--ink); line-height: 1.35; min-width: 200px; }
+.loc-popup .maplibregl-popup-content strong { font-family: var(--display); font-size: 1.02rem; color: var(--green-deep); }
+.loc-popup .maplibregl-popup-content strong em { display: block; font-family: var(--body); font-style: normal; font-size: 0.8rem; color: var(--green); }
+.loc-popup .maplibregl-popup-content span:first-of-type { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.68rem; color: var(--muted); }
+.loc-popup .maplibregl-popup-content a { color: var(--orange-hot); font-weight: 700; text-decoration: none; margin-top: 0.15rem; }
 .loc-inline-phone { color: var(--orange-hot); font-weight: 700; text-decoration: none; white-space: nowrap; }
 .loc-inline-phone:hover { text-decoration: underline; }
 .loc-cov-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
