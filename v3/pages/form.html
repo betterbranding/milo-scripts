@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!-- MILO V3 | form | built for GHL fast-loader v5 | do not edit here, edit form.html + rebuild -->
+<!-- MILO V3 | form | built for GHL fast-loader v5 | do not edit here, edit form.html + rebuild -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -635,6 +636,7 @@
 </head>
 <body>
 <script>window.MILO_LOCATION = "__MILO_LOCATION__";</script>
+<script>window.MILO_LOCATION = "__MILO_LOCATION__";</script>
 
   <!-- Fixed hairline progress -->
   <div class="progress-rail" id="progressRail" aria-hidden="true">
@@ -756,8 +758,8 @@
         <h1 class="q-title">We're not currently servicing your area</h1>
         <p class="q-sub">But we're growing fast! Give us a call and we'll do our best to help or connect you with a location near you.</p>
         <div class="phone-cta btn-row">
-          <a href="tel:+18064019750" id="notInAreaPhone" class="btn-primary">
-            <span class="btn-text">Call <span id="notInAreaPhoneText">(806) 401-9750</span></span>
+          <a href="tel:+18005746456" id="notInAreaPhone" class="btn-primary">
+            <span class="btn-text">Call <span id="notInAreaPhoneText">(800) 574-MILO</span></span>
           </a>
         </div>
         <div style="text-align:center;">
@@ -1150,11 +1152,12 @@
         /* Not in service area: dead end with phone */
         var fallbackLocId = window.MILO_LOCATION || 'tulia';
         fetchLocationConfig(fallbackLocId).then(function(cfg) {
-          var phone = (cfg && cfg.phone) ? cfg.phone : '(806) 401-9750';
+          var phone = (cfg && (cfg.phoneDisplay || cfg.phone)) || '(800) 574-MILO';
+          var phoneTel = (cfg && cfg.phoneTel) || '+18005746456';
           var phoneLink = document.getElementById('notInAreaPhone');
           var phoneText = document.getElementById('notInAreaPhoneText');
           if (phoneText) phoneText.textContent = phone;
-          if (phoneLink) phoneLink.href = 'tel:' + phone.replace(/\D/g, '');
+          if (phoneLink) phoneLink.href = 'tel:' + phoneTel;
           if (successDiv) successDiv.style.display = 'none';
           if (notFoundDiv) notFoundDiv.style.display = 'block';
           currentStep = 4;
@@ -1377,13 +1380,14 @@
           updateProgress();
 
           /* Populate phone */
-          var phone = (locCfg && locCfg.phone) ? locCfg.phone : '';
+          var phone = (locCfg && (locCfg.phoneDisplay || locCfg.phone)) || '(800) 574-MILO';
+          var phoneTel = (locCfg && locCfg.phoneTel) || '+18005746456';
           var phoneSpan = document.getElementById('thankYouPhone');
           var phoneLink = document.getElementById('thankYouPhoneLink');
           var phoneWrap = document.getElementById('thankYouPhoneWrap');
           if (phone) {
             if (phoneSpan) phoneSpan.textContent = phone;
-            if (phoneLink) phoneLink.href = 'tel:' + phone.replace(/\D/g, '');
+            if (phoneLink) phoneLink.href = 'tel:' + phoneTel;
           } else if (phoneWrap) {
             phoneWrap.style.display = 'none';
           }
@@ -1392,7 +1396,7 @@
           if (!sent) {
             var note = document.getElementById('submitNote');
             var notePhone = document.getElementById('submitNotePhone');
-            if (notePhone) notePhone.textContent = phone || '(806) 401-9750';
+            if (notePhone) notePhone.textContent = phone || '(800) 574-MILO';
             if (note) note.classList.add('show');
           }
 

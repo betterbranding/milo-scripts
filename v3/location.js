@@ -14,8 +14,10 @@
       if (!h || h === '#' || h === '') a.setAttribute('href', formUrl);
     });
     var ph = document.getElementById('footerPhone');
-    if (ph && cfg.phone) {
-      ph.innerHTML = '<a href="tel:' + cfg.phone.replace(/[^0-9+]/g, '') + '" style="color:inherit;text-decoration:none">' + cfg.phone + '</a>';
+    var phDisp = cfg.phoneDisplay || cfg.phone;
+    var phTel = cfg.phoneTel || (cfg.phone ? cfg.phone.replace(/[^0-9+]/g, '') : '');
+    if (ph && phDisp && phTel) {
+      ph.innerHTML = '<a href="tel:' + phTel + '" style="color:inherit;text-decoration:none">' + phDisp + '</a>';
     }
     var city = document.getElementById('footerCity');
     if (city && cfg.locationLabel) city.textContent = cfg.locationLabel;
