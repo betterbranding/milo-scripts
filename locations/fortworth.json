@@ -7,7 +7,7 @@
   "city": "Fort Worth",
   "state": "TX",
   "zip": "",
-  "phone": "(806) 999-5690",
+  "phone": "(800) 574-MILO",
   "locationLabel": "Fort Worth, Texas",
   "email": "info@miloinsulation.com",
   "rep": "David Driver",
@@ -140,5 +140,7 @@
     "76487",
     "76490"
   ],
-  "metaPixelId": "1115582933883479"
+  "metaPixelId": "1115582933883479",
+  "phoneDisplay": "(800) 574-MILO",
+  "phoneTel": "+18005746456"
 }

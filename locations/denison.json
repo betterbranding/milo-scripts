@@ -7,7 +7,7 @@
   "city": "Denison",
   "state": "TX",
   "zip": "",
-  "phone": "",
+  "phone": "(800) 574-MILO",
   "locationLabel": "Denison, Texas",
   "email": "info@miloinsulation.com",
   "rep": "",
@@ -116,5 +116,7 @@
     "76264",
     "76268",
     "76273"
-  ]
+  ],
+  "phoneDisplay": "(800) 574-MILO",
+  "phoneTel": "+18005746456"
 }

@@ -7,7 +7,7 @@
   "city": "Athens",
   "state": "TX",
   "zip": "75751",
-  "phone": "(903) 900-6456",
+  "phone": "(800) 574-MILO",
   "locationLabel": "Athens, Texas",
   "email": "info@miloinsulation.com",
   "rep": "Mark Wilson",
@@ -179,5 +179,7 @@
     "77855",
     "77865"
   ],
-  "metaPixelId": "1115582933883479"
+  "metaPixelId": "1115582933883479",
+  "phoneDisplay": "(800) 574-MILO",
+  "phoneTel": "+18005746456"
 }

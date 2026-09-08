@@ -7,7 +7,7 @@
   "city": "Tulia",
   "state": "TX",
   "zip": "79088",
-  "phone": "(806) 999-5690",
+  "phone": "(800) 574-MILO",
   "locationLabel": "Tulia, Texas",
   "email": "info@miloinsulation.com",
   "rep": "Randy Hall",
@@ -81,5 +81,7 @@
     "79369",
     "79415"
   ],
-  "metaPixelId": "1115582933883479"
+  "metaPixelId": "1115582933883479",
+  "phoneDisplay": "(800) 574-MILO",
+  "phoneTel": "+18005746456"
 }

@@ -7,7 +7,7 @@
   "city": "Rockdale",
   "state": "TX",
   "zip": "",
-  "phone": "(806) 999-5690",
+  "phone": "(800) 574-MILO",
   "locationLabel": "Rockdale, Texas",
   "email": "info@miloinsulation.com",
   "rep": "Lindsay Pitts",
@@ -170,5 +170,7 @@
     "78954",
     "78957",
     "78963"
-  ]
+  ],
+  "phoneDisplay": "(800) 574-MILO",
+  "phoneTel": "+18005746456"
 }

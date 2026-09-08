@@ -7,7 +7,7 @@
   "city": "Dallas",
   "state": "TX",
   "zip": "",
-  "phone": "(806) 999-5690",
+  "phone": "(800) 574-MILO",
   "locationLabel": "Dallas, Texas",
   "email": "info@miloinsulation.com",
   "rep": "Kelly Grubbs",
@@ -146,5 +146,7 @@
     "75390",
     "75407"
   ],
-  "metaPixelId": "1115582933883479"
+  "metaPixelId": "1115582933883479",
+  "phoneDisplay": "(800) 574-MILO",
+  "phoneTel": "+18005746456"
 }
