@@ -34,7 +34,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/home.html?v=1').then(function (r) {
+  fetch(GH + '/v3/pages/home.html?v=2').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -99,7 +99,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/milex.html?v=1').then(function (r) {
+  fetch(GH + '/v3/pages/milex.html?v=2').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -164,7 +164,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/science.html?v=1').then(function (r) {
+  fetch(GH + '/v3/pages/science.html?v=2').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -229,7 +229,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/homeowners.html?v=1').then(function (r) {
+  fetch(GH + '/v3/pages/homeowners.html?v=2').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -294,7 +294,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/builders.html?v=1').then(function (r) {
+  fetch(GH + '/v3/pages/builders.html?v=2').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -335,6 +335,71 @@ Never put the loader in the header tracking code.
 
 ---
 
+## /locations  (locations)
+
+### Body Custom HTML/JS element
+
+```html
+<script>
+/* MILO INSULATION loader v5 (body element) | Locations | location: tulia */
+(function () {
+  var GH = 'https://betterbranding.github.io/milo-scripts';
+  var LOC = 'tulia';
+  try {
+    var st = document.createElement('style');
+    st.id = 'fastSplash';
+    st.textContent = 'html{background:#FFFFFF!important}body>*{visibility:hidden!important}' +
+      'html::before{content:\"\";position:fixed;inset:0;z-index:2147483646;background-color:#FFFFFF;' +
+      'background-image:url(https://betterbranding.github.io/milo-scripts/v3-preview/assets/logo.png);background-repeat:no-repeat;' +
+      'background-position:center calc(50% - 26px);background-size:min(240px,62vw) auto}' +
+      'html::after{content:\"\";position:fixed;top:calc(50% + 30px);left:50%;width:28px;height:28px;margin-left:-14px;' +
+      'border-radius:50%;border:3px solid rgba(40,141,17,.18);border-top-color:#FF8200;' +
+      'animation:fastspin .8s linear infinite;z-index:2147483647}' +
+      '@keyframes fastspin{to{transform:rotate(360deg)}}' +
+      '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
+    (document.head || document.documentElement).appendChild(st);
+  } catch (e) {}
+  fetch(GH + '/v3/pages/locations.html?v=2').then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.text();
+  }).then(function (html) {
+    html = html.replace('__MILO_LOCATION__', LOC);
+    document.open();
+    document.write(html);
+    document.close();
+  }).catch(function (e) {
+    var s = document.getElementById('fastSplash');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  });
+})();
+</script>
+```
+
+### Header tracking code (meta only)
+
+```html
+<!-- ===== MILO INSULATION | Locations | Texas & Oklahoma | SEO (meta only, no scripts, no styles) ===== -->
+<link rel="canonical" href="https://miloinsulation.com/locations">
+<meta name="description" content="Find your nearest MILO INSULATION team. Headquarters and production plant in Tulia, TX, plus locations serving DFW, East Texas, Central Texas, and Southwest Oklahoma.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta property="og:title" content="Locations | Texas &amp; Oklahoma | MILO INSULATION">
+<meta property="og:description" content="Find your nearest MILO INSULATION team. Headquarters and production plant in Tulia, TX, plus locations serving DFW, East Texas, Central Texas, and Southwest Oklahoma.">
+<meta property="og:image" content="https://betterbranding.github.io/milo-scripts/v3-preview/assets/hero-field.jpg">
+<meta property="og:url" content="https://miloinsulation.com/locations">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MILO INSULATION">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Locations | Texas &amp; Oklahoma | MILO INSULATION">
+<meta name="twitter:description" content="Find your nearest MILO INSULATION team. Headquarters and production plant in Tulia, TX, plus locations serving DFW, East Texas, Central Texas, and Southwest Oklahoma.">
+<meta name="twitter:image" content="https://betterbranding.github.io/milo-scripts/v3-preview/assets/hero-field.jpg">
+<meta name="theme-color" content="#288D11">
+<link rel="icon" type="image/png" href="https://betterbranding.github.io/milo-scripts/v3-preview/assets/icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://miloinsulation.com/#organization","name":"MILO Insulation","url":"https://miloinsulation.com/","logo":{"@type":"ImageObject","url":"https://betterbranding.github.io/milo-scripts/v3-preview/assets/icon.png","width":1024,"height":1024},"slogan":"Nature's Very Best"},{"@type":"WebSite","@id":"https://miloinsulation.com/#website","url":"https://miloinsulation.com/","name":"MILO Insulation","publisher":{"@id":"https://miloinsulation.com/#organization"},"inLanguage":"en-US"},{"@type":"WebPage","@id":"https://miloinsulation.com/locations#webpage","url":"https://miloinsulation.com/locations","name":"Locations | Texas & Oklahoma | MILO Insulation","description":"Find your nearest MILO INSULATION team. Headquarters and production plant in Tulia, TX, plus locations serving DFW, East Texas, Central Texas, and Southwest Oklahoma.","isPartOf":{"@id":"https://miloinsulation.com/#website"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://betterbranding.github.io/milo-scripts/v3-preview/assets/hero-field.jpg"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://miloinsulation.com/"},{"@type":"ListItem","position":2,"name":"Locations | Texas & Oklahoma","item":"https://miloinsulation.com/locations"}]}}]}</script>
+<!-- ===== /MILO INSULATION Locations | Texas & Oklahoma ===== -->
+```
+
+---
+
 ## /free-inspection-form  (form)
 
 ### Body Custom HTML/JS element
@@ -359,7 +424,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/form.html?v=1').then(function (r) {
+  fetch(GH + '/v3/pages/form.html?v=2').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!-- MILO V3 | locations | built for GHL fast-loader v5 | do not edit here, edit index.html + rebuild -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locations | Texas &amp; Oklahoma | MILO INSULATION&trade;</title>
+  <meta name="description" content="Find your nearest MILO INSULATION team. Headquarters and production plant in Tulia, TX, plus locations serving DFW, East Texas, Central Texas, and Southwest Oklahoma.">
+  <link rel="icon" type="image/png" href="https://betterbranding.github.io/milo-scripts/v3-preview/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://betterbranding.github.io/milo-scripts/v3-preview/styles.css">
+</head>
+<body data-page="locations">
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" aria-label="MILO INSULATION&trade; home">
+      <img src="https://betterbranding.github.io/milo-scripts/v3-preview/assets/logo.png" alt="MILO INSULATION&trade;">
+    </a>
+    <div class="nav-links" aria-label="Primary">
+      <a class="nav-link" data-page="home" href="/">Home</a>
+      <a class="nav-link" data-page="milex" href="/milex">MILEX&trade;</a>
+      <a class="nav-link" data-page="science" href="/the-science">The Science</a>
+      <a class="nav-link" data-page="homeowners" href="/home-owners">Homeowners</a>
+      <a class="nav-link" data-page="builders" href="/builders">Builders &amp; Contractors</a>
+      <a class="nav-link active" data-page="locations" href="/locations">Locations</a>
+    </div>
+    <a class="btn btn-orange btn-nav" href="#" data-cta>Free Inspection<span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== MOBILE OVERLAY MENU ===== -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <div class="menu-overlay-inner">
+    <p class="menu-kicker">MILO INSULATION&trade;</p>
+    <nav class="menu-links">
+      <a class="menu-link" data-page="home" href="/"><span class="menu-num">01</span>Home</a>
+      <a class="menu-link" data-page="milex" href="/milex"><span class="menu-num">02</span>MILEX&trade;</a>
+      <a class="menu-link" data-page="science" href="/the-science"><span class="menu-num">03</span>The Science</a>
+      <a class="menu-link" data-page="homeowners" href="/home-owners"><span class="menu-num">04</span>Homeowners</a>
+      <a class="menu-link" data-page="builders" href="/builders"><span class="menu-num">05</span>Builders &amp; Contractors</a>
+      <a class="menu-link" data-page="locations" href="/locations"><span class="menu-num">06</span>Locations</a>
+    </nav>
+    <a class="btn btn-orange btn-lg" href="#" data-cta>Free Home Efficiency Scan<span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    <p class="menu-foot">Nature's Very Best&trade; &middot; (800) 574-MILO</p>
+  </div>
+</div>
+
+<main>
+
+<!-- ============================================================
+     PAGE: HOME
+     ============================================================ -->
+<!-- ============================================================
+     PAGE: MILEX
+     ============================================================ -->
+<!-- ============================================================
+     PAGE: THE SCIENCE
+     ============================================================ -->
+<!-- ============================================================
+     PAGE: HOMEOWNERS
+     ============================================================ -->
+<!-- ============================================================
+     PAGE: BUILDERS
+     ============================================================ -->
+<!-- ============================================================
+     PAGE: LOCATIONS
+     ============================================================ -->
+<section class="page active" id="page-locations" data-page="locations">
+
+  <header class="hero hero-sub-page">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow hero-stagger">Find us</p>
+        <h1 class="hero-title hero-stagger">Grown in Texas. <em>Installed near you.</em></h1>
+        <p class="hero-sub hero-stagger">From our headquarters and production plant in Tulia to dealers across Texas and Oklahoma, a MILO INSULATION&trade; team is closer than you think.</p>
+        <div class="hero-actions hero-stagger">
+          <a class="btn btn-orange btn-lg" href="#" data-cta>Request Free Inspection<span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-ghost btn-lg" href="#locationsMap" data-scroll-map>View the map<span class="btn-arrow" aria-hidden="true">&darr;</span></a>
+        </div>
+      </div>
+      <figure class="hero-media hero-stagger">
+        <img src="https://betterbranding.github.io/milo-scripts/v3-preview/assets/hero-field.jpg" alt="Grain sorghum field in the Texas Panhandle">
+        <figcaption class="hero-caption">Headquartered in Tulia, Texas</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <!-- LOCATOR -->
+  <section class="section section-dark grain loc-section" id="locationsMap">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <span class="giant-num giant-num-dark" aria-hidden="true">01</span>
+        <p class="eyebrow eyebrow-green reveal">Our locations</p>
+        <h2 class="display display-sm reveal">Texas &amp; Oklahoma, <em>covered.</em></h2>
+        <p class="lede reveal">Tap a location for contact details and directions, or pick a pin on the map.</p>
+      </div>
+      <div class="loc-layout reveal">
+        <div class="loc-list" id="locList" role="list"></div>
+        <div class="loc-map-wrap">
+          <div class="loc-map" id="locMap" aria-label="Map of MILO INSULATION locations"></div>
+          <p class="loc-map-note">Map data &copy; OpenStreetMap contributors &middot; Tiles &copy; CARTO</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal-group">
+        <span class="giant-num" aria-hidden="true">02</span>
+        <p class="eyebrow reveal">Not sure which is yours?</p>
+        <h2 class="display display-sm reveal">One number reaches every team.</h2>
+        <p class="lede reveal">Call <a class="loc-inline-phone" href="tel:+18005746456">(800) 574-MILO</a> and we will connect you with the MILO INSULATION&trade; team for your area. Or request a free Home Efficiency Scan and we will route it for you based on your ZIP code.</p>
+      </div>
+      <div class="loc-cov-grid reveal-group">
+        <div class="loc-cov reveal">
+          <span class="loc-cov-label">Headquarters</span>
+          <span class="loc-cov-value">Tulia, TX</span>
+          <span class="loc-cov-note">Worldwide HQ and production plant</span>
+        </div>
+        <div class="loc-cov reveal">
+          <span class="loc-cov-label">Texas</span>
+          <span class="loc-cov-value">4 teams</span>
+          <span class="loc-cov-note">Panhandle, DFW, East Texas, Central Texas</span>
+        </div>
+        <div class="loc-cov reveal">
+          <span class="loc-cov-label">Oklahoma</span>
+          <span class="loc-cov-value">1 team</span>
+          <span class="loc-cov-note">Southwest Oklahoma and North Texas</span>
+        </div>
+        <div class="loc-cov reveal">
+          <span class="loc-cov-label">Growing</span>
+          <span class="loc-cov-value">More soon</span>
+          <span class="loc-cov-note"><a href="https://franchise.miloinsulation.com" target="_blank" rel="noopener">Franchise opportunities</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band grain">
+    <div class="container cta-band-inner reveal-group">
+      <div class="reveal">
+        <p class="eyebrow eyebrow-light">Get started</p>
+        <h2 class="display display-sm">See if your home qualifies</h2>
+        <p class="cta-band-text">A free Home Efficiency Scan ($399 value) from the MILO INSULATION&trade; team nearest you. No obligation.</p>
+      </div>
+      <div class="reveal cta-band-action">
+        <a class="btn btn-orange btn-xl" href="#" data-cta>Request Free Inspection<span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+<script>
+(function () {
+  var LOCS = [
+    { id:'hq', name:'MILO Insulation, LLC', role:'Worldwide Headquarters', addr:'505 US-87', city:'Tulia, TX 79088', phone:'(800) 574-MILO', tel:'+18005746456', lat:34.5426, lng:-101.7765 },
+    { id:'plant', name:'MILO Insulation of Texas', sub:'Amarillo / Lubbock / Plainview', role:'Production Plant', addr:'505 US-87', city:'Tulia, TX 79088', phone:'(806) 599-6456', tel:'+18065996456', lat:34.5426, lng:-101.7765 },
+    { id:'dfw', name:'MILO Insulation of Texas', sub:'Denton / Dallas / Ft. Worth', role:'DFW Corporate Office', addr:'2401 Worthington Dr', city:'Denton, TX 76207', phone:'(940) 331-6456', tel:'+19403316456', lat:33.2381, lng:-97.1804 },
+    { id:'altus', name:'MILO Insulation of Altus', role:'SW Oklahoma / North Texas Dealer', addr:'601 Old Mill Rd', city:'Altus, OK 73521', phone:'(580) 500-6456', tel:'+15805006456', lat:34.6305, lng:-99.3362 },
+    { id:'etx', name:'MILO Insulation of East Texas', role:'East Texas Dealer', addr:'1411 Flat Creek Rd, Suite A', city:'Athens, TX 75751', phone:'(903) 900-6456', tel:'+19039006456', lat:32.2094, lng:-95.8273 },
+    { id:'rockdale', name:'MILO Insulation of Central Texas', role:'Central Texas Dealer', addr:'', city:'Rockdale, TX 76567', phone:'(800) 574-MILO', tel:'+18005746456', lat:30.6549, lng:-97.0058 }
+  ];
+  var ASSET = (function(){ var l=document.querySelector('link[href$="styles.css"]'); return l ? l.getAttribute('href').replace(/styles\.css$/,'') : ''; })();
+  var list = document.getElementById('locList');
+  var mapEl = document.getElementById('locMap');
+  if (!list || !mapEl) return;
+
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function mapsUrl(l){ return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((l.addr ? l.addr + ', ' : '') + l.city); }
+
+  list.innerHTML = LOCS.map(function (l, i) {
+    return '<button class="loc-card' + (i===0?' active':'') + '" type="button" role="listitem" data-idx="' + i + '">' +
+      '<span class="loc-idx">' + String(i+1).padStart(2,'0') + '</span>' +
+      '<span class="loc-body">' +
+        '<span class="loc-name">' + esc(l.name) + (l.sub ? '<small>' + esc(l.sub) + '</small>' : '') + '</span>' +
+        '<span class="loc-role">' + esc(l.role) + '</span>' +
+        '<span class="loc-meta">' +
+          '<a class="loc-line" href="' + mapsUrl(l) + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>' + esc(l.addr ? l.addr + ', ' + l.city : l.city) + '</a>' +
+          '<a class="loc-line" href="tel:' + l.tel + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>' + esc(l.phone) + '</a>' +
+        '</span>' +
+      '</span>' +
+      '<span class="loc-arrow" aria-hidden="true">&rarr;</span>' +
+    '</button>';
+  }).join('');
+
+  var map, markers = [];
+  function setActive(i, fly) {
+    list.querySelectorAll('.loc-card').forEach(function (c, j) { c.classList.toggle('active', j === i); });
+    var card = list.children[i];
+    if (card && card.scrollIntoView && window.innerWidth > 860) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    if (map && markers[i]) {
+      markers.forEach(function (m, j) { var el = m.getElement(); if (el) el.classList.toggle('is-active', j === i); });
+      if (fly) map.flyTo([LOCS[i].lat, LOCS[i].lng], 9, { duration: 0.9 });
+      markers[i].openPopup();
+    }
+  }
+  list.addEventListener('click', function (e) {
+    var card = e.target.closest('.loc-card'); if (!card) return;
+    if (e.target.closest('a')) return;
+    var i = +card.dataset.idx; setActive(i, true);
+    if (window.innerWidth <= 860) mapEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  function initMap() {
+    if (!window.L) return;
+    map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: true, attributionControl: false });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
+    var bounds = [];
+    LOCS.forEach(function (l, i) {
+      var seen = LOCS.findIndex(function (o) { return o.lat === l.lat && o.lng === l.lng; });
+      var offset = (seen !== i) ? 0.0001 * (i - seen) : 0;
+      var icon = L.divIcon({ className: 'loc-pin', html: '<span class="loc-pin-dot"><img src="' + ASSET + 'assets/sorghum-icon.png" alt=""></span><span class="loc-pin-ring"></span>', iconSize: [44, 44], iconAnchor: [22, 22], popupAnchor: [0, -26] });
+      var m = L.marker([l.lat + offset, l.lng], { icon: icon, title: l.name }).addTo(map);
+      m.bindPopup('<strong>' + esc(l.name) + (l.sub ? ' <em>' + esc(l.sub) + '</em>' : '') + '</strong><span>' + esc(l.role) + '</span><span>' + esc(l.addr ? l.addr + ', ' + l.city : l.city) + '</span><a href="tel:' + l.tel + '">' + esc(l.phone) + '</a>', { className: 'loc-popup', closeButton: false, offset: [0, 0] });
+      m.on('click', function () { setActive(i, false); });
+      markers.push(m); bounds.push([l.lat, l.lng]);
+    });
+    map.fitBounds(bounds, { padding: [56, 56] });
+    map.on('click', function(){ map.scrollWheelZoom.enable(); });
+    setTimeout(function(){ setActive(0, false); }, 400);
+    new ResizeObserver(function(){ map.invalidateSize(); }).observe(mapEl);
+  }
+  function loadLeaflet() {
+    if (window.L) return initMap();
+    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
+    var js = document.createElement('script'); js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; js.onload = initMap; document.head.appendChild(js);
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) { if (en.some(function (e) { return e.isIntersecting; })) { io.disconnect(); loadLeaflet(); } }, { rootMargin: '600px' });
+    io.observe(mapEl);
+  } else loadLeaflet();
+  document.querySelectorAll('[data-scroll-map]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); document.getElementById('locationsMap').scrollIntoView({ behavior: 'smooth' }); }); });
+})();
+</script>
+
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer grain">
+  <div class="container">
+    <div class="footer-top">
+      <h2 class="footer-display">Ready for nature's<br><em>very best?</em></h2>
+      <div class="footer-top-action">
+        <a class="btn btn-orange btn-lg" href="#" data-cta>Get Free Inspection<span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        <p>Schedule your Free Home Efficiency Scan today. No cost, no obligation.</p>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <img src="https://betterbranding.github.io/milo-scripts/v3-preview/assets/logo.png" alt="MILO INSULATION&trade;" class="footer-logo" loading="lazy">
+        <p class="footer-tagline">Nature's Very Best&trade;</p>
+        <p class="footer-text">Revolutionary natural insulation crafted exclusively from grain sorghum. Serving homeowners throughout Texas and Oklahoma.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="/">Home</a>
+        <a href="/milex">MILEX&trade;</a>
+        <a href="/the-science">The Science</a>
+        <a href="/home-owners">Homeowners</a>
+        <a href="/builders">Builders &amp; Contractors</a>
+        <a href="/locations">Locations</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p id="footerPhone">(800) 574-MILO</p>
+        <p id="footerCity">Tulia, Texas</p>
+        <a href="https://franchise.miloinsulation.com" target="_blank" rel="noopener">Franchise opportunities</a>
+      </div>
+      <div class="footer-col footer-mascot-col">
+        <img src="https://betterbranding.github.io/milo-scripts/v3-preview/assets/mascot.png" alt="MILO INSULATION&trade; mascot" class="footer-mascot" loading="lazy">
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MILO Insulation of Texas, LLC. All rights reserved.</p>
+      <p>Grown &middot; Engineered &middot; Installed &middot; Proven &middot; Warrantied</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://betterbranding.github.io/milo-scripts/v3-preview/script.js?v=2"></script>
+<script>window.MILO_LOCATION = "__MILO_LOCATION__";</script>
+<script src="https://betterbranding.github.io/milo-scripts/v3/location.js?v=3"></script>
+
+</body>
+</html>
