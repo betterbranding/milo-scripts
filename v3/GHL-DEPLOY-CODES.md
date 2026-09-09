@@ -34,7 +34,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/home.html?v=3').then(function (r) {
+  fetch(GH + '/v3/pages/home.html?v=4').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -99,7 +99,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/milex.html?v=3').then(function (r) {
+  fetch(GH + '/v3/pages/milex.html?v=4').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -164,7 +164,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/science.html?v=3').then(function (r) {
+  fetch(GH + '/v3/pages/science.html?v=4').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -229,7 +229,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/homeowners.html?v=3').then(function (r) {
+  fetch(GH + '/v3/pages/homeowners.html?v=4').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -294,7 +294,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/builders.html?v=3').then(function (r) {
+  fetch(GH + '/v3/pages/builders.html?v=4').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -359,7 +359,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/locations.html?v=3').then(function (r) {
+  fetch(GH + '/v3/pages/locations.html?v=4').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
@@ -424,7 +424,7 @@ Never put the loader in the header tracking code.
       '@media (prefers-reduced-motion:reduce){html::after{animation:none}}';
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
-  fetch(GH + '/v3/pages/form.html?v=3').then(function (r) {
+  fetch(GH + '/v3/pages/form.html?v=4').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
   }).then(function (html) {
