@@ -198,6 +198,12 @@
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   }
+  /* Stop the browser's focus-scroll (it can nudge the whole page when a card is half clipped) */
+  list.addEventListener('mousedown', function (e) {
+    if (e.target.closest('[data-loc-action]')) return;
+    var card = e.target.closest('.loc-card'); if (!card) return;
+    e.preventDefault(); try { card.focus({ preventScroll: true }); } catch (err) {}
+  });
   list.addEventListener('click', function (e) {
     if (e.target.closest('[data-loc-action]')) return;   /* Call / Directions do their own thing */
     var card = e.target.closest('.loc-card'); if (!card) return;
@@ -289,7 +295,7 @@
   </div>
 </footer>
 
-<script src="https://betterbranding.github.io/milo-scripts/v3-preview/script.js?v=4"></script>
+<script src="https://betterbranding.github.io/milo-scripts/v3-preview/script.js?v=5"></script>
 <script>window.MILO_LOCATION = "__MILO_LOCATION__";</script>
 <script src="https://betterbranding.github.io/milo-scripts/v3/location.js?v=3"></script>
 
