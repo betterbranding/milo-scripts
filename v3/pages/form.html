@@ -87,12 +87,26 @@
     }
     .progress-rail.done .fill { background: var(--green); }
 
+    /* ── Top banner ─────────────────────────────────────── */
+    .form-banner {
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .form-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 5 / 1;
+      object-fit: cover;
+    }
     /* ── Header ─────────────────────────────────────────── */
     .form-header {
       width: min(680px, calc(100% - 3rem));
       margin-inline: auto;
       text-align: center;
-      padding: clamp(2rem, 5vw, 3rem) 0 0;
+      padding: clamp(1.25rem, 3vw, 2rem) 0 0;
     }
     .form-header .logo-link { display: inline-block; }
     .form-header img.logo { height: 46px; width: auto; margin-inline: auto; }
@@ -641,6 +655,11 @@
   <!-- Fixed hairline progress -->
   <div class="progress-rail" id="progressRail" aria-hidden="true">
     <span class="fill" id="progressFill"></span>
+  </div>
+
+  <!-- Top banner -->
+  <div class="form-banner rise rise-1">
+    <img src="https://betterbranding.github.io/milo-scripts/v3-preview/assets/form-banner.jpg" alt="See where your home is losing money. Free thermal attic scan, $399 value." width="1000" height="200" fetchpriority="high">
   </div>
 
   <!-- Header -->
