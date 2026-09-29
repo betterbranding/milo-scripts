@@ -112,7 +112,7 @@
         <div class="loc-cov reveal">
           <span class="loc-cov-label">Texas</span>
           <span class="loc-cov-value">3 teams</span>
-          <span class="loc-cov-note">Panhandle, DFW, East Texas</span>
+          <span class="loc-cov-note">Panhandle, DFW, East Texas. Texoma coming soon</span>
         </div>
         <div class="loc-cov reveal">
           <span class="loc-cov-label">Oklahoma</span>
@@ -149,7 +149,8 @@
     { id:'plant', name:'MILO Insulation of Texas', sub:'Amarillo / Lubbock / Plainview', role:'Production Plant', addr:'505 US-87', city:'Tulia, TX 79088', phone:'(806) 599-6456', tel:'+18065996456', lat:34.5426, lng:-101.7765 },
     { id:'dfw', name:'MILO Insulation of Texas', sub:'Denton / Dallas / Ft. Worth', role:'DFW Corporate Office', addr:'2401 Worthington Dr', city:'Denton, TX 76207', phone:'(940) 331-6456', tel:'+19403316456', lat:33.2381, lng:-97.1804 },
     { id:'altus', name:'MILO Insulation of Altus', role:'SW Oklahoma / North Texas Dealer', addr:'601 Old Mill Rd', city:'Altus, OK 73521', phone:'(580) 500-6456', tel:'+15805006456', lat:34.6305, lng:-99.3362 },
-    { id:'etx', name:'MILO Insulation of East Texas', role:'East Texas Dealer', addr:'1411 Flat Creek Rd, Suite A', city:'Athens, TX 75751', phone:'(903) 900-6456', tel:'+19039006456', lat:32.2094, lng:-95.8273 }
+    { id:'etx', name:'MILO Insulation of East Texas', role:'East Texas Dealer', addr:'1411 Flat Creek Rd, Suite A', city:'Athens, TX 75751', phone:'(903) 900-6456', tel:'+19039006456', lat:32.2094, lng:-95.8273 },
+    { id:'texoma', name:'MILO Insulation - Texoma', role:'Texoma Dealer', soon:true, addr:'821 N Travis Avenue', city:'Denison, TX 75021', phone:'(903) 816-5522', tel:'+19038165522', lat:33.7593, lng:-96.5367 }
   ];
   var ASSET = (function(){ var l=document.querySelector('link[href$="styles.css"]'); return l ? l.getAttribute('href').replace(/styles\.css$/,'') : ''; })();
   var list = document.getElementById('locList');
@@ -160,11 +161,11 @@
   function mapsUrl(l){ return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((l.addr ? l.addr + ', ' : '') + l.city); }
 
   list.innerHTML = LOCS.map(function (l, i) {
-    return '<div class="loc-card' + (i===0?' active':'') + '" role="listitem" tabindex="0" data-idx="' + i + '" aria-label="' + esc(l.name) + '">' +
+    return '<div class="loc-card' + (i===0?' active':'') + (l.soon?' is-soon':'') + '" role="listitem" tabindex="0" data-idx="' + i + '" aria-label="' + esc(l.name) + (l.soon?' (coming soon)':'') + '">' +
       '<span class="loc-idx">' + String(i+1).padStart(2,'0') + '</span>' +
       '<span class="loc-body">' +
         '<span class="loc-name">' + esc(l.name) + (l.sub ? '<small>' + esc(l.sub) + '</small>' : '') + '</span>' +
-        '<span class="loc-role">' + esc(l.role) + '</span>' +
+        '<span class="loc-role">' + esc(l.role) + (l.soon ? ' <span class="loc-soon">Coming Soon</span>' : '') + '</span>' +
         '<span class="loc-addr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>' + esc(l.addr ? l.addr + ', ' + l.city : l.city) + '</span>' +
         '<span class="loc-actions">' +
           '<a class="loc-act loc-act-call" href="tel:' + l.tel + '" data-loc-action><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>' + esc(l.phone) + '</a>' +
@@ -225,11 +226,11 @@
     LOCS.forEach(function (l, i) {
       var seen = LOCS.findIndex(function (o) { return o.lat === l.lat && o.lng === l.lng; });
       var offset = (seen !== i) ? 0.0001 * (i - seen) : 0;
-      var el = document.createElement('div'); el.className = 'loc-pin'; el.title = l.name;
+      var el = document.createElement('div'); el.className = 'loc-pin' + (l.soon ? ' is-soon' : ''); el.title = l.name + (l.soon ? ' (coming soon)' : '');
       el.innerHTML = '<span class="loc-pin-dot"><img src="' + ASSET + 'assets/sorghum-icon.png" alt=""></span><span class="loc-pin-ring"></span>';
       var popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 28, className: 'loc-popup', maxWidth: '280px' })
         .setLngLat([l.lng, l.lat + offset])
-        .setHTML('<strong>' + esc(l.name) + (l.sub ? ' <em>' + esc(l.sub) + '</em>' : '') + '</strong><span>' + esc(l.role) + '</span><span>' + esc(l.addr ? l.addr + ', ' + l.city : l.city) + '</span><a href="tel:' + l.tel + '">' + esc(l.phone) + '</a>');
+        .setHTML('<strong>' + esc(l.name) + (l.sub ? ' <em>' + esc(l.sub) + '</em>' : '') + '</strong><span>' + esc(l.role) + (l.soon ? ' &middot; Coming Soon' : '') + '</span><span>' + esc(l.addr ? l.addr + ', ' + l.city : l.city) + '</span><a href="tel:' + l.tel + '">' + esc(l.phone) + '</a>');
       var m = new maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat([l.lng, l.lat + offset]).addTo(map);
       el.addEventListener('click', function (e) { e.stopPropagation(); setActive(i, false); });
       markers.push(m); popups.push(popup);
@@ -297,7 +298,7 @@
 
 <script src="https://betterbranding.github.io/milo-scripts/v3-preview/script.js?v=5"></script>
 <script>window.MILO_LOCATION = "__MILO_LOCATION__";</script>
-<script src="https://betterbranding.github.io/milo-scripts/v3/location.js?v=3"></script>
+<script src="https://betterbranding.github.io/milo-scripts/v3/location.js?v=4"></script>
 
 </body>
 </html>
